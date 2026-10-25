@@ -1,10 +1,11 @@
 # CodeShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus a **Data Structures & Algorithms** track that follows the GATE CS syllabus.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
 - Tutorials split into chapters, with a sidebar of topics on the left
+- Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java and Python (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
 - Responsive layout, plus light and dark mode (follows the system setting, with a toggle in the header)
@@ -30,7 +31,7 @@ Other commands:
 | --- | --- |
 | `npm run build` | Builds the static site into `dist/` |
 | `npm run check` | Builds, then checks that every internal link points to a real file |
-| `npm run verify-examples` | Runs every lesson example with real `python3`, `gcc`, `java` and `node`, and fails if any output differs from what the page shows. A language whose tool is missing is skipped. |
+| `npm run verify-examples` | Runs every lesson example with real `python3`, `gcc`, `java` and `node`, and fails if any output differs from what the page shows. Also recomputes every numerical quiz answer. A language whose tool is missing is skipped. |
 
 ## Turn on GitHub Pages (one-time setup)
 
@@ -52,13 +53,14 @@ Notes:
 
 ```text
 src/
-  site.mjs              site name and the list of languages
+  site.mjs              site name, the list of languages and topic tracks (DSA)
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
                         playground.js, inspect.js (console.log formatting)
   highlight.mjs         small syntax highlighter used at build time
-  diagrams.mjs          flowchart / tree / pipeline figures rendered to SVG
+  diagrams.mjs          flowchart / tree / pipeline / graph figures rendered to SVG
+  quiz.mjs              GATE-style practice questions
   markdown.mjs          small Markdown parser for lessons
   templates.mjs         page layout, header, sidebar, code blocks
 scripts/                build, dev server, link checker, example verifier
@@ -113,6 +115,34 @@ end: End
 - `flowchart`: one node per line. The node types are `start`, `end`, `step`, `io` (input/output), `if` (with indented `yes:` and an optional `no:` block, which can nest) and `while` (its indented body loops back to the condition).
 - `tree`: a hierarchy, with one name per line and indentation for children. Add `| note` after a name for a small second line. Wide trees switch to a top-to-bottom layout on small screens.
 - `pipeline`: steps from left to right, one per line, also with an optional `| note`.
+- `graph`: one edge per line (`A - B` undirected, `A -> B` directed, `: 5` for a weight). The vertices are drawn on a circle; a `nodes: A B C` line sets their order.
+
+### Code in several languages (tabs)
+
+Code blocks in **different** languages that follow each other directly, each optionally with its own `output` block, are shown as one block with a tab for each language. The reader's choice of tab is remembered across pages. The DSA track uses this for its Java and Python versions.
+
+### GATE-style practice questions
+
+````markdown
+```quiz
+q: Which traversal of a BST visits the keys in sorted order?
+- Preorder
+* Inorder
+- Postorder
+explain: Inorder visits the left subtree, then the node, then the right subtree.
+```
+
+```quiz
+q: How many moves does the Tower of Hanoi need for 8 discs?
+answer: 255
+verify: 2 ** 8 - 1
+explain: M(n) = 2ⁿ − 1.
+```
+````
+
+- `*` marks a correct option and `-` a wrong one. One `*` makes an MCQ; several make an MSQ.
+- `answer:` makes a NAT (numerical) question.
+- `verify:` is a Python expression that `npm run verify-examples` evaluates; the build fails if it does not equal the answer. For longer checks, leave `verify:` empty and indent a Python program under it that prints the answer.
 
 To add a whole new language, add an entry in `src/site.mjs`, add a folder under `src/content/`, and add a grammar in `src/highlight.mjs`.
 

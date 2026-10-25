@@ -50,3 +50,21 @@ export const languages = [
     runnable: true,
   },
 ];
+
+// Topic tracks are not programming languages: their lessons contain code in
+// several languages (shown as tabs), so they get no playground or highlighter of their own.
+export const topics = [
+  {
+    id: 'dsa',
+    name: 'Data Structures',
+    short: 'DS',
+    color: '#10b981',
+    blurb: 'Arrays to graphs, sorting to dynamic programming, with Java and Python code and GATE-style practice questions.',
+    intro:
+      'Data structures and algorithms are the toolkit behind every efficient program, and a core GATE CS subject. ' +
+      'Each lesson explains one idea with figures, gives the code in both Java and Python, and ends with GATE-style practice questions.',
+    topic: true,
+  },
+];
+
+export const tracks = [...languages, ...topics];

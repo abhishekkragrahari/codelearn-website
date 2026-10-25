@@ -292,11 +292,60 @@ function pipeline(src) {
   return svgWrap(x + margin, H + margin * 2, out, caption, 'pipeline');
 }
 
+/* ---------------- Graph (nodes on a circle) ---------------- */
+
+// Lines are edges: "A - B" (undirected), "A -> B" (directed), with an optional
+// ": label" for a weight. A line "nodes: A B C" fixes the order around the circle.
+function graph(src) {
+  const { caption, rest } = takeCaption(src);
+  const nodes = [];
+  const edges = [];
+  const add = (n) => { if (!nodes.includes(n)) nodes.push(n); };
+  for (const raw of rest.split('\n')) {
+    const l = raw.trim();
+    if (!l) continue;
+    let m;
+    if ((m = l.match(/^nodes:\s*(.*)$/))) { m[1].split(/\s+/).forEach(add); continue; }
+    m = l.match(/^(\S+)\s*(->|-)\s*(\S+)(?:\s*:\s*(.+))?$/);
+    if (!m) throw new Error(`graph: cannot read "${l}"`);
+    add(m[1]); add(m[3]);
+    edges.push({ a: m[1], b: m[3], directed: m[2] === '->', label: m[4] });
+  }
+  const NR = Math.max(19, Math.max(...nodes.map((n) => textWidth(n))) / 2 + 9);   // fit the longest label
+  const R = Math.max(70, nodes.length * (NR + 2)), margin = 30;
+  const cx = R + margin, cy = R + margin;
+  const pos = {};
+  nodes.forEach((n, i) => {
+    const t = -Math.PI / 2 + (2 * Math.PI * i) / nodes.length;
+    pos[n] = [cx + R * Math.cos(t), cy + R * Math.sin(t)];
+  });
+  let out = '';
+  for (const e of edges) {
+    const [x1, y1] = pos[e.a], [x2, y2] = pos[e.b];
+    const d = Math.hypot(x2 - x1, y2 - y1) || 1;
+    const ux = (x2 - x1) / d, uy = (y2 - y1) / d;
+    // When both u -> v and v -> u exist, shift each line sideways so they do not overlap.
+    const twin = e.directed && edges.some((o) => o.directed && o.a === e.b && o.b === e.a);
+    const ox = twin ? -uy * 5 : 0, oy = twin ? ux * 5 : 0;
+    const pts = [[x1 + ux * NR + ox, y1 + uy * NR + oy], [x2 - ux * (NR + (e.directed ? 3 : 0)) + ox, y2 - uy * (NR + (e.directed ? 3 : 0)) + oy]];
+    out += line(pts.map((p) => p.map((v) => +v.toFixed(1))), e.directed);
+    if (e.label) {
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      out += `<rect class="dg-weight-bg" x="${mx - 11}" y="${my - 9}" width="22" height="18" rx="4"/>` + label(mx, my + 4.5, e.label);
+    }
+  }
+  for (const n of nodes) {
+    const [x, y] = pos[n];
+    out += `<circle class="dg-node dg-vertex" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${NR}"/>` + nodeText(x.toFixed(1), +y.toFixed(1), n);
+  }
+  return svgWrap(cx * 2, cy * 2, out, caption, 'graph');
+}
+
 function takeCaption(src) {
   const m = src.match(/^\s*caption:\s*(.*)\n/);
   return m ? { caption: m[1].trim(), rest: src.slice(m[0].length) } : { caption: '', rest: src };
 }
 
-const renderers = { flowchart, tree, pipeline };
+const renderers = { flowchart, tree, pipeline, graph };
 export const isDiagram = (lang) => lang in renderers;
 export const renderDiagram = (lang, src) => renderers[lang](src);

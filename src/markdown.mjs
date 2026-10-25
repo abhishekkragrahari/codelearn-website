@@ -19,7 +19,7 @@ export function slugify(s) {
   return s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-function inline(text) {
+export function inline(text) {
   const codes = [];
   let s = text.replace(/`([^`]+)`/g, (_, c) => {
     codes.push(`<code>${escapeHtml(c)}</code>`);
@@ -122,6 +122,8 @@ export function renderBlocks(blocks, renderCode) {
             .join('')}</tbody></table></div>`;
         case 'callout':
           return `<aside class="callout callout-${b.kind}">${b.html}</aside>`;
+        case 'html':
+          return b.html;
         case 'code':
           return renderCode ? renderCode(b) : `<pre><code>${highlight(b.code, b.lang)}</code></pre>`;
       }
