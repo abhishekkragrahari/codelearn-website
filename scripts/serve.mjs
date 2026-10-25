@@ -18,6 +18,8 @@ const TYPES = {
   '.json': 'application/json',
   '.png': 'image/png',
   '.ico': 'image/x-icon',
+  '.wasm': 'application/wasm',
+  '.zip': 'application/zip',
 };
 
 // Build in a fresh process each time, so edits to src/*.mjs modules are picked up too.

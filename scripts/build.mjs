@@ -180,6 +180,10 @@ function playgroundPage(all) {
     <section class="pg-pane">
       <div class="pg-pane-head"><span id="pg-filename">main.js</span><span class="pg-hint">Ctrl + Enter to run</span></div>
       <textarea id="pg-editor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea>
+      <details class="pg-stdin">
+        <summary>Input (stdin) for input(), scanf or Scanner</summary>
+        <textarea id="pg-stdin" spellcheck="false" rows="3" placeholder="Type the input your program reads, one value per line" aria-label="Program input"></textarea>
+      </details>
     </section>
     <section class="pg-pane">
       <div class="pg-pane-head"><span>Output</span><button type="button" class="pg-clear" id="pg-clear">Clear</button></div>
@@ -191,12 +195,12 @@ function playgroundPage(all) {
 <script type="application/json" id="pg-examples">${jsonForScript(examples)}</script>`;
   return layout({
     title: 'Playground',
-    description: 'Write and run JavaScript in your browser, and explore Python, C and Java examples with their output.',
+    description: 'Write and run Python, C, Java and JavaScript code online.',
     root,
     body,
     active: 'playground',
     bodyClass: 'pg-page',
-    scripts: ['inspect.js', 'runner.js', 'playground.js'],
+    scripts: ['inspect.js', 'runner.js', 'coderun.js', 'playground.js'],
   });
 }
 
