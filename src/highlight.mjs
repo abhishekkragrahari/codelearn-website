@@ -45,6 +45,19 @@ const grammars = {
     string: /`(?:\\[\s\S]|[^`\\])*`|"(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*'/,
     classNames: true,
   },
+  // SQL keywords are matched case-insensitively; lessons write them in capitals.
+  sql: {
+    keywords: words(`SELECT FROM WHERE AND OR NOT IN IS NULL AS DISTINCT ORDER BY GROUP HAVING
+      ASC DESC JOIN INNER LEFT RIGHT FULL OUTER CROSS NATURAL ON USING UNION ALL INTERSECT
+      EXCEPT EXISTS ANY SOME BETWEEN LIKE CASE WHEN THEN ELSE END CREATE TABLE INSERT INTO
+      VALUES UPDATE SET DELETE DROP PRIMARY KEY FOREIGN REFERENCES UNIQUE CHECK DEFAULT
+      CONSTRAINT INTEGER INT TEXT REAL VARCHAR CHAR LIMIT VIEW WITH RECURSIVE CASCADE`),
+    constants: words('TRUE FALSE'),
+    builtins: words('COUNT SUM AVG MIN MAX COALESCE ROUND LENGTH UPPER LOWER'),
+    comment: /--[^\n]*/,
+    string: /'(?:''|[^'\n])*'/,
+    ignoreCase: true,
+  },
 };
 
 const NUMBER = /\b(?:0[xX][\da-fA-F]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)[fFlLuU]?\b/;
@@ -89,9 +102,9 @@ export function highlight(code, lang) {
     else if (t.string) out += span('string', text);
     else if (t.number) out += span('number', text);
     else if (t.operator) out += span('operator', text);
-    else if (g.keywords.has(text)) out += span('keyword', text);
-    else if (g.constants.has(text)) out += span('constant', text);
-    else if (g.builtins.has(text)) out += span('builtin', text);
+    else if (g.keywords.has(g.ignoreCase ? text.toUpperCase() : text)) out += span('keyword', text);
+    else if (g.constants.has(g.ignoreCase ? text.toUpperCase() : text)) out += span('constant', text);
+    else if (g.builtins.has(g.ignoreCase ? text.toUpperCase() : text)) out += span('builtin', text);
     else if (/^\s*\(/.test(code.slice(last))) out += span('function', text);
     else if (g.classNames && /^[A-Z][a-z]/.test(text)) out += span('class', text);
     else out += escapeHtml(text);
