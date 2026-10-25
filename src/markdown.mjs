@@ -75,7 +75,8 @@ export function parseBlocks(md) {
     // A table: a | header | row, a | --- | separator row, then body rows.
     if (/^\|.*\|\s*$/.test(line) && /^\|(\s*:?-+:?\s*\|)+\s*$/.test(lines[i + 1] || '')) {
       flush();
-      const cells = (row) => row.trim().replace(/^\||\|$/g, '').split('|').map((c) => inline(c.trim()));
+      // "\|" inside a cell is a literal bar, not a column separator.
+      const cells = (row) => row.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map((c) => inline(c.trim().replace(/\\\|/g, '|')));
       const head = cells(line);
       const rows = [];
       for (i += 2; i < lines.length && /^\|.*\|\s*$/.test(lines[i]); i++) rows.push(cells(lines[i]));

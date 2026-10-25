@@ -31,7 +31,7 @@ export function playgroundHref(root, lang, code, output) {
 
 export function codeBlock(block, root) {
   const lang = langById[block.lang];
-  const label = lang ? lang.name : block.lang;
+  const label = lang ? lang.name : ({ sql: 'SQL' }[block.lang] ?? block.lang);
   const runnable = lang && lang.runnable;
   const actions = [
     '<button type="button" class="code-btn" data-copy>Copy</button>',

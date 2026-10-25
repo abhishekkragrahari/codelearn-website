@@ -84,6 +84,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Simulations · worked examples · GATE-style questions',
   },
+  {
+    id: 'dbms',
+    name: 'Databases (DBMS)',
+    short: 'DBMS',
+    color: '#0ea5e9',
+    blurb: 'ER model, relational algebra, SQL, functional dependencies, normalization, transactions, concurrency control and indexing.',
+    intro:
+      'Databases is a core GATE CS subject. These lessons go from the ER model and relational algebra to SQL, normal forms, ' +
+      'transactions and B+ trees. Every SQL example runs on a real SQLite database when the site is built, so the result ' +
+      'tables you see are exact, and the algorithms (attribute closure, candidate keys, serializability) come with small programs.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Real SQL results · worked examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -92,7 +106,7 @@ export const gateSubjects = [
   { name: 'Programming in C', track: 'c' },
   { name: 'Data Structures & Algorithms', track: 'dsa' },
   { name: 'Operating Systems', track: 'os' },
-  { name: 'Databases (DBMS)' },
+  { name: 'Databases (DBMS)', track: 'dbms' },
   { name: 'Computer Networks' },
   { name: 'Theory of Computation' },
   { name: 'Computer Organization & Architecture' },

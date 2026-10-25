@@ -15,7 +15,44 @@ const INSPECT = join(ROOT, 'src', 'assets', 'js', 'inspect.js');
 
 const has = (cmd) => spawnSync(cmd, ['--version'], { stdio: 'ignore' }).status === 0;
 
+// Runs a SQL script on a fresh in-memory SQLite database and prints every
+// query result as a table. Quiz mode prints bare values instead (one row per
+// line), so a "what does this query return?" answer can be compared directly.
+const SQL_RUNNER = String.raw`
+import sqlite3, sys
+script, quiz = open(sys.argv[1]).read(), sys.argv[2] == '1'
+db = sqlite3.connect(':memory:')
+db.execute('PRAGMA foreign_keys = ON')
+NL = chr(10)
+def show(v):
+    return 'NULL' if v is None else str(v)
+results, stmt = [], ''
+for line in script.splitlines(keepends=True):
+    stmt += line
+    if sqlite3.complete_statement(stmt):
+        cur = db.execute(stmt)
+        if cur.description:
+            head = [d[0] for d in cur.description]
+            rows = [[show(v) for v in r] for r in cur.fetchall()]
+            if quiz:
+                results.append(NL.join(' '.join(r) for r in rows))
+            else:
+                w = [max(len(x) for x in col) for col in zip(head, *rows)]
+                fmt = lambda r: '  '.join(x.ljust(n) for x, n in zip(r, w)).rstrip()
+                results.append(NL.join([fmt(head), fmt(['-' * n for n in w])] + [fmt(r) for r in rows]))
+        stmt = ''
+print((NL + NL).join(results))
+`;
+
 const runners = {
+  sql: {
+    available: () => spawnSync('python3', ['-c', 'import sqlite3'], { stdio: 'ignore' }).status === 0,
+    run: (dir, code, strict = true) => {
+      writeFileSync(join(dir, 'run.py'), SQL_RUNNER);
+      writeFileSync(join(dir, 'script.sql'), code);
+      return execFileSync('python3', ['run.py', 'script.sql', strict ? '0' : '1'], { cwd: dir, stdio: ['ignore', 'pipe', 'pipe'] });
+    },
+  },
   python: {
     available: () => has('python3'),
     run: (dir, code) => execFileSync('python3', ['-c', code], { cwd: dir }),
