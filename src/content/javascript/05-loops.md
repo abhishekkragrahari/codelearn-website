@@ -20,6 +20,16 @@ for (let i = 1; i <= 5; i++) {
 *****
 ```
 
+```flowchart
+caption: How the for loop above runs
+start: Start
+step: let i = 1
+while: i <= 5?
+  io: Print i stars
+  step: i++
+end: End
+```
+
 ## for...of
 
 `for...of` walks through each item of an array (or the characters of a string) without needing an index.

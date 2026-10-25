@@ -1,6 +1,6 @@
 ---
 title: HashMap
-chapter: Collections and Errors
+chapter: Collections and Generics
 description: Look values up by key with HashMap and TreeMap.
 ---
 A **map** stores key-value pairs: give it a key and it returns the matching value. `HashMap` is the most used implementation. Like `ArrayList`, it lives in `java.util` and uses generics: `HashMap<String, Integer>` maps strings to integers.

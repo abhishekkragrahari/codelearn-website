@@ -5,6 +5,13 @@ description: Define contracts that many unrelated classes can implement.
 ---
 An **interface** lists methods that a class promises to provide, without saying how. A class `implements` an interface and must then write those methods. Unlike inheritance, a class can implement many interfaces.
 
+```tree
+caption: Unrelated classes can share one interface
+Payable | interface: amountDue()
+  Invoice | implements Payable
+  Employee | implements Payable
+```
+
 ```java
 public class Main {
     public static void main(String[] args) {

@@ -364,6 +364,27 @@ button { font: inherit; }
 .tok-meta { color: var(--tok-meta); }
 .tok-operator { color: var(--tok-operator); }
 
+/* ---------- Diagrams (flowcharts, trees, pipelines) ---------- */
+.diagram { margin: 24px 0 28px; padding: 18px 12px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.diagram-scroll { overflow-x: auto; text-align: center; }
+.diagram-svg { max-width: 100%; height: auto; color: var(--text-soft); font-family: var(--font); }
+.diagram figcaption { margin-top: 10px; text-align: center; font-size: .88rem; color: var(--text-soft); }
+.diagram-narrow-only { display: none; }
+@media (max-width: 700px) {
+  .diagram-wide-only { display: none; }
+  .diagram-narrow-only { display: block; }
+}
+.dg-line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+.dg-node { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; }
+.dg-terminal { fill: var(--primary-soft); stroke: var(--primary); }
+.dg-decision { fill: var(--warn-bg); stroke: var(--warn-border); }
+.dg-io { fill: var(--note-bg); stroke: var(--note-border); }
+.dg-parent { fill: var(--primary-soft); stroke: var(--primary); }
+.dg-tool { fill: var(--note-bg); stroke: var(--note-border); }
+.dg-text { fill: var(--text); font-size: 13px; font-weight: 600; }
+.dg-note { fill: var(--text-soft); font-size: 11px; }
+.dg-label { fill: var(--primary); font-size: 12px; font-weight: 700; }
+
 /* ---------- Playground ---------- */
 .playground { max-width: 1400px; margin: 0 auto; padding: 20px 16px 32px; display: flex; flex-direction: column; gap: 14px; min-height: calc(100vh - var(--header-h) - 120px); }
 .pg-toolbar { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; }

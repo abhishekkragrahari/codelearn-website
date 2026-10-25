@@ -5,7 +5,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { watch } from 'node:fs';
 import { join, extname, normalize, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { build } from './build.mjs';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -20,12 +20,9 @@ const TYPES = {
   '.ico': 'image/x-icon',
 };
 
+// Build in a fresh process each time, so edits to src/*.mjs modules are picked up too.
 function rebuild() {
-  try {
-    console.log(`Built ${build()} pages`);
-  } catch (err) {
-    console.error('Build failed:', err.message);
-  }
+  spawnSync(process.execPath, [join(ROOT, 'scripts', 'build.mjs')], { stdio: 'inherit' });
 }
 rebuild();
 

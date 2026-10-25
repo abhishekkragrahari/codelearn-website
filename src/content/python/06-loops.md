@@ -41,6 +41,17 @@ ccc
 ```
 
 ## The while loop
+```flowchart
+caption: How the interest example below runs
+start: Start
+step: balance = 1000, years = 0
+while: balance < 2000?
+  step: balance = balance * 1.1
+  step: years += 1
+io: Print years
+end: End
+```
+
 
 A `while` loop checks its condition before every round. Make sure something inside the loop changes so that the condition eventually becomes false.
 

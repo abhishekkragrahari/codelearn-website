@@ -23,7 +23,36 @@ public class Main {
 Slow down! You are 12 km/h over.
 ```
 
+```flowchart
+caption: How the speed check above runs
+start: Start
+step: speed = 72, limit = 60
+if: speed > limit?
+  yes:
+    io: Print "Slow down!"
+  no:
+    io: Print "Speed OK."
+end: End
+```
+
 ## else if and logical operators
+An `else if` chain tests each condition from top to bottom and runs only the first block whose condition is true:
+
+```flowchart
+caption: An if / else if / else chain
+start: Start
+if: condition 1?
+  yes:
+    step: block 1
+  no:
+    if: condition 2?
+      yes:
+        step: block 2
+      no:
+        step: else block
+end: End
+```
+
 
 ```java
 public class Main {

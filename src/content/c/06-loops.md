@@ -27,6 +27,16 @@ int main(void) {
 5 squared is 25
 ```
 
+```flowchart
+caption: The three parts of a for loop
+start: Start
+step: int i = 1 (runs once)
+while: i <= 5?
+  io: printf the square
+  step: i++ (after each round)
+end: End
+```
+
 `i++` is shorthand for `i = i + 1`.
 
 ## The while loop

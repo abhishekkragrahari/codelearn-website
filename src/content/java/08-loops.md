@@ -6,6 +6,18 @@ description: Repeat code with for, enhanced for, while and do-while.
 Loops let you run the same code many times. Java's loops look much like C's, plus an extra "for-each" form for collections.
 
 ## The for loop
+A `for` loop sets up a counter once, checks a condition before every round, and updates the counter after every round:
+
+```flowchart
+caption: How the for loop below runs
+start: Start
+step: int i = 1
+while: i <= 3?
+  io: Print 7 x i
+  step: i++
+end: End
+```
+
 
 ```java
 public class Main {

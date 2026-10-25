@@ -5,6 +5,13 @@ description: Extend classes, override methods and use polymorphism.
 ---
 **Inheritance** lets a class build on another class. The child class uses the `extends` keyword and automatically gets the parent's fields and methods. It can then add new ones or **override** existing ones.
 
+```tree
+caption: Bicycle and Truck inherit everything from Vehicle
+Vehicle | name, wheels, info()
+  Bicycle | 2 wheels
+  Truck | adds loadTons, overrides info()
+```
+
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -126,4 +133,4 @@ Dog says woof
 Cat says meow
 ```
 
-> **Note:** A Java class can extend only one parent class. To share behaviour across unrelated classes, use interfaces, covered next.
+> **Note:** A Java class can extend only one parent class. To share behaviour across unrelated classes, use interfaces, covered in the Interfaces lesson.
