@@ -21,6 +21,8 @@ for (const file of htmlFiles(DIST)) {
   const html = readFileSync(file, 'utf8');
   // Markdown the lesson parser did not understand shows up as raw text, e.g. a table row.
   if (/<p>\s*\|/.test(html)) rawMarkdown.push(relative(DIST, file));
+  // Inline tags such as <sub> must render as tags, not as escaped text (outside code blocks).
+  if (/&lt;\/?(?:sub|sup)&gt;/.test(html.replace(/<pre[\s\S]*?<\/pre>|<code>[\s\S]*?<\/code>/g, ''))) rawMarkdown.push(relative(DIST, file) + ' (escaped <sub>/<sup>)');
   for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(?:[a-z]+:|#|\/\/)/i.test(url)) continue;
     const path = url.replace(/&amp;/g, '&').split('#')[0].split('?')[0];
@@ -31,7 +33,7 @@ for (const file of htmlFiles(DIST)) {
 }
 
 if (rawMarkdown.length) {
-  console.error(`Unrendered Markdown (a line starting with "|") in:\n  ` + rawMarkdown.join('\n  '));
+  console.error(`Unrendered Markdown (a line starting with "|", or escaped inline tags) in:\n  ` + rawMarkdown.join('\n  '));
   process.exit(1);
 }
 if (broken.length) {
