@@ -143,6 +143,71 @@ bubble     [1, 2, 4, 5, 8]  comparisons=9 swaps/shifts=4
 selection  [1, 2, 4, 5, 8]  comparisons=10 swaps/shifts=2
 insertion  [1, 2, 4, 5, 8]  comparisons=7 swaps/shifts=4
 ```
+```c
+#include <stdio.h>
+#include <string.h>
+
+int comparisons, swaps;
+
+void bubble(int a[], int n) {
+    for (int pass = 0; pass < n - 1; pass++) {
+        int swapped = 0;
+        for (int j = 0; j < n - 1 - pass; j++) {
+            comparisons++;
+            if (a[j] > a[j + 1]) { int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; swaps++; swapped = 1; }
+        }
+        if (!swapped) break;                 /* already sorted: stop early */
+    }
+}
+
+void selection(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            comparisons++;
+            if (a[j] < a[min]) min = j;
+        }
+        if (min != i) { int t = a[i]; a[i] = a[min]; a[min] = t; swaps++; }
+    }
+}
+
+void insertion(int a[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = a[i], j = i - 1;
+        while (j >= 0) {
+            comparisons++;
+            if (a[j] <= key) break;
+            a[j + 1] = a[j];                 /* shift right (counted as a move) */
+            swaps++;
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}
+
+void run(const char *name, const int data[], int n, void (*sorter)(int[], int)) {
+    int a[16];
+    memcpy(a, data, n * sizeof(int));
+    comparisons = swaps = 0;
+    sorter(a, n);
+    printf("%-10s [", name);
+    for (int i = 0; i < n; i++) printf(i ? ", %d" : "%d", a[i]);
+    printf("]  comparisons=%d swaps/shifts=%d\n", comparisons, swaps);
+}
+
+int main(void) {
+    int data[] = {5, 1, 4, 2, 8};
+    run("bubble", data, 5, bubble);
+    run("selection", data, 5, selection);
+    run("insertion", data, 5, insertion);
+    return 0;
+}
+```
+```output
+bubble     [1, 2, 4, 5, 8]  comparisons=9 swaps/shifts=4
+selection  [1, 2, 4, 5, 8]  comparisons=10 swaps/shifts=2
+insertion  [1, 2, 4, 5, 8]  comparisons=7 swaps/shifts=4
+```
 
 ## Inversions
 

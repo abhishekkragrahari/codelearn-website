@@ -101,6 +101,54 @@ skip C-D (8), would make a cycle
 skip C-E (10), would make a cycle
 MST weight = 11
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int parent[5];
+
+int find(int x) {                                   /* with path compression */
+    if (parent[x] != x) parent[x] = find(parent[x]);
+    return parent[x];
+}
+
+int by_weight(const void *a, const void *b) {
+    return ((const int *)a)[2] - ((const int *)b)[2];
+}
+
+int main(void) {
+    const char *names = "ABCDE";
+    int edges[][3] = {{0, 1, 4}, {0, 2, 1}, {1, 2, 2}, {1, 3, 5}, {2, 3, 8}, {2, 4, 10}, {3, 4, 3}};
+    int m = 7;
+    qsort(edges, m, sizeof(edges[0]), by_weight);
+    for (int i = 0; i < 5; i++) parent[i] = i;
+
+    int total = 0;
+    for (int e = 0; e < m; e++) {
+        int u = edges[e][0], v = edges[e][1], w = edges[e][2];
+        int ru = find(u), rv = find(v);
+        if (ru != rv) {                                 /* different components: safe */
+            parent[ru] = rv;
+            total += w;
+            printf("take %c-%c (%d)\n", names[u], names[v], w);
+        } else {
+            printf("skip %c-%c (%d), would make a cycle\n", names[u], names[v], w);
+        }
+    }
+    printf("MST weight = %d\n", total);
+    return 0;
+}
+```
+```output
+take A-C (1)
+take B-C (2)
+take D-E (3)
+skip A-B (4), would make a cycle
+take B-D (5)
+skip C-D (8), would make a cycle
+skip C-E (10), would make a cycle
+MST weight = 11
+```
 
 ## Prim's algorithm
 
@@ -168,6 +216,44 @@ while pq:
             heapq.heappush(pq, (nw, nb, v))
 print("edges in the order Prim adds them:", *order)
 print("MST weight =", total)
+```
+```output
+edges in the order Prim adds them: A-C C-B B-D D-E
+MST weight = 11
+```
+```c
+#include <stdio.h>
+#include <limits.h>
+
+/* Prim's algorithm with an O(V^2) scan (no heap needed for a small graph). */
+#define V 5
+
+int main(void) {
+    const char *names = "ABCDE";
+    int edges[][3] = {{0, 1, 4}, {0, 2, 1}, {1, 2, 2}, {1, 3, 5}, {2, 3, 8}, {2, 4, 10}, {3, 4, 3}};
+    int w[V][V] = {{0}};
+    for (int e = 0; e < 7; e++) {
+        w[edges[e][0]][edges[e][1]] = edges[e][2];
+        w[edges[e][1]][edges[e][0]] = edges[e][2];
+    }
+
+    int in_tree[V] = {0}, best[V], from[V], total = 0;
+    for (int i = 0; i < V; i++) { best[i] = INT_MAX; from[i] = -1; }
+    best[0] = 0;
+    printf("edges in the order Prim adds them:");
+    for (int k = 0; k < V; k++) {
+        int v = -1;
+        for (int i = 0; i < V; i++)                 /* cheapest vertex to attach */
+            if (!in_tree[i] && (v == -1 || best[i] < best[v])) v = i;
+        in_tree[v] = 1;
+        total += best[v];
+        if (from[v] >= 0) printf(" %c-%c", names[from[v]], names[v]);
+        for (int u = 0; u < V; u++)
+            if (w[v][u] && !in_tree[u] && w[v][u] < best[u]) { best[u] = w[v][u]; from[u] = v; }
+    }
+    printf("\nMST weight = %d\n", total);
+    return 0;
+}
 ```
 ```output
 edges in the order Prim adds them: A-C C-B B-D D-E

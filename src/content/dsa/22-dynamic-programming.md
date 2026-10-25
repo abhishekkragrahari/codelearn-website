@@ -93,6 +93,38 @@ naive fib(25) = 75025 using 242785 calls
 memo  fib(90) = 2880067194370816120
 table fib(90) = 2880067194370816120
 ```
+```c
+#include <stdio.h>
+
+int calls = 0;
+long long naive(int n) { calls++; return n < 2 ? n : naive(n - 1) + naive(n - 2); }
+
+long long memo[100];                     /* 0 means "not computed yet" */
+long long memo_fib(int n) {
+    if (n < 2) return n;
+    if (memo[n]) return memo[n];
+    return memo[n] = memo_fib(n - 1) + memo_fib(n - 2);
+}
+
+long long table_fib(int n) {
+    long long prev = 0, cur = 1;         /* only the last two values are needed */
+    for (int i = 2; i <= n; i++) { long long next = prev + cur; prev = cur; cur = next; }
+    return n == 0 ? 0 : cur;
+}
+
+int main(void) {
+    long long r = naive(25);
+    printf("naive fib(25) = %lld using %d calls\n", r, calls);
+    printf("memo  fib(90) = %lld\n", memo_fib(90));
+    printf("table fib(90) = %lld\n", table_fib(90));
+    return 0;
+}
+```
+```output
+naive fib(25) = 75025 using 242785 calls
+memo  fib(90) = 2880067194370816120
+table fib(90) = 2880067194370816120
+```
 
 ## Coin change: fewest coins
 
@@ -133,6 +165,30 @@ for a in range(1, amount + 1):
             best[a] = min(best[a], best[a - c] + 1)
 print("table:", best)
 print(f"fewest coins for {amount}: {best[amount]}")
+```
+```output
+table: [0, 1, 2, 1, 1, 2, 2]
+fewest coins for 6: 2
+```
+```c
+#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+    int coins[] = {1, 3, 4}, amount = 6;
+    int best[7];
+    best[0] = 0;
+    for (int a = 1; a <= amount; a++) {
+        best[a] = INT_MAX;
+        for (int i = 0; i < 3; i++)
+            if (coins[i] <= a && best[a - coins[i]] != INT_MAX && best[a - coins[i]] + 1 < best[a])
+                best[a] = best[a - coins[i]] + 1;
+    }
+    printf("table: [");
+    for (int a = 0; a <= amount; a++) printf(a ? ", %d" : "%d", best[a]);
+    printf("]\nfewest coins for %d: %d\n", amount, best[amount]);
+    return 0;
+}
 ```
 ```output
 table: [0, 1, 2, 1, 1, 2, 2]
@@ -195,6 +251,34 @@ print(f"LCS length = {L[m][n]}, one LCS = {''.join(reversed(lcs))}")
 ```output
 LCS length = 4, one LCS = BCBA
 ```
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    const char *x = "ABCBDAB", *y = "BDCABA";
+    int m = strlen(x), n = strlen(y);
+    int L[16][16] = {{0}};
+    for (int i = 1; i <= m; i++)
+        for (int j = 1; j <= n; j++)
+            if (x[i - 1] == y[j - 1]) L[i][j] = L[i - 1][j - 1] + 1;
+            else L[i][j] = L[i - 1][j] > L[i][j - 1] ? L[i - 1][j] : L[i][j - 1];
+
+    char lcs[16];
+    int k = L[m][n];
+    lcs[k] = '\0';
+    for (int i = m, j = n; i > 0 && j > 0; ) {      /* walk back through the table */
+        if (x[i - 1] == y[j - 1]) { lcs[--k] = x[i - 1]; i--; j--; }
+        else if (L[i - 1][j] >= L[i][j - 1]) i--;
+        else j--;
+    }
+    printf("LCS length = %d, one LCS = %s\n", L[m][n], lcs);
+    return 0;
+}
+```
+```output
+LCS length = 4, one LCS = BCBA
+```
 
 ## 0/1 knapsack
 
@@ -225,6 +309,23 @@ for i in range(len(wt)):
     for w in range(W, wt[i] - 1, -1):
         K[w] = max(K[w], val[i] + K[w - wt[i]])
 print(f"best value with capacity {W} = {K[W]}")
+```
+```output
+best value with capacity 7 = 9
+```
+```c
+#include <stdio.h>
+
+int main(void) {
+    int wt[] = {1, 3, 4, 5}, val[] = {1, 4, 5, 7};
+    int W = 7;
+    int K[8] = {0};                        /* one row is enough if w goes downwards */
+    for (int i = 0; i < 4; i++)
+        for (int w = W; w >= wt[i]; w--)
+            if (val[i] + K[w - wt[i]] > K[w]) K[w] = val[i] + K[w - wt[i]];
+    printf("best value with capacity %d = %d\n", W, K[W]);
+    return 0;
+}
 ```
 ```output
 best value with capacity 7 = 9

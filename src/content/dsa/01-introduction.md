@@ -93,8 +93,43 @@ print("Binary search for 999:", binary_steps(nums, 999), "comparisons")
 Linear search for 999: 999 comparisons
 Binary search for 999: 9 comparisons
 ```
+```c
+#include <stdio.h>
 
-> **Tip:** Use the **Java / Python** tabs above each example to pick your language. The site remembers your choice for every lesson.
+int linear_steps(const int a[], int n, int target) {
+    int steps = 0;
+    for (int i = 0; i < n; i++) {
+        steps++;
+        if (a[i] == target) break;
+    }
+    return steps;
+}
+
+int binary_steps(const int a[], int n, int target) {
+    int lo = 0, hi = n - 1, steps = 0;
+    while (lo <= hi) {
+        steps++;
+        int mid = (lo + hi) / 2;
+        if (a[mid] == target) break;
+        if (a[mid] < target) lo = mid + 1; else hi = mid - 1;
+    }
+    return steps;
+}
+
+int main(void) {
+    int nums[1000];
+    for (int i = 0; i < 1000; i++) nums[i] = i + 1;     /* 1, 2, ..., 1000 */
+    printf("Linear search for 999: %d comparisons\n", linear_steps(nums, 1000, 999));
+    printf("Binary search for 999: %d comparisons\n", binary_steps(nums, 1000, 999));
+    return 0;
+}
+```
+```output
+Linear search for 999: 999 comparisons
+Binary search for 999: 9 comparisons
+```
+
+> **Tip:** Use the **Java / Python / C** tabs above each example to pick your language. The site remembers your choice for every lesson.
 
 ## Abstract data types
 

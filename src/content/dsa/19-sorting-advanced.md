@@ -131,6 +131,70 @@ merge sort: [3, 9, 10, 27, 38, 43, 82]
 quick sort: [3, 9, 10, 27, 38, 43, 82] (4 partitions)
 one partition of [10, 80, 30, 90, 40, 50, 70]: [10, 30, 40, 50, 70, 90, 80], pivot at index 4
 ```
+```c
+#include <stdio.h>
+#include <string.h>
+
+void merge_sort(int a[], int tmp[], int lo, int hi) {      /* sorts a[lo..hi] */
+    if (lo >= hi) return;
+    int mid = (lo + hi) / 2;
+    merge_sort(a, tmp, lo, mid);
+    merge_sort(a, tmp, mid + 1, hi);
+    int i = lo, j = mid + 1, k = lo;
+    while (i <= mid && j <= hi) tmp[k++] = a[i] <= a[j] ? a[i++] : a[j++];   /* <= keeps it stable */
+    while (i <= mid) tmp[k++] = a[i++];
+    while (j <= hi) tmp[k++] = a[j++];
+    memcpy(a + lo, tmp + lo, (hi - lo + 1) * sizeof(int));
+}
+
+int partitions = 0;
+
+int partition(int a[], int lo, int hi) {                   /* Lomuto: last element is the pivot */
+    int pivot = a[hi], i = lo;
+    for (int j = lo; j < hi; j++)
+        if (a[j] < pivot) { int t = a[i]; a[i] = a[j]; a[j] = t; i++; }
+    int t = a[i]; a[i] = a[hi]; a[hi] = t;                  /* pivot into its final place */
+    return i;
+}
+
+void quick_sort(int a[], int lo, int hi) {
+    if (lo >= hi) return;
+    int p = partition(a, lo, hi);
+    partitions++;
+    quick_sort(a, lo, p - 1);
+    quick_sort(a, p + 1, hi);
+}
+
+void print(const char *label, const int a[], int n) {
+    printf("%s[", label);
+    for (int i = 0; i < n; i++) printf(i ? ", %d" : "%d", a[i]);
+    printf("]");
+}
+
+int main(void) {
+    int data[] = {38, 27, 43, 3, 9, 82, 10}, a[7], tmp[7];
+    memcpy(a, data, sizeof(data));
+    merge_sort(a, tmp, 0, 6);
+    print("merge sort: ", a, 7);
+    printf("\n");
+
+    memcpy(a, data, sizeof(data));
+    quick_sort(a, 0, 6);
+    print("quick sort: ", a, 7);
+    printf(" (%d partitions)\n", partitions);
+
+    int first[] = {10, 80, 30, 90, 40, 50, 70};
+    int p = partition(first, 0, 6);
+    print("one partition of [10, 80, 30, 90, 40, 50, 70]: ", first, 7);
+    printf(", pivot at index %d\n", p);
+    return 0;
+}
+```
+```output
+merge sort: [3, 9, 10, 27, 38, 43, 82]
+quick sort: [3, 9, 10, 27, 38, 43, 82] (4 partitions)
+one partition of [10, 80, 30, 90, 40, 50, 70]: [10, 30, 40, 50, 70, 90, 80], pivot at index 4
+```
 
 ## The Ω(n log n) lower bound
 
@@ -171,6 +235,30 @@ for m in marks:
 out = [v for v in range(k + 1) for _ in range(count[v])]
 print("counts:", count)
 print("sorted:", out)
+```
+```output
+counts: [1, 1, 2, 2, 1, 0, 0, 0, 2]
+sorted: [0, 1, 2, 2, 3, 3, 4, 8, 8]
+```
+```c
+#include <stdio.h>
+
+int main(void) {
+    int marks[] = {4, 2, 2, 8, 3, 3, 1, 0, 8};
+    int n = 9, k = 8;
+    int count[9] = {0}, out[9];
+    for (int i = 0; i < n; i++) count[marks[i]]++;
+    int pos = 0;
+    for (int v = 0; v <= k; v++)
+        for (int c = 0; c < count[v]; c++) out[pos++] = v;
+
+    printf("counts: [");
+    for (int v = 0; v <= k; v++) printf(v ? ", %d" : "%d", count[v]);
+    printf("]\nsorted: [");
+    for (int i = 0; i < n; i++) printf(i ? ", %d" : "%d", out[i]);
+    printf("]\n");
+    return 0;
+}
 ```
 ```output
 counts: [1, 1, 2, 2, 1, 0, 0, 0, 2]

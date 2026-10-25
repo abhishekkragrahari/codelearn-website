@@ -93,6 +93,39 @@ nested loops: 256
 triangle:     120 = n(n-1)/2
 doubling i:   4
 ```
+```c
+#include <stdio.h>
+
+int main(void) {
+    int n = 16;
+
+    int single = 0;
+    for (int i = 0; i < n; i++) single++;                 /* n times */
+
+    int nested = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) nested++;             /* n * n times */
+
+    int triangle = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < i; j++) triangle++;           /* 0 + 1 + ... + (n-1) */
+
+    int doubling = 0;
+    for (int i = 1; i < n; i *= 2) doubling++;            /* log2(n) times */
+
+    printf("single loop:  %d\n", single);
+    printf("nested loops: %d\n", nested);
+    printf("triangle:     %d = n(n-1)/2\n", triangle);
+    printf("doubling i:   %d\n", doubling);
+    return 0;
+}
+```
+```output
+single loop:  16
+nested loops: 256
+triangle:     120 = n(n-1)/2
+doubling i:   4
+```
 
 - A single loop over `n` items is **Θ(n)**.
 - Two nested loops over `n` are **Θ(n²)**; so is the "triangle" loop, because n(n−1)/2 is still quadratic.

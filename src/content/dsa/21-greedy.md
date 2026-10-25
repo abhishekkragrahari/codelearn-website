@@ -48,6 +48,34 @@ print(len(chosen), "activities:", " ".join(chosen))
 ```output
 4 activities: [1,4) [5,7) [8,11) [12,16)
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int by_finish(const void *a, const void *b) {
+    return ((const int *)a)[1] - ((const int *)b)[1];
+}
+
+int main(void) {
+    int acts[][2] = {{1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 9}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 14}, {12, 16}};
+    int n = 11;
+    qsort(acts, n, sizeof(acts[0]), by_finish);          /* by finish time */
+    int chosen[11], count = 0, last_finish = -1;
+    for (int i = 0; i < n; i++) {
+        if (acts[i][0] >= last_finish) {
+            chosen[count++] = i;
+            last_finish = acts[i][1];
+        }
+    }
+    printf("%d activities:", count);
+    for (int i = 0; i < count; i++) printf(" [%d,%d)", acts[chosen[i]][0], acts[chosen[i]][1]);
+    printf("\n");
+    return 0;
+}
+```
+```output
+4 activities: [1,4) [5,7) [8,11) [12,16)
+```
 
 ## Fractional knapsack
 
@@ -89,6 +117,38 @@ for w, v in sorted(items, key=lambda it: it[1] / it[0], reverse=True):   # best 
     capacity -= take
     print(f"take {take} of weight {w} (ratio {v / w:.1f})")
 print(f"total value = {total:.1f}")
+```
+```output
+take 10 of weight 10 (ratio 6.0)
+take 20 of weight 20 (ratio 5.0)
+take 20 of weight 30 (ratio 4.0)
+total value = 240.0
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct { double weight, value; } Item;
+
+int by_ratio_desc(const void *a, const void *b) {
+    const Item *x = a, *y = b;
+    double rx = x->value / x->weight, ry = y->value / y->weight;
+    return (ry > rx) - (ry < rx);                      /* best ratio first */
+}
+
+int main(void) {
+    Item items[] = {{10, 60}, {20, 100}, {30, 120}};
+    double capacity = 50, total = 0;
+    qsort(items, 3, sizeof(Item), by_ratio_desc);
+    for (int i = 0; i < 3 && capacity > 0; i++) {
+        double take = items[i].weight < capacity ? items[i].weight : capacity;
+        total += take * items[i].value / items[i].weight;
+        capacity -= take;
+        printf("take %.0f of weight %.0f (ratio %.1f)\n", take, items[i].weight, items[i].value / items[i].weight);
+    }
+    printf("total value = %.1f\n", total);
+    return 0;
+}
 ```
 ```output
 take 10 of weight 10 (ratio 6.0)
@@ -185,6 +245,70 @@ print(f"total bits = {bits} (fixed 3-bit code: {3 * 100})")
 ```
 ```output
 codes: {'a': '0', 'b': '101', 'c': '100', 'd': '111', 'e': '1101', 'f': '1100'}
+total bits = 224 (fixed 3-bit code: 300)
+```
+```c
+#include <stdio.h>
+#include <string.h>
+
+/* Huffman coding with a small array-based priority queue. Ties between equal
+   frequencies are broken by creation order, like the Java version. */
+typedef struct { int freq, order, left, right; char ch; } Node;
+Node nodes[32];
+int pq[32], pq_size = 0, node_count = 0;
+
+int before(int a, int b) {
+    if (nodes[a].freq != nodes[b].freq) return nodes[a].freq < nodes[b].freq;
+    return nodes[a].order < nodes[b].order;
+}
+
+int pop_min(void) {
+    int best = 0;
+    for (int i = 1; i < pq_size; i++) if (before(pq[i], pq[best])) best = i;
+    int id = pq[best];
+    pq[best] = pq[--pq_size];
+    return id;
+}
+
+int new_node(int freq, char ch, int left, int right) {
+    nodes[node_count] = (Node){freq, node_count, left, right, ch};
+    return node_count++;
+}
+
+char codes[128][16];
+void walk(int id, char *prefix, int depth) {
+    if (nodes[id].left < 0) {
+        prefix[depth] = '\0';
+        strcpy(codes[(int)nodes[id].ch], prefix);
+        return;
+    }
+    prefix[depth] = '0'; walk(nodes[id].left, prefix, depth + 1);
+    prefix[depth] = '1'; walk(nodes[id].right, prefix, depth + 1);
+}
+
+int main(void) {
+    char chars[] = {'a', 'b', 'c', 'd', 'e', 'f'};
+    int freq[] = {45, 13, 12, 16, 9, 5};
+    for (int i = 0; i < 6; i++) pq[pq_size++] = new_node(freq[i], chars[i], -1, -1);
+    while (pq_size > 1) {
+        int x = pop_min(), y = pop_min();
+        pq[pq_size++] = new_node(nodes[x].freq + nodes[y].freq, '-', x, y);
+    }
+    char prefix[16];
+    walk(pq[0], prefix, 0);
+
+    int bits = 0;
+    printf("codes: {");
+    for (int i = 0; i < 6; i++) {
+        printf(i ? ", %c=%s" : "%c=%s", chars[i], codes[(int)chars[i]]);
+        bits += freq[i] * (int)strlen(codes[(int)chars[i]]);
+    }
+    printf("}\ntotal bits = %d (fixed 3-bit code: %d)\n", bits, 3 * 100);
+    return 0;
+}
+```
+```output
+codes: {a=0, b=101, c=100, d=111, e=1101, f=1100}
 total bits = 224 (fixed 3-bit code: 300)
 ```
 

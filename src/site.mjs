@@ -60,10 +60,10 @@ export const topics = [
     name: 'Data Structures',
     short: 'DS',
     color: '#10b981',
-    blurb: 'Arrays to graphs, sorting to dynamic programming, with Java and Python code and GATE-style practice questions.',
+    blurb: 'Arrays to graphs, sorting to dynamic programming, with Java, Python and C code and GATE-style practice questions.',
     intro:
       'Data structures and algorithms are the toolkit behind every efficient program, and a core GATE CS subject. ' +
-      'Each lesson explains one idea with figures, gives the code in both Java and Python, and ends with GATE-style practice questions.',
+      'Each lesson explains one idea with figures, gives the code in Java, Python and C, and ends with GATE-style practice questions.',
     topic: true,
   },
 ];

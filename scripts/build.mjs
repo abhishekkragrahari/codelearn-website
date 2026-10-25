@@ -46,7 +46,7 @@ function homePage(all) {
       (t) => `<a class="topic-card" href="${t.id}/index.html" style="--badge:${t.color}">
   ${langBadge(t, 'lg')}
   <div><h3>${t.name} &amp; Algorithms</h3><p>${escapeHtml(t.blurb)}</p>
-  <span class="lang-card-meta">${all[t.id].length} lessons &middot; Java + Python &middot; GATE-style questions</span></div>
+  <span class="lang-card-meta">${all[t.id].length} lessons &middot; Java, Python &amp; C &middot; GATE-style questions</span></div>
 </a>`,
     )
     .join('\n');

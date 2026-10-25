@@ -204,6 +204,93 @@ insert 25: preorder 30 20 10 25 40 50, height 2
 rotations used: 4
 height after inserting 1..1000 in order: 9
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int key, height;
+    struct Node *left, *right;
+} Node;
+
+int h(Node *n) { return n ? n->height : -1; }
+int max(int a, int b) { return a > b ? a : b; }
+void update(Node *n) { n->height = 1 + max(h(n->left), h(n->right)); }
+
+Node *rotate_right(Node *y) {
+    Node *x = y->left;
+    y->left = x->right;
+    x->right = y;
+    update(y);
+    update(x);
+    return x;
+}
+
+Node *rotate_left(Node *x) {
+    Node *y = x->right;
+    x->right = y->left;
+    y->left = x;
+    update(x);
+    update(y);
+    return y;
+}
+
+int rotations = 0;
+
+Node *insert(Node *n, int key) {
+    if (!n) {
+        n = calloc(1, sizeof(Node));
+        n->key = key;
+        return n;
+    }
+    if (key < n->key) n->left = insert(n->left, key);
+    else n->right = insert(n->right, key);
+    update(n);
+    int b = h(n->left) - h(n->right);
+    if (b > 1 && key < n->left->key) { rotations++; return rotate_right(n); }                     /* LL */
+    if (b < -1 && key > n->right->key) { rotations++; return rotate_left(n); }                    /* RR */
+    if (b > 1) { rotations += 2; n->left = rotate_left(n->left); return rotate_right(n); }        /* LR */
+    if (b < -1) { rotations += 2; n->right = rotate_right(n->right); return rotate_left(n); }     /* RL */
+    return n;
+}
+
+int first;
+void preorder(Node *n) {
+    if (!n) return;
+    printf(first ? "%d" : " %d", n->key);
+    first = 0;
+    preorder(n->left);
+    preorder(n->right);
+}
+
+int main(void) {
+    Node *root = NULL;
+    int keys[] = {10, 20, 30, 40, 50, 25};
+    for (int i = 0; i < 6; i++) {
+        root = insert(root, keys[i]);
+        printf("insert %d: preorder ", keys[i]);
+        first = 1;
+        preorder(root);
+        printf(", height %d\n", h(root));
+    }
+    printf("rotations used: %d\n", rotations);
+
+    Node *chain = NULL;
+    for (int k = 1; k <= 1000; k++) chain = insert(chain, k);
+    printf("height after inserting 1..1000 in order: %d\n", h(chain));
+    return 0;
+}
+```
+```output
+insert 10: preorder 10, height 0
+insert 20: preorder 10 20, height 1
+insert 30: preorder 20 10 30, height 1
+insert 40: preorder 20 10 30 40, height 2
+insert 50: preorder 20 10 40 30 50, height 2
+insert 25: preorder 30 20 10 25 40 50, height 2
+rotations used: 4
+height after inserting 1..1000 in order: 9
+```
 
 Inserting 1 to 1000 in sorted order, which turns a plain BST into a chain of height 999, gives an AVL tree of height only 9.
 

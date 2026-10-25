@@ -123,6 +123,56 @@ size = 9, capacity = 16
 elements copied while growing: 15
 arr.get(4) = 50
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int *data;
+    int size, capacity, copies;
+} DynamicArray;
+
+void append(DynamicArray *a, int value) {
+    if (a->size == a->capacity) {                 /* full: double the capacity */
+        int *bigger = malloc(2 * a->capacity * sizeof(int));
+        for (int i = 0; i < a->size; i++) {
+            bigger[i] = a->data[i];
+            a->copies++;
+        }
+        free(a->data);
+        a->data = bigger;
+        a->capacity *= 2;
+    }
+    a->data[a->size++] = value;
+}
+
+int get(const DynamicArray *a, int i) {
+    if (i < 0 || i >= a->size) {
+        fprintf(stderr, "index %d out of range\n", i);
+        exit(1);
+    }
+    return a->data[i];
+}
+
+int main(void) {
+    DynamicArray arr = {malloc(sizeof(int)), 0, 1, 0};
+    for (int i = 1; i <= 9; i++) append(&arr, i * 10);
+    printf("[");
+    for (int i = 0; i < arr.size; i++) printf(i ? ", %d" : "%d", arr.data[i]);
+    printf("]\n");
+    printf("size = %d, capacity = %d\n", arr.size, arr.capacity);
+    printf("elements copied while growing: %d\n", arr.copies);
+    printf("arr.get(4) = %d\n", get(&arr, 4));
+    free(arr.data);
+    return 0;
+}
+```
+```output
+[10, 20, 30, 40, 50, 60, 70, 80, 90]
+size = 9, capacity = 16
+elements copied while growing: 15
+arr.get(4) = 50
+```
 
 Nine appends caused only 1 + 2 + 4 + 8 = 15 copies. In general, n appends cause fewer than 2n copies, so the average cost per append is constant.
 

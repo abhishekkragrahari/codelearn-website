@@ -111,6 +111,56 @@ pop: 2
 size: 1
 Error: stack underflow
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define CAPACITY 4
+
+typedef struct {
+    int data[CAPACITY];
+    int top;                 /* index of the top item, -1 when empty */
+} Stack;
+
+/* returns 0 on success, -1 on overflow */
+int push(Stack *s, int x) {
+    if (s->top == CAPACITY - 1) return -1;
+    s->data[++s->top] = x;
+    return 0;
+}
+
+/* stores the popped value in *out; returns 0 on success, -1 on underflow */
+int pop(Stack *s, int *out) {
+    if (s->top == -1) return -1;
+    *out = s->data[s->top--];
+    return 0;
+}
+
+int peek(const Stack *s) { return s->data[s->top]; }
+int size(const Stack *s) { return s->top + 1; }
+
+int main(void) {
+    Stack s = {.top = -1};
+    int x;
+    push(&s, 1);
+    push(&s, 2);
+    push(&s, 3);
+    printf("peek: %d\n", peek(&s));
+    pop(&s, &x); printf("pop: %d\n", x);
+    pop(&s, &x); printf("pop: %d\n", x);
+    printf("size: %d\n", size(&s));
+    pop(&s, &x);
+    if (pop(&s, &x) == -1) printf("Error: stack underflow\n");
+    return 0;
+}
+```
+```output
+peek: 3
+pop: 3
+pop: 2
+size: 1
+Error: stack underflow
+```
 
 ## Checking balanced brackets
 
@@ -182,6 +232,39 @@ for s in ["{a[b(c)]}", "(a+b))", "([)]", "((x)"]:
 ([)] -> False
 ((x) -> False
 ```
+```c
+#include <stdio.h>
+
+int balanced(const char *s) {
+    char stack[100];
+    int top = -1;
+    for (; *s; s++) {
+        char c = *s;
+        if (c == '(' || c == '[' || c == '{') {
+            stack[++top] = c;
+        } else if (c == ')' || c == ']' || c == '}') {
+            if (top == -1) return 0;
+            char open = stack[top--];
+            if ((c == ')' && open != '(') || (c == ']' && open != '[') || (c == '}' && open != '{')) return 0;
+        }
+    }
+    return top == -1;
+}
+
+int main(void) {
+    const char *tests[] = {"{a[b(c)]}", "(a+b))", "([)]", "((x)"};
+    for (int i = 0; i < 4; i++) {
+        printf("%s -> %s\n", tests[i], balanced(tests[i]) ? "true" : "false");
+    }
+    return 0;
+}
+```
+```output
+{a[b(c)]} -> true
+(a+b)) -> false
+([)] -> false
+((x) -> false
+```
 
 ## Evaluating postfix expressions
 
@@ -237,6 +320,39 @@ def eval_postfix(expr):
 print(eval_postfix("3 4 +"))
 print(eval_postfix("5 1 2 + 4 * + 3 -"))
 print(eval_postfix("8 2 3 * - 4 2 / +"))
+```
+```output
+7
+14
+4
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int eval_postfix(const char *expr) {
+    int stack[100], top = -1;
+    char buf[200];
+    strcpy(buf, expr);
+    for (char *tok = strtok(buf, " "); tok; tok = strtok(NULL, " ")) {
+        if (strlen(tok) == 1 && strchr("+-*/", tok[0])) {
+            int b = stack[top--], a = stack[top--];     /* note the order */
+            int r = tok[0] == '+' ? a + b : tok[0] == '-' ? a - b : tok[0] == '*' ? a * b : a / b;
+            stack[++top] = r;
+        } else {
+            stack[++top] = atoi(tok);
+        }
+    }
+    return stack[top];
+}
+
+int main(void) {
+    printf("%d\n", eval_postfix("3 4 +"));
+    printf("%d\n", eval_postfix("5 1 2 + 4 * + 3 -"));
+    printf("%d\n", eval_postfix("8 2 3 * - 4 2 / +"));
+    return 0;
+}
 ```
 ```output
 7

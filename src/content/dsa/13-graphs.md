@@ -141,6 +141,75 @@ BFS order:      A B C D E F
 BFS distances:  {'A': 0, 'B': 1, 'C': 1, 'D': 2, 'E': 3, 'F': 4}
 DFS order:      A B D C E F
 ```
+```c
+#include <stdio.h>
+
+#define V 6
+/* adjacency lists for vertices A..F, stored as indices 0..5 */
+int adj[V][V], deg[V];
+
+void add_edge(int u, int v) {
+    adj[u][deg[u]++] = v;
+    adj[v][deg[v]++] = u;
+}
+
+int dist[V];
+void bfs(int start, int order[]) {
+    int queue[V], head = 0, tail = 0, k = 0;
+    for (int i = 0; i < V; i++) dist[i] = -1;
+    dist[start] = 0;
+    queue[tail++] = start;
+    while (head < tail) {
+        int u = queue[head++];
+        order[k++] = u;
+        for (int i = 0; i < deg[u]; i++) {
+            int v = adj[u][i];
+            if (dist[v] == -1) {             /* first time we see v */
+                dist[v] = dist[u] + 1;
+                queue[tail++] = v;
+            }
+        }
+    }
+}
+
+int seen[V];
+void dfs(int u) {
+    seen[u] = 1;
+    printf(" %c", 'A' + u);
+    for (int i = 0; i < deg[u]; i++)
+        if (!seen[adj[u][i]]) dfs(adj[u][i]);
+}
+
+int main(void) {
+    const char *edges[] = {"AB", "AC", "BD", "CD", "DE", "EF"};
+    for (int i = 0; i < 6; i++) add_edge(edges[i][0] - 'A', edges[i][1] - 'A');
+
+    printf("adjacency list: {");
+    for (int u = 0; u < V; u++) {
+        printf(u ? ", %c=[" : "%c=[", 'A' + u);
+        for (int i = 0; i < deg[u]; i++) printf(i ? ", %c" : "%c", 'A' + adj[u][i]);
+        printf("]");
+    }
+    printf("}\n");
+
+    int order[V];
+    bfs(0, order);
+    printf("BFS order:     ");
+    for (int i = 0; i < V; i++) printf(" %c", 'A' + order[i]);
+    printf("\nBFS distances:  {");
+    for (int i = 0; i < V; i++) printf(i ? ", %c=%d" : "%c=%d", 'A' + order[i], dist[order[i]]);
+    printf("}\nDFS order:     ");
+    dfs(0);
+    printf("\n");
+    return 0;
+}
+```
+```output
+adjacency list: {A=[B, C], B=[A, D], C=[A, D], D=[B, C, E], E=[D, F], F=[E]}
+BFS order:      A B C D E F
+BFS distances:  {A=0, B=1, C=1, D=2, E=3, F=4}
+DFS order:      A B D C E F
+```
 
 The order in which neighbours are stored decides which of several valid BFS or DFS orders you get.
 
@@ -209,6 +278,45 @@ while ready:
         if indeg[v] == 0:
             heapq.heappush(ready, v)
 print(" -> ".join(order))
+```
+```output
+Maths -> Prog -> DB -> DS -> Algo
+```
+```c
+#include <stdio.h>
+#include <string.h>
+
+/* Kahn's algorithm. Vertices are kept in alphabetical order so that, among the
+   vertices that are ready, the alphabetically smallest is taken first. */
+#define V 5
+const char *names[V] = {"Algo", "DB", "DS", "Maths", "Prog"};
+int adj[V][V], deg[V], indeg[V];
+
+int id(const char *s) {
+    for (int i = 0; i < V; i++) if (strcmp(names[i], s) == 0) return i;
+    return -1;
+}
+
+int main(void) {
+    const char *edges[][2] = {{"Maths", "DS"}, {"Prog", "DS"}, {"DS", "Algo"}, {"Prog", "DB"}, {"Maths", "Algo"}};
+    for (int i = 0; i < 5; i++) {
+        int u = id(edges[i][0]), v = id(edges[i][1]);
+        adj[u][deg[u]++] = v;
+        indeg[v]++;
+    }
+    int done[V] = {0};
+    for (int k = 0; k < V; k++) {
+        int u = -1;
+        for (int i = 0; i < V; i++)                  /* smallest ready vertex */
+            if (!done[i] && indeg[i] == 0) { u = i; break; }
+        if (u == -1) { printf("cycle!\n"); return 1; }
+        done[u] = 1;
+        printf(k ? " -> %s" : "%s", names[u]);
+        for (int i = 0; i < deg[u]; i++) indeg[adj[u][i]]--;
+    }
+    printf("\n");
+    return 0;
+}
 ```
 ```output
 Maths -> Prog -> DB -> DS -> Algo

@@ -105,6 +105,54 @@ print("shortest path to D:", " -> ".join(reversed(path)))
 distances from S: {'A': 3, 'B': 1, 'C': 4, 'D': 7, 'S': 0}
 shortest path to D: S -> B -> A -> C -> D
 ```
+```c
+#include <stdio.h>
+#include <limits.h>
+
+/* Dijkstra with a simple O(V^2) scan instead of a heap: fine for small graphs. */
+#define V 5
+const char names[V] = {'A', 'B', 'C', 'D', 'S'};      /* alphabetical, S = index 4 */
+int w[V][V];                                           /* 0 = no edge */
+
+int idx(char c) { for (int i = 0; i < V; i++) if (names[i] == c) return i; return -1; }
+
+int main(void) {
+    const char *edges[] = {"SA4", "SB1", "BA2", "AC1", "BC5", "CD3"};
+    for (int i = 0; i < 6; i++) w[idx(edges[i][0])][idx(edges[i][1])] = edges[i][2] - '0';
+
+    int dist[V], prev[V], done[V] = {0};
+    for (int i = 0; i < V; i++) { dist[i] = INT_MAX; prev[i] = -1; }
+    dist[idx('S')] = 0;
+
+    for (int round = 0; round < V; round++) {
+        int u = -1;
+        for (int i = 0; i < V; i++)                    /* closest unfinished vertex */
+            if (!done[i] && dist[i] != INT_MAX && (u == -1 || dist[i] < dist[u])) u = i;
+        if (u == -1) break;
+        done[u] = 1;
+        for (int v = 0; v < V; v++)
+            if (w[u][v] && dist[u] + w[u][v] < dist[v]) {      /* relax */
+                dist[v] = dist[u] + w[u][v];
+                prev[v] = u;
+            }
+    }
+
+    printf("distances from S: {");
+    for (int i = 0; i < V; i++) printf(i ? ", %c=%d" : "%c=%d", names[i], dist[i]);
+    printf("}\n");
+
+    int path[V], len = 0;
+    for (int v = idx('D'); v != -1; v = prev[v]) path[len++] = v;
+    printf("shortest path to D: ");
+    for (int i = len - 1; i >= 0; i--) printf(i == len - 1 ? "%c" : " -> %c", names[path[i]]);
+    printf("\n");
+    return 0;
+}
+```
+```output
+distances from S: {A=3, B=1, C=4, D=7, S=0}
+shortest path to D: S -> B -> A -> C -> D
+```
 
 The direct edge S → A costs 4, but going S → B → A costs only 1 + 2 = 3. Dijkstra discovers this because it finalises B (distance 1) before A.
 
@@ -161,6 +209,37 @@ A: 2
 B: 5
 C: 5
 negative cycle? False
+```
+```c
+#include <stdio.h>
+
+int main(void) {
+    const char *names[] = {"S", "A", "B", "C"};
+    int edges[][3] = {{0, 1, 4}, {0, 2, 5}, {1, 3, 3}, {2, 1, -3}, {3, 2, 2}};
+    const long INF = 1000000000L;
+    long dist[4] = {0, INF, INF, INF};
+
+    for (int round = 1; round < 4; round++)
+        for (int e = 0; e < 5; e++) {
+            int u = edges[e][0], v = edges[e][1], w = edges[e][2];
+            if (dist[u] != INF && dist[u] + w < dist[v]) dist[v] = dist[u] + w;
+        }
+
+    int negative_cycle = 0;
+    for (int e = 0; e < 5; e++)
+        if (dist[edges[e][0]] != INF && dist[edges[e][0]] + edges[e][2] < dist[edges[e][1]]) negative_cycle = 1;
+
+    for (int i = 0; i < 4; i++) printf("%s: %ld\n", names[i], dist[i]);
+    printf("negative cycle? %s\n", negative_cycle ? "true" : "false");
+    return 0;
+}
+```
+```output
+S: 0
+A: 2
+B: 5
+C: 5
+negative cycle? false
 ```
 
 Here S → B → A (5 − 3 = 2) beats the direct S → A (4). The cycle A → C → B → A has total weight 3 + 2 − 3 = 2 > 0, so it is not a negative cycle.
@@ -219,6 +298,37 @@ for k in range(n):
 
 for row in dist:
     print("".join(f"{x:4}" for x in row))
+```
+```output
+   0   3   5   6
+   5   0   2   3
+   3   6   0   1
+   2   5   7   0
+```
+```c
+#include <stdio.h>
+
+#define INF 1000000
+
+int main(void) {
+    int dist[4][4] = {
+        {0, 3, INF, 7},
+        {8, 0, 2, INF},
+        {5, INF, 0, 1},
+        {2, INF, INF, 0},
+    };
+    int n = 4;
+    for (int k = 0; k < n; k++)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (dist[i][k] + dist[k][j] < dist[i][j]) dist[i][j] = dist[i][k] + dist[k][j];
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) printf("%4d", dist[i][j]);
+        printf("\n");
+    }
+    return 0;
+}
 ```
 ```output
    0   3   5   6

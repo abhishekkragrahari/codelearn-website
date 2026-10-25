@@ -196,6 +196,103 @@ after remove(30): 10 -> 20 -> 40 -> null
 contains 40? True
 reversed: 40 -> 20 -> 10 -> null
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int value;
+    struct Node *next;
+} Node;
+
+typedef struct {
+    Node *head, *tail;
+    int size;
+} LinkedList;
+
+Node *new_node(int v) {
+    Node *n = malloc(sizeof(Node));
+    n->value = v;
+    n->next = NULL;
+    return n;
+}
+
+void add_first(LinkedList *l, int v) {
+    Node *n = new_node(v);
+    n->next = l->head;
+    l->head = n;
+    if (l->tail == NULL) l->tail = n;
+    l->size++;
+}
+
+void add_last(LinkedList *l, int v) {
+    Node *n = new_node(v);
+    if (l->tail == NULL) l->head = l->tail = n;
+    else { l->tail->next = n; l->tail = n; }
+    l->size++;
+}
+
+int contains(const LinkedList *l, int v) {
+    for (Node *cur = l->head; cur; cur = cur->next)
+        if (cur->value == v) return 1;
+    return 0;
+}
+
+void remove_value(LinkedList *l, int v) {
+    Node *prev = NULL, *cur = l->head;
+    while (cur && cur->value != v) { prev = cur; cur = cur->next; }
+    if (cur == NULL) return;                     /* not found */
+    if (prev == NULL) l->head = cur->next;       /* removing the head */
+    else prev->next = cur->next;                 /* bypass the node */
+    if (cur == l->tail) l->tail = prev;
+    free(cur);
+    l->size--;
+}
+
+void reverse(LinkedList *l) {
+    Node *prev = NULL, *cur = l->head;
+    l->tail = l->head;
+    while (cur) {
+        Node *next = cur->next;    /* remember the rest of the list */
+        cur->next = prev;          /* turn this pointer around */
+        prev = cur;
+        cur = next;
+    }
+    l->head = prev;
+}
+
+void print(const LinkedList *l) {
+    for (Node *cur = l->head; cur; cur = cur->next) printf("%d -> ", cur->value);
+    printf("null");
+}
+
+int main(void) {
+    LinkedList list = {NULL, NULL, 0};
+    add_last(&list, 20);
+    add_last(&list, 30);
+    add_first(&list, 10);
+    add_last(&list, 40);
+    print(&list);
+    printf("  size=%d\n", list.size);
+
+    remove_value(&list, 30);
+    printf("after remove(30): ");
+    print(&list);
+    printf("\ncontains 40? %s\n", contains(&list, 40) ? "true" : "false");
+
+    reverse(&list);
+    printf("reversed: ");
+    print(&list);
+    printf("\n");
+    return 0;
+}
+```
+```output
+10 -> 20 -> 30 -> 40 -> null  size=4
+after remove(30): 10 -> 20 -> 40 -> null
+contains 40? true
+reversed: 40 -> 20 -> 10 -> null
+```
 
 ## Other kinds of linked list
 
@@ -281,6 +378,54 @@ print("cycle after linking 5 -> 3?", has_cycle(lst))
 middle: 3
 cycle? False
 cycle after linking 5 -> 3? True
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node { int v; struct Node *next; } Node;
+
+Node *build(const int values[], int n) {
+    Node *head = NULL;
+    for (int i = n - 1; i >= 0; i--) {
+        Node *node = malloc(sizeof(Node));
+        node->v = values[i];
+        node->next = head;
+        head = node;
+    }
+    return head;
+}
+
+int middle(Node *head) {
+    Node *slow = head, *fast = head;
+    while (fast && fast->next) { slow = slow->next; fast = fast->next->next; }
+    return slow->v;
+}
+
+int has_cycle(Node *head) {
+    Node *slow = head, *fast = head;
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) return 1;
+    }
+    return 0;
+}
+
+int main(void) {
+    int values[] = {1, 2, 3, 4, 5};
+    Node *list = build(values, 5);
+    printf("middle: %d\n", middle(list));
+    printf("cycle? %s\n", has_cycle(list) ? "true" : "false");
+    list->next->next->next->next->next = list->next->next;     /* 5 now points back to 3 */
+    printf("cycle after linking 5 -> 3? %s\n", has_cycle(list) ? "true" : "false");
+    return 0;
+}
+```
+```output
+middle: 3
+cycle? false
+cycle after linking 5 -> 3? true
 ```
 
 ## GATE-style practice questions
