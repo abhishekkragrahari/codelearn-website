@@ -25,11 +25,12 @@ export function inline(text) {
     codes.push(`<code>${escapeHtml(c)}</code>`);
     return `\u0000${codes.length - 1}\u0000`;
   });
-  s = escapeHtml(s)
+  // "\*" is a literal star (Σ\*, L\*), never the start of emphasis.
+  s = escapeHtml(s.replace(/\\\*/g, '\u0001'))
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<em>$2</em>')
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>');
-  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => codes[+i]);
+  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => codes[+i]).replace(/\u0001/g, '*');
 }
 
 // Turns markdown into a list of blocks. Code blocks are kept as data so the

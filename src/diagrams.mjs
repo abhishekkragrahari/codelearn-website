@@ -341,11 +341,93 @@ function graph(src) {
   return svgWrap(cx * 2, cy * 2, out, caption, 'graph');
 }
 
+/* ---------------- Automaton (states in a row) ---------------- */
+
+// A finite automaton, PDA or Turing machine drawn as a state diagram:
+//   states: q0 q1 q2      (optional; fixes the left-to-right order)
+//   start: q0
+//   accept: q2            (one or more states, drawn as double circles)
+//   q0 -> q1 : a          (one transition per line; "a, b" for several symbols)
+// Neighbouring forward edges are straight; longer forward edges arc above the
+// row, backward edges arc below it, and self-loops sit on top of the state.
+function automaton(src) {
+  const { caption, rest } = takeCaption(src);
+  const states = [], edges = [];
+  let start = null, accept = [];
+  const add = (n) => { if (!states.includes(n)) states.push(n); };
+  for (const raw of rest.split('\n')) {
+    const l = raw.trim();
+    if (!l) continue;
+    let m;
+    if ((m = l.match(/^states:\s*(.*)$/))) { m[1].split(/\s+/).forEach(add); continue; }
+    if ((m = l.match(/^start:\s*(\S+)$/))) { start = m[1]; if (!states.length) add(start); continue; }
+    if ((m = l.match(/^accept:\s*(.*)$/))) { accept = m[1].split(/\s+/).filter(Boolean); continue; }
+    m = l.match(/^(\S+)\s*->\s*(\S+)\s*:\s*(.+)$/);
+    if (!m) throw new Error(`automaton: cannot read "${l}"`);
+    add(m[1]); add(m[2]);
+    edges.push({ a: m[1], b: m[2], label: m[3].trim() });
+  }
+  accept.forEach(add);
+  const r = Math.max(20, Math.max(...states.map((n) => textWidth(n))) / 2 + 8);
+  const widest = Math.max(0, ...edges.map((e) => textWidth(e.label)));
+  const step = Math.max(110, widest + 2 * r + 30);
+  const idx = (n) => states.indexOf(n);
+  const arcHeight = (e) => {
+    const span = Math.abs(idx(e.b) - idx(e.a));
+    const twin = edges.some((o) => o.a === e.b && o.b === e.a);
+    if (span === 1) return twin || idx(e.b) < idx(e.a) ? 24 : 0;   // straight only for a lone forward edge
+    return 30 + 26 * (span - 1);
+  };
+  const forward = edges.filter((e) => idx(e.b) > idx(e.a)), backward = edges.filter((e) => idx(e.b) < idx(e.a));
+  const top = Math.max(edges.some((e) => e.a === e.b) ? 62 : 16, ...forward.map((e) => arcHeight(e) + 22));
+  const bottom = Math.max(16, ...backward.map((e) => arcHeight(e) + 22));
+  const left = start ? 44 : 14;
+  const y = top + r;
+  const x = (n) => left + r + idx(n) * step;
+  const f = (v) => +v.toFixed(1);
+  const tag = (lx, ly, text) => {
+    const w = textWidth(text) + 8;
+    return `<rect class="dg-weight-bg" x="${f(lx - w / 2)}" y="${f(ly - 9)}" width="${f(w)}" height="18" rx="4"/>` + label(f(lx), f(ly + 4.5), text);
+  };
+  const path = (d) => `<path class="dg-line" d="${d}" marker-end="__ARROW__"/>`;
+  let out = '';
+  if (start) out += line([[f(x(start) - r - 32), y], [f(x(start) - r - 3), y]]);
+  for (const e of edges) {
+    const xa = x(e.a), xb = x(e.b);
+    if (e.a === e.b) {
+      const dx = r * 0.42, dy = r * 0.9;
+      out += path(`M${f(xa - dx)} ${f(y - dy)} C${f(xa - 28)} ${f(y - r - 46)} ${f(xa + 28)} ${f(y - r - 46)} ${f(xa + dx)} ${f(y - dy - 2)}`);
+      out += tag(xa, y - r - 38, e.label);
+      continue;
+    }
+    const h = arcHeight(e);
+    if (h === 0) {
+      out += line([[f(xa + r), y], [f(xb - r - 3), y]]);
+      out += tag((xa + xb) / 2, y - 12, e.label);
+      continue;
+    }
+    const dir = xb > xa ? -1 : 1;              // -1: arc above (forward), 1: arc below (backward)
+    const ang = 0.9;                            // leave and enter about 50 degrees off the row
+    const sx = xa + Math.sign(xb - xa) * r * Math.cos(ang), sy = y + dir * r * Math.sin(ang);
+    const ex = xb - Math.sign(xb - xa) * (r + 3) * Math.cos(ang), ey = y + dir * (r + 3) * Math.sin(ang);
+    const cy = y + dir * (r * Math.sin(ang) + 2 * h);
+    out += path(`M${f(sx)} ${f(sy)} Q${f((sx + ex) / 2)} ${f(cy)} ${f(ex)} ${f(ey)}`);
+    out += tag((xa + xb) / 2, (sy + ey) / 4 + cy / 2, e.label);
+  }
+  for (const n of states) {
+    out += `<circle class="dg-node dg-vertex" cx="${f(x(n))}" cy="${y}" r="${f(r)}"/>`;
+    if (accept.includes(n)) out += `<circle class="dg-node dg-vertex" cx="${f(x(n))}" cy="${y}" r="${f(r - 5)}"/>`;
+    out += nodeText(f(x(n)), y, n);
+  }
+  const width = left + 2 * r + (states.length - 1) * step + 14;
+  return svgWrap(width, y + r + bottom, out, caption, 'automaton');
+}
+
 function takeCaption(src) {
   const m = src.match(/^\s*caption:\s*(.*)\n/);
   return m ? { caption: m[1].trim(), rest: src.slice(m[0].length) } : { caption: '', rest: src };
 }
 
-const renderers = { flowchart, tree, pipeline, graph };
+const renderers = { flowchart, tree, pipeline, graph, automaton };
 export const isDiagram = (lang) => lang in renderers;
 export const renderDiagram = (lang, src) => renderers[lang](src);

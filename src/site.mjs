@@ -98,6 +98,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Real SQL results · worked examples · GATE-style questions',
   },
+  {
+    id: 'cn',
+    name: 'Computer Networks',
+    short: 'CN',
+    color: '#f97316',
+    blurb: 'Layering, switching, error detection, flow control, MAC protocols, IP addressing and routing, TCP and UDP, and application protocols.',
+    intro:
+      'Computer Networks is a numerical-heavy GATE CS subject. These lessons explain each layer with figures, work through ' +
+      'the standard calculations (delays, efficiency, window sizes, subnets, fragmentation, congestion windows) step by step, ' +
+      'and use small Python programs to compute CRCs, checksums, subnets and routes, so every number shown is checked.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Step-by-step numericals · simulations · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -107,7 +121,7 @@ export const gateSubjects = [
   { name: 'Data Structures & Algorithms', track: 'dsa' },
   { name: 'Operating Systems', track: 'os' },
   { name: 'Databases (DBMS)', track: 'dbms' },
-  { name: 'Computer Networks' },
+  { name: 'Computer Networks', track: 'cn' },
   { name: 'Theory of Computation' },
   { name: 'Computer Organization & Architecture' },
   { name: 'Digital Logic' },

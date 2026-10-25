@@ -1,6 +1,6 @@
 # CodeShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, ...) collected on a **GATE CS** hub page.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, ...) collected on a **GATE CS** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
@@ -8,6 +8,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 - Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java, Python and C (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
 - Operating Systems track: 12 lessons (processes, scheduling, synchronization, deadlocks, memory, paging, virtual memory, file systems, disk scheduling) with C and Python simulations and GATE-style questions.
 - Databases (DBMS) track: 13 lessons (ER model, relational algebra and calculus, SQL, functional dependencies, normalization, transactions, concurrency control, indexing). Every SQL example runs on a real SQLite database at build time.
+- Computer Networks track: 12 lessons (layering, switching, framing and CRC, sliding windows, MAC and Ethernet, IP addressing and subnets, IP/ARP/DHCP/ICMP/NAT, routing, TCP/UDP and sockets, congestion control, application protocols), with every numerical computed by a program.
 - GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
@@ -56,13 +57,13 @@ Notes:
 
 ```text
 src/
-  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS) and the GATE subject list
+  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN) and the GATE subject list
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
                         playground.js, inspect.js (console.log formatting)
   highlight.mjs         small syntax highlighter used at build time
-  diagrams.mjs          flowchart / tree / pipeline / graph figures rendered to SVG
+  diagrams.mjs          flowchart / tree / pipeline / graph / automaton figures rendered to SVG
   quiz.mjs              GATE-style practice questions
   markdown.mjs          small Markdown parser for lessons
   templates.mjs         page layout, header, sidebar, code blocks
@@ -95,11 +96,12 @@ print([1, 2, 3])
 
 - An `output` block placed right after a code block becomes that example's output panel.
 - A new `chapter` name creates a new chapter in the sidebar.
+- Write `\*` for a literal star (for example Σ\*), and `\|` for a literal bar inside a table cell.
 - Run `npm run verify-examples` to check that the output you wrote is correct.
 
 ### Figures and flowcharts
 
-Three kinds of diagram can be written straight into a lesson. They are drawn as SVG at build time, follow light and dark mode, and need no extra library.
+Several kinds of diagram can be written straight into a lesson. They are drawn as SVG at build time, follow light and dark mode, and need no extra library.
 
 ````markdown
 ```flowchart
@@ -119,6 +121,7 @@ end: End
 - `tree`: a hierarchy, with one name per line and indentation for children. Add `| note` after a name for a small second line. Wide trees switch to a top-to-bottom layout on small screens.
 - `pipeline`: steps from left to right, one per line, also with an optional `| note`.
 - `graph`: one edge per line (`A - B` undirected, `A -> B` directed, `: 5` for a weight). The vertices are drawn on a circle; a `nodes: A B C` line sets their order.
+- `automaton`: a state diagram. `start: q0`, `accept: q2` (double circles), an optional `states:` line for the left-to-right order, then one transition per line such as `q0 -> q1 : a, b`. Self-loops are drawn above a state, longer forward edges arc above the row and backward edges below it.
 
 ### Code in several languages (tabs)
 
