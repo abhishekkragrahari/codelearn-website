@@ -1,6 +1,6 @@
 # CodeShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, Computer Organization, Compiler Design, Discrete Mathematics, Engineering Mathematics, ...) collected on a **GATE CS** hub page.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, Computer Organization, Compiler Design, Discrete Mathematics, Engineering Mathematics and General Aptitude: all 12 GATE CS subjects) collected on a **GATE CS** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
@@ -15,6 +15,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 - Compiler Design track: 10 lessons (lexical analysis, LL(1) and LR parsing, syntax-directed translation, intermediate code, runtime environments, optimization, data-flow analysis), with working Python pieces of a compiler.
 - Discrete Mathematics track: 10 lessons (propositional and first-order logic, sets and functions, relations, lattices, groups, combinatorics, recurrences, graph theory), with counting formulas checked by brute-force enumeration.
 - Engineering Mathematics track: 9 lessons (matrices, linear systems, eigenvalues, limits and maxima, integration, probability, distributions, statistics), checked with exact fractions, Simpson's rule and enumeration.
+- General Aptitude track: 10 lessons (numbers and percentages, ratios and averages, time and work, speed and distance, profit and interest, data interpretation, logical and spatial reasoning, verbal ability).
 - GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
@@ -63,7 +64,7 @@ Notes:
 
 ```text
 src/
-  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC, DL, COA, CD, DM, EM) and the GATE subject list
+  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC, DL, COA, CD, DM, EM, GA) and the GATE subject list
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
