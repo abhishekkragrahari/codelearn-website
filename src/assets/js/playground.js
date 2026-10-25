@@ -100,7 +100,13 @@
     var job;
     if (lang === 'javascript') job = window.CSRunner.run(code, { onLine: onLine });
     else if (lang === 'python') job = window.CSCodeRun.python(code, stdinBox.value, onLine);
-    else {
+    else if (code === current.code && current.output != null && stdinBox.value === '') {
+      // An unchanged lesson example: its output was produced by the real compiler
+      // when the site was built, so show it without calling the online service.
+      line('info', 'Output of this unchanged lesson example (checked with the real compiler when the site was built):');
+      line('log', current.output);
+      job = Promise.resolve();
+    } else {
       job = window.CSCodeRun.remote(lang, code, stdinBox.value, onLine).catch(function () {
         // Offline or the service is down: for an unchanged example we can still show its known output.
         if (code === current.code && current.output != null) {

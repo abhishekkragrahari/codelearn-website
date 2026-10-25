@@ -11,6 +11,9 @@
   var PY_TIMEOUT_MS = 10000;
   var WANDBOX = 'https://wandbox.org/api/';
   var REMOTE_TIMEOUT_MS = 30000;
+  // Wandbox is a free shared service: send at most one request every few seconds per browser.
+  var REMOTE_MIN_GAP_MS = 3000;
+  var lastRemoteAt = 0;
 
   /* ---------------- Python (Pyodide in a worker) ---------------- */
 
@@ -134,8 +137,11 @@
   function remote(lang, code, stdin, onLine) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, REMOTE_TIMEOUT_MS);
+    var wait = Math.max(0, lastRemoteAt + REMOTE_MIN_GAP_MS - Date.now());
+    lastRemoteAt = Date.now() + wait;
     onLine('status', 'Compiling and running on wandbox.org...');
-    return compilers()
+    return new Promise(function (resolve) { setTimeout(resolve, wait); })
+      .then(compilers)
       .then(function (list) {
         var compiler = pickCompiler(list, lang);
         if (!compiler) throw new Error('no ' + lang + ' compiler is available right now');
@@ -152,6 +158,7 @@
         });
       })
       .then(function (r) {
+        if (r.status === 429) throw new Error('the free compiler service is busy right now, please wait a minute and try again');
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })

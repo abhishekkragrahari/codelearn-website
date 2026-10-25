@@ -120,5 +120,10 @@ To add a whole new language, add an entry in `src/site.mjs`, add a folder under 
 
 - **JavaScript** runs in a **Web Worker**, kept apart from the page. `console.log`, `warn` and `error` are captured as output. Code that runs longer than 5 seconds is stopped, so an endless loop cannot freeze the page.
 - **Python** runs in the browser using [Pyodide](https://pyodide.org) (CPython compiled to WebAssembly), loaded from jsDelivr (`pyodide@0.26.4`) the first time someone presses Run. That first download is about 10 MB. It also runs in a Web Worker, and is stopped after 10 seconds.
-- **C and Java** are sent to [Wandbox](https://wandbox.org), a free online compiler service, and the real output comes back. The newest stable GCC and OpenJDK are picked automatically from Wandbox's list. Wandbox saves Java code as `prog.java`, so the playground renames the public class to `prog` before sending it. If the service cannot be reached, an unchanged lesson example shows its known output instead.
+- **C and Java** are sent to [Wandbox](https://wandbox.org), a free online compiler service, and the real output comes back. The newest stable GCC and OpenJDK are picked automatically from Wandbox's list. Wandbox saves Java code as `prog.java`, so the playground renames the public class to `prog` before sending it. To go easy on this free shared service:
+  - An **unchanged** lesson example is not sent at all. Its output was produced by the real compiler during the build (`npm run verify-examples` in CI), so it is shown straight away.
+  - Each browser sends at most one request every 3 seconds.
+  - If Wandbox is busy (HTTP 429) or unreachable, a clear message is shown.
+
+  JavaScript and Python run on the visitor's own computer, so they scale with any amount of traffic. For heavy C/Java traffic, the long-term options are compilers running in the browser (WebAssembly) or a self-hosted code runner such as Piston or Judge0.
 - Text in **Input (stdin)** is passed to `input()`, `scanf` and `Scanner`.
