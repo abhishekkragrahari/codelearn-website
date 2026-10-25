@@ -291,6 +291,13 @@ button { font: inherit; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li { margin: 4px 0; }
 .prose :not(pre) > code { background: var(--surface-2); border: 1px solid var(--border); padding: 1px 6px; border-radius: 6px; font-size: .88em; }
+.table-wrap { margin: 20px 0 24px; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+.prose table { width: 100%; border-collapse: collapse; font-size: .94rem; background: var(--surface); }
+.prose th, .prose td { padding: 10px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--code-head); font-weight: 700; white-space: nowrap; }
+.prose tbody tr:last-child td { border-bottom: 0; }
+.prose td code { white-space: nowrap; }
+.prose tbody tr:nth-child(even) td { background: var(--surface-2); }
 .callout { margin: 20px 0; padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--note-border); background: var(--note-bg); }
 .callout-tip { border-color: var(--tip-border); background: var(--tip-bg); }
 .callout-warning { border-color: var(--warn-border); background: var(--warn-bg); }

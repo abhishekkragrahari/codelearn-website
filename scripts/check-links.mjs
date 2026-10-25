@@ -15,9 +15,12 @@ function* htmlFiles(dir) {
 
 let checked = 0;
 const broken = [];
+const rawMarkdown = [];
 for (const file of htmlFiles(DIST)) {
   if (file.endsWith('404.html')) continue; // uses absolute links on purpose
   const html = readFileSync(file, 'utf8');
+  // Markdown the lesson parser did not understand shows up as raw text, e.g. a table row.
+  if (/<p>\s*\|/.test(html)) rawMarkdown.push(relative(DIST, file));
   for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(?:[a-z]+:|#|\/\/)/i.test(url)) continue;
     const path = url.replace(/&amp;/g, '&').split('#')[0].split('?')[0];
@@ -27,6 +30,10 @@ for (const file of htmlFiles(DIST)) {
   }
 }
 
+if (rawMarkdown.length) {
+  console.error(`Unrendered Markdown (a line starting with "|") in:\n  ` + rawMarkdown.join('\n  '));
+  process.exit(1);
+}
 if (broken.length) {
   console.error(`Broken links (${broken.length}):\n  ` + broken.join('\n  '));
   process.exit(1);
