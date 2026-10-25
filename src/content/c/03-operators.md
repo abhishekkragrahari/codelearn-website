@@ -104,3 +104,52 @@ int main(void) {
 ```output
 7 is odd
 ```
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int i = 5;
+      int j = i++ + 10;
+      int k = ++i * 2;
+      printf("%d %d %d\n", i, j, k);
+      return 0;
+  }
+- 7 16 14
+* 7 15 14
+- 6 15 12
+- 7 15 12
+explain: `i++ + 10` uses the old value 5 (j = 15) and then i becomes 6. `++i * 2` first makes i 7, then k = 14. Each statement modifies i only once, so the behaviour is well defined.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a = 0, b = 5;
+      if (a && ++b)
+          printf("inside ");
+      printf("%d\n", b);
+      return 0;
+  }
+answer: 5
+explain: `&&` short-circuits: since a is 0 (false), the right side `++b` is never evaluated, so b stays 5 and "inside" is not printed.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int x = 10;
+      int y = x > 5 ? x < 8 ? 1 : 2 : 3;
+      printf("%d\n", y + (17 % 5) * 2 - 7 / 2);
+      return 0;
+  }
+answer: 3
+explain: The ternary groups right to left: x > 5 is true, then x < 8 is false, so y = 2. Then 17 % 5 = 2 and 7 / 2 = 3 (integer division): 2 + 2 × 2 − 3 = 3.
+```

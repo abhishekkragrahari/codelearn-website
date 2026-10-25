@@ -100,3 +100,36 @@ int main(void) {
 - `"w"`: write. Creates the file, or erases it if it exists.
 - `"a"`: append. Adds to the end, creating the file if needed.
 - Add `b` (for example `"rb"`) to work with binary files.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      FILE *f = fopen("t.txt", "w");
+      fprintf(f, "%d %d %d", 4, 8, 15);
+      fclose(f);
+      f = fopen("t.txt", "r");
+      int x, total = 0, n = 0;
+      while (fscanf(f, "%d", &x) == 1) { total += x; n++; }
+      fclose(f);
+      printf("%d %d\n", n, total);
+      return 0;
+  }
+- 3 15
+* 3 27
+- 1 4
+- 4 27
+explain: The file contains "4 8 15". fscanf reads one number per call and returns 1 each time, then returns EOF at the end, so 3 numbers are read with a total of 27.
+```
+
+```quiz
+q: A file is opened with `fopen("log.txt", "a")`. Which statements are **true**? (Select all that apply.)
+* If the file does not exist, it is created
+* Data written with fprintf is added at the end of the file
+- The existing contents of the file are erased
+- The file can only be read, not written
+explain: Mode "a" (append) creates the file if needed and always writes at the end, keeping what is already there. Mode "w" is the one that erases existing contents.
+```

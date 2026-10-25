@@ -109,3 +109,54 @@ int main(void) {
 ```
 
 > **Warning:** C does not check array bounds. Writing to `temps[5]` in a 5-element array silently corrupts other memory. Always keep your loop limits correct.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a[] = {10, 20, 30, 40, 50};
+      int n = sizeof(a) / sizeof(a[0]);
+      int s = 0;
+      for (int i = 0; i < n; i += 2) s += a[i];
+      printf("%d %d\n", n, s);
+      return 0;
+  }
+- 5 150
+* 5 90
+- 4 90
+- 5 60
+explain: sizeof(a) / sizeof(a[0]) counts the elements: 5. The loop adds every second element, a[0] + a[2] + a[4] = 10 + 30 + 50 = 90.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  void f(int a[]) {
+      a[0] = 99;
+  }
+  int main(void) {
+      int x[3] = {1, 2, 3};
+      f(x);
+      printf("%d\n", x[0] + x[2]);
+      return 0;
+  }
+answer: 102
+explain: An array argument is passed as a pointer to its first element, so f changes the caller's array: x[0] becomes 99. Then x[0] + x[2] = 99 + 3 = 102.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a[5] = {1, 2};
+      printf("%d\n", a[0] + a[1] + a[4]);
+      return 0;
+  }
+answer: 3
+explain: When an array is partly initialised, the remaining elements are set to 0. So a = {1, 2, 0, 0, 0} and a[0] + a[1] + a[4] = 1 + 2 + 0 = 3.
+```

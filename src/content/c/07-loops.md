@@ -102,3 +102,55 @@ Average: 80.75
 ```
 
 > **Note:** Array positions start at 0, so the last item of a 4-element array is `marks[3]`. Reading past the end is not caught by C and can crash your program.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int count = 0;
+      for (int i = 1; i <= 20; i *= 3)
+          count++;
+      printf("%d\n", count);
+      return 0;
+  }
+answer: 3
+explain: i takes the values 1, 3, 9 and then 27, which is greater than 20, so the body runs 3 times.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int i = 0, sum = 0;
+      while (i < 10) {
+          i++;
+          if (i % 3 == 0) continue;
+          if (i == 8) break;
+          sum += i;
+      }
+      printf("%d\n", sum);
+      return 0;
+  }
+answer: 19
+explain: i is incremented first in every round. i = 3 and i = 6 hit `continue` and are skipped. At i = 8 the loop breaks before adding. So the values added are 1, 2, 4, 5 and 7, and their sum is 19.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int calls = 0;
+      for (int i = 0; i < 5; i++)
+          for (int j = i; j < 5; j++)
+              calls++;
+      printf("%d\n", calls);
+      return 0;
+  }
+answer: 15
+explain: For i = 0 the inner loop runs 5 times, for i = 1 four times, and so on down to 1 time for i = 4: 5 + 4 + 3 + 2 + 1 = 15.
+```

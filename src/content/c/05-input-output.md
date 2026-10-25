@@ -78,3 +78,27 @@ int main(void) {
 [    49.5]
 [A] [text]
 ```
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print? (The `_` characters are not printed; they are only to show where the output starts and ends.)
+code: c
+  #include <stdio.h>
+  int main(void) {
+      printf("_%5.2f_%-4d_%04d_\n", 3.14159, 42, 42);
+      return 0;
+  }
+- _3.14_42_0042_
+* _ 3.14_42  _0042_
+- _3.14 _  42_42  _
+- _ 3.14_  42_0042_
+explain: `%5.2f` prints 3.14 (4 characters) right-aligned in width 5, adding one space in front. `%-4d` prints 42 left-aligned in width 4, adding two spaces after. `%04d` pads with zeros to width 4: 0042.
+```
+
+```quiz
+q: The call `scanf("%d %d", &a, &b)` is given the input `12 abc`. What value does `scanf` return?
+answer: 1
+verify: 1
+explain: scanf returns the number of items successfully read and stored. 12 is read into a, then reading an int from "abc" fails, so it stops and returns 1.
+```

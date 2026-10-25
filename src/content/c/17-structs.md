@@ -94,3 +94,46 @@ Top: Meera
 ```
 
 > **Tip:** Passing a large struct by value copies all of it. Passing a pointer, as `add_bonus` does, is faster and lets the function modify the original.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  struct P { int x; int y; };
+  void move(struct P p) { p.x += 10; }
+  void move_ptr(struct P *p) { p->y += 10; }
+  int main(void) {
+      struct P a = {1, 2};
+      move(a);
+      move_ptr(&a);
+      printf("%d %d\n", a.x, a.y);
+      return 0;
+  }
+- 11 12
+* 1 12
+- 11 2
+- 1 2
+explain: move receives a copy of the struct, so a.x stays 1. move_ptr receives the address, so p->y += 10 changes a.y to 12.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  struct Node { int val; struct Node *next; };
+  int main(void) {
+      struct Node c = {3, NULL}, b = {2, &c}, a = {1, &b};
+      struct Node *p = &a;
+      int s = 0;
+      while (p) { s = s * 10 + p->val; p = p->next; }
+      printf("%d %d\n", s, a.next->next->val);
+      return 0;
+  }
+- 321 3
+* 123 3
+- 123 2
+- 6 3
+explain: The nodes form the list a → b → c. Walking it, s becomes 1, then 12, then 123. a.next->next is c, whose val is 3.
+```

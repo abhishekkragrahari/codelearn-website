@@ -143,6 +143,7 @@ explain: M(n) = 2ⁿ − 1.
 - `*` marks a correct option and `-` a wrong one. One `*` makes an MCQ; several make an MSQ.
 - `answer:` makes a NAT (numerical) question.
 - `verify:` is a Python expression that `npm run verify-examples` evaluates; the build fails if it does not equal the answer. For longer checks, leave `verify:` empty and indent a Python program under it that prints the answer.
+- `code: c` (or `java`, `python`, `javascript`) followed by an indented program shows that program in the question, for "what does this print?" questions. `npm run verify-examples` compiles and runs it, and its output must equal the NAT answer or the text of the one correct option. C quiz programs may compile with warnings, since GATE questions are often deliberately tricky; lesson examples must compile cleanly with `-Wall -Werror`.
 
 To add a whole new language, add an entry in `src/site.mjs`, add a folder under `src/content/`, and add a grammar in `src/highlight.mjs`.
 

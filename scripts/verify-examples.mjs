@@ -22,9 +22,11 @@ const runners = {
   },
   c: {
     available: () => has('gcc'),
-    run: (dir, code) => {
+    // Lesson examples must compile without warnings. Quiz programs may trigger
+    // warnings on purpose (GATE likes tricky code), so they are not strict.
+    run: (dir, code, strict = true) => {
       writeFileSync(join(dir, 'main.c'), code);
-      execFileSync('gcc', ['-std=c11', '-Wall', '-Werror', 'main.c', '-o', 'main'], { cwd: dir });
+      execFileSync('gcc', ['-std=c11', '-Wall', ...(strict ? ['-Werror'] : []), 'main.c', '-o', 'main', '-lm'], { cwd: dir, stdio: ['ignore', 'pipe', 'pipe'] });
       return execFileSync(join(dir, 'main'), { cwd: dir });
     },
   },
@@ -66,6 +68,26 @@ for (const track of tracks) {
       // Numerical GATE-style answers with a "verify:" expression are recomputed in Python.
       if (b.lang === 'quiz') {
         const quiz = parseQuiz(b.code);
+        // A program shown in the question is run for real; its output must be the answer.
+        if (quiz.code && runners[quiz.codeLang] && !(only.length && !only.includes(track.id) && !only.includes('quiz'))) {
+          const where = `${track.id}/${lesson.file} quiz "${quiz.q.slice(0, 50)}"`;
+          const correct = quiz.options.filter((o) => o.correct);
+          const expected = quiz.type === 'nat' ? quiz.answer : correct.length === 1 ? correct[0].text.replace(/`/g, '') : null;
+          if (expected == null) failures.push(`${where}\nA question with a program must be NAT or have exactly one correct option`);
+          else if (usable(quiz.codeLang)) {
+            const dir = mkdtempSync(join(tmpdir(), 'cs-verify-'));
+            try {
+              const got = clean(runners[quiz.codeLang].run(dir, quiz.code, false).toString());
+              if (got === clean(expected).replace(/\\n/g, '\n')) quizzes++;
+              else failures.push(`${where}\n--- stated answer\n${expected}\n--- program prints\n${got}`);
+            } catch (err) {
+              failures.push(`${where}\n${(err.stderr || err.message).toString().trim()}`);
+            } finally {
+              rmSync(dir, { recursive: true, force: true });
+            }
+          }
+          continue;
+        }
         if ((quiz.verify == null && quiz.verifyProgram == null) || (only.length && !only.includes(track.id) && !only.includes('quiz'))) continue;
         const where = `${track.id}/${lesson.file} quiz "${quiz.q.slice(0, 50)}"`;
         try {
@@ -103,4 +125,4 @@ if (failures.length) {
   console.error(`\n${failures.length} example(s) failed:\n\n` + failures.join('\n\n'));
   process.exit(1);
 }
-console.log(`\nAll ${passed} examples produce their documented output` + (quizzes ? `, and ${quizzes} numerical answers check out.` : '.'));
+console.log(`\nAll ${passed} examples produce their documented output` + (quizzes ? `, and ${quizzes} quiz answers check out.` : '.'));
