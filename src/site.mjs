@@ -169,6 +169,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Working compiler pieces · parsing tables · GATE-style questions',
   },
+  {
+    id: 'dm',
+    name: 'Discrete Mathematics',
+    short: 'DM',
+    color: '#84cc16',
+    blurb: 'Propositional and first-order logic, sets, relations, functions, lattices, groups, combinatorics, recurrences and graph theory.',
+    intro:
+      'Discrete Mathematics is the mathematical foundation of computer science and a large part of the GATE paper. These ' +
+      'lessons explain every syllabus topic with worked examples, and check the counting formulas (relations, functions, ' +
+      'derangements, colourings) by brute-force enumeration with small programs.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Worked examples · brute-force checks · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -183,7 +197,7 @@ export const gateSubjects = [
   { name: 'Computer Organization & Architecture', track: 'coa' },
   { name: 'Digital Logic', track: 'dl' },
   { name: 'Compiler Design', track: 'cd' },
-  { name: 'Discrete Mathematics' },
+  { name: 'Discrete Mathematics', track: 'dm' },
   { name: 'Engineering Mathematics' },
   { name: 'General Aptitude' },
 ];
