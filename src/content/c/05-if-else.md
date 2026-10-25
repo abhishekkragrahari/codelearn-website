@@ -23,6 +23,18 @@ int main(void) {
 Battery low: 15%
 ```
 
+```flowchart
+caption: How the battery check above runs
+start: Start
+step: battery = 15
+if: battery < 20?
+  yes:
+    io: Print "Battery low"
+  no:
+    io: Print "Battery fine."
+end: return 0
+```
+
 ## else if chains
 
 Conditions are tested from top to bottom, and only the first matching block runs.

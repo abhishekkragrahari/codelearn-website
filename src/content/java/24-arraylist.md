@@ -1,6 +1,6 @@
 ---
 title: ArrayList
-chapter: Collections and Errors
+chapter: Collections and Generics
 description: Use a resizable list that grows and shrinks as you add and remove items.
 ---
 Arrays have a fixed size. An `ArrayList` (from `java.util`) is a list that grows automatically, which makes it the most common way to store a collection of objects in Java.

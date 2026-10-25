@@ -24,6 +24,16 @@ The indented lines belong to the `if`. The last line is not indented, so it runs
 
 > **Warning:** Indentation matters in Python. Use four spaces for each level and do not mix tabs and spaces.
 
+```flowchart
+caption: How the temperature check above runs
+start: Start
+step: temperature = 34
+if: temperature > 30?
+  yes:
+    io: Print the hot-day tips
+end: Print "Have a nice day!"
+```
+
 ## else and elif
 
 Use `else` for "otherwise", and `elif` (short for "else if") to check more conditions in order. Python runs the first branch whose condition is true and skips the rest.

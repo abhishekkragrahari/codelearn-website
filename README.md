@@ -58,6 +58,7 @@ src/
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
                         playground.js, inspect.js (console.log formatting)
   highlight.mjs         small syntax highlighter used at build time
+  diagrams.mjs          flowchart / tree / pipeline figures rendered to SVG
   markdown.mjs          small Markdown parser for lessons
   templates.mjs         page layout, header, sidebar, code blocks
 scripts/                build, dev server, link checker, example verifier
@@ -90,6 +91,28 @@ print([1, 2, 3])
 - An `output` block placed right after a code block becomes that example's output panel.
 - A new `chapter` name creates a new chapter in the sidebar.
 - Run `npm run verify-examples` to check that the output you wrote is correct.
+
+### Figures and flowcharts
+
+Three kinds of diagram can be written straight into a lesson. They are drawn as SVG at build time, follow light and dark mode, and need no extra library.
+
+````markdown
+```flowchart
+caption: Checking a result
+start: Start
+io: Read marks
+if: marks >= 40?
+  yes:
+    io: Print "Pass"
+  no:
+    io: Print "Fail"
+end: End
+```
+````
+
+- `flowchart`: one node per line. The node types are `start`, `end`, `step`, `io` (input/output), `if` (with indented `yes:` and an optional `no:` block, which can nest) and `while` (its indented body loops back to the condition).
+- `tree`: a hierarchy, with one name per line and indentation for children. Add `| note` after a name for a small second line. Wide trees switch to a top-to-bottom layout on small screens.
+- `pipeline`: steps from left to right, one per line, also with an optional `| note`.
 
 To add a whole new language, add an entry in `src/site.mjs`, add a folder under `src/content/`, and add a grammar in `src/highlight.mjs`.
 

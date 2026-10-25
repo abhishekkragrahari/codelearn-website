@@ -41,6 +41,13 @@ Gitanjali
 
 > **Note:** One file can hold several classes, but only one can be `public`, and its name must match the file name. Keep `Main` first in the file: `java Main.java` runs the first class it finds.
 
+```tree
+caption: One class, many objects
+Book | class (the blueprint)
+  b1 | Godaan, Premchand, 312
+  b2 | Gitanjali, Tagore, 103
+```
+
 ## Encapsulation
 
 Good practice is to make fields `private` and expose them through methods. That way the class controls how its data may change.

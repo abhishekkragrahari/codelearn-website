@@ -6,6 +6,7 @@ import { site, languages } from '../src/site.mjs';
 import { parseFrontMatter, parseBlocks, renderBlocks } from '../src/markdown.mjs';
 import { escapeHtml, highlight } from '../src/highlight.mjs';
 import { layout, sidebar, codeBlock, langBadge, groupByChapter, logoSvg } from '../src/templates.mjs';
+import { isDiagram, renderDiagram } from '../src/diagrams.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
@@ -127,7 +128,7 @@ function lessonPage(lang, lessons, i) {
   ${prev ? `<a class="pager-prev" href="${prev.slug}.html"><span>Previous</span>${escapeHtml(prev.title)}</a>` : '<span></span>'}
   ${next ? `<a class="pager-next" href="${next.slug}.html"><span>Next</span>${escapeHtml(next.title)}</a>` : `<a class="pager-next" href="${root}index.html"><span>Finished!</span>Pick another language</a>`}
 </nav>`;
-  const content = renderBlocks(l.blocks, (b) => codeBlock(b, root));
+  const content = renderBlocks(l.blocks, (b) => (isDiagram(b.lang) ? renderDiagram(b.lang, b.code) : codeBlock(b, root)));
   const body = `<div class="tutorial-layout">
 ${sidebar(lang, lessons, l, root)}
 <article class="lesson">

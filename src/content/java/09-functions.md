@@ -1,6 +1,6 @@
 ---
 title: Methods
-chapter: Functions
+chapter: Methods
 description: Write reusable methods with parameters, return values and overloading.
 ---
 In Java a function that belongs to a class is called a **method**. Until you learn about objects, you can write `static` methods and call them directly from `main`.
@@ -23,6 +23,14 @@ public class Main {
 ```
 
 The method header lists the **return type** (`int`), the name, and each parameter with its type. A method that returns nothing uses `void`.
+
+```pipeline
+caption: Calling square(9): the argument goes in, the result comes back
+square(9) | the call
+int x = 9 | parameter
+return x * x | method body
+81 | back to the caller
+```
 
 ## Several parameters
 

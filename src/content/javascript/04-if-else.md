@@ -20,6 +20,22 @@ if (hour < 12) {
 Good evening
 ```
 
+```flowchart
+caption: How the greeting example above picks a branch
+start: Start
+step: hour = 21
+if: hour < 12?
+  yes:
+    io: Good morning
+  no:
+    if: hour < 18?
+      yes:
+        io: Good afternoon
+      no:
+        io: Good evening
+end: End
+```
+
 ## Use === for equality
 
 JavaScript has two equality operators. `==` converts types before comparing, which gives surprising results. `===` (strict equality) compares both the value and the type, so prefer it.

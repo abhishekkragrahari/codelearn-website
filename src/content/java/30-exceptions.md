@@ -1,6 +1,6 @@
 ---
 title: Exceptions
-chapter: Collections and Errors
+chapter: Exceptions and Files
 description: Handle errors with try, catch and finally, and throw your own exceptions.
 ---
 An **exception** is an object that signals something went wrong while the program was running, such as dividing by zero or reading past the end of an array. If nothing catches it, the program stops and prints a stack trace. A `try` / `catch` block lets you handle it instead.
@@ -25,6 +25,19 @@ Program continues
 ```
 
 ## Several catch blocks and finally
+```flowchart
+caption: How try, catch and finally run
+start: Start
+step: Run the try block
+if: Exception thrown?
+  yes:
+    step: Run the matching catch
+    step: Run finally
+  no:
+    step: Run finally
+end: Continue
+```
+
 
 `finally` always runs, whether an exception happened or not.
 
@@ -88,6 +101,20 @@ Error: age must not be negative: -3
 ```
 
 ## Checked and unchecked exceptions
+```tree
+caption: The exception class hierarchy
+Throwable
+  Error | serious JVM problems, do not catch
+    StackOverflowError
+    OutOfMemoryError
+  Exception | checked
+    IOException
+    RuntimeException | unchecked
+      ArithmeticException
+      NullPointerException
+      IllegalArgumentException
+```
+
 
 Java has two kinds of exceptions:
 
