@@ -112,6 +112,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Step-by-step numericals · simulations · GATE-style questions',
   },
+  {
+    id: 'toc',
+    name: 'Theory of Computation',
+    short: 'TOC',
+    color: '#ec4899',
+    blurb: 'Finite automata, regular expressions, context-free grammars, pushdown automata, Turing machines and undecidability.',
+    intro:
+      'Theory of Computation studies what machines can and cannot do. These lessons build the Chomsky hierarchy from the ' +
+      'bottom up, with a state diagram for every automaton and small Python simulators for DFAs, NFAs, PDAs and Turing ' +
+      'machines, so every claim about which strings are accepted is checked by running the machine.',
+    topic: true,
+    gate: true,
+    cardMeta: 'State diagrams · machine simulators · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -122,7 +136,7 @@ export const gateSubjects = [
   { name: 'Operating Systems', track: 'os' },
   { name: 'Databases (DBMS)', track: 'dbms' },
   { name: 'Computer Networks', track: 'cn' },
-  { name: 'Theory of Computation' },
+  { name: 'Theory of Computation', track: 'toc' },
   { name: 'Computer Organization & Architecture' },
   { name: 'Digital Logic' },
   { name: 'Compiler Design' },
