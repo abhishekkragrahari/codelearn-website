@@ -1,7 +1,7 @@
 // A small Markdown subset, just enough for lessons:
 //   front matter, ## / ### headings, paragraphs, - and 1. lists,
-//   > callouts, fenced code blocks, and ```output blocks that attach
-//   to the code block right above them.
+//   > callouts, | tables |, fenced code blocks, and ```output blocks that
+//   attach to the code block right above them.
 import { escapeHtml, highlight } from './highlight.mjs';
 
 export function parseFrontMatter(text) {
@@ -72,6 +72,17 @@ export function parseBlocks(md) {
       blocks.push({ type: 'callout', kind, html: inline(text) });
       continue;
     }
+    // A table: a | header | row, a | --- | separator row, then body rows.
+    if (/^\|.*\|\s*$/.test(line) && /^\|(\s*:?-+:?\s*\|)+\s*$/.test(lines[i + 1] || '')) {
+      flush();
+      const cells = (row) => row.trim().replace(/^\||\|$/g, '').split('|').map((c) => inline(c.trim()));
+      const head = cells(line);
+      const rows = [];
+      for (i += 2; i < lines.length && /^\|.*\|\s*$/.test(lines[i]); i++) rows.push(cells(lines[i]));
+      i--;
+      blocks.push({ type: 'table', head, rows });
+      continue;
+    }
     const li = line.match(/^(\s*)(-|\d+\.)\s+(.*)$/);
     if (li) {
       flush();
@@ -105,6 +116,10 @@ export function renderBlocks(blocks, renderCode) {
         case 'ul':
         case 'ol':
           return `<${b.type}>${b.items.map((x) => `<li>${x}</li>`).join('')}</${b.type}>`;
+        case 'table':
+          return `<div class="table-wrap"><table><thead><tr>${b.head.map((c) => `<th>${c}</th>`).join('')}</tr></thead><tbody>${b.rows
+            .map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`)
+            .join('')}</tbody></table></div>`;
         case 'callout':
           return `<aside class="callout callout-${b.kind}">${b.html}</aside>`;
         case 'code':
