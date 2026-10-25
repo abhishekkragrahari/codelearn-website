@@ -160,7 +160,7 @@ function playgroundPage(all) {
     for (const l of all[lang.id]) {
       l.blocks
         .filter((b) => b.type === 'code' && b.lang === lang.id)
-        .forEach((b, n) => examples[lang.id].push({ label: `${l.title} #${n + 1}`, code: b.code, output: b.output }));
+        .forEach((b, n) => examples[lang.id].push({ lesson: l.title, label: `Example ${n + 1}`, code: b.code, output: b.output }));
     }
   }
   const options = languages.map((l) => `<option value="${l.id}">${l.name}</option>`).join('');

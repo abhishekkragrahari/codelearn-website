@@ -18,8 +18,16 @@
     function report(err) {
       postMessage({ kind: 'error', text: err && err.name ? err.name + ': ' + err.message : 'Uncaught ' + inspect(err, true) });
     }
+    var donePosted = false;
+    // Checked on a fresh macrotask so that promise callbacks (microtasks)
+    // queued by the code that just ran get to run, and maybe start new timers.
     function checkDone() {
-      if (mainDone && timers.size === 0) postMessage({ kind: 'done' });
+      nativeSetTimeout(function () {
+        if (mainDone && timers.size === 0 && !donePosted) {
+          donePosted = true;
+          postMessage({ kind: 'done' });
+        }
+      }, 0);
     }
     function guarded(fn, args) {
       try { if (typeof fn === 'function') fn.apply(null, args); } catch (err) { report(err); }
