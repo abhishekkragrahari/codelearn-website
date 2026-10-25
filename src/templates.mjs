@@ -54,9 +54,13 @@ ${output}
 
 export function layout({ title, description = site.description, root, body, active = '', bodyClass = '', scripts = [] }) {
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} - ${site.tagline}`;
-  const nav = tracks
-    .map((l) => `<a href="${root}${l.id}/index.html"${active === l.id ? ' aria-current="page"' : ''}>${l.name}</a>`)
-    .join('');
+  // The top bar lists the languages, topics marked `nav`, and one link to the GATE hub.
+  const gateActive = active === 'gate' || tracks.some((t) => t.id === active && t.gate && !t.nav);
+  const nav =
+    tracks
+      .filter((l) => !l.topic || l.nav)
+      .map((l) => `<a href="${root}${l.id}/index.html"${active === l.id ? ' aria-current="page"' : ''}>${l.topic ? 'DSA' : l.name}</a>`)
+      .join('') + `<a href="${root}gate.html"${gateActive ? ' aria-current="page"' : ''}>GATE CS</a>`;
   return `<!doctype html>
 <html lang="en">
 <head>

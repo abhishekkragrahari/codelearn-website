@@ -2,7 +2,7 @@
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, languages, topics, tracks } from '../src/site.mjs';
+import { site, languages, topics, tracks, gateSubjects } from '../src/site.mjs';
 import { parseFrontMatter, parseBlocks, renderBlocks, inline } from '../src/markdown.mjs';
 import { escapeHtml, highlight } from '../src/highlight.mjs';
 import { layout, sidebar, codeBlock, langBadge, groupByChapter, logoSvg, langById, trackTitle } from '../src/templates.mjs';
@@ -39,17 +39,51 @@ function write(path, html) {
 
 const jsonForScript = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
 
+function topicCard(t, all, root) {
+  return `<a class="topic-card" href="${root}${t.id}/index.html" style="--badge:${t.color}">
+  ${langBadge(t, 'lg')}
+  <div><h3>${escapeHtml(t.cardTitle || t.name)}</h3><p>${escapeHtml(t.blurb)}</p>
+  <span class="lang-card-meta">${all[t.id].length} lessons &middot; ${escapeHtml(t.cardMeta || 'GATE-style questions')}</span></div>
+</a>`;
+}
+
+function gatePage(all) {
+  const root = './';
+  const byId = Object.fromEntries(tracks.map((t) => [t.id, t]));
+  const rows = gateSubjects
+    .map((g, i) => {
+      const t = g.track && byId[g.track];
+      if (!t) {
+        return `<li class="gate-subject is-soon"><span class="chapter-num">${i + 1}</span><div><strong>${escapeHtml(g.name)}</strong><span>Coming soon</span></div></li>`;
+      }
+      const lessons = all[t.id];
+      const quizzes = lessons.reduce((n, l) => n + l.blocks.filter((b) => b.type === 'code' && b.lang === 'quiz').length, 0);
+      return `<li class="gate-subject"><span class="chapter-num">${i + 1}</span><a href="${t.id}/index.html"><strong>${escapeHtml(g.name)}</strong><span>${lessons.length} lessons &middot; ${quizzes} GATE-style questions</span></a></li>`;
+    })
+    .join('');
+  const body = `<section class="section"><div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>GATE CS</nav>
+  <h1 class="section-title">GATE Computer Science preparation</h1>
+  <p class="section-lead">Every subject of the GATE CS syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.</p>
+  <ol class="gate-list">${rows}</ol>
+  <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
+</div></section>`;
+  return layout({ title: 'GATE CS', description: 'Subject-wise GATE Computer Science preparation with GATE-style practice questions.', root, body, active: 'gate' });
+}
+
 function homePage(all) {
   const root = './';
-  const topicCards = topics
-    .map(
-      (t) => `<a class="topic-card" href="${t.id}/index.html" style="--badge:${t.color}">
-  ${langBadge(t, 'lg')}
-  <div><h3>${t.name} &amp; Algorithms</h3><p>${escapeHtml(t.blurb)}</p>
-  <span class="lang-card-meta">${all[t.id].length} lessons &middot; Java, Python &amp; C &middot; GATE-style questions</span></div>
-</a>`,
-    )
-    .join('\n');
+  const ready = gateSubjects.filter((g) => g.track).length;
+  const topicCards =
+    topics
+      .filter((t) => t.nav)
+      .map((t) => topicCard(t, all, ''))
+      .join('\n') +
+    `<a class="topic-card" href="gate.html" style="--badge:#4f46e5">
+  <span class="lang-badge lg" style="--badge:#4f46e5">GT</span>
+  <div><h3>GATE CS preparation</h3><p>Subject-wise lessons for the GATE Computer Science exam, each with figures, worked examples and GATE-style practice questions.</p>
+  <span class="lang-card-meta">${ready} of ${gateSubjects.length} subjects ready</span></div>
+</a>`;
   const cards = languages
     .map((lang) => {
       const lessons = all[lang.id];
@@ -269,9 +303,10 @@ export function build() {
 
   write('index.html', homePage(all));
   write('playground.html', playgroundPage(all));
+  write('gate.html', gatePage(all));
   write('404.html', notFoundPage());
   write('.nojekyll', '');
-  let count = 3;
+  let count = 4;
   for (const lang of tracks) {
     const lessons = all[lang.id];
     write(`${lang.id}/index.html`, languagePage(lang, lessons));
