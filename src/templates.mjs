@@ -1,4 +1,4 @@
-import { site, languages } from './site.mjs';
+import { site, languages, tracks } from './site.mjs';
 import { escapeHtml, highlight } from './highlight.mjs';
 
 export const logoSvg = (size = 32) => `<svg class="logo-mark" width="${size}" height="${size}" viewBox="0 0 32 32" aria-hidden="true">
@@ -15,6 +15,8 @@ const icons = {
 };
 
 export const langById = Object.fromEntries(languages.map((l) => [l.id, l]));
+
+export const trackTitle = (t) => (t.topic ? t.name : `${t.name} Tutorial`);
 
 export function langBadge(lang, size = '') {
   return `<span class="lang-badge ${size}" style="--badge:${lang.color}">${lang.short}</span>`;
@@ -52,7 +54,7 @@ ${output}
 
 export function layout({ title, description = site.description, root, body, active = '', bodyClass = '', scripts = [] }) {
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} - ${site.tagline}`;
-  const nav = languages
+  const nav = tracks
     .map((l) => `<a href="${root}${l.id}/index.html"${active === l.id ? ' aria-current="page"' : ''}>${l.name}</a>`)
     .join('');
   return `<!doctype html>
@@ -103,7 +105,7 @@ ${scripts.map((s) => `<script src="${root}assets/js/${s}"></script>`).join('\n')
 export function sidebar(lang, lessons, current, root) {
   const chapters = groupByChapter(lessons);
   return `<aside class="sidebar" id="sidebar" aria-label="${lang.name} topics">
-  <div class="sidebar-head">${langBadge(lang)}<a href="${root}${lang.id}/index.html">${lang.name} Tutorial</a></div>
+  <div class="sidebar-head">${langBadge(lang)}<a href="${root}${lang.id}/index.html">${trackTitle(lang)}</a></div>
   ${chapters
     .map(
       (ch, i) => `<div class="sidebar-chapter">

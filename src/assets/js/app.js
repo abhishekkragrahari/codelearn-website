@@ -72,6 +72,51 @@
     });
   });
 
+  // ----- Code tabs: pick a language once, every tab group on the page follows -----
+  function showTab(lang) {
+    document.querySelectorAll('[data-tabs]').forEach(function (group) {
+      if (!group.querySelector('[data-panel="' + lang + '"]')) return;
+      group.querySelectorAll('[data-tab]').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === lang)); });
+      group.querySelectorAll('[data-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== lang; });
+    });
+  }
+  document.querySelectorAll('[data-tab]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-tab');
+      showTab(lang);
+      try { localStorage.setItem('cs-code-tab', lang); } catch (e) {}
+    });
+  });
+  try { var savedTab = localStorage.getItem('cs-code-tab'); if (savedTab) showTab(savedTab); } catch (e) {}
+
+  // ----- GATE-style practice questions -----
+  document.querySelectorAll('[data-quiz]').forEach(function (quiz) {
+    var feedback = quiz.querySelector('[data-quiz-feedback]');
+    quiz.querySelector('[data-quiz-check]').addEventListener('click', function () {
+      var right;
+      if (quiz.getAttribute('data-type') === 'nat') {
+        var raw = quiz.querySelector('[data-quiz-input]').value.trim();
+        var want = parseFloat(quiz.getAttribute('data-answer'));
+        var got = parseFloat(raw);
+        if (raw === '' || isNaN(got)) { feedback.className = 'quiz-feedback bad'; feedback.textContent = 'Type a number first.'; return; }
+        right = Math.abs(got - want) <= 1e-6 * Math.max(1, Math.abs(want)) + 0.005;
+      } else {
+        var inputs = quiz.querySelectorAll('.quiz-options input');
+        var chosen = Array.prototype.filter.call(inputs, function (i) { return i.checked; });
+        if (!chosen.length) { feedback.className = 'quiz-feedback bad'; feedback.textContent = 'Choose an option first.'; return; }
+        right = Array.prototype.every.call(inputs, function (i) { return i.checked === i.hasAttribute('data-correct'); });
+        inputs.forEach(function (i) {
+          var li = i.closest('li');
+          li.classList.toggle('is-right', i.hasAttribute('data-correct'));
+          li.classList.toggle('is-wrong', i.checked && !i.hasAttribute('data-correct'));
+        });
+      }
+      feedback.className = 'quiz-feedback ' + (right ? 'ok' : 'bad');
+      feedback.textContent = right ? 'Correct!' : 'Not quite. Open the explanation below.';
+      if (!right) quiz.querySelector('.quiz-answer').open = true;
+    });
+  });
+
   // ----- Run buttons (JavaScript examples) -----
   document.querySelectorAll('[data-run]').forEach(function (btn) {
     btn.addEventListener('click', function () {

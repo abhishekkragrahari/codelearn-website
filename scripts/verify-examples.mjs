@@ -6,7 +6,8 @@ import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { languages } from '../src/site.mjs';
+import { tracks } from '../src/site.mjs';
+import { parseQuiz } from '../src/quiz.mjs';
 import { loadLessons } from './build.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -53,17 +54,35 @@ const only = process.argv.slice(2);
 let passed = 0;
 const failures = [];
 
-for (const lang of languages) {
-  if (only.length && !only.includes(lang.id)) continue;
-  const runner = runners[lang.id];
-  if (!runner.available()) {
-    console.log(`- ${lang.name}: tool not found, skipped`);
-    continue;
-  }
-  for (const lesson of loadLessons(lang.id)) {
-    const blocks = lesson.blocks.filter((b) => b.type === 'code' && b.lang === lang.id && b.output != null);
-    blocks.forEach((b, i) => {
-      const where = `${lang.id}/${lesson.file} example ${i + 1}`;
+const availability = {};
+const usable = (lang) => (availability[lang] ??= runners[lang].available());
+let quizzes = 0;
+
+for (const track of tracks) {
+  for (const lesson of loadLessons(track.id)) {
+    const counters = {};
+    for (const b of lesson.blocks) {
+      if (b.type !== 'code') continue;
+      // Numerical GATE-style answers with a "verify:" expression are recomputed in Python.
+      if (b.lang === 'quiz') {
+        const quiz = parseQuiz(b.code);
+        if ((quiz.verify == null && quiz.verifyProgram == null) || (only.length && !only.includes(track.id) && !only.includes('quiz'))) continue;
+        const where = `${track.id}/${lesson.file} quiz "${quiz.q.slice(0, 50)}"`;
+        try {
+          const got = execFileSync('python3', ['-c', quiz.verifyProgram ?? `print(${quiz.verify})`]).toString().trim();
+          if (got === quiz.answer) quizzes++;
+          else failures.push(`${where}\n--- answer\n${quiz.answer}\n--- verify gives\n${got}`);
+        } catch (err) {
+          failures.push(`${where}\n${(err.stderr || err.message).toString().trim()}`);
+        }
+        continue;
+      }
+      const runner = runners[b.lang];
+      if (!runner || b.output == null) continue;
+      if (only.length && !only.includes(track.id) && !only.includes(b.lang)) continue;
+      counters[b.lang] = (counters[b.lang] || 0) + 1;
+      const where = `${track.id}/${lesson.file} ${b.lang} example ${counters[b.lang]}`;
+      if (!usable(b.lang)) continue;
       const dir = mkdtempSync(join(tmpdir(), 'cs-verify-'));
       try {
         const actual = clean(runner.run(dir, b.code).toString());
@@ -74,13 +93,14 @@ for (const lang of languages) {
       } finally {
         rmSync(dir, { recursive: true, force: true });
       }
-    });
+    }
   }
-  console.log(`- ${lang.name}: checked`);
+  console.log(`- ${track.name}: checked`);
 }
+for (const [lang, ok] of Object.entries(availability)) if (!ok) console.log(`- ${lang}: tool not found, examples skipped`);
 
 if (failures.length) {
   console.error(`\n${failures.length} example(s) failed:\n\n` + failures.join('\n\n'));
   process.exit(1);
 }
-console.log(`\nAll ${passed} examples produce their documented output.`);
+console.log(`\nAll ${passed} examples produce their documented output` + (quizzes ? `, and ${quizzes} numerical answers check out.` : '.'));

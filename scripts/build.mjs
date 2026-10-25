@@ -2,10 +2,11 @@
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, languages } from '../src/site.mjs';
-import { parseFrontMatter, parseBlocks, renderBlocks } from '../src/markdown.mjs';
+import { site, languages, topics, tracks } from '../src/site.mjs';
+import { parseFrontMatter, parseBlocks, renderBlocks, inline } from '../src/markdown.mjs';
 import { escapeHtml, highlight } from '../src/highlight.mjs';
-import { layout, sidebar, codeBlock, langBadge, groupByChapter, logoSvg } from '../src/templates.mjs';
+import { layout, sidebar, codeBlock, langBadge, groupByChapter, logoSvg, langById, trackTitle } from '../src/templates.mjs';
+import { renderQuiz } from '../src/quiz.mjs';
 import { isDiagram, renderDiagram } from '../src/diagrams.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -40,6 +41,15 @@ const jsonForScript = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
 
 function homePage(all) {
   const root = './';
+  const topicCards = topics
+    .map(
+      (t) => `<a class="topic-card" href="${t.id}/index.html" style="--badge:${t.color}">
+  ${langBadge(t, 'lg')}
+  <div><h3>${t.name} &amp; Algorithms</h3><p>${escapeHtml(t.blurb)}</p>
+  <span class="lang-card-meta">${all[t.id].length} lessons &middot; Java + Python &middot; GATE-style questions</span></div>
+</a>`,
+    )
+    .join('\n');
   const cards = languages
     .map((lang) => {
       const lessons = all[lang.id];
@@ -80,6 +90,9 @@ for learner in ["Asha", "Ravi"]:
     <h2 class="section-title">Choose a language</h2>
     <p class="section-lead">Every track starts from zero and builds up step by step.</p>
     <div class="lang-grid">${cards}</div>
+    <h2 class="section-title section-title-gap">Go deeper</h2>
+    <p class="section-lead">Ready for interviews and the GATE exam? Learn how data is organised and how fast algorithms really are.</p>
+    ${topicCards}
   </div>
 </section>
 <section class="section section-alt">
@@ -111,12 +124,34 @@ ${sidebar(lang, lessons, null, root)}
 <div class="lesson">
   <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="${root}index.html">Home</a><span>/</span>${lang.name}</nav>
-  <div class="lang-hero" style="--badge:${lang.color}">${langBadge(lang, 'lg')}<div><h1>${lang.name} Tutorial</h1><p class="lesson-lead">${escapeHtml(lang.intro)}</p></div></div>
+  <div class="lang-hero" style="--badge:${lang.color}">${langBadge(lang, 'lg')}<div><h1>${trackTitle(lang)}</h1><p class="lesson-lead">${escapeHtml(lang.intro)}</p></div></div>
   <a class="btn btn-primary" href="${lessons[0].slug}.html">Start the first lesson</a>
   ${chapters}
 </div>
 </div>`;
-  return layout({ title: `${lang.name} Tutorial`, description: lang.intro, root, body, active: lang.id, bodyClass: 'tutorial' });
+  return layout({ title: trackTitle(lang), description: lang.intro, root, body, active: lang.id, bodyClass: 'tutorial' });
+}
+
+// Code blocks in different languages that follow each other directly (for
+// example Java then Python, each with its output) become one tabbed block.
+function groupCodeTabs(blocks) {
+  const out = [];
+  for (const b of blocks) {
+    const prev = out[out.length - 1];
+    const isLang = b.type === 'code' && langById[b.lang];
+    if (isLang && prev && prev.type === 'tabs' && !prev.items.some((x) => x.lang === b.lang)) prev.items.push(b);
+    else if (isLang && prev && prev.type === 'code' && langById[prev.lang] && prev.lang !== b.lang) out[out.length - 1] = { type: 'tabs', items: [prev, b] };
+    else out.push(b);
+  }
+  return out;
+}
+
+function codeTabs(items, renderOne) {
+  const buttons = items
+    .map((b, i) => `<button type="button" role="tab" class="code-tab" data-tab="${b.lang}" aria-selected="${i === 0}">${langById[b.lang].name}</button>`)
+    .join('');
+  const panels = items.map((b, i) => `<div class="code-tab-panel" data-panel="${b.lang}"${i ? ' hidden' : ''}>${renderOne(b)}</div>`).join('');
+  return `<div class="code-tabs" data-tabs><div class="code-tabs-bar" role="tablist">${buttons}</div>${panels}</div>`;
 }
 
 function lessonPage(lang, lessons, i) {
@@ -128,7 +163,12 @@ function lessonPage(lang, lessons, i) {
   ${prev ? `<a class="pager-prev" href="${prev.slug}.html"><span>Previous</span>${escapeHtml(prev.title)}</a>` : '<span></span>'}
   ${next ? `<a class="pager-next" href="${next.slug}.html"><span>Next</span>${escapeHtml(next.title)}</a>` : `<a class="pager-next" href="${root}index.html"><span>Finished!</span>Pick another language</a>`}
 </nav>`;
-  const content = renderBlocks(l.blocks, (b) => (isDiagram(b.lang) ? renderDiagram(b.lang, b.code) : codeBlock(b, root)));
+  const renderOne = (b) => {
+    if (b.lang === 'quiz') return renderQuiz(b.code, inline);
+    if (isDiagram(b.lang)) return renderDiagram(b.lang, b.code);
+    return codeBlock(b, root);
+  };
+  const content = renderBlocks(groupCodeTabs(l.blocks).map((b) => (b.type === 'tabs' ? { type: 'html', html: codeTabs(b.items, renderOne) } : b)), renderOne);
   const body = `<div class="tutorial-layout">
 ${sidebar(lang, lessons, l, root)}
 <article class="lesson">
@@ -149,19 +189,24 @@ ${content}
     body,
     active: lang.id,
     bodyClass: 'tutorial',
-    scripts: lang.runnable ? ['inspect.js', 'runner.js'] : [],
+    scripts: lang.runnable || l.blocks.some((b) => b.type === 'code' && langById[b.lang] && langById[b.lang].runnable) ? ['inspect.js', 'runner.js'] : [],
   });
 }
 
 function playgroundPage(all) {
   const root = './';
   const examples = {};
-  for (const lang of languages) {
-    examples[lang.id] = [];
-    for (const l of all[lang.id]) {
+  for (const lang of languages) examples[lang.id] = [];
+  for (const track of tracks) {
+    for (const l of all[track.id]) {
       l.blocks
-        .filter((b) => b.type === 'code' && b.lang === lang.id)
-        .forEach((b, n) => examples[lang.id].push({ lesson: l.title, label: `Example ${n + 1}`, code: b.code, output: b.output }));
+        .filter((b) => b.type === 'code' && examples[b.lang])
+        .forEach((b) => {
+          const list = examples[b.lang];
+          const lesson = track.topic ? `${track.name}: ${l.title}` : l.title;
+          const n = list.filter((x) => x.lesson === lesson).length + 1;
+          list.push({ lesson, label: `Example ${n}`, code: b.code, output: b.output });
+        });
     }
   }
   const options = languages.map((l) => `<option value="${l.id}">${l.name}</option>`).join('');
@@ -220,14 +265,14 @@ export function build() {
   cpSync(join(SRC, 'assets'), join(OUT, 'assets'), { recursive: true });
 
   const all = {};
-  for (const lang of languages) all[lang.id] = loadLessons(lang.id);
+  for (const track of tracks) all[track.id] = loadLessons(track.id);
 
   write('index.html', homePage(all));
   write('playground.html', playgroundPage(all));
   write('404.html', notFoundPage());
   write('.nojekyll', '');
   let count = 3;
-  for (const lang of languages) {
+  for (const lang of tracks) {
     const lessons = all[lang.id];
     write(`${lang.id}/index.html`, languagePage(lang, lessons));
     lessons.forEach((_, i) => write(`${lang.id}/${lessons[i].slug}.html`, lessonPage(lang, lessons, i)));
