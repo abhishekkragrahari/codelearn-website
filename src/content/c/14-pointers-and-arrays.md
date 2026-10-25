@@ -75,3 +75,55 @@ ers
 ```
 
 > **Note:** `const` here promises that the function will not modify the characters. Modifying a string literal is not allowed in C, so marking such pointers `const` lets the compiler catch mistakes.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a[] = {5, 10, 15, 20, 25};
+      int *p = a + 1;
+      printf("%d\n", *p + *(p + 2) + p[-1]);
+      return 0;
+  }
+answer: 35
+explain: p points to a[1] = 10. *(p + 2) is a[3] = 20 and p[-1] is a[0] = 5. So 10 + 20 + 5 = 35.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a[] = {1, 2, 3, 4, 5};
+      int *p = a;
+      int x = *p++;
+      int y = *++p;
+      int z = ++*p;
+      printf("%d %d %d %d\n", x, y, z, a[2]);
+      return 0;
+  }
+- 1 2 3 3
+* 1 3 4 4
+- 2 3 4 3
+- 1 3 3 4
+explain: `*p++` reads a[0] = 1 and then moves p to a[1]. `*++p` first moves p to a[2] and reads 3. `++*p` increments a[2] itself to 4 and gives 4. So x = 1, y = 3, z = 4 and a[2] = 4.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      char *s = "COMPUTER";
+      printf("%c%c%c\n", *(s + 3), s[5], *s + 1);
+      return 0;
+  }
+- PTC
+* PTD
+- MUD
+- PUD
+explain: In "COMPUTER", index 3 is 'P' and index 5 is 'T'. `*s + 1` is 'C' + 1, which is 'D' (dereference binds tighter than +).
+```

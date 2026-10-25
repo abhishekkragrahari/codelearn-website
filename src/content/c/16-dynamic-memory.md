@@ -82,3 +82,35 @@ after calloc: 0 0
 - Setting a pointer to `NULL` right after `free` makes accidental reuse easier to spot.
 
 > **Tip:** On Linux and macOS, tools such as Valgrind or compiling with `-fsanitize=address` can find leaks and invalid memory use automatically.
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  #include <stdlib.h>
+  int main(void) {
+      int *a = malloc(4 * sizeof(int));
+      for (int i = 0; i < 4; i++) a[i] = i * i;
+      int *b = realloc(a, 6 * sizeof(int));
+      b[4] = 16;
+      b[5] = 25;
+      int s = 0;
+      for (int i = 0; i < 6; i++) s += b[i];
+      printf("%d\n", s);
+      free(b);
+      return 0;
+  }
+answer: 55
+explain: malloc gives room for 4 ints, filled with 0, 1, 4, 9. realloc grows the block to 6 ints and keeps the old values; b[4] and b[5] become 16 and 25. The sum is 0 + 1 + 4 + 9 + 16 + 25 = 55.
+```
+
+```quiz
+q: Which statements about dynamic memory in C are **true**? (Select all that apply.)
+* `malloc` returns `NULL` when it cannot allocate the memory
+* Memory from `malloc` that is never passed to `free` is a memory leak
+- `free(p)` also sets `p` to `NULL`
+* `calloc(n, size)` sets all the allocated bytes to zero
+explain: free releases the memory but leaves p holding the old address (a dangling pointer), which is why setting p = NULL afterwards is good practice. The other statements are true.
+```

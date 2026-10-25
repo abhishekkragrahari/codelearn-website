@@ -93,3 +93,53 @@ int main(void) {
 ```output
 3 weeks = 21 days
 ```
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      int a = 7, b = 2;
+      float c = a / b;
+      float d = (float)a / b;
+      printf("%.1f %.1f\n", c, d);
+      return 0;
+  }
+- 3.5 3.5
+* 3.0 3.5
+- 3.0 3.0
+- 3.5 3.0
+explain: In `a / b` both operands are int, so integer division gives 3, which is then stored in the float as 3.0. In `(float)a / b` the cast happens first, so the division is done in floating point: 3.5.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      unsigned char c = 250;
+      c = c + 10;
+      printf("%d\n", c);
+      return 0;
+  }
+answer: 4
+explain: An unsigned char holds 0 to 255. 250 + 10 = 260 does not fit, so it wraps around modulo 256: 260 − 256 = 4. Unsigned overflow is well defined in C.
+```
+
+```quiz
+q: What does the following program print? (Assume 4-byte `int` and 8-byte `double`.)
+code: c
+  #include <stdio.h>
+  int main(void) {
+      char c = 'A';
+      printf("%zu %zu %zu\n", sizeof(c), sizeof('A'), sizeof(c + 1));
+      return 0;
+  }
+- 1 1 1
+* 1 4 4
+- 1 1 4
+- 4 4 4
+explain: c is a char (1 byte). In C (unlike C++), a character constant like 'A' has type int, so sizeof('A') is 4. In `c + 1`, c is promoted to int, so the expression is an int too.
+```

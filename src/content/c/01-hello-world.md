@@ -63,3 +63,30 @@ int main(void) {
 7 + 5 = 12
 Half of 9 is 4.5
 ```
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      printf("GATE");
+      printf(" %d\n", printf("CS"));
+      return 0;
+  }
+- GATE CS 2
+* GATECS 2
+- GATE 2CS
+- CS GATE 2
+explain: `printf` returns the number of characters it printed. The inner `printf("CS")` must run before the outer call (its result is an argument), so it prints CS right after GATE and returns 2. The outer call then prints " 2" and a newline.
+```
+
+```quiz
+q: Which statements about a C program's `main` function are **true**? (Select all that apply.)
+* Execution of the program starts at `main`
+* `return 0;` from main usually tells the operating system the program succeeded
+- A program may define two functions named `main`
+* `int main(void)` declares a main that takes no arguments
+explain: There must be exactly one main. It is where execution begins, and its return value (0 for success) goes back to the operating system.
+```

@@ -15,7 +15,12 @@
 // longer checks, leave "verify:" empty and indent a Python program under it
 // that prints the answer.
 // q: and explain: may continue on following lines; `code` and **bold** work.
-import { escapeHtml } from './highlight.mjs';
+//
+// "code: c" (or java, python, ...) followed by an indented program shows that
+// program in the question. verify-examples compiles and runs it: its output
+// must equal the NAT answer, or the text of the single correct MCQ option, so
+// "what does this program print?" questions are checked by the real compiler.
+import { escapeHtml, highlight } from './highlight.mjs';
 
 export function parseQuiz(src) {
   const quiz = { q: [], options: [], explain: [], answer: null, verify: null };
@@ -27,17 +32,31 @@ export function parseQuiz(src) {
     else if ((m = line.match(/^explain:\s*(.*)$/))) { field = 'explain'; quiz.explain.push(m[1]); }
     else if ((m = line.match(/^answer:\s*(.*)$/))) { field = null; quiz.answer = m[1].trim(); }
     else if ((m = line.match(/^verify:\s*(.*)$/))) { field = m[1].trim() ? null : 'program'; quiz.verify = m[1].trim(); quiz.program = []; }
+    else if ((m = line.match(/^code:\s*(\w+)\s*$/))) { field = 'code'; quiz.codeLang = m[1]; quiz.code = []; }
     else if (field === 'program' && (/^\s/.test(raw) || !line.trim())) quiz.program.push(raw);
+    else if (field === 'code' && (/^\s/.test(raw) || !line.trim())) quiz.code.push(raw);
     else if ((m = line.match(/^([*-])\s+(.*)$/))) { field = null; quiz.options.push({ correct: m[1] === '*', text: m[2] }); }
-    else if (field === 'program') field = null;
+    else if (field === 'program' || field === 'code') field = null;
     else if (field && line.trim()) quiz[field].push(line.trim());
     else if (field && !line.trim()) quiz[field].push('');
   }
   const join = (parts) => parts.join('\n').trim();
-  const program = (quiz.program || []).filter((l) => l.trim());
-  const indent = Math.min(...program.map((l) => l.match(/^\s*/)[0].length));
-  const verifyProgram = program.length ? program.map((l) => l.slice(indent)).join('\n') : null;
-  const result = { q: join(quiz.q), explain: join(quiz.explain), options: quiz.options, answer: quiz.answer, verify: quiz.verify || null, verifyProgram };
+  // Removes the common indentation; blank lines inside a program are kept.
+  const dedent = (lines) => {
+    const body = (lines || []).join('\n').replace(/^\n+|\s+$/g, '').split('\n');
+    const indent = Math.min(...body.filter((l) => l.trim()).map((l) => l.match(/^\s*/)[0].length));
+    return body[0] === '' ? null : body.map((l) => l.slice(indent)).join('\n');
+  };
+  const result = {
+    q: join(quiz.q),
+    explain: join(quiz.explain),
+    options: quiz.options,
+    answer: quiz.answer,
+    verify: quiz.verify || null,
+    verifyProgram: quiz.program && quiz.program.some((l) => l.trim()) ? dedent(quiz.program) : null,
+    codeLang: quiz.codeLang || null,
+    code: quiz.code && quiz.code.some((l) => l.trim()) ? dedent(quiz.code) : null,
+  };
   if (!result.q) throw new Error('quiz: missing "q:"');
   if (result.answer == null) {
     const correct = result.options.filter((o) => o.correct).length;
@@ -73,6 +92,7 @@ export function renderQuiz(src, inline) {
   return `<div class="quiz" data-quiz data-type="${quiz.type}"${quiz.type === 'nat' ? ` data-answer="${escapeHtml(quiz.answer)}"` : ''}>
 <div class="quiz-head"><span class="quiz-badge">GATE-style</span><span class="quiz-type">${labels[quiz.type]}</span></div>
 <div class="quiz-q">${para(quiz.q)}</div>
+${quiz.code ? `<pre class="quiz-code code-body"><code>${highlight(quiz.code, quiz.codeLang)}</code></pre>` : ''}
 ${body}
 <div class="quiz-actions"><button type="button" class="btn btn-primary btn-sm" data-quiz-check>Check answer</button><span class="quiz-feedback" data-quiz-feedback aria-live="polite"></span></div>
 <details class="quiz-answer"><summary>Show answer and explanation</summary>${answerText}${quiz.explain ? para(quiz.explain) : ''}</details>

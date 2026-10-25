@@ -26,7 +26,8 @@ export const languages = [
     blurb: 'Small, fast and close to the hardware. Learn how memory and programs really work.',
     intro:
       'C is the language underneath operating systems, embedded devices and many other languages. ' +
-      'Learning it teaches you how a computer actually runs your code.',
+      'Learning it teaches you how a computer actually runs your code. The track covers the GATE "Programming in C" ' +
+      'syllabus, and most lessons end with GATE-style questions whose programs were compiled and run to check every answer.',
   },
   {
     id: 'java',

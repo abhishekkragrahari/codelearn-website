@@ -104,3 +104,53 @@ int main(void) {
 ```output
 Roll no. 007 (B)
 ```
+
+## GATE-style practice questions
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  #include <string.h>
+  int main(void) {
+      char s[] = "GATE2026";
+      printf("%zu %zu\n", strlen(s), sizeof(s));
+      return 0;
+  }
+- 8 8
+* 8 9
+- 9 9
+- 9 8
+explain: strlen counts the characters before the terminating '\0': 8. The array also stores that '\0', so sizeof(s) is 9.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      char s[] = "programming";
+      char *p = s;
+      while (*p) p++;
+      printf("%d\n", (int)(p - s));
+      return 0;
+  }
+answer: 11
+explain: The loop moves p forward until it reaches the '\0' at the end, so p − s is the length of "programming", which is 11.
+```
+
+```quiz
+q: What does the following program print?
+code: c
+  #include <stdio.h>
+  int main(void) {
+      char s[] = "abcdef";
+      printf("%s\n", s + s[1] - s[0] + 2);
+      return 0;
+  }
+- cdef
+* def
+- bcdef
+- ef
+explain: s[1] − s[0] is 'b' − 'a' = 1, so the expression is s + 1 + 2 = s + 3, which points at "def".
+```
