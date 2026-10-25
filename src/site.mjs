@@ -183,6 +183,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Worked examples · brute-force checks · GATE-style questions',
   },
+  {
+    id: 'em',
+    name: 'Engineering Mathematics',
+    short: 'EM',
+    color: '#f59e0b',
+    blurb: 'Linear algebra (matrices, linear systems, eigenvalues), calculus (limits, maxima, integration), and probability and statistics.',
+    intro:
+      'Engineering Mathematics covers the linear algebra, calculus and probability that GATE CS asks about. Every worked ' +
+      'example is checked by a small program: exact fractions for matrices, Simpson\'s rule for integrals, and exact ' +
+      'enumeration for probabilities, so the numbers in the lessons and answers can be trusted.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Exact computations · worked examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -198,7 +212,7 @@ export const gateSubjects = [
   { name: 'Digital Logic', track: 'dl' },
   { name: 'Compiler Design', track: 'cd' },
   { name: 'Discrete Mathematics', track: 'dm' },
-  { name: 'Engineering Mathematics' },
+  { name: 'Engineering Mathematics', track: 'em' },
   { name: 'General Aptitude' },
 ];
 
