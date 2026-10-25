@@ -1,6 +1,6 @@
 # CodeShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, ...) collected on a **GATE CS** hub page.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, ...) collected on a **GATE CS** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
@@ -10,6 +10,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 - Databases (DBMS) track: 13 lessons (ER model, relational algebra and calculus, SQL, functional dependencies, normalization, transactions, concurrency control, indexing). Every SQL example runs on a real SQLite database at build time.
 - Computer Networks track: 12 lessons (layering, switching, framing and CRC, sliding windows, MAC and Ethernet, IP addressing and subnets, IP/ARP/DHCP/ICMP/NAT, routing, TCP/UDP and sockets, congestion control, application protocols), with every numerical computed by a program.
 - Theory of Computation track: 12 lessons (DFA, NFA, minimization, regular expressions, pumping lemmas, CFGs and CYK, PDAs, Turing machines, undecidability), with state diagrams and Python simulators for every machine.
+- Digital Logic track: 10 lessons (number systems, 2's complement, IEEE 754, Boolean algebra, gates, K-maps and Quine–McCluskey, combinational circuits, flip-flops, counters), with truth tables and minimizations computed by programs.
 - GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
@@ -58,7 +59,7 @@ Notes:
 
 ```text
 src/
-  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC) and the GATE subject list
+  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC, DL) and the GATE subject list
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
