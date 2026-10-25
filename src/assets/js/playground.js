@@ -39,11 +39,17 @@
 
   function fillExamples(lang, selectIndex) {
     exSel.innerHTML = '';
+    var group = null;
     (examples[lang] || []).forEach(function (ex, i) {
+      if (!group || group.label !== ex.lesson) {
+        group = document.createElement('optgroup');
+        group.label = ex.lesson;
+        exSel.appendChild(group);
+      }
       var opt = document.createElement('option');
       opt.value = String(i);
       opt.textContent = ex.label;
-      exSel.appendChild(opt);
+      group.appendChild(opt);
     });
     if (selectIndex != null) exSel.value = String(selectIndex);
   }

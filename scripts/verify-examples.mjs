@@ -41,7 +41,8 @@ const runners = {
       const prelude =
         `const inspect = require(${JSON.stringify(INSPECT)});\n` +
         `console.log = (...a) => process.stdout.write(a.map((x) => inspect(x)).join(' ') + '\\n');\n`;
-      writeFileSync(join(dir, 'main.cjs'), prelude + code);
+      // Wrapped in an async function, like the browser runner, so top-level await works.
+      writeFileSync(join(dir, 'main.cjs'), prelude + `(async () => {\n${code}\n})().catch((e) => console.log(e.name + ': ' + e.message));\n`);
       return execFileSync(process.execPath, ['main.cjs'], { cwd: dir });
     },
   },
@@ -69,7 +70,7 @@ for (const lang of languages) {
         if (actual === clean(b.output)) passed++;
         else failures.push(`${where}\n--- expected\n${clean(b.output)}\n--- actual\n${actual}`);
       } catch (err) {
-        failures.push(`${where}\n${(err.stderr || err.message).toString().trim()}`);
+        failures.push(`${where}\n${(err.stderr || err.message).toString().replace(/^Picked up JAVA_TOOL_OPTIONS.*\n/m, '').trim()}`);
       } finally {
         rmSync(dir, { recursive: true, force: true });
       }
