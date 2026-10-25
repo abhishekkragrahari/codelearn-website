@@ -197,6 +197,20 @@ export const topics = [
     gate: true,
     cardMeta: 'Exact computations · worked examples · GATE-style questions',
   },
+  {
+    id: 'ga',
+    name: 'General Aptitude',
+    short: 'GA',
+    color: '#0d9488',
+    blurb: 'Numbers and percentages, ratios, work, speed, interest, data interpretation, logical and spatial reasoning, and verbal ability.',
+    intro:
+      'General Aptitude is worth 15 marks in every GATE paper. These lessons give the standard method for each question type, ' +
+      'with worked examples whose numbers are computed by small programs, and a section on English usage and reading ' +
+      'comprehension with original passages.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Shortcuts · worked examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -213,7 +227,7 @@ export const gateSubjects = [
   { name: 'Compiler Design', track: 'cd' },
   { name: 'Discrete Mathematics', track: 'dm' },
   { name: 'Engineering Mathematics', track: 'em' },
-  { name: 'General Aptitude' },
+  { name: 'General Aptitude', track: 'ga' },
 ];
 
 export const tracks = [...languages, ...topics];
