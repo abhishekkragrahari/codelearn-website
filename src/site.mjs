@@ -140,6 +140,21 @@ export const topics = [
     gate: true,
     cardMeta: 'Truth tables · K-maps · circuit simulations · GATE-style questions',
   },
+  {
+    id: 'coa',
+    name: 'Computer Organization & Architecture',
+    short: 'COA',
+    color: '#6366f1',
+    blurb: 'Performance, instruction sets and addressing modes, the ALU, data path and control unit, pipelining and hazards, caches and memory, and I/O.',
+    intro:
+      'Computer Organization and Architecture is one of the most numerical GATE CS subjects. These lessons explain how a CPU ' +
+      'executes instructions, how pipelines and caches make it fast, and how it talks to memory and devices, with small ' +
+      'simulators for Booth multiplication, pipelines and caches, so every cycle count and hit count shown is computed.',
+    topic: true,
+    gate: true,
+    cardTitle: 'Computer Organization',
+    cardMeta: 'Pipeline and cache simulators · numericals · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -151,7 +166,7 @@ export const gateSubjects = [
   { name: 'Databases (DBMS)', track: 'dbms' },
   { name: 'Computer Networks', track: 'cn' },
   { name: 'Theory of Computation', track: 'toc' },
-  { name: 'Computer Organization & Architecture' },
+  { name: 'Computer Organization & Architecture', track: 'coa' },
   { name: 'Digital Logic', track: 'dl' },
   { name: 'Compiler Design' },
   { name: 'Discrete Mathematics' },
