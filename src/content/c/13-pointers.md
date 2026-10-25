@@ -121,7 +121,7 @@ code: c
 * 11 20
 - 22 10
 - 10 20
-explain: *p = *q + 1 stores 10 + 1 = 11 in a. Then p = q makes p point to b, so *p = *p * 2 doubles b to 20.
+explain: `*p = *q + 1` stores 10 + 1 = 11 in a. Then `p = q` makes p point to b, so `*p = *p * 2` doubles b to 20.
 ```
 
 ```quiz

@@ -42,7 +42,7 @@ code: c
       return 0;
   }
 answer: 7
-explain: *(*(a + 2) + 1) is a[2][1] = 8, **(a + 1) is a[1][0] = 4 and *(a[0] + 2) is a[0][2] = 3. So 8 − 4 + 3 = 7.
+explain: `*(*(a + 2) + 1)` is `a[2][1]` = 8, `**(a + 1)` is `a[1][0]` = 4 and `*(a[0] + 2)` is `a[0][2]` = 3. So 8 − 4 + 3 = 7.
 ```
 
 ```quiz
@@ -200,7 +200,7 @@ code: c
 - 16 8
 - 4 4
 - 8 8
-explain: Subtracting two pointers into the same array gives the number of elements between them, not bytes: p − q = 4. *p − *q = 10 − 2 = 8.
+explain: Subtracting two pointers into the same array gives the number of elements between them, not bytes: `p - q` = 4. `*p - *q` = 10 − 2 = 8.
 ```
 
 ```quiz
@@ -251,7 +251,7 @@ code: c
       return 0;
   }
 answer: 16
-explain: pp points to p, which points to x. **pp += 3 makes x = 8, then *p *= 2 makes x = 16.
+explain: pp points to p, which points to x. `**pp += 3` makes x = 8, then `*p *= 2` makes x = 16.
 ```
 
 ```quiz

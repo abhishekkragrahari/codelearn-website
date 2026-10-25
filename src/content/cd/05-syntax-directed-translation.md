@@ -151,7 +151,7 @@ q: The translation scheme E → E + T { print('+') } | T, T → T \* F { print('
 * `5 2 * 3 +`
 - `5 2 3 * +`
 - `5 * 2 + 3`
-explain: The actions print each operator after its operands (postfix). * binds tighter, so 5 * 2 is translated first (5 2 *), then + 3 gives 5 2 * 3 +.
+explain: The actions print each operator after its operands (postfix). `*` binds tighter, so `5 * 2` is translated first (`5 2 *`), then `+ 3` gives `5 2 * 3 +`.
 ```
 
 ```quiz
