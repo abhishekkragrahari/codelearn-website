@@ -78,4 +78,4 @@ public class Main {
 }
 ```
 
-> **Note:** The online playground on this site cannot read keyboard input. Run these examples on your own computer with `java Main.java` to try them.
+> **Tip:** To try these examples in the playground, open "Input (stdin)" under the editor and type the values there, one per line, before pressing Run.

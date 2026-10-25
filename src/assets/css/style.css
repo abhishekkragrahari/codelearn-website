@@ -398,6 +398,9 @@ button { font: inherit; }
 .pg-hint { font-family: var(--font); font-weight: 500; }
 .pg-clear { border: 0; background: none; color: var(--primary); cursor: pointer; font: 600 .82rem var(--font); }
 #pg-editor { flex: 1; width: 100%; resize: none; border: 0; outline: none; padding: 16px 18px; background: var(--code-bg); color: var(--code-text); font-size: .92rem; line-height: 1.6; tab-size: 4; white-space: pre; min-height: 420px; }
+.pg-stdin { border-top: 1px solid var(--border); background: var(--code-head); }
+.pg-stdin summary { padding: 8px 14px; font-size: .82rem; font-weight: 600; color: var(--text-soft); cursor: pointer; }
+.pg-stdin textarea { display: block; width: 100%; resize: vertical; border: 0; border-top: 1px solid var(--border); padding: 10px 14px; background: var(--code-bg); color: var(--code-text); font-size: .9rem; outline: none; }
 .pg-notice { margin: 12px 12px 0; padding: 10px 14px; border-radius: 8px; background: var(--note-bg); border-left: 4px solid var(--note-border); font-size: .9rem; }
 .pg-output { flex: 1; margin: 12px; padding: 14px 16px; border-radius: 8px; background: var(--out-bg); color: var(--out-text); font-size: .9rem; overflow: auto; white-space: pre-wrap; min-height: 200px; }
 @media (max-width: 860px) {
