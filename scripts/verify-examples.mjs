@@ -92,7 +92,9 @@ for (const track of tracks) {
         const where = `${track.id}/${lesson.file} quiz "${quiz.q.slice(0, 50)}"`;
         try {
           const got = execFileSync('python3', ['-c', quiz.verifyProgram ?? `print(${quiz.verify})`]).toString().trim();
-          if (got === quiz.answer) quizzes++;
+          // 65.0 from Python float arithmetic matches a stated answer of 65.
+          const same = got === quiz.answer || (got.trim() !== '' && quiz.answer.trim() !== '' && Number(got) === Number(quiz.answer));
+          if (same) quizzes++;
           else failures.push(`${where}\n--- answer\n${quiz.answer}\n--- verify gives\n${got}`);
         } catch (err) {
           failures.push(`${where}\n${(err.stderr || err.message).toString().trim()}`);

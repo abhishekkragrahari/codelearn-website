@@ -65,7 +65,42 @@ export const topics = [
       'Data structures and algorithms are the toolkit behind every efficient program, and a core GATE CS subject. ' +
       'Each lesson explains one idea with figures, gives the code in Java, Python and C, and ends with GATE-style practice questions.',
     topic: true,
+    gate: true,
+    nav: true,
+    cardTitle: 'Data Structures & Algorithms',
+    cardMeta: 'Java, Python & C · GATE-style questions',
   },
+  {
+    id: 'os',
+    name: 'Operating Systems',
+    short: 'OS',
+    color: '#8b5cf6',
+    blurb: 'Processes, CPU scheduling, synchronization, deadlocks, memory, virtual memory, file systems and disk scheduling.',
+    intro:
+      'Operating Systems is one of the highest-weighted GATE CS subjects. These lessons explain each topic with figures and ' +
+      'worked examples, use small simulators to show exactly how scheduling, paging and disk algorithms behave, and end with ' +
+      'GATE-style questions whose numerical answers are recomputed by a program.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Simulations · worked examples · GATE-style questions',
+  },
+];
+
+// The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
+// subject to a track that already exists; subjects without one show "coming soon".
+export const gateSubjects = [
+  { name: 'Programming in C', track: 'c' },
+  { name: 'Data Structures & Algorithms', track: 'dsa' },
+  { name: 'Operating Systems', track: 'os' },
+  { name: 'Databases (DBMS)' },
+  { name: 'Computer Networks' },
+  { name: 'Theory of Computation' },
+  { name: 'Computer Organization & Architecture' },
+  { name: 'Digital Logic' },
+  { name: 'Compiler Design' },
+  { name: 'Discrete Mathematics' },
+  { name: 'Engineering Mathematics' },
+  { name: 'General Aptitude' },
 ];
 
 export const tracks = [...languages, ...topics];

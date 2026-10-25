@@ -1,11 +1,13 @@
 # CodeShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus a **Data Structures & Algorithms** track that follows the GATE CS syllabus.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, ...) collected on a **GATE CS** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
 - Tutorials split into chapters, with a sidebar of topics on the left
 - Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java, Python and C (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
+- Operating Systems track: 12 lessons (processes, scheduling, synchronization, deadlocks, memory, paging, virtual memory, file systems, disk scheduling) with C and Python simulations and GATE-style questions.
+- GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
 - Responsive layout, plus light and dark mode (follows the system setting, with a toggle in the header)
@@ -46,14 +48,14 @@ It deploys only from `main`, and only after you switch Pages on once:
 
 Notes:
 
-- This repository is **private**. Pages for private repositories needs a paid GitHub plan (Pro, Team or Enterprise). On a free plan you have two options: make the repository public, or host `dist/` elsewhere (any static host works).
+- Pages for a **private** repository needs a paid GitHub plan (Pro, Team or Enterprise); for a public repository it is free.
 - If you later use a custom domain or a `<user>.github.io` repository, the site is served from `/`. In that case set `SITE_BASE: /` in the workflow. It is only used by the 404 page.
 
 ## Project layout
 
 ```text
 src/
-  site.mjs              site name, the list of languages and topic tracks (DSA)
+  site.mjs              site name, languages, topic tracks (DSA, OS) and the GATE subject list
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
