@@ -30,6 +30,8 @@ export function inline(text) {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<em>$2</em>')
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>');
+  // A few harmless inline tags are allowed in lesson text: <sub>, <sup> and <br>.
+  s = s.replace(/&lt;(\/?)(sub|sup)&gt;/g, '<$1$2>').replace(/&lt;br\s*\/?&gt;/g, '<br>');
   return s.replace(/\u0000(\d+)\u0000/g, (_, i) => codes[+i]).replace(/\u0001/g, '*');
 }
 

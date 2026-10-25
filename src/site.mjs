@@ -155,6 +155,20 @@ export const topics = [
     cardTitle: 'Computer Organization',
     cardMeta: 'Pipeline and cache simulators · numericals · GATE-style questions',
   },
+  {
+    id: 'cd',
+    name: 'Compiler Design',
+    short: 'CD',
+    color: '#a855f7',
+    blurb: 'Lexical analysis, LL and LR parsing, syntax-directed translation, intermediate code, runtime environments, and optimization with data-flow analysis.',
+    intro:
+      'Compiler Design follows a program through every phase of a compiler. These lessons come with small working pieces of ' +
+      'a compiler in Python: a scanner, FIRST/FOLLOW and LL(1) table builders, an LR(0)/SLR item-set builder, a three-address ' +
+      'code generator, and liveness analysis, so every set, table and count in the questions is computed.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Working compiler pieces · parsing tables · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -168,7 +182,7 @@ export const gateSubjects = [
   { name: 'Theory of Computation', track: 'toc' },
   { name: 'Computer Organization & Architecture', track: 'coa' },
   { name: 'Digital Logic', track: 'dl' },
-  { name: 'Compiler Design' },
+  { name: 'Compiler Design', track: 'cd' },
   { name: 'Discrete Mathematics' },
   { name: 'Engineering Mathematics' },
   { name: 'General Aptitude' },

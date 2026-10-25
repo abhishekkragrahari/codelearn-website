@@ -163,7 +163,7 @@ code: c
       return 0;
   }
 answer: 10
-explain: The 6 ints are stored row by row: 1 2 3 4 5 6. p + 4 points to the 5th one, 5. *(a + 1) is row 1, and * of it is a[1][0] = 4. **a is a[0][0] = 1. So 5 + 4 + 1 = 10.
+explain: The 6 ints are stored row by row: 1 2 3 4 5 6. `p + 4` points to the 5th one, 5. `*(a + 1)` is row 1, and `*` of it is `a[1][0]` = 4. `**a` is `a[0][0]` = 1. So 5 + 4 + 1 = 10.
 ```
 
 ```quiz
