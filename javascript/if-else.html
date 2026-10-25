@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditions with if - JavaScript | CodeShala</title>
+<meta name="description" content="Make decisions with if, else, comparison operators and the ternary operator.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="JavaScript topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#eab308">JS</span><a href="../javascript/index.html">JavaScript Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../javascript/hello-world.html">Your First JavaScript Program</a></li><li><a href="../javascript/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../javascript/if-else.html" aria-current="page">Conditions with if</a></li><li><a href="../javascript/loops.html">Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../javascript/functions.html">Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">JavaScript</a><span>/</span>Control Flow</nav>
+  <h1>Conditions with if</h1>
+  <p class="lesson-lead">Make decisions with if, else, comparison operators and the ternary operator.</p>
+  <div class="prose">
+<p><code>if</code> runs a block of code when its condition is true. Add <code>else if</code> and <code>else</code> to handle the other cases.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+hour+%3D+21%3B%0A%0Aif+%28hour+%3C+12%29+%7B%0A++console.log%28%22Good+morning%22%29%3B%0A%7D+else+if+%28hour+%3C+18%29+%7B%0A++console.log%28%22Good+afternoon%22%29%3B%0A%7D+else+%7B%0A++console.log%28%22Good+evening%22%29%3B%0A%7D&amp;output=Good+evening">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> hour <span class="tok-operator">=</span> <span class="tok-number">21</span>;
+
+<span class="tok-keyword">if</span> (hour <span class="tok-operator">&lt;</span> <span class="tok-number">12</span>) {
+  <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Good morning&quot;</span>);
+} <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (hour <span class="tok-operator">&lt;</span> <span class="tok-number">18</span>) {
+  <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Good afternoon&quot;</span>);
+} <span class="tok-keyword">else</span> {
+  <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Good evening&quot;</span>);
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Good evening</pre>
+</div>
+</figure>
+<h2 id="use-for-equality">Use === for equality</h2>
+<p>JavaScript has two equality operators. <code>==</code> converts types before comparing, which gives surprising results. <code>===</code> (strict equality) compares both the value and the type, so prefer it.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=console.log%285+%3D%3D+%225%22%29%3B%0Aconsole.log%285+%3D%3D%3D+%225%22%29%3B%0Aconsole.log%280+%3D%3D+false%29%3B%0Aconsole.log%280+%3D%3D%3D+false%29%3B&amp;output=true%0Afalse%0Atrue%0Afalse">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-number">5</span> <span class="tok-operator">==</span> <span class="tok-string">&quot;5&quot;</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-number">5</span> <span class="tok-operator">===</span> <span class="tok-string">&quot;5&quot;</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-number">0</span> <span class="tok-operator">==</span> <span class="tok-constant">false</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-number">0</span> <span class="tok-operator">===</span> <span class="tok-constant">false</span>);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">true
+false
+true
+false</pre>
+</div>
+</figure>
+<h2 id="truthy-and-falsy-values">Truthy and falsy values</h2>
+<p>A condition does not have to be a boolean. The values <code>false</code>, <code>0</code>, <code>&quot;&quot;</code> (empty string), <code>null</code>, <code>undefined</code> and <code>NaN</code> count as <strong>falsy</strong>; everything else is <strong>truthy</strong>.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+username+%3D+%22%22%3B%0A%0Aif+%28username%29+%7B%0A++console.log%28%60Welcome+back%2C+%24%7Busername%7D%21%60%29%3B%0A%7D+else+%7B%0A++console.log%28%22Please+log+in.%22%29%3B%0A%7D&amp;output=Please+log+in.">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> username <span class="tok-operator">=</span> <span class="tok-string">&quot;&quot;</span>;
+
+<span class="tok-keyword">if</span> (username) {
+  <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">`Welcome back, ${username}!`</span>);
+} <span class="tok-keyword">else</span> {
+  <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Please log in.&quot;</span>);
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Please log in.</pre>
+</div>
+</figure>
+<h2 id="combining-conditions">Combining conditions</h2>
+<p>Use <code>&amp;&amp;</code> (and), <code>||</code> (or) and <code>!</code> (not). The ternary operator <code>condition ? a : b</code> picks one of two values.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+age+%3D+16%3B%0Aconst+withParent+%3D+true%3B%0A%0Aconst+canWatch+%3D+age+%3E%3D+18+%7C%7C+withParent%3B%0Aconsole.log%28canWatch+%3F+%22Enjoy+the+movie%22+%3A+%22Sorry%2C+adults+only%22%29%3B%0Aconsole.log%28%21canWatch%29%3B&amp;output=Enjoy+the+movie%0Afalse">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> age <span class="tok-operator">=</span> <span class="tok-number">16</span>;
+<span class="tok-keyword">const</span> withParent <span class="tok-operator">=</span> <span class="tok-constant">true</span>;
+
+<span class="tok-keyword">const</span> canWatch <span class="tok-operator">=</span> age <span class="tok-operator">&gt;=</span> <span class="tok-number">18</span> <span class="tok-operator">||</span> withParent;
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(canWatch <span class="tok-operator">?</span> <span class="tok-string">&quot;Enjoy the movie&quot;</span> <span class="tok-operator">:</span> <span class="tok-string">&quot;Sorry, adults only&quot;</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-operator">!</span>canWatch);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Enjoy the movie
+false</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="variables.html"><span>Previous</span>Variables and Data Types</a>
+  <a class="pager-next" href="loops.html"><span>Next</span>Loops</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/inspect.js"></script>
+<script src="../assets/js/runner.js"></script>
+</body>
+</html>

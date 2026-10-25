@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditions with if and switch - Java | CodeShala</title>
+<meta name="description" content="Branch your program with if, else if, the ternary operator and switch.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Java topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#f97316">Jv</span><a href="../java/index.html">Java Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../java/hello-world.html">Your First Java Program</a></li><li><a href="../java/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../java/if-else.html" aria-current="page">Conditions with if and switch</a></li><li><a href="../java/loops.html">Loops in Java</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../java/functions.html">Methods</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Java</a><span>/</span>Control Flow</nav>
+  <h1>Conditions with if and switch</h1>
+  <p class="lesson-lead">Branch your program with if, else if, the ternary operator and switch.</p>
+  <div class="prose">
+<p>An <code>if</code> statement runs its block only when the condition in brackets evaluates to <code>true</code>. In Java the condition must be a real <code>boolean</code>; numbers are not accepted.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+speed+%3D+72%3B%0A++++++++int+limit+%3D+60%3B%0A%0A++++++++if+%28speed+%3E+limit%29+%7B%0A++++++++++++System.out.println%28%22Slow+down%21+You+are+%22+%2B+%28speed+-+limit%29+%2B+%22+km%2Fh+over.%22%29%3B%0A++++++++%7D+else+%7B%0A++++++++++++System.out.println%28%22Speed+OK.%22%29%3B%0A++++++++%7D%0A++++%7D%0A%7D&amp;output=Slow+down%21+You+are+12+km%2Fh+over.">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> speed <span class="tok-operator">=</span> <span class="tok-number">72</span>;
+        <span class="tok-keyword">int</span> limit <span class="tok-operator">=</span> <span class="tok-number">60</span>;
+
+        <span class="tok-keyword">if</span> (speed <span class="tok-operator">&gt;</span> limit) {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;Slow down! You are &quot;</span> <span class="tok-operator">+</span> (speed <span class="tok-operator">-</span> limit) <span class="tok-operator">+</span> <span class="tok-string">&quot; km/h over.&quot;</span>);
+        } <span class="tok-keyword">else</span> {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;Speed OK.&quot;</span>);
+        }
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Slow down! You are 12 km/h over.</pre>
+</div>
+</figure>
+<h2 id="else-if-and-logical-operators">else if and logical operators</h2>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+year+%3D+2024%3B%0A++++++++boolean+leap+%3D+%28year+%25+4+%3D%3D+0+%26%26+year+%25+100+%21%3D+0%29+%7C%7C+year+%25+400+%3D%3D+0%3B%0A%0A++++++++if+%28leap%29+%7B%0A++++++++++++System.out.println%28year+%2B+%22+is+a+leap+year%22%29%3B%0A++++++++%7D+else+if+%28year+%25+2+%3D%3D+0%29+%7B%0A++++++++++++System.out.println%28year+%2B+%22+is+even+but+not+a+leap+year%22%29%3B%0A++++++++%7D+else+%7B%0A++++++++++++System.out.println%28year+%2B+%22+is+an+ordinary+year%22%29%3B%0A++++++++%7D%0A++++%7D%0A%7D&amp;output=2024+is+a+leap+year">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> year <span class="tok-operator">=</span> <span class="tok-number">2024</span>;
+        <span class="tok-keyword">boolean</span> leap <span class="tok-operator">=</span> (year <span class="tok-operator">%</span> <span class="tok-number">4</span> <span class="tok-operator">==</span> <span class="tok-number">0</span> <span class="tok-operator">&amp;&amp;</span> year <span class="tok-operator">%</span> <span class="tok-number">100</span> <span class="tok-operator">!=</span> <span class="tok-number">0</span>) <span class="tok-operator">||</span> year <span class="tok-operator">%</span> <span class="tok-number">400</span> <span class="tok-operator">==</span> <span class="tok-number">0</span>;
+
+        <span class="tok-keyword">if</span> (leap) {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(year <span class="tok-operator">+</span> <span class="tok-string">&quot; is a leap year&quot;</span>);
+        } <span class="tok-keyword">else</span> <span class="tok-keyword">if</span> (year <span class="tok-operator">%</span> <span class="tok-number">2</span> <span class="tok-operator">==</span> <span class="tok-number">0</span>) {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(year <span class="tok-operator">+</span> <span class="tok-string">&quot; is even but not a leap year&quot;</span>);
+        } <span class="tok-keyword">else</span> {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(year <span class="tok-operator">+</span> <span class="tok-string">&quot; is an ordinary year&quot;</span>);
+        }
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">2024 is a leap year</pre>
+</div>
+</figure>
+<h2 id="the-ternary-operator">The ternary operator</h2>
+<p>For a simple either-or choice, <code>condition ? valueIfTrue : valueIfFalse</code> fits on one line.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+stock+%3D+0%3B%0A++++++++String+label+%3D+stock+%3E+0+%3F+%22In+stock%22+%3A+%22Sold+out%22%3B%0A++++++++System.out.println%28label%29%3B%0A++++%7D%0A%7D&amp;output=Sold+out">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> stock <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+        <span class="tok-builtin">String</span> label <span class="tok-operator">=</span> stock <span class="tok-operator">&gt;</span> <span class="tok-number">0</span> <span class="tok-operator">?</span> <span class="tok-string">&quot;In stock&quot;</span> <span class="tok-operator">:</span> <span class="tok-string">&quot;Sold out&quot;</span>;
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(label);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Sold out</pre>
+</div>
+</figure>
+<h2 id="switch-expressions">switch expressions</h2>
+<p>Modern Java (14 and newer) lets <code>switch</code> produce a value using arrows. There is no fall-through, so no <code>break</code> is needed.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++String+planet+%3D+%22Mars%22%3B%0A++++++++int+moons+%3D+switch+%28planet%29+%7B%0A++++++++++++case+%22Earth%22+-%3E+1%3B%0A++++++++++++case+%22Mars%22+-%3E+2%3B%0A++++++++++++case+%22Venus%22%2C+%22Mercury%22+-%3E+0%3B%0A++++++++++++default+-%3E+-1%3B%0A++++++++%7D%3B%0A++++++++System.out.println%28planet+%2B+%22+has+%22+%2B+moons+%2B+%22+moons%22%29%3B%0A++++%7D%0A%7D&amp;output=Mars+has+2+moons">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-builtin">String</span> planet <span class="tok-operator">=</span> <span class="tok-string">&quot;Mars&quot;</span>;
+        <span class="tok-keyword">int</span> moons <span class="tok-operator">=</span> <span class="tok-keyword">switch</span> (planet) {
+            <span class="tok-keyword">case</span> <span class="tok-string">&quot;Earth&quot;</span> <span class="tok-operator">-&gt;</span> <span class="tok-number">1</span>;
+            <span class="tok-keyword">case</span> <span class="tok-string">&quot;Mars&quot;</span> <span class="tok-operator">-&gt;</span> <span class="tok-number">2</span>;
+            <span class="tok-keyword">case</span> <span class="tok-string">&quot;Venus&quot;</span>, <span class="tok-string">&quot;Mercury&quot;</span> <span class="tok-operator">-&gt;</span> <span class="tok-number">0</span>;
+            <span class="tok-keyword">default</span> <span class="tok-operator">-&gt;</span> <span class="tok-operator">-</span><span class="tok-number">1</span>;
+        };
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(planet <span class="tok-operator">+</span> <span class="tok-string">&quot; has &quot;</span> <span class="tok-operator">+</span> moons <span class="tok-operator">+</span> <span class="tok-string">&quot; moons&quot;</span>);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Mars has 2 moons</pre>
+</div>
+</figure>
+<aside class="callout callout-warning"><strong>Warning:</strong> Compare strings with <code>.equals()</code>, not <code>==</code>. For example <code>name.equals(&quot;Asha&quot;)</code>. The <code>==</code> operator checks whether two variables point to the same object, not whether the text matches.</aside>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="variables.html"><span>Previous</span>Variables and Data Types</a>
+  <a class="pager-next" href="loops.html"><span>Next</span>Loops in Java</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

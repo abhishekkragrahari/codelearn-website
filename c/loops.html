@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loops in C - C | CodeShala</title>
+<meta name="description" content="Repeat work with for, while and do-while loops.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html" aria-current="page">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="C topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#64748b">C</span><a href="../c/index.html">C Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../c/hello-world.html">Your First C Program</a></li><li><a href="../c/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../c/if-else.html">Decisions with if and switch</a></li><li><a href="../c/loops.html" aria-current="page">Loops in C</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../c/functions.html">Functions in C</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">C</a><span>/</span>Control Flow</nav>
+  <h1>Loops in C</h1>
+  <p class="lesson-lead">Repeat work with for, while and do-while loops.</p>
+  <div class="prose">
+<p>C has three loops. They can all do the same job, but each one reads best in a different situation.</p>
+<h2 id="the-for-loop">The for loop</h2>
+<p>A <code>for</code> loop packs three parts into its header: a starting step, a condition, and an update that runs after every round.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++for+%28int+i+%3D+1%3B+i+%3C%3D+5%3B+i%2B%2B%29+%7B%0A++++++++printf%28%22%25d+squared+is+%25d%5Cn%22%2C+i%2C+i+*+i%29%3B%0A++++%7D%0A++++return+0%3B%0A%7D&amp;output=1+squared+is+1%0A2+squared+is+4%0A3+squared+is+9%0A4+squared+is+16%0A5+squared+is+25">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">int</span> i <span class="tok-operator">=</span> <span class="tok-number">1</span>; i <span class="tok-operator">&lt;=</span> <span class="tok-number">5</span>; i<span class="tok-operator">++</span>) {
+        <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;%d squared is %d\n&quot;</span>, i, i <span class="tok-operator">*</span> i);
+    }
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">1 squared is 1
+2 squared is 4
+3 squared is 9
+4 squared is 16
+5 squared is 25</pre>
+</div>
+</figure>
+<p><code>i++</code> is shorthand for <code>i = i + 1</code>.</p>
+<h2 id="the-while-loop">The while loop</h2>
+<p>A <code>while</code> loop is handy when you do not know in advance how many rounds you need.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++int+n+%3D+1234%3B%0A++++int+digits+%3D+0%3B%0A++++while+%28n+%3E+0%29+%7B%0A++++++++n+%3D+n+%2F+10%3B%0A++++++++digits%2B%2B%3B%0A++++%7D%0A++++printf%28%221234+has+%25d+digits%5Cn%22%2C+digits%29%3B%0A++++return+0%3B%0A%7D&amp;output=1234+has+4+digits">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">int</span> n <span class="tok-operator">=</span> <span class="tok-number">1234</span>;
+    <span class="tok-keyword">int</span> digits <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+    <span class="tok-keyword">while</span> (n <span class="tok-operator">&gt;</span> <span class="tok-number">0</span>) {
+        n <span class="tok-operator">=</span> n <span class="tok-operator">/</span> <span class="tok-number">10</span>;
+        digits<span class="tok-operator">++</span>;
+    }
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;1234 has %d digits\n&quot;</span>, digits);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">1234 has 4 digits</pre>
+</div>
+</figure>
+<h2 id="do-while">do-while</h2>
+<p>A <code>do-while</code> loop checks its condition at the end, so the body always runs at least once.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++int+count+%3D+0%3B%0A++++do+%7B%0A++++++++printf%28%22This+runs+once+even+though+count+is+%25d%5Cn%22%2C+count%29%3B%0A++++%7D+while+%28count+%3E+0%29%3B%0A++++return+0%3B%0A%7D&amp;output=This+runs+once+even+though+count+is+0">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">int</span> count <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+    <span class="tok-keyword">do</span> {
+        <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;This runs once even though count is %d\n&quot;</span>, count);
+    } <span class="tok-keyword">while</span> (count <span class="tok-operator">&gt;</span> <span class="tok-number">0</span>);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">This runs once even though count is 0</pre>
+</div>
+</figure>
+<h2 id="loops-and-arrays">Loops and arrays</h2>
+<p>Loops are often used to visit every item in an <strong>array</strong>, which is a fixed-size row of values of the same type.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++int+marks%5B%5D+%3D+%7B78%2C+92%2C+65%2C+88%7D%3B%0A++++int+total+%3D+0%3B%0A++++for+%28int+i+%3D+0%3B+i+%3C+4%3B+i%2B%2B%29+%7B%0A++++++++total+%2B%3D+marks%5Bi%5D%3B%0A++++%7D%0A++++printf%28%22Average%3A+%25.2f%5Cn%22%2C+total+%2F+4.0%29%3B%0A++++return+0%3B%0A%7D&amp;output=Average%3A+80.75">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">int</span> marks[] <span class="tok-operator">=</span> {<span class="tok-number">78</span>, <span class="tok-number">92</span>, <span class="tok-number">65</span>, <span class="tok-number">88</span>};
+    <span class="tok-keyword">int</span> total <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">int</span> i <span class="tok-operator">=</span> <span class="tok-number">0</span>; i <span class="tok-operator">&lt;</span> <span class="tok-number">4</span>; i<span class="tok-operator">++</span>) {
+        total <span class="tok-operator">+=</span> marks[i];
+    }
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;Average: %.2f\n&quot;</span>, total <span class="tok-operator">/</span> <span class="tok-number">4.0</span>);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Average: 80.75</pre>
+</div>
+</figure>
+<aside class="callout callout-note"><strong>Note:</strong> Array positions start at 0, so the last item of a 4-element array is <code>marks[3]</code>. Reading past the end is not caught by C and can crash your program.</aside>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="if-else.html"><span>Previous</span>Decisions with if and switch</a>
+  <a class="pager-next" href="functions.html"><span>Next</span>Functions in C</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html" aria-current="page">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

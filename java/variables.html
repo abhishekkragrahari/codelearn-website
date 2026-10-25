@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variables and Data Types - Java | CodeShala</title>
+<meta name="description" content="Primitive types, String, type conversion and the var keyword.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Java topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#f97316">Jv</span><a href="../java/index.html">Java Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../java/hello-world.html">Your First Java Program</a></li><li><a href="../java/variables.html" aria-current="page">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../java/if-else.html">Conditions with if and switch</a></li><li><a href="../java/loops.html">Loops in Java</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../java/functions.html">Methods</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Java</a><span>/</span>Getting Started</nav>
+  <h1>Variables and Data Types</h1>
+  <p class="lesson-lead">Primitive types, String, type conversion and the var keyword.</p>
+  <div class="prose">
+<p>Every Java variable has a type, written before its name. The compiler checks that you only store values of that type in it, which catches many mistakes before the program ever runs.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+age+%3D+20%3B%0A++++++++double+cgpa+%3D+8.7%3B%0A++++++++char+section+%3D+%27B%27%3B%0A++++++++boolean+isEnrolled+%3D+true%3B%0A++++++++String+name+%3D+%22Kabir%22%3B%0A%0A++++++++System.out.println%28name+%2B+%22+is+%22+%2B+age+%2B+%22+years+old.%22%29%3B%0A++++++++System.out.println%28%22CGPA%3A+%22+%2B+cgpa+%2B+%22%2C+section+%22+%2B+section%29%3B%0A++++++++System.out.println%28%22Enrolled%3F+%22+%2B+isEnrolled%29%3B%0A++++%7D%0A%7D&amp;output=Kabir+is+20+years+old.%0ACGPA%3A+8.7%2C+section+B%0AEnrolled%3F+true">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> age <span class="tok-operator">=</span> <span class="tok-number">20</span>;
+        <span class="tok-keyword">double</span> cgpa <span class="tok-operator">=</span> <span class="tok-number">8.7</span>;
+        <span class="tok-keyword">char</span> section <span class="tok-operator">=</span> <span class="tok-string">'B'</span>;
+        <span class="tok-keyword">boolean</span> isEnrolled <span class="tok-operator">=</span> <span class="tok-constant">true</span>;
+        <span class="tok-builtin">String</span> name <span class="tok-operator">=</span> <span class="tok-string">&quot;Kabir&quot;</span>;
+
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(name <span class="tok-operator">+</span> <span class="tok-string">&quot; is &quot;</span> <span class="tok-operator">+</span> age <span class="tok-operator">+</span> <span class="tok-string">&quot; years old.&quot;</span>);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;CGPA: &quot;</span> <span class="tok-operator">+</span> cgpa <span class="tok-operator">+</span> <span class="tok-string">&quot;, section &quot;</span> <span class="tok-operator">+</span> section);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;Enrolled? &quot;</span> <span class="tok-operator">+</span> isEnrolled);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Kabir is 20 years old.
+CGPA: 8.7, section B
+Enrolled? true</pre>
+</div>
+</figure>
+<h2 id="primitive-types-and-string">Primitive types and String</h2>
+<ul><li><code>int</code> and <code>long</code> store whole numbers (<code>long</code> for very big ones).</li><li><code>double</code> stores decimals.</li><li><code>char</code> stores one character in single quotes.</li><li><code>boolean</code> is <code>true</code> or <code>false</code>.</li><li><code>String</code> (capital S) stores text in double quotes. It is a class, not a primitive, so it comes with useful methods.</li></ul>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++String+word+%3D+%22Programming%22%3B%0A++++++++System.out.println%28word.length%28%29%29%3B%0A++++++++System.out.println%28word.toUpperCase%28%29%29%3B%0A++++++++System.out.println%28word.substring%280%2C+7%29%29%3B%0A++++++++System.out.println%28word.contains%28%22gram%22%29%29%3B%0A++++%7D%0A%7D&amp;output=11%0APROGRAMMING%0AProgram%0Atrue">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-builtin">String</span> word <span class="tok-operator">=</span> <span class="tok-string">&quot;Programming&quot;</span>;
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(word.<span class="tok-function">length</span>());
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(word.<span class="tok-function">toUpperCase</span>());
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(word.<span class="tok-function">substring</span>(<span class="tok-number">0</span>, <span class="tok-number">7</span>));
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(word.<span class="tok-function">contains</span>(<span class="tok-string">&quot;gram&quot;</span>));
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">11
+PROGRAMMING
+Program
+true</pre>
+</div>
+</figure>
+<h2 id="converting-between-types">Converting between types</h2>
+<p>Java converts a smaller type to a larger one automatically, but going the other way needs an explicit <strong>cast</strong>. To turn text into a number, use <code>Integer.parseInt</code> or <code>Double.parseDouble</code>.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+items+%3D+7%3B%0A++++++++double+perPerson+%3D+items+%2F+2.0%3B++++++%2F%2F+int+widened+to+double%0A++++++++int+rounded+%3D+%28int%29+perPerson%3B++++++++%2F%2F+cast+drops+the+decimals%0A++++++++int+fromText+%3D+Integer.parseInt%28%22250%22%29%3B%0A%0A++++++++System.out.println%28perPerson%29%3B%0A++++++++System.out.println%28rounded%29%3B%0A++++++++System.out.println%28fromText+*+2%29%3B%0A++++%7D%0A%7D&amp;output=3.5%0A3%0A500">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> items <span class="tok-operator">=</span> <span class="tok-number">7</span>;
+        <span class="tok-keyword">double</span> perPerson <span class="tok-operator">=</span> items <span class="tok-operator">/</span> <span class="tok-number">2.0</span>;      <span class="tok-comment">// int widened to double</span>
+        <span class="tok-keyword">int</span> rounded <span class="tok-operator">=</span> (<span class="tok-keyword">int</span>) perPerson;        <span class="tok-comment">// cast drops the decimals</span>
+        <span class="tok-keyword">int</span> fromText <span class="tok-operator">=</span> <span class="tok-builtin">Integer</span>.<span class="tok-function">parseInt</span>(<span class="tok-string">&quot;250&quot;</span>);
+
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(perPerson);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(rounded);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(fromText <span class="tok-operator">*</span> <span class="tok-number">2</span>);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">3.5
+3
+500</pre>
+</div>
+</figure>
+<h2 id="var-and-final">var and final</h2>
+<p>Inside a method you can write <code>var</code> and let the compiler work out the type from the value. Mark a variable <code>final</code> when it must never be reassigned.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++var+city+%3D+%22Jaipur%22%3B++++++++++%2F%2F+compiler+infers+String%0A++++++++final+double+GST_RATE+%3D+0.18%3B%0A++++++++double+bill+%3D+500+*+%281+%2B+GST_RATE%29%3B%0A++++++++System.out.println%28city+%2B+%22+bill%3A+%22+%2B+bill%29%3B%0A++++%7D%0A%7D&amp;output=Jaipur+bill%3A+590.0">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">var</span> city <span class="tok-operator">=</span> <span class="tok-string">&quot;Jaipur&quot;</span>;          <span class="tok-comment">// compiler infers String</span>
+        <span class="tok-keyword">final</span> <span class="tok-keyword">double</span> GST_RATE <span class="tok-operator">=</span> <span class="tok-number">0.18</span>;
+        <span class="tok-keyword">double</span> bill <span class="tok-operator">=</span> <span class="tok-number">500</span> <span class="tok-operator">*</span> (<span class="tok-number">1</span> <span class="tok-operator">+</span> GST_RATE);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(city <span class="tok-operator">+</span> <span class="tok-string">&quot; bill: &quot;</span> <span class="tok-operator">+</span> bill);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Jaipur bill: 590.0</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="hello-world.html"><span>Previous</span>Your First Java Program</a>
+  <a class="pager-next" href="if-else.html"><span>Next</span>Conditions with if and switch</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

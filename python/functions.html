@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing Your Own Functions - Python | CodeShala</title>
+<meta name="description" content="Package code into reusable, named pieces with def.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Python topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#3b82f6">Py</span><a href="../python/index.html">Python Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../python/hello-world.html">Your First Python Program</a></li><li><a href="../python/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../python/if-else.html">Making Decisions with if</a></li><li><a href="../python/loops.html">Repeating Code with Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../python/functions.html" aria-current="page">Writing Your Own Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Python</a><span>/</span>Functions</nav>
+  <h1>Writing Your Own Functions</h1>
+  <p class="lesson-lead">Package code into reusable, named pieces with def.</p>
+  <div class="prose">
+<p>A <strong>function</strong> is a named block of code that you can run whenever you need it. You have already used built-in functions like <code>print()</code> and <code>len()</code>. Now you will write your own with the <code>def</code> keyword.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=def+greet%28%29%3A%0A++++print%28%22Welcome+to+CodeShala%21%22%29%0A%0Agreet%28%29%0Agreet%28%29&amp;output=Welcome+to+CodeShala%21%0AWelcome+to+CodeShala%21">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">def</span> <span class="tok-function">greet</span>()<span class="tok-operator">:</span>
+    <span class="tok-builtin">print</span>(<span class="tok-string">&quot;Welcome to CodeShala!&quot;</span>)
+
+<span class="tok-function">greet</span>()
+<span class="tok-function">greet</span>()</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Welcome to CodeShala!
+Welcome to CodeShala!</pre>
+</div>
+</figure>
+<h2 id="parameters-and-return-values">Parameters and return values</h2>
+<p>Values passed into a function are called <strong>arguments</strong>; the names that receive them are <strong>parameters</strong>. The <code>return</code> statement sends a result back to whoever called the function.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=def+area_of_rectangle%28width%2C+height%29%3A%0A++++return+width+*+height%0A%0Aroom+%3D+area_of_rectangle%284%2C+3%29%0Aprint%28%22Room+area%3A%22%2C+room%29%0Aprint%28%22Table+area%3A%22%2C+area_of_rectangle%281.5%2C+0.8%29%29&amp;output=Room+area%3A+12%0ATable+area%3A+1.2000000000000002">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">def</span> <span class="tok-function">area_of_rectangle</span>(width, height)<span class="tok-operator">:</span>
+    <span class="tok-keyword">return</span> width <span class="tok-operator">*</span> height
+
+room <span class="tok-operator">=</span> <span class="tok-function">area_of_rectangle</span>(<span class="tok-number">4</span>, <span class="tok-number">3</span>)
+<span class="tok-builtin">print</span>(<span class="tok-string">&quot;Room area:&quot;</span>, room)
+<span class="tok-builtin">print</span>(<span class="tok-string">&quot;Table area:&quot;</span>, <span class="tok-function">area_of_rectangle</span>(<span class="tok-number">1.5</span>, <span class="tok-number">0.8</span>))</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Room area: 12
+Table area: 1.2000000000000002</pre>
+</div>
+</figure>
+<aside class="callout callout-note"><strong>Note:</strong> The long number in the last line is not a bug in your code. Computers store decimals in binary, so tiny rounding errors appear. Use <code>round(value, 2)</code> when you want a tidy result.</aside>
+<h2 id="default-and-keyword-arguments">Default and keyword arguments</h2>
+<p>A parameter can have a default value, which is used when the caller leaves it out. Callers can also name arguments, which makes the call easier to read.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=def+make_tea%28cups%2C+sugar%3D1%2C+milk%3DTrue%29%3A%0A++++kind+%3D+%22milk+tea%22+if+milk+else+%22black+tea%22%0A++++return+f%22%7Bcups%7D+cup%28s%29+of+%7Bkind%7D+with+%7Bsugar%7D+spoon%28s%29+of+sugar%22%0A%0Aprint%28make_tea%282%29%29%0Aprint%28make_tea%281%2C+sugar%3D0%2C+milk%3DFalse%29%29&amp;output=2+cup%28s%29+of+milk+tea+with+1+spoon%28s%29+of+sugar%0A1+cup%28s%29+of+black+tea+with+0+spoon%28s%29+of+sugar">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">def</span> <span class="tok-function">make_tea</span>(cups, sugar<span class="tok-operator">=</span><span class="tok-number">1</span>, milk<span class="tok-operator">=</span><span class="tok-constant">True</span>)<span class="tok-operator">:</span>
+    kind <span class="tok-operator">=</span> <span class="tok-string">&quot;milk tea&quot;</span> <span class="tok-keyword">if</span> milk <span class="tok-keyword">else</span> <span class="tok-string">&quot;black tea&quot;</span>
+    <span class="tok-keyword">return</span> <span class="tok-string">f&quot;{cups} cup(s) of {kind} with {sugar} spoon(s) of sugar&quot;</span>
+
+<span class="tok-builtin">print</span>(<span class="tok-function">make_tea</span>(<span class="tok-number">2</span>))
+<span class="tok-builtin">print</span>(<span class="tok-function">make_tea</span>(<span class="tok-number">1</span>, sugar<span class="tok-operator">=</span><span class="tok-number">0</span>, milk<span class="tok-operator">=</span><span class="tok-constant">False</span>))</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">2 cup(s) of milk tea with 1 spoon(s) of sugar
+1 cup(s) of black tea with 0 spoon(s) of sugar</pre>
+</div>
+</figure>
+<h2 id="why-use-functions">Why use functions?</h2>
+<ul><li><strong>Reuse:</strong> write the logic once and call it many times.</li><li><strong>Readability:</strong> a good name like <code>area_of_rectangle</code> explains what the code does.</li><li><strong>Testing:</strong> small functions are easy to check one at a time.</li></ul>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="loops.html"><span>Previous</span>Repeating Code with Loops</a>
+  <a class="pager-next" href="../index.html"><span>Finished!</span>Pick another language</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

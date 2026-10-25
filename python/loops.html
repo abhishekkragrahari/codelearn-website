@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repeating Code with Loops - Python | CodeShala</title>
+<meta name="description" content="Use for and while loops to do the same work many times.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Python topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#3b82f6">Py</span><a href="../python/index.html">Python Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../python/hello-world.html">Your First Python Program</a></li><li><a href="../python/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../python/if-else.html">Making Decisions with if</a></li><li><a href="../python/loops.html" aria-current="page">Repeating Code with Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../python/functions.html">Writing Your Own Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Python</a><span>/</span>Control Flow</nav>
+  <h1>Repeating Code with Loops</h1>
+  <p class="lesson-lead">Use for and while loops to do the same work many times.</p>
+  <div class="prose">
+<p>A <strong>loop</strong> repeats a block of code. Python has two kinds: <code>for</code> loops, which go through a collection of items, and <code>while</code> loops, which keep going as long as a condition is true.</p>
+<h2 id="the-for-loop">The for loop</h2>
+<p><code>range(n)</code> produces the numbers from <code>0</code> up to, but not including, <code>n</code>. It is the usual way to repeat something a fixed number of times.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=for+i+in+range%285%29%3A%0A++++print%28%22Round%22%2C+i%29&amp;output=Round+0%0ARound+1%0ARound+2%0ARound+3%0ARound+4">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">for</span> i <span class="tok-keyword">in</span> <span class="tok-builtin">range</span>(<span class="tok-number">5</span>)<span class="tok-operator">:</span>
+    <span class="tok-builtin">print</span>(<span class="tok-string">&quot;Round&quot;</span>, i)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Round 0
+Round 1
+Round 2
+Round 3
+Round 4</pre>
+</div>
+</figure>
+<p>A <code>for</code> loop can also walk through a list, a string, or any other collection.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=fruits+%3D+%5B%22mango%22%2C+%22banana%22%2C+%22guava%22%5D%0Afor+fruit+in+fruits%3A%0A++++print%28fruit.upper%28%29%29%0A%0Afor+letter+in+%22abc%22%3A%0A++++print%28letter+*+3%29&amp;output=MANGO%0ABANANA%0AGUAVA%0Aaaa%0Abbb%0Accc">Open in playground</a></div></div>
+<pre class="code-body"><code>fruits <span class="tok-operator">=</span> [<span class="tok-string">&quot;mango&quot;</span>, <span class="tok-string">&quot;banana&quot;</span>, <span class="tok-string">&quot;guava&quot;</span>]
+<span class="tok-keyword">for</span> fruit <span class="tok-keyword">in</span> fruits<span class="tok-operator">:</span>
+    <span class="tok-builtin">print</span>(fruit.<span class="tok-function">upper</span>())
+
+<span class="tok-keyword">for</span> letter <span class="tok-keyword">in</span> <span class="tok-string">&quot;abc&quot;</span><span class="tok-operator">:</span>
+    <span class="tok-builtin">print</span>(letter <span class="tok-operator">*</span> <span class="tok-number">3</span>)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">MANGO
+BANANA
+GUAVA
+aaa
+bbb
+ccc</pre>
+</div>
+</figure>
+<h2 id="the-while-loop">The while loop</h2>
+<p>A <code>while</code> loop checks its condition before every round. Make sure something inside the loop changes so that the condition eventually becomes false.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=balance+%3D+1000%0Ayears+%3D+0%0Awhile+balance+%3C+2000%3A%0A++++balance+%3D+balance+*+1.1%0A++++years+%2B%3D+1%0Aprint%28f%22It+takes+%7Byears%7D+years+to+double+at+10%25+interest.%22%29&amp;output=It+takes+8+years+to+double+at+10%25+interest.">Open in playground</a></div></div>
+<pre class="code-body"><code>balance <span class="tok-operator">=</span> <span class="tok-number">1000</span>
+years <span class="tok-operator">=</span> <span class="tok-number">0</span>
+<span class="tok-keyword">while</span> balance <span class="tok-operator">&lt;</span> <span class="tok-number">2000</span><span class="tok-operator">:</span>
+    balance <span class="tok-operator">=</span> balance <span class="tok-operator">*</span> <span class="tok-number">1.1</span>
+    years <span class="tok-operator">+=</span> <span class="tok-number">1</span>
+<span class="tok-builtin">print</span>(<span class="tok-string">f&quot;It takes {years} years to double at 10% interest.&quot;</span>)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">It takes 8 years to double at 10% interest.</pre>
+</div>
+</figure>
+<h2 id="break-and-continue">break and continue</h2>
+<p><code>break</code> leaves the loop straight away. <code>continue</code> skips the rest of the current round and moves on to the next one.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=for+n+in+range%281%2C+10%29%3A%0A++++if+n+%25+2+%3D%3D+0%3A%0A++++++++continue+++%23+skip+even+numbers%0A++++if+n+%3E+7%3A%0A++++++++break++++++%23+stop+once+we+pass+7%0A++++print%28n%29&amp;output=1%0A3%0A5%0A7">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">for</span> n <span class="tok-keyword">in</span> <span class="tok-builtin">range</span>(<span class="tok-number">1</span>, <span class="tok-number">10</span>)<span class="tok-operator">:</span>
+    <span class="tok-keyword">if</span> n <span class="tok-operator">%</span> <span class="tok-number">2</span> <span class="tok-operator">==</span> <span class="tok-number">0</span><span class="tok-operator">:</span>
+        <span class="tok-keyword">continue</span>   <span class="tok-comment"># skip even numbers</span>
+    <span class="tok-keyword">if</span> n <span class="tok-operator">&gt;</span> <span class="tok-number">7</span><span class="tok-operator">:</span>
+        <span class="tok-keyword">break</span>      <span class="tok-comment"># stop once we pass 7</span>
+    <span class="tok-builtin">print</span>(n)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">1
+3
+5
+7</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="if-else.html"><span>Previous</span>Making Decisions with if</a>
+  <a class="pager-next" href="functions.html"><span>Next</span>Writing Your Own Functions</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

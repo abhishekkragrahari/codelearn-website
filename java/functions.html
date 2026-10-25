@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods - Java | CodeShala</title>
+<meta name="description" content="Write reusable methods with parameters, return values and overloading.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Java topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#f97316">Jv</span><a href="../java/index.html">Java Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../java/hello-world.html">Your First Java Program</a></li><li><a href="../java/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../java/if-else.html">Conditions with if and switch</a></li><li><a href="../java/loops.html">Loops in Java</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../java/functions.html" aria-current="page">Methods</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Java</a><span>/</span>Functions</nav>
+  <h1>Methods</h1>
+  <p class="lesson-lead">Write reusable methods with parameters, return values and overloading.</p>
+  <div class="prose">
+<p>In Java a function that belongs to a class is called a <strong>method</strong>. Until you learn about objects, you can write <code>static</code> methods and call them directly from <code>main</code>.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++static+int+square%28int+x%29+%7B%0A++++++++return+x+*+x%3B%0A++++%7D%0A%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++System.out.println%28square%289%29%29%3B%0A++++++++System.out.println%28square%28square%282%29%29%29%3B%0A++++%7D%0A%7D&amp;output=81%0A16">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">static</span> <span class="tok-keyword">int</span> <span class="tok-function">square</span>(<span class="tok-keyword">int</span> x) {
+        <span class="tok-keyword">return</span> x <span class="tok-operator">*</span> x;
+    }
+
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-function">square</span>(<span class="tok-number">9</span>));
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-function">square</span>(<span class="tok-function">square</span>(<span class="tok-number">2</span>)));
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">81
+16</pre>
+</div>
+</figure>
+<p>The method header lists the <strong>return type</strong> (<code>int</code>), the name, and each parameter with its type. A method that returns nothing uses <code>void</code>.</p>
+<h2 id="several-parameters">Several parameters</h2>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++static+double+simpleInterest%28double+principal%2C+double+ratePercent%2C+int+years%29+%7B%0A++++++++return+principal+*+ratePercent+*+years+%2F+100%3B%0A++++%7D%0A%0A++++static+void+printReceipt%28String+item%2C+double+amount%29+%7B%0A++++++++System.out.printf%28%22%25-10s+Rs+%258.2f%25n%22%2C+item%2C+amount%29%3B%0A++++%7D%0A%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++double+interest+%3D+simpleInterest%2820000%2C+7.5%2C+3%29%3B%0A++++++++printReceipt%28%22Principal%22%2C+20000%29%3B%0A++++++++printReceipt%28%22Interest%22%2C+interest%29%3B%0A++++++++printReceipt%28%22Total%22%2C+20000+%2B+interest%29%3B%0A++++%7D%0A%7D&amp;output=Principal++Rs+20000.00%0AInterest+++Rs++4500.00%0ATotal++++++Rs+24500.00">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">static</span> <span class="tok-keyword">double</span> <span class="tok-function">simpleInterest</span>(<span class="tok-keyword">double</span> principal, <span class="tok-keyword">double</span> ratePercent, <span class="tok-keyword">int</span> years) {
+        <span class="tok-keyword">return</span> principal <span class="tok-operator">*</span> ratePercent <span class="tok-operator">*</span> years <span class="tok-operator">/</span> <span class="tok-number">100</span>;
+    }
+
+    <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">printReceipt</span>(<span class="tok-builtin">String</span> item, <span class="tok-keyword">double</span> amount) {
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">printf</span>(<span class="tok-string">&quot;%-10s Rs %8.2f%n&quot;</span>, item, amount);
+    }
+
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">double</span> interest <span class="tok-operator">=</span> <span class="tok-function">simpleInterest</span>(<span class="tok-number">20000</span>, <span class="tok-number">7.5</span>, <span class="tok-number">3</span>);
+        <span class="tok-function">printReceipt</span>(<span class="tok-string">&quot;Principal&quot;</span>, <span class="tok-number">20000</span>);
+        <span class="tok-function">printReceipt</span>(<span class="tok-string">&quot;Interest&quot;</span>, interest);
+        <span class="tok-function">printReceipt</span>(<span class="tok-string">&quot;Total&quot;</span>, <span class="tok-number">20000</span> <span class="tok-operator">+</span> interest);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Principal  Rs 20000.00
+Interest   Rs  4500.00
+Total      Rs 24500.00</pre>
+</div>
+</figure>
+<aside class="callout callout-tip"><strong>Tip:</strong> <code>printf</code> formats output in columns. <code>%-10s</code> means a left-aligned text field 10 characters wide, <code>%8.2f</code> a number 8 wide with 2 decimals, and <code>%n</code> a newline.</aside>
+<h2 id="overloading">Overloading</h2>
+<p>Two methods can share a name if their parameter lists differ. Java picks the right one from the arguments you pass.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++static+int+add%28int+a%2C+int+b%29+%7B%0A++++++++return+a+%2B+b%3B%0A++++%7D%0A%0A++++static+double+add%28double+a%2C+double+b%29+%7B%0A++++++++return+a+%2B+b%3B%0A++++%7D%0A%0A++++static+int+add%28int+a%2C+int+b%2C+int+c%29+%7B%0A++++++++return+a+%2B+b+%2B+c%3B%0A++++%7D%0A%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++System.out.println%28add%282%2C+3%29%29%3B%0A++++++++System.out.println%28add%282.5%2C+0.25%29%29%3B%0A++++++++System.out.println%28add%281%2C+2%2C+3%29%29%3B%0A++++%7D%0A%7D&amp;output=5%0A2.75%0A6">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">static</span> <span class="tok-keyword">int</span> <span class="tok-function">add</span>(<span class="tok-keyword">int</span> a, <span class="tok-keyword">int</span> b) {
+        <span class="tok-keyword">return</span> a <span class="tok-operator">+</span> b;
+    }
+
+    <span class="tok-keyword">static</span> <span class="tok-keyword">double</span> <span class="tok-function">add</span>(<span class="tok-keyword">double</span> a, <span class="tok-keyword">double</span> b) {
+        <span class="tok-keyword">return</span> a <span class="tok-operator">+</span> b;
+    }
+
+    <span class="tok-keyword">static</span> <span class="tok-keyword">int</span> <span class="tok-function">add</span>(<span class="tok-keyword">int</span> a, <span class="tok-keyword">int</span> b, <span class="tok-keyword">int</span> c) {
+        <span class="tok-keyword">return</span> a <span class="tok-operator">+</span> b <span class="tok-operator">+</span> c;
+    }
+
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-function">add</span>(<span class="tok-number">2</span>, <span class="tok-number">3</span>));
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-function">add</span>(<span class="tok-number">2.5</span>, <span class="tok-number">0.25</span>));
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-function">add</span>(<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>));
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">5
+2.75
+6</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="loops.html"><span>Previous</span>Loops in Java</a>
+  <a class="pager-next" href="../index.html"><span>Finished!</span>Pick another language</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

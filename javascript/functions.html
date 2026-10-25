@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functions - JavaScript | CodeShala</title>
+<meta name="description" content="Declare functions, use arrow functions, default parameters and callbacks.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="JavaScript topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#eab308">JS</span><a href="../javascript/index.html">JavaScript Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../javascript/hello-world.html">Your First JavaScript Program</a></li><li><a href="../javascript/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../javascript/if-else.html">Conditions with if</a></li><li><a href="../javascript/loops.html">Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../javascript/functions.html" aria-current="page">Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">JavaScript</a><span>/</span>Functions</nav>
+  <h1>Functions</h1>
+  <p class="lesson-lead">Declare functions, use arrow functions, default parameters and callbacks.</p>
+  <div class="prose">
+<p>A function is a reusable block of code. You give it inputs (parameters), it does some work, and it can hand back a result with <code>return</code>.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=function+bmi%28weightKg%2C+heightM%29+%7B%0A++return+weightKg+%2F+%28heightM+*+heightM%29%3B%0A%7D%0A%0Aconst+value+%3D+bmi%2868%2C+1.75%29%3B%0Aconsole.log%28%22BMI%3A%22%2C+value.toFixed%281%29%29%3B&amp;output=BMI%3A+22.2">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">function</span> <span class="tok-function">bmi</span>(weightKg, heightM) {
+  <span class="tok-keyword">return</span> weightKg <span class="tok-operator">/</span> (heightM <span class="tok-operator">*</span> heightM);
+}
+
+<span class="tok-keyword">const</span> value <span class="tok-operator">=</span> <span class="tok-function">bmi</span>(<span class="tok-number">68</span>, <span class="tok-number">1.75</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;BMI:&quot;</span>, value.<span class="tok-function">toFixed</span>(<span class="tok-number">1</span>));</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">BMI: 22.2</pre>
+</div>
+</figure>
+<h2 id="arrow-functions">Arrow functions</h2>
+<p>Arrow functions are a shorter way to write a function. When the body is a single expression, its value is returned automatically.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+double+%3D+%28n%29+%3D%3E+n+*+2%3B%0Aconst+greet+%3D+%28name%29+%3D%3E+%60Hi%2C+%24%7Bname%7D%21%60%3B%0A%0Aconsole.log%28double%2821%29%29%3B%0Aconsole.log%28greet%28%22Dev%22%29%29%3B&amp;output=42%0AHi%2C+Dev%21">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> double <span class="tok-operator">=</span> (n) <span class="tok-operator">=&gt;</span> n <span class="tok-operator">*</span> <span class="tok-number">2</span>;
+<span class="tok-keyword">const</span> greet <span class="tok-operator">=</span> (name) <span class="tok-operator">=&gt;</span> <span class="tok-string">`Hi, ${name}!`</span>;
+
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-function">double</span>(<span class="tok-number">21</span>));
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-function">greet</span>(<span class="tok-string">&quot;Dev&quot;</span>));</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">42
+Hi, Dev!</pre>
+</div>
+</figure>
+<h2 id="default-parameters">Default parameters</h2>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=function+makeTag%28text%2C+tag+%3D+%22p%22%29+%7B%0A++return+%60%3C%24%7Btag%7D%3E%24%7Btext%7D%3C%2F%24%7Btag%7D%3E%60%3B%0A%7D%0A%0Aconsole.log%28makeTag%28%22Hello%22%29%29%3B%0Aconsole.log%28makeTag%28%22Title%22%2C+%22h1%22%29%29%3B&amp;output=%3Cp%3EHello%3C%2Fp%3E%0A%3Ch1%3ETitle%3C%2Fh1%3E">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">function</span> <span class="tok-function">makeTag</span>(text, tag <span class="tok-operator">=</span> <span class="tok-string">&quot;p&quot;</span>) {
+  <span class="tok-keyword">return</span> <span class="tok-string">`&lt;${tag}&gt;${text}&lt;/${tag}&gt;`</span>;
+}
+
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-function">makeTag</span>(<span class="tok-string">&quot;Hello&quot;</span>));
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-function">makeTag</span>(<span class="tok-string">&quot;Title&quot;</span>, <span class="tok-string">&quot;h1&quot;</span>));</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">&lt;p&gt;Hello&lt;/p&gt;
+&lt;h1&gt;Title&lt;/h1&gt;</pre>
+</div>
+</figure>
+<h2 id="functions-as-values">Functions as values</h2>
+<p>In JavaScript a function is a value like any other. You can store it in a variable or pass it to another function. A function passed in this way is called a <strong>callback</strong>.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=function+repeat%28times%2C+action%29+%7B%0A++for+%28let+i+%3D+1%3B+i+%3C%3D+times%3B+i%2B%2B%29+%7B%0A++++action%28i%29%3B%0A++%7D%0A%7D%0A%0Arepeat%283%2C+%28n%29+%3D%3E+console.log%28%60Step+%24%7Bn%7D%60%29%29%3B&amp;output=Step+1%0AStep+2%0AStep+3">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">function</span> <span class="tok-function">repeat</span>(times, action) {
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> i <span class="tok-operator">=</span> <span class="tok-number">1</span>; i <span class="tok-operator">&lt;=</span> times; i<span class="tok-operator">++</span>) {
+    <span class="tok-function">action</span>(i);
+  }
+}
+
+<span class="tok-function">repeat</span>(<span class="tok-number">3</span>, (n) <span class="tok-operator">=&gt;</span> <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">`Step ${n}`</span>));</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Step 1
+Step 2
+Step 3</pre>
+</div>
+</figure>
+<h2 id="waiting-with-settimeout">Waiting with setTimeout</h2>
+<p><code>setTimeout</code> runs a callback later. The rest of the program keeps going in the meantime, which is why &quot;Start&quot; and &quot;End&quot; print before the delayed message.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=console.log%28%22Start%22%29%3B%0AsetTimeout%28%28%29+%3D%3E+console.log%28%22Half+a+second+later%22%29%2C+500%29%3B%0Aconsole.log%28%22End%22%29%3B&amp;output=Start%0AEnd%0AHalf+a+second+later">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Start&quot;</span>);
+<span class="tok-function">setTimeout</span>(() <span class="tok-operator">=&gt;</span> <span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;Half a second later&quot;</span>), <span class="tok-number">500</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">&quot;End&quot;</span>);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Start
+End
+Half a second later</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="loops.html"><span>Previous</span>Loops</a>
+  <a class="pager-next" href="../index.html"><span>Finished!</span>Pick another language</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/inspect.js"></script>
+<script src="../assets/js/runner.js"></script>
+</body>
+</html>

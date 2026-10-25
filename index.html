@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CodeShala - Learn to code, one small lesson at a time.</title>
+<meta name="description" content="Free, beginner-friendly tutorials for Python, C, Java and JavaScript with runnable examples.">
+<link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="home">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="./index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="./python/index.html">Python</a><a href="./c/index.html">C</a><a href="./java/index.html">Java</a><a href="./javascript/index.html">JavaScript</a>
+      <a href="./playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Free tutorials &middot; No sign-up</p>
+      <h1>Learn programming the <span class="grad">friendly</span> way.</h1>
+      <p class="hero-lead">Short lessons, clear examples and a playground to try things out.
+        Pick a language and write your first program in minutes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="python/index.html">Start with Python</a>
+        <a class="btn btn-ghost" href="playground.html">Open the playground</a>
+      </div>
+    </div>
+    <div class="hero-code" aria-hidden="true">
+      <div class="window-dots"><span></span><span></span><span></span><em>hello.py</em></div>
+      <pre class="code-body"><code><span class="tok-keyword">def</span> <span class="tok-function">greet</span>(name)<span class="tok-operator">:</span>
+    <span class="tok-keyword">return</span> <span class="tok-string">f&quot;Namaste, {name}!&quot;</span>
+
+<span class="tok-keyword">for</span> learner <span class="tok-keyword">in</span> [<span class="tok-string">&quot;Asha&quot;</span>, <span class="tok-string">&quot;Ravi&quot;</span>]<span class="tok-operator">:</span>
+    <span class="tok-builtin">print</span>(<span class="tok-function">greet</span>(learner))</code></pre>
+      <div class="hero-code-out"><span>Output</span>Namaste, Asha!<br>Namaste, Ravi!</div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Choose a language</h2>
+    <p class="section-lead">Every track starts from zero and builds up step by step.</p>
+    <div class="lang-grid"><a class="lang-card" href="python/index.html" style="--badge:#3b82f6">
+  <span class="lang-badge lg" style="--badge:#3b82f6">Py</span>
+  <h3>Python</h3>
+  <p>Readable, versatile and a favourite first language. Great for scripting, data and science.</p>
+  <span class="lang-card-meta">5 lessons</span>
+</a>
+<a class="lang-card" href="c/index.html" style="--badge:#64748b">
+  <span class="lang-badge lg" style="--badge:#64748b">C</span>
+  <h3>C</h3>
+  <p>Small, fast and close to the hardware. Learn how memory and programs really work.</p>
+  <span class="lang-card-meta">5 lessons</span>
+</a>
+<a class="lang-card" href="java/index.html" style="--badge:#f97316">
+  <span class="lang-badge lg" style="--badge:#f97316">Jv</span>
+  <h3>Java</h3>
+  <p>Strongly typed and object-oriented. Powers Android apps and large back-end systems.</p>
+  <span class="lang-card-meta">5 lessons</span>
+</a>
+<a class="lang-card" href="javascript/index.html" style="--badge:#eab308">
+  <span class="lang-badge lg" style="--badge:#eab308">JS</span>
+  <h3>JavaScript</h3>
+  <p>The language of the web. Runs in every browser, so you can try it right here.</p>
+  <span class="lang-card-meta">5 lessons &middot; runs in browser</span>
+</a></div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container features">
+    <div class="feature"><div class="feature-icon">1</div><h3>Read a short lesson</h3><p>Each topic fits on one page and explains one idea with plain words and small examples.</p></div>
+    <div class="feature"><div class="feature-icon">2</div><h3>See the output</h3><p>Every example shows exactly what it prints, so you know what to expect before you run it.</p></div>
+    <div class="feature"><div class="feature-icon">3</div><h3>Try it yourself</h3><p>Copy any example, or open it in the playground. JavaScript runs right in your browser.</p></div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="./python/index.html">Python</a><a href="./c/index.html">C</a><a href="./java/index.html">Java</a><a href="./javascript/index.html">JavaScript</a><a href="./playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="./assets/js/app.js"></script>
+
+</body>
+</html>

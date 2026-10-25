@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variables and Data Types - JavaScript | CodeShala</title>
+<meta name="description" content="let, const, and JavaScript's main value types.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="JavaScript topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#eab308">JS</span><a href="../javascript/index.html">JavaScript Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../javascript/hello-world.html">Your First JavaScript Program</a></li><li><a href="../javascript/variables.html" aria-current="page">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../javascript/if-else.html">Conditions with if</a></li><li><a href="../javascript/loops.html">Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../javascript/functions.html">Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">JavaScript</a><span>/</span>Getting Started</nav>
+  <h1>Variables and Data Types</h1>
+  <p class="lesson-lead">let, const, and JavaScript's main value types.</p>
+  <div class="prose">
+<p>JavaScript has two everyday keywords for creating variables:</p>
+<ul><li><code>const</code> for values that will not be reassigned. Use this by default.</li><li><code>let</code> for values that will change later.</li></ul>
+<p>You may see <code>var</code> in older code; it still works but has confusing scoping rules, so modern code avoids it.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+course+%3D+%22JavaScript+Basics%22%3B%0Alet+lessonsDone+%3D+1%3B%0AlessonsDone+%3D+lessonsDone+%2B+1%3B%0A%0Aconsole.log%28course%2C+%22-%22%2C+lessonsDone%2C+%22lessons+done%22%29%3B&amp;output=JavaScript+Basics+-+2+lessons+done">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> course <span class="tok-operator">=</span> <span class="tok-string">&quot;JavaScript Basics&quot;</span>;
+<span class="tok-keyword">let</span> lessonsDone <span class="tok-operator">=</span> <span class="tok-number">1</span>;
+lessonsDone <span class="tok-operator">=</span> lessonsDone <span class="tok-operator">+</span> <span class="tok-number">1</span>;
+
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(course, <span class="tok-string">&quot;-&quot;</span>, lessonsDone, <span class="tok-string">&quot;lessons done&quot;</span>);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">JavaScript Basics - 2 lessons done</pre>
+</div>
+</figure>
+<h2 id="types-of-values">Types of values</h2>
+<p>The <code>typeof</code> operator tells you the type of a value.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=console.log%28typeof+%22text%22%29%3B%0Aconsole.log%28typeof+42%2C+typeof+3.5%29%3B%0Aconsole.log%28typeof+true%29%3B%0Aconsole.log%28typeof+undefined%29%3B%0Aconsole.log%28typeof+%7B+name%3A+%22Asha%22+%7D%29%3B%0Aconsole.log%28typeof+%5B1%2C+2%2C+3%5D%29%3B&amp;output=string%0Anumber+number%0Aboolean%0Aundefined%0Aobject%0Aobject">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> <span class="tok-string">&quot;text&quot;</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> <span class="tok-number">42</span>, <span class="tok-keyword">typeof</span> <span class="tok-number">3.5</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> <span class="tok-constant">true</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> <span class="tok-constant">undefined</span>);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> { name<span class="tok-operator">:</span> <span class="tok-string">&quot;Asha&quot;</span> });
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-keyword">typeof</span> [<span class="tok-number">1</span>, <span class="tok-number">2</span>, <span class="tok-number">3</span>]);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">string
+number number
+boolean
+undefined
+object
+object</pre>
+</div>
+</figure>
+<ul><li><strong>string</strong>: text, in single quotes, double quotes or backticks.</li><li><strong>number</strong>: whole numbers and decimals are the same type.</li><li><strong>boolean</strong>: <code>true</code> or <code>false</code>.</li><li><strong>undefined</strong>: a variable that has not been given a value yet.</li><li><strong>object</strong>: groups of named values, and also arrays.</li></ul>
+<h2 id="template-literals">Template literals</h2>
+<p>Strings written with backticks can contain <code>${...}</code> placeholders. Any expression inside is evaluated and inserted.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+item+%3D+%22notebook%22%3B%0Aconst+price+%3D+45%3B%0Aconst+qty+%3D+3%3B%0Aconsole.log%28%60%24%7Bqty%7D+x+%24%7Bitem%7D+%3D+Rs+%24%7Bprice+*+qty%7D%60%29%3B&amp;output=3+x+notebook+%3D+Rs+135">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> item <span class="tok-operator">=</span> <span class="tok-string">&quot;notebook&quot;</span>;
+<span class="tok-keyword">const</span> price <span class="tok-operator">=</span> <span class="tok-number">45</span>;
+<span class="tok-keyword">const</span> qty <span class="tok-operator">=</span> <span class="tok-number">3</span>;
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(<span class="tok-string">`${qty} x ${item} = Rs ${price * qty}`</span>);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">3 x notebook = Rs 135</pre>
+</div>
+</figure>
+<h2 id="arrays-and-objects">Arrays and objects</h2>
+<p>An <strong>array</strong> is an ordered list. An <strong>object</strong> stores values under names called keys.</p>
+<figure class="code-block" data-lang="javascript">
+<div class="code-head"><span class="code-lang">JavaScript</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><button type="button" class="code-btn code-btn-run" data-run>&#9654; Run</button><a class="code-btn" href="../playground.html#lang=javascript&amp;code=const+scores+%3D+%5B72%2C+88%2C+95%5D%3B%0Aconst+student+%3D+%7B+name%3A+%22Asha%22%2C+year%3A+2%2C+scores+%7D%3B%0A%0Aconsole.log%28scores.length%2C+scores%5B0%5D%29%3B%0Aconsole.log%28student.name%29%3B%0Aconsole.log%28student%29%3B&amp;output=3+72%0AAsha%0A%7B+name%3A+%27Asha%27%2C+year%3A+2%2C+scores%3A+%5B+72%2C+88%2C+95+%5D+%7D">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">const</span> scores <span class="tok-operator">=</span> [<span class="tok-number">72</span>, <span class="tok-number">88</span>, <span class="tok-number">95</span>];
+<span class="tok-keyword">const</span> student <span class="tok-operator">=</span> { name<span class="tok-operator">:</span> <span class="tok-string">&quot;Asha&quot;</span>, year<span class="tok-operator">:</span> <span class="tok-number">2</span>, scores };
+
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(scores.length, scores[<span class="tok-number">0</span>]);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(student.name);
+<span class="tok-builtin">console</span>.<span class="tok-function">log</span>(student);</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">3 72
+Asha
+{ name: 'Asha', year: 2, scores: [ 72, 88, 95 ] }</pre>
+</div>
+</figure>
+<aside class="callout callout-warning"><strong>Warning:</strong> <code>const</code> stops you from reassigning the variable, but the contents of an array or object can still change. <code>scores.push(60)</code> works even though <code>scores</code> is a <code>const</code>.</aside>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="hello-world.html"><span>Previous</span>Your First JavaScript Program</a>
+  <a class="pager-next" href="if-else.html"><span>Next</span>Conditions with if</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html" aria-current="page">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/inspect.js"></script>
+<script src="../assets/js/runner.js"></script>
+</body>
+</html>

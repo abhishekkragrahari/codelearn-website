@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your First Python Program - Python | CodeShala</title>
+<meta name="description" content="What Python is, how to install it, and how to make the computer say hello.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Python topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#3b82f6">Py</span><a href="../python/index.html">Python Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../python/hello-world.html" aria-current="page">Your First Python Program</a></li><li><a href="../python/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../python/if-else.html">Making Decisions with if</a></li><li><a href="../python/loops.html">Repeating Code with Loops</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../python/functions.html">Writing Your Own Functions</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Python</a><span>/</span>Getting Started</nav>
+  <h1>Your First Python Program</h1>
+  <p class="lesson-lead">What Python is, how to install it, and how to make the computer say hello.</p>
+  <div class="prose">
+<p>Python is a general-purpose programming language that was designed to be easy to read. Its code uses plain words such as <code>if</code>, <code>for</code> and <code>return</code>, and it uses indentation (spaces at the start of a line) instead of curly braces to group code together. That is why many schools and universities choose it as a first language.</p>
+<h2 id="setting-up-python">Setting up Python</h2>
+<p>You can run Python in two common ways:</p>
+<ul><li><strong>Install it locally.</strong> Download the installer from python.org, run it, and tick the option that adds Python to your PATH. Then open a terminal and type <code>python --version</code> to check it worked.</li><li><strong>Use an online editor.</strong> If you cannot install software right now, any online Python editor is fine for these lessons.</li></ul>
+<aside class="callout callout-tip"><strong>Tip:</strong> On macOS and Linux the command is often <code>python3</code> instead of <code>python</code>.</aside>
+<h2 id="hello-world">Hello, world</h2>
+<p>The tradition in programming is to start by printing a greeting. Save this line in a file called <code>hello.py</code>:</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=print%28%22Hello%2C+world%21%22%29&amp;output=Hello%2C+world%21">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-builtin">print</span>(<span class="tok-string">&quot;Hello, world!&quot;</span>)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Hello, world!</pre>
+</div>
+</figure>
+<p>Run it from a terminal with <code>python hello.py</code>. The <code>print()</code> function writes whatever you put inside the brackets to the screen. Text in quotes is called a <strong>string</strong>.</p>
+<h2 id="printing-more-than-one-thing">Printing more than one thing</h2>
+<p><code>print()</code> can take several values separated by commas. It puts a space between them and moves to a new line at the end.</p>
+<figure class="code-block" data-lang="python">
+<div class="code-head"><span class="code-lang">Python</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=python&amp;code=print%28%22Learning%22%2C+%22Python%22%2C+%22is%22%2C+%22fun%22%29%0Aprint%28%222+%2B+3+%3D%22%2C+2+%2B+3%29%0Aprint%28%29++%23+an+empty+print+gives+a+blank+line%0Aprint%28%22Done%21%22%29&amp;output=Learning+Python+is+fun%0A2+%2B+3+%3D+5%0A%0ADone%21">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-builtin">print</span>(<span class="tok-string">&quot;Learning&quot;</span>, <span class="tok-string">&quot;Python&quot;</span>, <span class="tok-string">&quot;is&quot;</span>, <span class="tok-string">&quot;fun&quot;</span>)
+<span class="tok-builtin">print</span>(<span class="tok-string">&quot;2 + 3 =&quot;</span>, <span class="tok-number">2</span> <span class="tok-operator">+</span> <span class="tok-number">3</span>)
+<span class="tok-builtin">print</span>()  <span class="tok-comment"># an empty print gives a blank line</span>
+<span class="tok-builtin">print</span>(<span class="tok-string">&quot;Done!&quot;</span>)</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Learning Python is fun
+2 + 3 = 5
+
+Done!</pre>
+</div>
+</figure>
+<p>Anything after a <code>#</code> is a <strong>comment</strong>. Python ignores comments, so you can use them to leave notes for yourself and for other readers.</p>
+<h2 id="what-you-learned">What you learned</h2>
+<ul><li>Python programs are plain text files ending in <code>.py</code>.</li><li><code>print()</code> shows values on the screen.</li><li><code>#</code> starts a comment.</li></ul>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <span></span>
+  <a class="pager-next" href="variables.html"><span>Next</span>Variables and Data Types</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html" aria-current="page">Python</a><a href="../c/index.html">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

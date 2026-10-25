@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variables and Data Types - C | CodeShala</title>
+<meta name="description" content="Declare variables with a type and learn how C stores numbers and characters.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html" aria-current="page">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="C topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#64748b">C</span><a href="../c/index.html">C Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../c/hello-world.html">Your First C Program</a></li><li><a href="../c/variables.html" aria-current="page">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../c/if-else.html">Decisions with if and switch</a></li><li><a href="../c/loops.html">Loops in C</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../c/functions.html">Functions in C</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">C</a><span>/</span>Getting Started</nav>
+  <h1>Variables and Data Types</h1>
+  <p class="lesson-lead">Declare variables with a type and learn how C stores numbers and characters.</p>
+  <div class="prose">
+<p>In C every variable has a fixed <strong>type</strong> that you write when you declare it. The type tells the compiler how much memory to reserve and how to interpret the bits stored there.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++int+students+%3D+42%3B%0A++++float+height+%3D+1.68f%3B%0A++++double+pi+%3D+3.14159265%3B%0A++++char+grade+%3D+%27A%27%3B%0A%0A++++printf%28%22students+%3D+%25d%5Cn%22%2C+students%29%3B%0A++++printf%28%22height+%3D+%25.2f+m%5Cn%22%2C+height%29%3B%0A++++printf%28%22pi+%3D+%25.5f%5Cn%22%2C+pi%29%3B%0A++++printf%28%22grade+%3D+%25c%5Cn%22%2C+grade%29%3B%0A++++return+0%3B%0A%7D&amp;output=students+%3D+42%0Aheight+%3D+1.68+m%0Api+%3D+3.14159%0Agrade+%3D+A">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">int</span> students <span class="tok-operator">=</span> <span class="tok-number">42</span>;
+    <span class="tok-keyword">float</span> height <span class="tok-operator">=</span> <span class="tok-number">1.68f</span>;
+    <span class="tok-keyword">double</span> pi <span class="tok-operator">=</span> <span class="tok-number">3.14159265</span>;
+    <span class="tok-keyword">char</span> grade <span class="tok-operator">=</span> <span class="tok-string">'A'</span>;
+
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;students = %d\n&quot;</span>, students);
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;height = %.2f m\n&quot;</span>, height);
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;pi = %.5f\n&quot;</span>, pi);
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;grade = %c\n&quot;</span>, grade);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">students = 42
+height = 1.68 m
+pi = 3.14159
+grade = A</pre>
+</div>
+</figure>
+<h2 id="common-types">Common types</h2>
+<ul><li><code>int</code> holds whole numbers, usually from about minus two billion to plus two billion.</li><li><code>float</code> holds decimals with about 7 digits of precision.</li><li><code>double</code> holds decimals with about 15 digits of precision, and is the usual choice.</li><li><code>char</code> holds a single character, written in single quotes like <code>'A'</code>.</li></ul>
+<p>You can check how many bytes a type uses with <code>sizeof</code>. The exact sizes depend on your machine, but these are typical on a modern computer:</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++printf%28%22int%3A+%25zu+bytes%5Cn%22%2C+sizeof%28int%29%29%3B%0A++++printf%28%22double%3A+%25zu+bytes%5Cn%22%2C+sizeof%28double%29%29%3B%0A++++printf%28%22char%3A+%25zu+byte%5Cn%22%2C+sizeof%28char%29%29%3B%0A++++return+0%3B%0A%7D&amp;output=int%3A+4+bytes%0Adouble%3A+8+bytes%0Achar%3A+1+byte">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;int: %zu bytes\n&quot;</span>, <span class="tok-keyword">sizeof</span>(<span class="tok-keyword">int</span>));
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;double: %zu bytes\n&quot;</span>, <span class="tok-keyword">sizeof</span>(<span class="tok-keyword">double</span>));
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;char: %zu byte\n&quot;</span>, <span class="tok-keyword">sizeof</span>(<span class="tok-keyword">char</span>));
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">int: 4 bytes
+double: 8 bytes
+char: 1 byte</pre>
+</div>
+</figure>
+<h2 id="integer-division">Integer division</h2>
+<p>When both sides of <code>/</code> are integers, C throws away the fractional part. Make at least one side a decimal to get a decimal result.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++int+a+%3D+7%2C+b+%3D+2%3B%0A++++printf%28%22%25d+%2F+%25d+%3D+%25d%5Cn%22%2C+a%2C+b%2C+a+%2F+b%29%3B%0A++++printf%28%22%25d+%25%25+%25d+%3D+%25d%5Cn%22%2C+a%2C+b%2C+a+%25+b%29%3B%0A++++printf%28%22as+double%3A+%25.1f%5Cn%22%2C+%28double%29a+%2F+b%29%3B%0A++++return+0%3B%0A%7D&amp;output=7+%2F+2+%3D+3%0A7+%25+2+%3D+1%0Aas+double%3A+3.5">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">int</span> a <span class="tok-operator">=</span> <span class="tok-number">7</span>, b <span class="tok-operator">=</span> <span class="tok-number">2</span>;
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;%d / %d = %d\n&quot;</span>, a, b, a <span class="tok-operator">/</span> b);
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;%d %% %d = %d\n&quot;</span>, a, b, a <span class="tok-operator">%</span> b);
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;as double: %.1f\n&quot;</span>, (<span class="tok-keyword">double</span>)a <span class="tok-operator">/</span> b);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">7 / 2 = 3
+7 % 2 = 1
+as double: 3.5</pre>
+</div>
+</figure>
+<aside class="callout callout-note"><strong>Note:</strong> <code>(double)a</code> is a <strong>cast</strong>. It converts <code>a</code> to a <code>double</code> just for that calculation. To print a real <code>%</code> sign with <code>printf</code>, write <code>%%</code>.</aside>
+<h2 id="constants">Constants</h2>
+<p>Add <code>const</code> to a declaration when a value should never change. The compiler will refuse any later attempt to modify it.</p>
+<figure class="code-block" data-lang="c">
+<div class="code-head"><span class="code-lang">C</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=c&amp;code=%23include+%3Cstdio.h%3E%0A%0Aint+main%28void%29+%7B%0A++++const+int+DAYS_IN_WEEK+%3D+7%3B%0A++++int+weeks+%3D+3%3B%0A++++printf%28%22%25d+weeks+%3D+%25d+days%5Cn%22%2C+weeks%2C+weeks+*+DAYS_IN_WEEK%29%3B%0A++++return+0%3B%0A%7D&amp;output=3+weeks+%3D+21+days">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-meta">#include &lt;stdio.h&gt;</span>
+
+<span class="tok-keyword">int</span> <span class="tok-function">main</span>(<span class="tok-keyword">void</span>) {
+    <span class="tok-keyword">const</span> <span class="tok-keyword">int</span> DAYS_IN_WEEK <span class="tok-operator">=</span> <span class="tok-number">7</span>;
+    <span class="tok-keyword">int</span> weeks <span class="tok-operator">=</span> <span class="tok-number">3</span>;
+    <span class="tok-builtin">printf</span>(<span class="tok-string">&quot;%d weeks = %d days\n&quot;</span>, weeks, weeks <span class="tok-operator">*</span> DAYS_IN_WEEK);
+    <span class="tok-keyword">return</span> <span class="tok-number">0</span>;
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">3 weeks = 21 days</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="hello-world.html"><span>Previous</span>Your First C Program</a>
+  <a class="pager-next" href="if-else.html"><span>Next</span>Decisions with if and switch</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html" aria-current="page">C</a><a href="../java/index.html">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>

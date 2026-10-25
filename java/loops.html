@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loops in Java - Java | CodeShala</title>
+<meta name="description" content="Repeat code with for, enhanced for, while and do-while.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body class="tutorial">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html"><svg class="logo-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a>
+      <a href="../playground.html" class="nav-playground">Playground</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="icon-sun"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="icon-moon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </button>
+      <button type="button" class="icon-btn menu-btn" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="tutorial-layout">
+<aside class="sidebar" id="sidebar" aria-label="Java topics">
+  <div class="sidebar-head"><span class="lang-badge " style="--badge:#f97316">Jv</span><a href="../java/index.html">Java Tutorial</a></div>
+  <div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">1</span>Getting Started</h2>
+    <ul><li><a href="../java/hello-world.html">Your First Java Program</a></li><li><a href="../java/variables.html">Variables and Data Types</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">2</span>Control Flow</h2>
+    <ul><li><a href="../java/if-else.html">Conditions with if and switch</a></li><li><a href="../java/loops.html" aria-current="page">Loops in Java</a></li></ul>
+  </div>
+<div class="sidebar-chapter">
+    <h2 class="sidebar-chapter-title"><span class="chapter-num">3</span>Functions</h2>
+    <ul><li><a href="../java/functions.html">Methods</a></li></ul>
+  </div>
+</aside>
+<article class="lesson">
+  <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Java</a><span>/</span>Control Flow</nav>
+  <h1>Loops in Java</h1>
+  <p class="lesson-lead">Repeat code with for, enhanced for, while and do-while.</p>
+  <div class="prose">
+<p>Loops let you run the same code many times. Java's loops look much like C's, plus an extra &quot;for-each&quot; form for collections.</p>
+<h2 id="the-for-loop">The for loop</h2>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++for+%28int+i+%3D+1%3B+i+%3C%3D+3%3B+i%2B%2B%29+%7B%0A++++++++++++System.out.println%28%227+x+%22+%2B+i+%2B+%22+%3D+%22+%2B+%287+*+i%29%29%3B%0A++++++++%7D%0A++++%7D%0A%7D&amp;output=7+x+1+%3D+7%0A7+x+2+%3D+14%0A7+x+3+%3D+21">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">for</span> (<span class="tok-keyword">int</span> i <span class="tok-operator">=</span> <span class="tok-number">1</span>; i <span class="tok-operator">&lt;=</span> <span class="tok-number">3</span>; i<span class="tok-operator">++</span>) {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;7 x &quot;</span> <span class="tok-operator">+</span> i <span class="tok-operator">+</span> <span class="tok-string">&quot; = &quot;</span> <span class="tok-operator">+</span> (<span class="tok-number">7</span> <span class="tok-operator">*</span> i));
+        }
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21</pre>
+</div>
+</figure>
+<h2 id="the-enhanced-for-loop">The enhanced for loop</h2>
+<p>When you just want every item of an array or list, the enhanced <code>for</code> loop is shorter and avoids index mistakes.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++String%5B%5D+languages+%3D+%7B%22Python%22%2C+%22C%22%2C+%22Java%22%2C+%22JavaScript%22%7D%3B%0A++++++++for+%28String+lang+%3A+languages%29+%7B%0A++++++++++++System.out.println%28lang+%2B+%22+has+%22+%2B+lang.length%28%29+%2B+%22+letters%22%29%3B%0A++++++++%7D%0A++++%7D%0A%7D&amp;output=Python+has+6+letters%0AC+has+1+letters%0AJava+has+4+letters%0AJavaScript+has+10+letters">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-builtin">String</span>[] languages <span class="tok-operator">=</span> {<span class="tok-string">&quot;Python&quot;</span>, <span class="tok-string">&quot;C&quot;</span>, <span class="tok-string">&quot;Java&quot;</span>, <span class="tok-string">&quot;JavaScript&quot;</span>};
+        <span class="tok-keyword">for</span> (<span class="tok-builtin">String</span> lang <span class="tok-operator">:</span> languages) {
+            <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(lang <span class="tok-operator">+</span> <span class="tok-string">&quot; has &quot;</span> <span class="tok-operator">+</span> lang.<span class="tok-function">length</span>() <span class="tok-operator">+</span> <span class="tok-string">&quot; letters&quot;</span>);
+        }
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Python has 6 letters
+C has 1 letters
+Java has 4 letters
+JavaScript has 10 letters</pre>
+</div>
+</figure>
+<h2 id="while-and-do-while">while and do-while</h2>
+<p>A <code>while</code> loop checks first; a <code>do-while</code> loop runs once before checking.</p>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int+n+%3D+27%3B%0A++++++++int+steps+%3D+0%3B%0A++++++++while+%28n+%21%3D+1%29+%7B%0A++++++++++++n+%3D+%28n+%25+2+%3D%3D+0%29+%3F+n+%2F+2+%3A+3+*+n+%2B+1%3B%0A++++++++++++steps%2B%2B%3B%0A++++++++%7D%0A++++++++System.out.println%28%22Reached+1+after+%22+%2B+steps+%2B+%22+steps%22%29%3B%0A%0A++++++++int+tries+%3D+0%3B%0A++++++++do+%7B%0A++++++++++++tries%2B%2B%3B%0A++++++++%7D+while+%28tries+%3C+3%29%3B%0A++++++++System.out.println%28%22tries+%3D+%22+%2B+tries%29%3B%0A++++%7D%0A%7D&amp;output=Reached+1+after+111+steps%0Atries+%3D+3">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span> n <span class="tok-operator">=</span> <span class="tok-number">27</span>;
+        <span class="tok-keyword">int</span> steps <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+        <span class="tok-keyword">while</span> (n <span class="tok-operator">!=</span> <span class="tok-number">1</span>) {
+            n <span class="tok-operator">=</span> (n <span class="tok-operator">%</span> <span class="tok-number">2</span> <span class="tok-operator">==</span> <span class="tok-number">0</span>) <span class="tok-operator">?</span> n <span class="tok-operator">/</span> <span class="tok-number">2</span> <span class="tok-operator">:</span> <span class="tok-number">3</span> <span class="tok-operator">*</span> n <span class="tok-operator">+</span> <span class="tok-number">1</span>;
+            steps<span class="tok-operator">++</span>;
+        }
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;Reached 1 after &quot;</span> <span class="tok-operator">+</span> steps <span class="tok-operator">+</span> <span class="tok-string">&quot; steps&quot;</span>);
+
+        <span class="tok-keyword">int</span> tries <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+        <span class="tok-keyword">do</span> {
+            tries<span class="tok-operator">++</span>;
+        } <span class="tok-keyword">while</span> (tries <span class="tok-operator">&lt;</span> <span class="tok-number">3</span>);
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;tries = &quot;</span> <span class="tok-operator">+</span> tries);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Reached 1 after 111 steps
+tries = 3</pre>
+</div>
+</figure>
+<h2 id="break-and-continue">break and continue</h2>
+<figure class="code-block" data-lang="java">
+<div class="code-head"><span class="code-lang">Java</span><div class="code-actions"><button type="button" class="code-btn" data-copy>Copy</button><a class="code-btn" href="../playground.html#lang=java&amp;code=public+class+Main+%7B%0A++++public+static+void+main%28String%5B%5D+args%29+%7B%0A++++++++int%5B%5D+readings+%3D+%7B12%2C+-1%2C+15%2C+999%2C+8%7D%3B%0A++++++++int+sum+%3D+0%3B%0A++++++++for+%28int+r+%3A+readings%29+%7B%0A++++++++++++if+%28r+%3C+0%29+continue%3B+++%2F%2F+ignore+bad+readings%0A++++++++++++if+%28r+%3D%3D+999%29+break%3B+++%2F%2F+999+marks+the+end%0A++++++++++++sum+%2B%3D+r%3B%0A++++++++%7D%0A++++++++System.out.println%28%22Sum+%3D+%22+%2B+sum%29%3B%0A++++%7D%0A%7D&amp;output=Sum+%3D+27">Open in playground</a></div></div>
+<pre class="code-body"><code><span class="tok-keyword">public</span> <span class="tok-keyword">class</span> <span class="tok-class">Main</span> {
+    <span class="tok-keyword">public</span> <span class="tok-keyword">static</span> <span class="tok-keyword">void</span> <span class="tok-function">main</span>(<span class="tok-builtin">String</span>[] args) {
+        <span class="tok-keyword">int</span>[] readings <span class="tok-operator">=</span> {<span class="tok-number">12</span>, <span class="tok-operator">-</span><span class="tok-number">1</span>, <span class="tok-number">15</span>, <span class="tok-number">999</span>, <span class="tok-number">8</span>};
+        <span class="tok-keyword">int</span> sum <span class="tok-operator">=</span> <span class="tok-number">0</span>;
+        <span class="tok-keyword">for</span> (<span class="tok-keyword">int</span> r <span class="tok-operator">:</span> readings) {
+            <span class="tok-keyword">if</span> (r <span class="tok-operator">&lt;</span> <span class="tok-number">0</span>) <span class="tok-keyword">continue</span>;   <span class="tok-comment">// ignore bad readings</span>
+            <span class="tok-keyword">if</span> (r <span class="tok-operator">==</span> <span class="tok-number">999</span>) <span class="tok-keyword">break</span>;   <span class="tok-comment">// 999 marks the end</span>
+            sum <span class="tok-operator">+=</span> r;
+        }
+        <span class="tok-builtin">System</span>.out.<span class="tok-function">println</span>(<span class="tok-string">&quot;Sum = &quot;</span> <span class="tok-operator">+</span> sum);
+    }
+}</code></pre>
+<div class="code-output">
+  <div class="code-output-head">Output</div>
+  <pre class="code-output-body">Sum = 27</pre>
+</div>
+</figure>
+  </div>
+  <nav class="pager" aria-label="Lesson navigation">
+  <a class="pager-prev" href="if-else.html"><span>Previous</span>Conditions with if and switch</a>
+  <a class="pager-next" href="functions.html"><span>Next</span>Methods</a>
+</nav>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" rx="9" fill="url(#lg)"/>
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+  <path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2.2" fill="#fde68a"/>
+</svg><span>CodeShala</span></div>
+    <p>Learn to code, one small lesson at a time. All lessons are free to read.</p>
+    <nav aria-label="Footer"><a href="../python/index.html">Python</a><a href="../c/index.html">C</a><a href="../java/index.html" aria-current="page">Java</a><a href="../javascript/index.html">JavaScript</a><a href="../playground.html">Playground</a></nav>
+  </div>
+</footer>
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>
