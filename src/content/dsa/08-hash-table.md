@@ -133,6 +133,74 @@ get(22) = v22
 get(5) = None
 load factor = 0.86
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define M 7
+
+typedef struct Entry {
+    int key;
+    char value[8];
+    struct Entry *next;
+} Entry;
+
+Entry *buckets[M];
+int size = 0;
+
+int hash(int key) { return ((key % M) + M) % M; }
+
+void put(int key, const char *value) {
+    Entry **link = &buckets[hash(key)];
+    while (*link && (*link)->key != key) link = &(*link)->next;
+    if (*link) {                                  /* replace an existing key */
+        snprintf((*link)->value, sizeof((*link)->value), "%s", value);
+        return;
+    }
+    Entry *e = malloc(sizeof(Entry));             /* append at the end of the chain */
+    e->key = key;
+    snprintf(e->value, sizeof(e->value), "%s", value);
+    e->next = NULL;
+    *link = e;
+    size++;
+}
+
+const char *get(int key) {
+    for (Entry *e = buckets[hash(key)]; e; e = e->next)
+        if (e->key == key) return e->value;
+    return "null";
+}
+
+int main(void) {
+    int keys[] = {15, 11, 27, 8, 22, 4};
+    char v[8];
+    for (int i = 0; i < 6; i++) {
+        snprintf(v, sizeof(v), "v%d", keys[i]);
+        put(keys[i], v);
+    }
+    for (int i = 0; i < M; i++) {
+        printf("%d:", i);
+        for (Entry *e = buckets[i]; e; e = e->next) printf(" %d", e->key);
+        printf("\n");
+    }
+    printf("get(22) = %s\n", get(22));
+    printf("get(5) = %s\n", get(5));
+    printf("load factor = %.2f\n", (double)size / M);
+    return 0;
+}
+```
+```output
+0:
+1: 15 8 22
+2:
+3:
+4: 11 4
+5:
+6: 27
+get(22) = v22
+get(5) = null
+load factor = 0.86
+```
 
 The **load factor** α = n / m (keys per bucket) controls performance: with chaining, an average search looks at about 1 + α keys. Real implementations resize (usually double m) when α passes a threshold, about 0.75 in Java's `HashMap`.
 
@@ -198,6 +266,50 @@ insert 23 -> slot 6 (4 probes)
 insert 5 -> slot 7 (3 probes)
 insert 15 -> slot 9 (5 probes)
 [None, None, 12, 13, 2, 3, 23, 5, 18, 15]
+total probes: 21
+```
+```c
+#include <stdio.h>
+
+#define M 10
+#define EMPTY -1
+
+int main(void) {
+    int table[M];
+    for (int i = 0; i < M; i++) table[i] = EMPTY;
+    int keys[] = {12, 18, 13, 2, 3, 23, 5, 15};
+    int total_probes = 0;
+    for (int k = 0; k < 8; k++) {
+        int key = keys[k];
+        int i = key % M, probes = 1;
+        while (table[i] != EMPTY) {          /* collision: try the next slot */
+            i = (i + 1) % M;
+            probes++;
+        }
+        table[i] = key;
+        total_probes += probes;
+        printf("insert %d -> slot %d (%d probe%s)\n", key, i, probes, probes > 1 ? "s" : "");
+    }
+    printf("[");
+    for (int i = 0; i < M; i++) {
+        if (i) printf(", ");
+        if (table[i] == EMPTY) printf("null"); else printf("%d", table[i]);
+    }
+    printf("]\n");
+    printf("total probes: %d\n", total_probes);
+    return 0;
+}
+```
+```output
+insert 12 -> slot 2 (1 probe)
+insert 18 -> slot 8 (1 probe)
+insert 13 -> slot 3 (1 probe)
+insert 2 -> slot 4 (3 probes)
+insert 3 -> slot 5 (3 probes)
+insert 23 -> slot 6 (4 probes)
+insert 5 -> slot 7 (3 probes)
+insert 15 -> slot 9 (5 probes)
+[null, null, 12, 13, 2, 3, 23, 5, 18, 15]
 total probes: 21
 ```
 

@@ -104,6 +104,46 @@ binary_search(5) = -1
 first 4 at index 1, count of 4 = 3
 insert position for 10 = 6
 ```
+```c
+#include <stdio.h>
+
+int binary_search(const int a[], int n, int target) {
+    int lo = 0, hi = n - 1;
+    while (lo <= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (a[mid] == target) return mid;
+        if (a[mid] < target) lo = mid + 1; else hi = mid - 1;
+    }
+    return -1;
+}
+
+/* index of the first element >= target (n if none) */
+int lower_bound(const int a[], int n, int target) {
+    int lo = 0, hi = n;
+    while (lo < hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (a[mid] < target) lo = mid + 1; else hi = mid;
+    }
+    return lo;
+}
+
+int main(void) {
+    int a[] = {2, 4, 4, 4, 7, 9, 12, 15};
+    int n = 8;
+    printf("binarySearch(9) = %d\n", binary_search(a, n, 9));
+    printf("binarySearch(5) = %d\n", binary_search(a, n, 5));
+    int first = lower_bound(a, n, 4), after_last = lower_bound(a, n, 5);
+    printf("first 4 at index %d, count of 4 = %d\n", first, after_last - first);
+    printf("insert position for 10 = %d\n", lower_bound(a, n, 10));
+    return 0;
+}
+```
+```output
+binarySearch(9) = 5
+binarySearch(5) = -1
+first 4 at index 1, count of 4 = 3
+insert position for 10 = 6
+```
 
 ## Binary search on the answer
 
@@ -140,6 +180,27 @@ def isqrt(n):
     return ans
 
 print(isqrt(50), isqrt(1_000_000), isqrt(999_999_999_999))
+```
+```output
+7 1000 999999
+```
+```c
+#include <stdio.h>
+
+long long isqrt(long long n) {
+    long long lo = 0, hi = n, ans = 0;
+    while (lo <= hi) {
+        long long mid = lo + (hi - lo) / 2;
+        if (mid <= n / (mid > 0 ? mid : 1)) { ans = mid; lo = mid + 1; }   /* mid * mid <= n, without overflow */
+        else hi = mid - 1;
+    }
+    return ans;
+}
+
+int main(void) {
+    printf("%lld %lld %lld\n", isqrt(50), isqrt(1000000), isqrt(999999999999LL));
+    return 0;
+}
 ```
 ```output
 7 1000 999999

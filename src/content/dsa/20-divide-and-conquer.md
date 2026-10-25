@@ -71,6 +71,35 @@ print(f"2^62 = {power(2, 62)} using {mults} multiplications")
 3^13 = 1594323 using 6 multiplications
 2^62 = 4611686018427387904 using 10 multiplications
 ```
+```c
+#include <stdio.h>
+
+int mults = 0;
+
+long long power(long long x, int n) {
+    if (n == 0) return 1;
+    if (n % 2 == 0) {
+        long long half = power(x, n / 2);
+        mults++;
+        return half * half;
+    }
+    mults++;
+    return x * power(x, n - 1);
+}
+
+int main(void) {
+    long long r = power(3, 13);
+    printf("3^13 = %lld using %d multiplications\n", r, mults);
+    mults = 0;
+    r = power(2, 62);
+    printf("2^62 = %lld using %d multiplications\n", r, mults);
+    return 0;
+}
+```
+```output
+3^13 = 1594323 using 6 multiplications
+2^62 = 4611686018427387904 using 10 multiplications
+```
 
 ## Finding the maximum and minimum together
 
@@ -121,6 +150,37 @@ def max_min(a, lo, hi):                    # returns (max, min)
 a = [22, 13, -5, -8, 15, 60, 17, 31]
 mx, mn = max_min(a, 0, len(a) - 1)
 print(f"max={mx} min={mn} comparisons={comparisons} (3n/2 - 2 = {3 * len(a) // 2 - 2})")
+```
+```output
+max=60 min=-8 comparisons=10 (3n/2 - 2 = 10)
+```
+```c
+#include <stdio.h>
+
+int comparisons = 0;
+
+void max_min(const int a[], int lo, int hi, int *mx, int *mn) {
+    if (lo == hi) { *mx = *mn = a[lo]; return; }
+    if (hi == lo + 1) {
+        comparisons++;
+        if (a[lo] > a[hi]) { *mx = a[lo]; *mn = a[hi]; } else { *mx = a[hi]; *mn = a[lo]; }
+        return;
+    }
+    int mid = (lo + hi) / 2, lmax, lmin, rmax, rmin;
+    max_min(a, lo, mid, &lmax, &lmin);
+    max_min(a, mid + 1, hi, &rmax, &rmin);
+    comparisons += 2;
+    *mx = lmax > rmax ? lmax : rmax;
+    *mn = lmin < rmin ? lmin : rmin;
+}
+
+int main(void) {
+    int a[] = {22, 13, -5, -8, 15, 60, 17, 31};
+    int n = 8, mx, mn;
+    max_min(a, 0, n - 1, &mx, &mn);
+    printf("max=%d min=%d comparisons=%d (3n/2 - 2 = %d)\n", mx, mn, comparisons, 3 * n / 2 - 2);
+    return 0;
+}
 ```
 ```output
 max=60 min=-8 comparisons=10 (3n/2 - 2 = 10)
@@ -190,6 +250,43 @@ def kadane(a):
 a = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 print("divide and conquer:", max_sub(a, 0, len(a) - 1))
 print("Kadane:            ", kadane(a))
+```
+```output
+divide and conquer: 6
+Kadane:             6
+```
+```c
+#include <stdio.h>
+#include <limits.h>
+
+int max3(int a, int b, int c) { int m = a > b ? a : b; return m > c ? m : c; }
+
+int max_sub(const int a[], int lo, int hi) {
+    if (lo == hi) return a[lo];
+    int mid = (lo + hi) / 2;
+    int left_best = INT_MIN, sum = 0;
+    for (int i = mid; i >= lo; i--) { sum += a[i]; if (sum > left_best) left_best = sum; }
+    int right_best = INT_MIN;
+    sum = 0;
+    for (int i = mid + 1; i <= hi; i++) { sum += a[i]; if (sum > right_best) right_best = sum; }
+    return max3(left_best + right_best, max_sub(a, lo, mid), max_sub(a, mid + 1, hi));
+}
+
+int kadane(const int a[], int n) {
+    int best = a[0], cur = a[0];
+    for (int i = 1; i < n; i++) {
+        cur = a[i] > cur + a[i] ? a[i] : cur + a[i];
+        if (cur > best) best = cur;
+    }
+    return best;
+}
+
+int main(void) {
+    int a[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    printf("divide and conquer: %d\n", max_sub(a, 0, 8));
+    printf("Kadane:             %d\n", kadane(a, 9));
+    return 0;
+}
 ```
 ```output
 divide and conquer: 6

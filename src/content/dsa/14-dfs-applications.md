@@ -115,6 +115,55 @@ d/f: A 1/12  B 2/11  C 3/4  D 5/10  E 6/9  F 7/8  G 13/14
 edges: A->B tree, B->C tree, C->A back, B->D tree, D->E tree, E->F tree, F->D back, A->C forward, G->F cross
 has a cycle: True
 ```
+```c
+#include <stdio.h>
+
+#define V 7
+int adj[V][V], deg[V];
+int d[V], f[V], t = 0;
+char color[V];              /* 'W' white, 'G' grey, 'B' black */
+char edges_out[20][16];
+int ne = 0;
+
+void dfs(int u) {
+    d[u] = ++t;
+    color[u] = 'G';
+    for (int i = 0; i < deg[u]; i++) {
+        int v = adj[u][i];
+        const char *type = color[v] == 'W' ? "tree" : color[v] == 'G' ? "back" : d[u] < d[v] ? "forward" : "cross";
+        snprintf(edges_out[ne++], 16, "%c->%c %s", 'A' + u, 'A' + v, type);
+        if (color[v] == 'W') dfs(v);
+    }
+    color[u] = 'B';
+    f[u] = ++t;
+}
+
+int main(void) {
+    const char *list[] = {"AB", "AC", "BC", "BD", "CA", "DE", "EF", "FD", "GF"};
+    for (int i = 0; i < 9; i++) {
+        int u = list[i][0] - 'A';
+        adj[u][deg[u]++] = list[i][1] - 'A';
+    }
+    for (int v = 0; v < V; v++) color[v] = 'W';
+    for (int v = 0; v < V; v++) if (color[v] == 'W') dfs(v);
+
+    printf("d/f:");
+    for (int v = 0; v < V; v++) printf(v ? "  %c %d/%d" : " %c %d/%d", 'A' + v, d[v], f[v]);
+    printf("\nedges:");
+    int cycle = 0;
+    for (int i = 0; i < ne; i++) {
+        printf(i ? ", %s" : " %s", edges_out[i]);
+        if (edges_out[i][5] == 'b') cycle = 1;       /* "X->Y back" */
+    }
+    printf("\nhas a cycle: %s\n", cycle ? "true" : "false");
+    return 0;
+}
+```
+```output
+d/f: A 1/12  B 2/11  C 3/4  D 5/10  E 6/9  F 7/8  G 13/14
+edges: A->B tree, B->C tree, C->A back, B->D tree, D->E tree, E->F tree, F->D back, A->C forward, G->F cross
+has a cycle: true
+```
 
 The edges are printed in the order DFS examines them. `A->C` comes near the end: DFS reaches C through B first, and only looks at A's second edge after B's whole subtree is finished, so by then C is black and the edge is a forward edge. The **parenthesis theorem** holds: for any two vertices, their [d, f] intervals are either nested or disjoint. For example B's interval [2, 11] contains C's [3, 4].
 
@@ -215,6 +264,57 @@ print(len(sccs), "SCCs:", sccs)
 ```
 ```output
 3 SCCs: [['G'], ['A', 'B', 'C'], ['D', 'E', 'F']]
+```
+```c
+#include <stdio.h>
+
+#define V 7
+int adj[V][V], deg[V], rev[V][V], rdeg[V];
+int seen[V], finished[V], nf = 0;
+int comp[V], nc;
+
+void dfs1(int u) {
+    seen[u] = 1;
+    for (int i = 0; i < deg[u]; i++) if (!seen[adj[u][i]]) dfs1(adj[u][i]);
+    finished[nf++] = u;                    /* record the finish order */
+}
+
+void dfs2(int u) {
+    seen[u] = 1;
+    comp[nc++] = u;
+    for (int i = 0; i < rdeg[u]; i++) if (!seen[rev[u][i]]) dfs2(rev[u][i]);
+}
+
+int main(void) {
+    const char *list[] = {"AB", "AC", "BC", "BD", "CA", "DE", "EF", "FD", "GF"};
+    for (int i = 0; i < 9; i++) {
+        int u = list[i][0] - 'A', v = list[i][1] - 'A';
+        adj[u][deg[u]++] = v;
+        rev[v][rdeg[v]++] = u;
+    }
+    for (int v = 0; v < V; v++) if (!seen[v]) dfs1(v);
+
+    for (int v = 0; v < V; v++) seen[v] = 0;
+    char out[200] = "";
+    int count = 0, len = 0;
+    for (int k = nf - 1; k >= 0; k--) {             /* decreasing finish time */
+        int u = finished[k];
+        if (seen[u]) continue;
+        nc = 0;
+        dfs2(u);
+        for (int i = 1; i < nc; i++)                   /* sort the component */
+            for (int j = i; j > 0 && comp[j - 1] > comp[j]; j--) { int x = comp[j]; comp[j] = comp[j - 1]; comp[j - 1] = x; }
+        len += snprintf(out + len, sizeof(out) - len, count ? ", [" : "[");
+        for (int i = 0; i < nc; i++) len += snprintf(out + len, sizeof(out) - len, i ? ", %c" : "%c", 'A' + comp[i]);
+        len += snprintf(out + len, sizeof(out) - len, "]");
+        count++;
+    }
+    printf("%d SCCs: [%s]\n", count, out);
+    return 0;
+}
+```
+```output
+3 SCCs: [[G], [A, B, C], [D, E, F]]
 ```
 
 Shrinking every SCC to a single vertex always leaves a **directed acyclic graph** (the condensation), which can then be topologically sorted.

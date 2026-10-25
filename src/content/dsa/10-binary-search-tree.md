@@ -173,6 +173,88 @@ contains 60? True contains 65? False
 height = 2
 after deletes: [40, 60, 70, 80] root = 60
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int key;
+    struct Node *left, *right;
+} Node;
+
+Node *insert(Node *n, int key) {
+    if (!n) {
+        n = calloc(1, sizeof(Node));
+        n->key = key;
+        return n;
+    }
+    if (key < n->key) n->left = insert(n->left, key);
+    else if (key > n->key) n->right = insert(n->right, key);
+    return n;                                    /* duplicates are ignored */
+}
+
+int contains(Node *n, int key) {
+    while (n) {
+        if (key == n->key) return 1;
+        n = key < n->key ? n->left : n->right;
+    }
+    return 0;
+}
+
+int min_key(Node *n) { while (n->left) n = n->left; return n->key; }
+int max_key(Node *n) { while (n->right) n = n->right; return n->key; }
+int height(Node *n) {
+    if (!n) return -1;
+    int l = height(n->left), r = height(n->right);
+    return 1 + (l > r ? l : r);
+}
+
+Node *delete(Node *n, int key) {
+    if (!n) return NULL;
+    if (key < n->key) n->left = delete(n->left, key);
+    else if (key > n->key) n->right = delete(n->right, key);
+    else {
+        if (!n->left) { Node *r = n->right; free(n); return r; }     /* cases 1 and 2 */
+        if (!n->right) { Node *l = n->left; free(n); return l; }
+        Node *succ = n->right;                                        /* case 3: inorder successor */
+        while (succ->left) succ = succ->left;
+        n->key = succ->key;
+        n->right = delete(n->right, succ->key);
+    }
+    return n;
+}
+
+int first;
+void inorder(Node *n) {
+    if (!n) return;
+    inorder(n->left);
+    printf(first ? "%d" : ", %d", n->key);
+    first = 0;
+    inorder(n->right);
+}
+void print_inorder(Node *root) { first = 1; printf("["); inorder(root); printf("]"); }
+
+int main(void) {
+    Node *root = NULL;
+    int keys[] = {50, 30, 70, 20, 40, 60, 80};
+    for (int i = 0; i < 7; i++) root = insert(root, keys[i]);
+    printf("inorder: "); print_inorder(root); printf("\n");
+    printf("contains 60? %s, contains 65? %s\n", contains(root, 60) ? "true" : "false", contains(root, 65) ? "true" : "false");
+    printf("min=%d max=%d height=%d\n", min_key(root), max_key(root), height(root));
+
+    root = delete(root, 20);    /* leaf */
+    root = delete(root, 30);    /* one child (40) */
+    root = delete(root, 50);    /* two children: replaced by its successor 60 */
+    printf("after deletes: "); print_inorder(root); printf(", root = %d\n", root->key);
+    return 0;
+}
+```
+```output
+inorder: [20, 30, 40, 50, 60, 70, 80]
+contains 60? true, contains 65? false
+min=20 max=80 height=2
+after deletes: [40, 60, 70, 80], root = 60
+```
 
 ## Why balance matters
 

@@ -5,7 +5,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 
 - Home page with a language picker
 - Tutorials split into chapters, with a sidebar of topics on the left
-- Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java and Python (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
+- Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java, Python and C (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
 - Responsive layout, plus light and dark mode (follows the system setting, with a toggle in the header)
@@ -119,7 +119,7 @@ end: End
 
 ### Code in several languages (tabs)
 
-Code blocks in **different** languages that follow each other directly, each optionally with its own `output` block, are shown as one block with a tab for each language. The reader's choice of tab is remembered across pages. The DSA track uses this for its Java and Python versions.
+Code blocks in **different** languages that follow each other directly, each optionally with its own `output` block, are shown as one block with a tab for each language. The reader's choice of tab is remembered across pages. The DSA track uses this for its Java, Python and C versions.
 
 ### GATE-style practice questions
 

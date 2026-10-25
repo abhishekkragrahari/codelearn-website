@@ -125,6 +125,60 @@ dequeue: 20
 front [30, 40, 50, 60] rear
 full? True
 ```
+```c
+#include <stdio.h>
+
+#define CAPACITY 4
+
+typedef struct {
+    int data[CAPACITY];
+    int front, size;
+} CircularQueue;
+
+int is_full(const CircularQueue *q) { return q->size == CAPACITY; }
+
+int enqueue(CircularQueue *q, int x) {
+    if (is_full(q)) return -1;
+    int rear = (q->front + q->size) % CAPACITY;
+    q->data[rear] = x;
+    q->size++;
+    return 0;
+}
+
+int dequeue(CircularQueue *q) {
+    int x = q->data[q->front];          /* caller checks that the queue is not empty */
+    q->front = (q->front + 1) % CAPACITY;
+    q->size--;
+    return x;
+}
+
+void print(const CircularQueue *q) {
+    printf("front [");
+    for (int i = 0; i < q->size; i++) printf(i ? ", %d" : "%d", q->data[(q->front + i) % CAPACITY]);
+    printf("] rear\n");
+}
+
+int main(void) {
+    CircularQueue q = {.front = 0, .size = 0};
+    enqueue(&q, 10);
+    enqueue(&q, 20);
+    enqueue(&q, 30);
+    printf("dequeue: %d\n", dequeue(&q));
+    printf("dequeue: %d\n", dequeue(&q));
+    enqueue(&q, 40);
+    enqueue(&q, 50);
+    enqueue(&q, 60);         /* rear has wrapped around to the start of the array */
+    print(&q);
+    printf("full? %s\n", is_full(&q) ? "true" : "false");
+    return 0;
+}
+```
+```output
+dequeue: 10
+dequeue: 20
+front [30, 40, 50, 60] rear
+full? true
+```
 
 ## Deque: a double-ended queue
 
@@ -166,6 +220,42 @@ print(list(d))
 ['A', 'B', 'C']
 A C
 ['B']
+```
+```c
+#include <stdio.h>
+
+/* A deque in a circular array: add and remove at both ends in O(1). */
+#define CAP 8
+char items[CAP];
+int front = 0, count = 0;
+
+void add_last(char c) { items[(front + count++) % CAP] = c; }
+void add_first(char c) { front = (front - 1 + CAP) % CAP; items[front] = c; count++; }
+char poll_first(void) { char c = items[front]; front = (front + 1) % CAP; count--; return c; }
+char poll_last(void) { count--; return items[(front + count) % CAP]; }
+
+void print(void) {
+    printf("[");
+    for (int i = 0; i < count; i++) printf(i ? ", %c" : "%c", items[(front + i) % CAP]);
+    printf("]\n");
+}
+
+int main(void) {
+    add_last('B');
+    add_last('C');
+    add_first('A');
+    print();
+    char a = poll_first();
+    char c = poll_last();
+    printf("%c %c\n", a, c);
+    print();
+    return 0;
+}
+```
+```output
+[A, B, C]
+A C
+[B]
 ```
 
 ## Where queues are used

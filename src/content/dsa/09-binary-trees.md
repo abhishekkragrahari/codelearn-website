@@ -173,6 +173,84 @@ postorder:  D E B F C A
 levelorder: A B C D E F
 height=2 nodes=6 leaves=3
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    char val;
+    struct Node *left, *right;
+} Node;
+
+Node *node(char val, Node *left, Node *right) {
+    Node *n = malloc(sizeof(Node));
+    n->val = val;
+    n->left = left;
+    n->right = right;
+    return n;
+}
+
+void preorder(Node *n) {
+    if (!n) return;
+    printf(" %c", n->val);
+    preorder(n->left);
+    preorder(n->right);
+}
+
+void inorder(Node *n) {
+    if (!n) return;
+    inorder(n->left);
+    printf(" %c", n->val);
+    inorder(n->right);
+}
+
+void postorder(Node *n) {
+    if (!n) return;
+    postorder(n->left);
+    postorder(n->right);
+    printf(" %c", n->val);
+}
+
+void level_order(Node *root) {
+    Node *queue[64];
+    int head = 0, tail = 0;
+    queue[tail++] = root;
+    while (head < tail) {
+        Node *n = queue[head++];
+        printf(" %c", n->val);
+        if (n->left) queue[tail++] = n->left;
+        if (n->right) queue[tail++] = n->right;
+    }
+}
+
+int max(int a, int b) { return a > b ? a : b; }
+int height(Node *n) { return n ? 1 + max(height(n->left), height(n->right)) : -1; }
+int count(Node *n) { return n ? 1 + count(n->left) + count(n->right) : 0; }
+int leaves(Node *n) {
+    if (!n) return 0;
+    if (!n->left && !n->right) return 1;
+    return leaves(n->left) + leaves(n->right);
+}
+
+int main(void) {
+    Node *root = node('A',
+        node('B', node('D', NULL, NULL), node('E', NULL, NULL)),
+        node('C', node('F', NULL, NULL), NULL));
+    printf("preorder:  "); preorder(root); printf("\n");
+    printf("inorder:   "); inorder(root); printf("\n");
+    printf("postorder: "); postorder(root); printf("\n");
+    printf("levelorder:"); level_order(root); printf("\n");
+    printf("height=%d nodes=%d leaves=%d\n", height(root), count(root), leaves(root));
+    return 0;
+}
+```
+```output
+preorder:   A B D E C F
+inorder:    D B E A F C
+postorder:  D E B F C A
+levelorder: A B C D E F
+height=2 nodes=6 leaves=3
+```
 
 Each traversal visits every node once, so it takes **Θ(n)** time. The recursive versions use O(h) stack space, where h is the height.
 

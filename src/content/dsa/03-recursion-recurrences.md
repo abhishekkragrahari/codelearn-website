@@ -91,6 +91,41 @@ move disc 1: A -> C
 moves for 3 discs: 7
 moves for 10 discs: 1023
 ```
+```c
+#include <stdio.h>
+
+int moves = 0;
+int show = 1;
+
+void hanoi(int n, char from, char to, char via) {
+    if (n == 0) return;
+    hanoi(n - 1, from, via, to);
+    moves++;
+    if (show) printf("move disc %d: %c -> %c\n", n, from, to);
+    hanoi(n - 1, via, to, from);
+}
+
+int main(void) {
+    hanoi(3, 'A', 'C', 'B');
+    printf("moves for 3 discs: %d\n", moves);
+    moves = 0;
+    show = 0;
+    hanoi(10, 'A', 'C', 'B');
+    printf("moves for 10 discs: %d\n", moves);
+    return 0;
+}
+```
+```output
+move disc 1: A -> C
+move disc 2: A -> B
+move disc 1: C -> B
+move disc 3: A -> C
+move disc 1: B -> A
+move disc 2: B -> C
+move disc 1: A -> C
+moves for 3 discs: 7
+moves for 10 discs: 1023
+```
 
 The number of moves satisfies **M(n) = 2M(n − 1) + 1** with M(0) = 0, whose solution is **M(n) = 2ⁿ − 1**.
 
@@ -180,6 +215,32 @@ def f(n):                    # f(n) = f(n-1) + 2 f(n-2)
 
 print("ones(45) =", ones(45))
 print(*[f"f({n})={f(n)}" for n in range(7)])
+```
+```output
+ones(45) = 4
+f(0)=0 f(1)=1 f(2)=1 f(3)=3 f(4)=5 f(5)=11 f(6)=21
+```
+```c
+#include <stdio.h>
+
+/* returns the number of 1 bits in n */
+int ones(int n) {
+    if (n == 0) return 0;
+    return (n % 2) + ones(n / 2);
+}
+
+/* f(n) = f(n-1) + 2 * f(n-2), f(0) = 0, f(1) = 1 */
+int f(int n) {
+    if (n <= 1) return n;
+    return f(n - 1) + 2 * f(n - 2);
+}
+
+int main(void) {
+    printf("ones(45) = %d\n", ones(45));
+    for (int n = 0; n <= 6; n++) printf("f(%d)=%d ", n, f(n));
+    printf("\n");
+    return 0;
+}
 ```
 ```output
 ones(45) = 4
