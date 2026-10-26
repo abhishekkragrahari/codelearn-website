@@ -1,9 +1,9 @@
 // Site-wide settings. Change the name here and it updates everywhere.
 export const site = {
   name: 'GateShala',
-  tagline: 'GATE CS and DA notes, practice questions and coding tutorials',
+  tagline: 'GATE notes, practice questions and coding tutorials',
   description:
-    'Free GATE CS and GATE DA (Data Science and AI) preparation: subject-wise notes and GATE-style practice questions with solutions, including machine learning, AI and statistics, plus Python, C, Java, JavaScript and DSA tutorials.',
+    'Free GATE preparation for CS, DA, CE, ME, EE and EC: subject-wise notes, key formulas and GATE-style practice questions with solutions, plus Python, C, Java, JavaScript and DSA tutorials.',
   // Public address, used for canonical links, the sitemap and robots.txt.
   url: 'https://www.gateshala.com/',
   // Google AdSense publisher ID; its script is added to every page and ads.txt is generated from it.

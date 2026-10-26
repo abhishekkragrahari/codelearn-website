@@ -71,7 +71,7 @@ explain: C = εA/d, so C changes by 3/2 = 1.5.
 q: A coil of 200 turns has its flux changing uniformly from 5 mWb to 1 mWb in 0.02 s. What is the magnitude of the induced emf in volts?
 answer: 40
 verify: round(200 * (5e-3 - 1e-3) / 0.02, 6)
-explain: |emf| = N dΦ/dt = 200 × 0.004/0.02 = 40 V.
+explain: The magnitude of the emf is N dΦ/dt = 200 × 0.004/0.02 = 40 V.
 ```
 
 ```quiz

@@ -127,6 +127,11 @@ function corePaper(id, title, heading, branch) {
     paper: title,
     subjects: [...subjects, { name: 'Engineering Mathematics', track: 'em' }, { name: 'General Aptitude', track: 'ga' }],
     description: `GATE ${branch} preparation: the detailed syllabus, key concepts and formulas for every subject, with solved GATE-style questions.`,
+    lead:
+      `The detailed ${title} syllabus, with one lesson per subject: the topics to study, the key concepts and formulas, a worked ` +
+      'example and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built. ' +
+      'The Engineering Mathematics track currently covers linear algebra, calculus, and probability and statistics; the other ' +
+      'mathematics topics of this paper (differential equations, complex variables, numerical methods) are listed in the syllabus lesson.',
   };
 }
 
@@ -151,7 +156,7 @@ function gatePage(all, paper) {
   const body = `<section class="section"><div class="container">
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>${paper.title}</nav>
   <h1 class="section-title">${paper.heading}</h1>
-  <p class="section-lead">Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.</p>
+  <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
   <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
@@ -279,7 +284,8 @@ Namaste, Ravi!</pre>
     // Bing Webmaster Tools ownership check; keep it even after verification.
     '<meta name="msvalidate.01" content="6028ECC39AAE8BF8EBA002674091D003">\n';
   return layout({
-    titles: [`${site.name} - ${site.tagline}`, `${site.name}: GATE CS and DA Notes and Practice Questions`],
+    // The brand is already in this title, so it is used without the " | GateShala" suffix.
+    titles: [`${site.name} - ${site.tagline}`],
     head,
     root,
     body,
