@@ -360,6 +360,17 @@ function playgroundPage(all) {
   });
 }
 
+// About, Contact, Privacy Policy and other site pages, written in Markdown in src/pages/.
+function infoPage(file) {
+  const { data, body } = parseFrontMatter(readFileSync(join(SRC, 'pages', file), 'utf8'));
+  const html = renderBlocks(parseBlocks(body), (b) => codeBlock(b, ''));
+  const content = `<article class="container info-page prose">
+  <h1>${escapeHtml(data.title)}</h1>
+  ${html}
+</article>`;
+  return layout({ title: data.title, description: data.description, root: '', body: content });
+}
+
 function notFoundPage() {
   const body = `<section class="not-found container">
   ${logoSvg(64)}
@@ -385,6 +396,10 @@ export function build() {
   write('.nojekyll', '');
   write('CNAME', new URL(site.url).host + '\n');
   let count = 4;
+  for (const file of readdirSync(join(SRC, 'pages')).filter((f) => f.endsWith('.md'))) {
+    write(file.replace(/\.md$/, '.html'), infoPage(file));
+    count++;
+  }
   for (const lang of tracks) {
     const lessons = all[lang.id];
     write(`${lang.id}/index.html`, languagePage(lang, lessons));

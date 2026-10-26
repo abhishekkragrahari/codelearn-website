@@ -94,6 +94,14 @@ ${output}
 </figure>`;
 }
 
+const infoLinks = [
+  ['about.html', 'About'],
+  ['contact.html', 'Contact'],
+  ['privacy.html', 'Privacy Policy'],
+  ['terms.html', 'Terms of Use'],
+  ['disclaimer.html', 'Disclaimer'],
+];
+
 export function layout({ title, description = site.description, root, body, active = '', bodyClass = '', scripts = [] }) {
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} - ${site.tagline}`;
   // The top bar lists the languages, topics marked `nav`, and one link to the GATE hub.
@@ -144,6 +152,7 @@ ${body}
     <div class="footer-brand">${logoSvg(24)}<span>${site.name}</span></div>
     <p class="footer-tag">${escapeHtml(site.tagline)}. All lessons are free to read.</p>
     <nav aria-label="Footer">${nav}<a href="${root}playground.html">Playground</a></nav>
+    <nav class="footer-legal" aria-label="About this site">${infoLinks.map(([href, label]) => `<a href="${root}${href}">${label}</a>`).join('')}</nav>
   </div>
 </footer>
 <script src="${root}assets/js/app.js"></script>

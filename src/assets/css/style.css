@@ -604,6 +604,9 @@ button { font: inherit; }
 .footer-inner nav { display: flex; flex-wrap: wrap; gap: 18px; }
 .footer-inner nav a { color: var(--text-soft); text-decoration: none; }
 .footer-inner nav a:hover { color: var(--primary); }
+.footer-inner .footer-legal { width: 100%; font-size: .88rem; }
+.info-page { max-width: 780px; padding-top: 40px; padding-bottom: 64px; }
+.info-page h1 { font-size: 2rem; margin: 0 0 16px; }
 @media (max-width: 760px) { .footer-inner p { border-left: 0; padding-left: 0; flex-basis: 100%; } }
 .not-found { text-align: center; padding: 96px 16px; }
 .not-found h1 { font-size: 2rem; margin: 16px 0 8px; }
