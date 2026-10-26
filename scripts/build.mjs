@@ -46,7 +46,10 @@ function seoTags(path, html) {
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
 <meta property="og:url" content="${url}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${site.url}assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 `;
 }
 
@@ -61,6 +64,25 @@ function write(path, html) {
 }
 
 const jsonForScript = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
+
+// Structured data (JSON-LD) that tells search engines what a page is and where it sits.
+const absolute = (path) => site.url + path.replace(/(^|\/)index\.html$/, '$1');
+const jsonLd = (...objects) =>
+  objects.map((o) => `<script type="application/ld+json">${jsonForScript({ '@context': 'https://schema.org', ...o })}</script>\n`).join('');
+const breadcrumbs = (items) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: absolute(path) })),
+});
+const gateTag = (t) => (t.gate ? (t.da ? 'GATE DA' : 'GATE CS') : '');
+
+// Title candidates for a lesson, longest first. The track name is left out when the lesson
+// title already contains it ("Loops in C"), and long titles fall back to the part before " - ".
+function lessonTitles(lang, title) {
+  const tag = lang.gate ? ` (${gateTag(lang)})` : '';
+  const track = title.includes(lang.name) ? '' : ` - ${lang.name}`;
+  const short = title.split(' - ')[0];
+  return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, short])];
+}
 
 function topicCard(t, all, root) {
   return `<a class="topic-card glass" href="${root}${t.id}/index.html" style="--badge:${t.color}">
@@ -114,7 +136,15 @@ function gatePage(all, paper) {
   <p class="gate-other"><a href="${paper.other.href}">${paper.other.text}</a></p>
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
-  return layout({ title: `${paper.title} Preparation: Notes and Practice Questions`, description: paper.description, root, body, active: 'gate' });
+  return layout({
+    titles: [`${paper.title} Preparation: Notes and Practice Questions`, `${paper.title} Preparation`],
+    description: paper.description,
+    descriptionExtra: 'Free notes, worked examples and solved practice questions for every subject.',
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], [paper.title, paper.file]])),
+    root,
+    body,
+    active: 'gate',
+  });
 }
 
 function homePage(all) {
@@ -216,7 +246,17 @@ Namaste, Ravi!</pre>
     </div>
   </div>
 </section>`;
-  return layout({ title: '', root, body, bodyClass: 'home' });
+  const head = jsonLd(
+    { '@type': 'WebSite', name: site.name, url: site.url, description: site.description, inLanguage: 'en' },
+    { '@type': 'Organization', name: site.name, url: site.url, logo: absolute('assets/img/og-image.png') },
+  );
+  return layout({
+    titles: [`${site.name} - ${site.tagline}`, `${site.name}: GATE CS and DA Notes and Practice Questions`],
+    head,
+    root,
+    body,
+    bodyClass: 'home',
+  });
 }
 
 function languagePage(lang, lessons) {
@@ -243,7 +283,18 @@ ${sidebar(lang, lessons, null, root)}
   ${chapters}
 </div>
 </div>`;
-  return layout({ title: trackTitle(lang), description: lang.intro, root, body, active: lang.id, bodyClass: 'tutorial' });
+  return layout({
+    titles: [
+      lang.gate ? `${lang.name} for ${gateTag(lang)}: Notes and Practice Questions` : `${trackTitle(lang)}: Free Lessons with Examples`,
+      lang.gate ? `${lang.name} for ${gateTag(lang)}` : trackTitle(lang),
+    ],
+    description: lang.intro,
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], [lang.name, `${lang.id}/index.html`]])),
+    root,
+    body,
+    active: lang.id,
+    bodyClass: 'tutorial',
+  });
 }
 
 // Code blocks in different languages that follow each other directly (for
@@ -297,9 +348,28 @@ ${content}
 </article>
 </div>`;
   return layout({
-    // "GATE" in the title helps people searching for exam notes find the page.
-    title: `${l.title} - ${lang.name}${lang.gate ? (lang.da ? ' (GATE DA)' : ' (GATE)') : ''}`,
-    description: l.description,
+    // "GATE" in the title helps people searching for exam notes find the page; shorter forms are used when it is too long.
+    titles: lessonTitles(lang, l.title),
+    description: l.description || `${l.title} in ${trackTitle(lang)}.`,
+    descriptionExtra: lang.gate
+      ? `Free ${lang.name} notes for ${gateTag(lang)} with solved practice questions.`
+      : `Free ${lang.name} lesson with examples and their output.`,
+    head: jsonLd(
+      breadcrumbs([['Home', 'index.html'], [lang.name, `${lang.id}/index.html`], [l.title, `${lang.id}/${l.slug}.html`]]),
+      {
+        '@type': 'LearningResource',
+        name: l.title,
+        description: l.description || l.title,
+        url: absolute(`${lang.id}/${l.slug}.html`),
+        inLanguage: 'en',
+        isAccessibleForFree: true,
+        learningResourceType: 'Lesson',
+        educationalUse: lang.gate ? 'GATE exam preparation' : 'Programming tutorial',
+        about: lang.name,
+        isPartOf: { '@type': 'Course', name: trackTitle(lang), url: absolute(`${lang.id}/index.html`) },
+        provider: { '@type': 'Organization', name: site.name, url: site.url },
+      },
+    ),
     root,
     body,
     active: lang.id,
@@ -379,8 +449,10 @@ function playgroundPage(all) {
 </div>
 <script type="application/json" id="pg-examples">${jsonForScript(examples)}</script>`;
   return layout({
-    title: 'Playground',
+    titles: ['Online Compiler: Run Python, C, Java and JavaScript', 'Online Code Playground'],
     description: 'Write and run Python, C, Java and JavaScript code online.',
+    descriptionExtra: 'A free online compiler in your browser: no installation or sign-up needed.',
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], ['Playground', 'playground.html']])),
     root,
     body,
     active: 'playground',
@@ -397,7 +469,15 @@ function infoPage(file) {
   <h1>${escapeHtml(data.title)}</h1>
   ${html}
 </article>`;
-  return layout({ title: data.title, description: data.description, root: '', body: content });
+  const path = file.replace(/\.md$/, '.html');
+  return layout({
+    title: data.title,
+    description: data.description,
+    descriptionExtra: `${site.name} offers free GATE CS and GATE DA notes, practice questions and coding tutorials.`,
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], [data.title, path]])),
+    root: '',
+    body: content,
+  });
 }
 
 function notFoundPage() {
@@ -407,7 +487,7 @@ function notFoundPage() {
   <p>The page you were looking for does not exist or has moved.</p>
   <a class="btn btn-primary" href="${BASE}index.html">Go to the home page</a>
 </section>`;
-  return layout({ title: 'Page not found', root: BASE, body });
+  return layout({ title: 'Page not found', head: '<meta name="robots" content="noindex">\n', root: BASE, body });
 }
 
 export function build() {
