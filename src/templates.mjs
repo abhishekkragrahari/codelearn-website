@@ -142,7 +142,7 @@ ${body}
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">${logoSvg(24)}<span>${site.name}</span></div>
-    <p class="footer-tag">${escapeHtml(site.tagline)} All lessons are free to read.</p>
+    <p class="footer-tag">${escapeHtml(site.tagline)}. All lessons are free to read.</p>
     <nav aria-label="Footer">${nav}<a href="${root}playground.html">Playground</a></nav>
   </div>
 </footer>
