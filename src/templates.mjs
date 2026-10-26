@@ -102,8 +102,31 @@ const infoLinks = [
   ['disclaimer.html', 'Disclaimer'],
 ];
 
-export function layout({ title, description = site.description, root, body, active = '', bodyClass = '', scripts = [] }) {
-  const fullTitle = title ? `${title} | ${site.name}` : `${site.name} - ${site.tagline}`;
+// Search engines show about 60 characters of a title and 160 of a description.
+const TITLE_MAX = 65;
+const DESCRIPTION_MAX = 160;
+
+// Takes title candidates, longest first, and returns the first that fits with " | GateShala",
+// then the first that fits alone, then the last one.
+function fitTitle(candidates) {
+  return (
+    candidates.map((t) => `${t} | ${site.name}`).find((t) => t.length <= TITLE_MAX) ||
+    candidates.find((t) => t.length <= TITLE_MAX) ||
+    candidates[candidates.length - 1]
+  );
+}
+
+// Lengthens a short description with `extra`, and cuts a long one at a word boundary.
+function fitDescription(text, extra) {
+  let d = text.trim();
+  if (extra && d.length < 110) d = `${d} ${extra}`;
+  if (d.length > DESCRIPTION_MAX) d = d.slice(0, d.lastIndexOf(' ', DESCRIPTION_MAX - 1)).replace(/[,;:(\s-]+$/, '') + '…';
+  return d;
+}
+
+export function layout({ title, titles, description = site.description, descriptionExtra, head = '', root, body, active = '', bodyClass = '', scripts = [] }) {
+  const fullTitle = fitTitle(titles || [title]);
+  description = fitDescription(description, descriptionExtra);
   // The top bar lists the languages, topics marked `nav`, and one link to the GATE hub.
   const gateActive = active === 'gate' || tracks.some((t) => t.id === active && t.gate && !t.nav);
   const nav =
@@ -123,7 +146,7 @@ export function layout({ title, description = site.description, root, body, acti
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap">
 <link rel="stylesheet" href="${root}assets/css/style.css">
-${site.adsenseClient ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}" crossorigin="anonymous"></script>\n` : ''}<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+${head}${site.adsenseClient ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}" crossorigin="anonymous"></script>\n` : ''}<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body class="${bodyClass}">
 <div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
