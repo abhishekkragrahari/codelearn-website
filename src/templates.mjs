@@ -110,7 +110,7 @@ export function layout({ title, description = site.description, root, body, acti
     tracks
       .filter((l) => !l.topic || l.nav)
       .map((l) => `<a href="${root}${l.id}/index.html"${active === l.id ? ' aria-current="page"' : ''}>${l.topic ? 'DSA' : l.name}</a>`)
-      .join('') + `<a href="${root}gate.html"${gateActive ? ' aria-current="page"' : ''}>GATE CS</a>`;
+      .join('') + `<a href="${root}gate.html"${gateActive ? ' aria-current="page"' : ''}>GATE</a>`;
   return `<!doctype html>
 <html lang="en">
 <head>
