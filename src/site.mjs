@@ -6,6 +6,8 @@ export const site = {
     'Free GATE CS and GATE DA (Data Science and AI) preparation: subject-wise notes and GATE-style practice questions with solutions, including machine learning, AI and statistics, plus Python, C, Java, JavaScript and DSA tutorials.',
   // Public address, used for canonical links, the sitemap and robots.txt.
   url: 'https://www.gateshala.com/',
+  // Google AdSense publisher ID; its script is added to every page and ads.txt is generated from it.
+  adsenseClient: 'ca-pub-5062131569834822',
 };
 
 // Order here is the order used in menus and on the home page.
