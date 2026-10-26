@@ -103,7 +103,7 @@ function gatePage(all, paper) {
       }
       const lessons = all[t.id];
       const quizzes = lessons.reduce((n, l) => n + l.blocks.filter((b) => b.type === 'code' && b.lang === 'quiz').length, 0);
-      return `<li class="gate-subject"><span class="chapter-num">${i + 1}</span><a href="${t.id}/index.html"><strong>${escapeHtml(g.name)}</strong><span>${lessons.length} lessons &middot; ${quizzes} GATE-style questions</span></a></li>`;
+      return `<li class="gate-subject"><span class="chapter-num">${i + 1}</span><a href="${t.id}/index.html"><strong>${escapeHtml(g.name)}</strong><span>${lessons.length} lessons${quizzes ? ` &middot; ${quizzes} GATE-style questions` : ''}</span></a></li>`;
     })
     .join('');
   const body = `<section class="section"><div class="container">
@@ -114,7 +114,7 @@ function gatePage(all, paper) {
   <p class="gate-other"><a href="${paper.other.href}">${paper.other.text}</a></p>
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
-  return layout({ title: paper.title, description: paper.description, root, body, active: 'gate' });
+  return layout({ title: `${paper.title} Preparation: Notes and Practice Questions`, description: paper.description, root, body, active: 'gate' });
 }
 
 function homePage(all) {
@@ -327,7 +327,7 @@ function playgroundPage(all) {
   const cards = [
     ...languages.map((l) => ({ href: `${l.id}/index.html`, t: l, ic: '', blurb: l.blurb })),
     ...topics.filter((t) => t.nav).map((t) => ({ href: `${t.id}/index.html`, t, ic: 'graph', blurb: t.blurb })),
-    { href: 'gate.html', t: { id: 'gate', short: 'GT', color: '#7c3aed', name: 'GATE CS' }, ic: 'cap', blurb: 'Practice with previous year style questions.' },
+    { href: 'gate.html', t: { id: 'gate', short: 'GT', color: '#7c3aed', name: 'GATE CS' }, ic: 'cap', blurb: 'Practice with GATE-style questions.' },
   ]
     .map(
       (c) => `<a class="pg-track glass" href="${c.href}" style="--badge:${c.t.color}">${langLogo(c.t, 'md', c.ic)}<span><strong>${escapeHtml(c.t.topic ? 'DSA' : c.t.name)}</strong><small>${escapeHtml(c.t.tagline || c.blurb)}</small></span><span class="card-arrow">${icon('arrow', 15)}</span></a>`,

@@ -1,9 +1,9 @@
 // Site-wide settings. Change the name here and it updates everywhere.
 export const site = {
   name: 'GateShala',
-  tagline: 'GATE CS notes, practice questions and coding tutorials',
+  tagline: 'GATE CS and DA notes, practice questions and coding tutorials',
   description:
-    'Free GATE CS preparation: subject-wise notes, GATE-style practice questions with solutions for all 12 subjects, plus Python, C, Java, JavaScript and DSA tutorials.',
+    'Free GATE CS and GATE DA (Data Science and AI) preparation: subject-wise notes and GATE-style practice questions with solutions, including machine learning, AI and statistics, plus Python, C, Java, JavaScript and DSA tutorials.',
   // Public address, used for canonical links, the sitemap and robots.txt.
   url: 'https://www.gateshala.com/',
 };

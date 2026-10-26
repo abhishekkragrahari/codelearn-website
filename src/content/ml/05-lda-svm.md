@@ -173,7 +173,7 @@ explain: ‖**w**‖ = √(9 + 16) = 5, so the margin is 2 / 5 = 0.4.
 q: What is the distance from the point (4, 1) to the line 3x₁ − 4x₂ + 2 = 0?
 answer: 2
 verify: abs(3 * 4 - 4 * 1 + 2) / (3 ** 2 + 4 ** 2) ** 0.5
-explain: |3 · 4 − 4 · 1 + 2| / √(3² + 4²) = |10| / 5 = 2.
+explain: The distance is |3 · 4 − 4 · 1 + 2| / √(3² + 4²) = |10| / 5 = 2.
 ```
 
 ```quiz

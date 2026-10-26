@@ -1,6 +1,6 @@
 # GateShala
 
-A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, Computer Organization, Compiler Design, Discrete Mathematics, Engineering Mathematics and General Aptitude: all 12 GATE CS subjects) collected on a **GATE CS** hub page.
+A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, Computer Organization, Compiler Design, Discrete Mathematics, Engineering Mathematics and General Aptitude: all 12 GATE CS subjects) collected on a **GATE CS** hub page, and GATE DA (Data Science and AI) tracks (Probability & Statistics, Linear Algebra, Calculus & Optimization, Machine Learning, Artificial Intelligence and Data Warehousing) on a **GATE DA** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.
 
 - Home page with a language picker
@@ -17,6 +17,8 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 - Engineering Mathematics track: 9 lessons (matrices, linear systems, eigenvalues, limits and maxima, integration, probability, distributions, statistics), checked with exact fractions, Simpson's rule and enumeration.
 - General Aptitude track: 10 lessons (numbers and percentages, ratios and averages, time and work, speed and distance, profit and interest, data interpretation, logical and spatial reasoning, verbal ability).
 - GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
+- GATE DA tracks: Probability & Statistics (8 lessons), Linear Algebra (8), Calculus & Optimization (5), Machine Learning (11, every method implemented in plain Python), Artificial Intelligence (9: search, logic, Bayesian networks and inference) and Data Warehousing (4, with SQL on SQLite).
+- GATE DA hub (`gate-da.html`) listing the GATE DA syllabus; programming, DSA, DBMS and aptitude link to the existing tracks.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
 - Responsive layout, plus light and dark mode (follows the system setting, with a toggle in the header)
@@ -64,7 +66,7 @@ Notes:
 
 ```text
 src/
-  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC, DL, COA, CD, DM, EM, GA) and the GATE subject list
+  site.mjs              site name, languages, topic tracks (DSA, OS, DBMS, CN, TOC, DL, COA, CD, DM, EM, GA, and the DA tracks PS, LA, CALC, ML, AI, DW) and the GATE CS and DA subject lists
   content/<language>/   one Markdown file per lesson (01-..., 02-... sets the order)
   assets/css/style.css  all styles; colours are CSS variables, with dark mode at the top
   assets/js/            app.js (theme, menus, copy/run), runner.js (JS sandbox),
@@ -156,7 +158,7 @@ explain: M(n) = 2ⁿ − 1.
 
 - `*` marks a correct option and `-` a wrong one. One `*` makes an MCQ; several make an MSQ.
 - `answer:` makes a NAT (numerical) question.
-- `verify:` is a Python expression that `npm run verify-examples` evaluates; the build fails if it does not equal the answer. For longer checks, leave `verify:` empty and indent a Python program under it that prints the answer.
+- `verify:` is a Python expression that `npm run verify-examples` evaluates; the build fails if it does not equal the answer (for an MCQ, the text of its one correct option). For longer checks, leave `verify:` empty and indent a Python program under it that prints the answer.
 - `code: c` (or `java`, `python`, `javascript`, `sql`) followed by an indented program shows that program in the question, for "what does this print?" questions. `npm run verify-examples` compiles and runs it, and its output must equal the NAT answer or the text of the one correct option. A `sql` program runs on a fresh SQLite database and prints bare values, one row per line. C quiz programs may compile with warnings, since GATE questions are often deliberately tricky; lesson examples must compile cleanly with `-Wall -Werror`.
 
 To add a whole new language, add an entry in `src/site.mjs`, add a folder under `src/content/`, and add a grammar in `src/highlight.mjs`.

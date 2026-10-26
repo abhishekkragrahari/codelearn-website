@@ -174,7 +174,7 @@ explain: Sorted by distance: (3, 3) B 1, (2, 1) A 1.414, (1, 2) A 2, (1, 1) A 2.
 q: What is the Manhattan distance between the points (1, 5, −2) and (4, 1, 0)?
 answer: 9
 verify: abs(1 - 4) + abs(5 - 1) + abs(-2 - 0)
-explain: |1 − 4| + |5 − 1| + |−2 − 0| = 3 + 4 + 2 = 9.
+explain: Add the absolute differences of the coordinates: |1 − 4| + |5 − 1| + |−2 − 0| = 3 + 4 + 2 = 9.
 ```
 
 ```quiz
