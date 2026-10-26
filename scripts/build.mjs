@@ -249,7 +249,9 @@ Namaste, Ravi!</pre>
   const head = jsonLd(
     { '@type': 'WebSite', name: site.name, url: site.url, description: site.description, inLanguage: 'en' },
     { '@type': 'Organization', name: site.name, url: site.url, logo: absolute('assets/img/og-image.png') },
-  );
+  ) +
+    // Bing Webmaster Tools ownership check; keep it even after verification.
+    '<meta name="msvalidate.01" content="6028ECC39AAE8BF8EBA002674091D003">\n';
   return layout({
     titles: [`${site.name} - ${site.tagline}`, `${site.name}: GATE CS and DA Notes and Practice Questions`],
     head,
