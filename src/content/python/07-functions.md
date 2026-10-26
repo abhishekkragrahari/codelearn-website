@@ -7,14 +7,14 @@ A **function** is a named block of code that you can run whenever you need it. Y
 
 ```python
 def greet():
-    print("Welcome to CodeShala!")
+    print("Welcome to GateShala!")
 
 greet()
 greet()
 ```
 ```output
-Welcome to CodeShala!
-Welcome to CodeShala!
+Welcome to GateShala!
+Welcome to GateShala!
 ```
 
 ## Parameters and return values
