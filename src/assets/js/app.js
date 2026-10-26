@@ -6,7 +6,7 @@
   function currentTheme() {
     var set = doc.getAttribute('data-theme');
     if (set) return set;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'light';
   }
   document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -16,20 +16,42 @@
     });
   });
 
+  // ----- Scroll reveal: cards and sections slide in as they come into view -----
+  var revealSel = '.section-head, .lang-card, .topic-card, .feature, .chapter-card, .gate-subject, .code-block, .quiz, .diagram, .pager';
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll(revealSel).forEach(function (el) {
+      // Anything already on screen when the page opens is shown straight away.
+      if (el.getBoundingClientRect().top < innerHeight) return;
+      // Stagger siblings in the same grid so a row flows in left to right.
+      var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty('--d', Math.min(i, 5) * 0.08 + 's');
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  }
+
   // ----- Mobile menus -----
   function toggler(buttonSel, target, openClass) {
     document.querySelectorAll(buttonSel).forEach(function (btn) {
       var el = document.getElementById(btn.getAttribute('aria-controls'));
       if (!el) return;
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
+      btn.addEventListener('click', function () {
         var open = !el.classList.contains(openClass);
         el.classList.toggle(openClass, open);
         btn.setAttribute('aria-expanded', String(open));
         if (target) document.body.classList.toggle(target, open);
       });
       document.addEventListener('click', function (e) {
-        if (el.classList.contains(openClass) && !el.contains(e.target)) {
+        // Any click outside (including on the other menu's button) closes this one,
+        // so the top menu and the topics drawer are never open together.
+        if (el.classList.contains(openClass) && !el.contains(e.target) && !btn.contains(e.target)) {
+          // A tap on the dimmed page only closes the menu; it must not also follow a link underneath.
+          if (!e.target.closest('[data-menu-toggle], [data-sidebar-toggle]')) { e.preventDefault(); e.stopPropagation(); }
           el.classList.remove(openClass);
           btn.setAttribute('aria-expanded', 'false');
           if (target) document.body.classList.remove(target);
@@ -56,11 +78,12 @@
     });
   }
   function flash(btn, label) {
-    var original = btn.getAttribute('data-label') || btn.textContent;
-    btn.setAttribute('data-label', original);
+    // Buttons hold an icon, so the original markup is kept and restored.
+    if (btn._label == null) btn._label = btn.innerHTML;
+    var original = btn._label;
     btn.textContent = label;
     clearTimeout(btn._t);
-    btn._t = setTimeout(function () { btn.textContent = original; }, 1500);
+    btn._t = setTimeout(function () { btn.innerHTML = original; }, 1500);
   }
   window.CSCopy = function (text, btn) {
     copyText(text).then(function () { flash(btn, 'Copied!'); }, function () { flash(btn, 'Press Ctrl+C'); });
@@ -128,6 +151,7 @@
       panel.hidden = false;
       panel.querySelector('.code-output-head').textContent = 'Output (live)';
       out.textContent = '';
+      var label = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = 'Running...';
       var any = false;
@@ -142,7 +166,7 @@
       }).then(function () {
         if (!any) out.textContent = '(no output)';
         btn.disabled = false;
-        btn.innerHTML = '&#9654; Run';
+        btn.innerHTML = label;
       });
     });
   });
