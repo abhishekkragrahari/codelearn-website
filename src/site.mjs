@@ -1,9 +1,11 @@
 // Site-wide settings. Change the name here and it updates everywhere.
 export const site = {
   name: 'GateShala',
-  tagline: 'Learn to code, one small lesson at a time.',
+  tagline: 'GATE CS notes, practice questions and coding tutorials',
   description:
-    'Free, beginner-friendly tutorials for Python, C, Java and JavaScript with runnable examples.',
+    'Free GATE CS preparation: subject-wise notes, GATE-style practice questions with solutions for all 12 subjects, plus Python, C, Java, JavaScript and DSA tutorials.',
+  // Public address, used for canonical links, the sitemap and robots.txt.
+  url: 'https://www.gateshala.com/',
 };
 
 // Order here is the order used in menus and on the home page.

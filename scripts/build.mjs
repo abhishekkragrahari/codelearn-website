@@ -13,7 +13,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
 const OUT = join(ROOT, 'dist');
 // Absolute base path, only needed by 404.html (it can be served at any URL).
-// The deploy workflow sets it to "/<repo-name>/" for GitHub Pages project sites.
+// The deploy workflow sets it to "/" for the custom domain.
 const BASE = (process.env.SITE_BASE || '/').replace(/\/?$/, '/');
 
 export function loadLessons(langId) {
@@ -31,7 +31,30 @@ export function loadLessons(langId) {
     });
 }
 
+// Pages listed in sitemap.xml (every HTML page except 404.html).
+const pages = [];
+
+// Canonical and social-share tags need the page's own address, so they are
+// added here rather than in layout().
+function seoTags(path, html) {
+  const url = site.url + path.replace(/(^|\/)index\.html$/, '$1');
+  const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || site.name;
+  const desc = (html.match(/<meta name="description" content="([^"]*)">/) || [])[1] || '';
+  return `<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${escapeHtml(site.name)}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${desc}">
+<meta property="og:url" content="${url}">
+<meta name="twitter:card" content="summary">
+`;
+}
+
 function write(path, html) {
+  if (path.endsWith('.html') && path !== '404.html') {
+    pages.push(path);
+    html = html.replace('</head>', seoTags(path, html) + '</head>');
+  }
   const full = join(OUT, path);
   mkdirSync(dirname(full), { recursive: true });
   writeFileSync(full, html);
@@ -360,6 +383,7 @@ export function build() {
   write('gate.html', gatePage(all));
   write('404.html', notFoundPage());
   write('.nojekyll', '');
+  write('CNAME', new URL(site.url).host + '\n');
   let count = 4;
   for (const lang of tracks) {
     const lessons = all[lang.id];
@@ -367,6 +391,13 @@ export function build() {
     lessons.forEach((_, i) => write(`${lang.id}/${lessons[i].slug}.html`, lessonPage(lang, lessons, i)));
     count += 1 + lessons.length;
   }
+  const urls = pages.map((p) => `  <url><loc>${site.url}${p.replace(/(^|\/)index\.html$/, '$1')}</loc></url>`);
+  write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join('\n')}
+</urlset>
+`);
+  write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site.url}sitemap.xml\n`);
   return count;
 }
 
