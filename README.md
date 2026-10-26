@@ -53,12 +53,12 @@ It deploys only from `main`, and only after you switch Pages on once:
 2. Under **Build and deployment → Source**, choose **GitHub Actions**. Do not choose "Deploy from a branch".
 3. Merge the pull request into `main`, or open **Actions → Build and deploy to GitHub Pages → Run workflow**.
 4. When the run finishes, the site URL appears on the run summary and under Settings → Pages:
-   `https://abhishekkragrahari.github.io/codelearn-website/`
+   `https://www.gateshala.com/` (custom domain)
 
 Notes:
 
 - Pages for a **private** repository needs a paid GitHub plan (Pro, Team or Enterprise); for a public repository it is free.
-- If you later use a custom domain or a `<user>.github.io` repository, the site is served from `/`. In that case set `SITE_BASE: /` in the workflow. It is only used by the 404 page.
+- The site uses the custom domain `www.gateshala.com` (set in Settings → Pages), so the workflow sets `SITE_BASE: /`. It is only used by the 404 page.
 
 ## Project layout
 
