@@ -441,6 +441,9 @@ export function build() {
 ${urls.join('\n')}
 </urlset>
 `);
+  if (site.adsenseClient) {
+    write('ads.txt', `google.com, ${site.adsenseClient.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`);
+  }
   write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site.url}sitemap.xml\n`);
   return count;
 }

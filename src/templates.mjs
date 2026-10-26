@@ -123,7 +123,7 @@ export function layout({ title, description = site.description, root, body, acti
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap">
 <link rel="stylesheet" href="${root}assets/css/style.css">
-<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+${site.adsenseClient ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}" crossorigin="anonymous"></script>\n` : ''}<script>try{var t=localStorage.getItem('cs-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body class="${bodyClass}">
 <div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
