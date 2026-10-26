@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { site, languages, topics, tracks, gateSubjects } from '../src/site.mjs';
 import { parseFrontMatter, parseBlocks, renderBlocks, inline } from '../src/markdown.mjs';
 import { escapeHtml, highlight } from '../src/highlight.mjs';
-import { layout, sidebar, codeBlock, langBadge, groupByChapter, logoSvg, langById, trackTitle } from '../src/templates.mjs';
+import { layout, sidebar, codeBlock, groupByChapter, logoSvg, langById, trackTitle, icon, langLogo, playgroundHref } from '../src/templates.mjs';
 import { renderQuiz } from '../src/quiz.mjs';
 import { isDiagram, renderDiagram } from '../src/diagrams.mjs';
 
@@ -40,10 +40,11 @@ function write(path, html) {
 const jsonForScript = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
 
 function topicCard(t, all, root) {
-  return `<a class="topic-card" href="${root}${t.id}/index.html" style="--badge:${t.color}">
-  ${langBadge(t, 'lg')}
-  <div><h3>${escapeHtml(t.cardTitle || t.name)}</h3><p>${escapeHtml(t.blurb)}</p>
+  return `<a class="topic-card glass" href="${root}${t.id}/index.html" style="--badge:${t.color}">
+  ${langLogo(t, 'lg', 'graph')}
+  <div class="topic-card-body"><h3>${escapeHtml(t.cardTitle || t.name)}</h3><p>${escapeHtml(t.blurb)}</p>
   <span class="lang-card-meta">${all[t.id].length} lessons &middot; ${escapeHtml(t.cardMeta || 'GATE-style questions')}</span></div>
+  <span class="card-arrow">${icon('arrow', 16)}</span>
 </a>`;
 }
 
@@ -74,24 +75,26 @@ function gatePage(all) {
 function homePage(all) {
   const root = './';
   const ready = gateSubjects.filter((g) => g.track).length;
+  const gate = { id: 'gate', short: 'GT', color: '#7c3aed' };
   const topicCards =
     topics
       .filter((t) => t.nav)
       .map((t) => topicCard(t, all, ''))
       .join('\n') +
-    `<a class="topic-card" href="gate.html" style="--badge:#4f46e5">
-  <span class="lang-badge lg" style="--badge:#4f46e5">GT</span>
-  <div><h3>GATE CS preparation</h3><p>Subject-wise lessons for the GATE Computer Science exam, each with figures, worked examples and GATE-style practice questions.</p>
+    `<a class="topic-card glass" href="gate.html" style="--badge:${gate.color}">
+  ${langLogo(gate, 'lg', 'cap')}
+  <div class="topic-card-body"><h3>GATE CS preparation</h3><p>Subject-wise lessons for the GATE Computer Science exam, each with figures, worked examples and practice questions.</p>
   <span class="lang-card-meta">${ready} of ${gateSubjects.length} subjects ready</span></div>
+  <span class="card-arrow">${icon('arrow', 16)}</span>
 </a>`;
   const cards = languages
     .map((lang) => {
       const lessons = all[lang.id];
-      return `<a class="lang-card" href="${lang.id}/index.html" style="--badge:${lang.color}">
-  ${langBadge(lang, 'lg')}
+      return `<a class="lang-card glass" href="${lang.id}/index.html" style="--badge:${lang.color}">
+  <div class="lang-card-top">${langLogo(lang)}<span class="card-arrow">${icon('arrow', 16)}</span></div>
   <h3>${lang.name}</h3>
   <p>${escapeHtml(lang.blurb)}</p>
-  <span class="lang-card-meta">${lessons.length} lessons${lang.runnable ? ' &middot; runs in browser' : ''}</span>
+  <span class="lang-card-meta">${lessons.length} lessons${lang.runnable ? ' &middot; runs in browser' : ''}<span class="card-arrow">${icon('arrow', 16)}</span></span>
 </a>`;
     })
     .join('\n');
@@ -100,40 +103,66 @@ function homePage(all) {
 
 for learner in ["Asha", "Ravi"]:
     print(greet(learner))`;
+  const lines = highlight(sample, 'python').split('\n').map((l, i) => `<span class="ln-row" style="animation-delay:${0.5 + i * 0.18}s"><span class="ln">${i + 1}</span>${l}</span>`).join('\n');
+  const sectionHead = (ic, title, lead) =>
+    `<div class="section-head"><span class="section-icon">${icon(ic, 20)}</span><div><h2 class="section-title">${title}</h2><p class="section-lead">${lead}</p></div></div>`;
   const body = `<section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <p class="eyebrow">Free tutorials &middot; No sign-up</p>
-      <h1>Learn programming the <span class="grad">friendly</span> way.</h1>
+      <p class="eyebrow"><span class="eyebrow-dot"></span>Free tutorials &middot; No sign-up required</p>
+      <h1>Learn programming the <span class="grad squiggle">friendly</span> way.</h1>
       <p class="hero-lead">Short lessons, clear examples and a playground to try things out.
         Pick a language and write your first program in minutes.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="python/index.html">Start with Python</a>
-        <a class="btn btn-ghost" href="playground.html">Open the playground</a>
+        <a class="btn btn-primary btn-lg" href="python/index.html">Start with Python ${icon('arrow', 18)}</a>
+        <a class="btn btn-ghost btn-lg" href="playground.html">${icon('code', 18)}Open the playground</a>
       </div>
+      <ul class="hero-points">
+        <li><span class="pt pt-blue">${icon('book', 18)}</span>Bite-sized lessons</li>
+        <li><span class="pt pt-amber">${icon('bolt', 18)}</span>Run in browser</li>
+        <li><span class="pt pt-violet">${icon('users', 18)}</span>Perfect for beginners</li>
+      </ul>
     </div>
-    <div class="hero-code" aria-hidden="true">
-      <div class="window-dots"><span></span><span></span><span></span><em>hello.py</em></div>
-      <pre class="code-body"><code>${highlight(sample, 'python')}</code></pre>
-      <div class="hero-code-out"><span>Output</span>Namaste, Asha!<br>Namaste, Ravi!</div>
+    <div class="hero-visual">
+      <div class="hero-code glass">
+        <div class="hero-code-bar">
+          <div class="window-dots"><span></span><span></span><span></span></div>
+          <span class="file-tab">${langLogo(languages[0], 'xs')}hello.py</span>
+          <div class="hero-code-tools">
+            <a class="mini-btn" href="${escapeHtml(playgroundHref(root, 'python', sample))}" aria-label="Copy into the playground">${icon('copy', 15)}</a>
+            <a class="mini-btn" href="${escapeHtml(playgroundHref(root, 'python', sample))}">${icon('reset', 15)}Reset</a>
+            <a class="mini-btn mini-run" href="${escapeHtml(playgroundHref(root, 'python', sample))}">${icon('play', 13)}Run</a>
+          </div>
+        </div>
+        <pre class="code-body numbered"><code>${lines}</code></pre>
+        <div class="hero-code-out">
+          <div class="out-head"><span>${icon('terminal', 16)}Output</span><em>Clear</em></div>
+          <pre>Namaste, Asha!
+Namaste, Ravi!</pre>
+        </div>
+      </div>
+      <div class="hero-float" aria-hidden="true">${icon('code', 26)}</div>
+      <p class="hand-note" aria-hidden="true">Code<br>Run<br>Learn<br>Repeat</p>
     </div>
   </div>
 </section>
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Choose a language</h2>
-    <p class="section-lead">Every track starts from zero and builds up step by step.</p>
+    ${sectionHead('layers', 'Choose a language', 'Every track starts from zero and builds up step by step.')}
     <div class="lang-grid">${cards}</div>
-    <h2 class="section-title section-title-gap">Go deeper</h2>
-    <p class="section-lead">Ready for interviews and the GATE exam? Learn how data is organised and how fast algorithms really are.</p>
-    ${topicCards}
-  </div>
-</section>
-<section class="section section-alt">
-  <div class="container features">
-    <div class="feature"><div class="feature-icon">1</div><h3>Read a short lesson</h3><p>Each topic fits on one page and explains one idea with plain words and small examples.</p></div>
-    <div class="feature"><div class="feature-icon">2</div><h3>See the output</h3><p>Every example shows exactly what it prints, so you know what to expect before you run it.</p></div>
-    <div class="feature"><div class="feature-icon">3</div><h3>Try it yourself</h3><p>Copy any example, or open it in the playground. JavaScript runs right in your browser.</p></div>
+    <div class="section-gap">
+      ${sectionHead('chart', 'Go deeper', 'Ready for interviews and the GATE exam? Learn how data is organised and how fast algorithms really are.')}
+      <p class="hand-note hand-note-right" aria-hidden="true">From basics<br>to beyond</p>
+    </div>
+    <div class="topic-grid">${topicCards}</div>
+    <div class="section-gap">
+      ${sectionHead('sparkle', 'How it works', 'Start learning in three simple steps.')}
+    </div>
+    <div class="features">
+      <div class="feature glass"><span class="step">1</span><span class="feature-icon pt-blue">${icon('book', 22)}</span><div><h3>Read a short lesson</h3><p>Each topic fits on one page and explains one idea with plain words and small examples.</p></div></div>
+      <div class="feature glass"><span class="step">2</span><span class="feature-icon pt-teal">${icon('terminal', 22)}</span><div><h3>See the output</h3><p>Every example shows exactly what it prints, so you know what to expect before you run it.</p></div></div>
+      <div class="feature glass"><span class="step">3</span><span class="feature-icon pt-violet">${icon('play', 20)}</span><div><h3>Try it yourself</h3><p>Copy any example, or open it in the playground and run it right in your browser.</p></div></div>
+    </div>
   </div>
 </section>`;
   return layout({ title: '', root, body, bodyClass: 'home' });
@@ -158,7 +187,7 @@ ${sidebar(lang, lessons, null, root)}
 <div class="lesson">
   <button type="button" class="sidebar-toggle" data-sidebar-toggle aria-controls="sidebar" aria-expanded="false">Topics</button>
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="${root}index.html">Home</a><span>/</span>${lang.name}</nav>
-  <div class="lang-hero" style="--badge:${lang.color}">${langBadge(lang, 'lg')}<div><h1>${trackTitle(lang)}</h1><p class="lesson-lead">${escapeHtml(lang.intro)}</p></div></div>
+  <div class="lang-hero" style="--badge:${lang.color}">${langLogo(lang, 'lg', 'graph')}<div><h1>${trackTitle(lang)}</h1><p class="lesson-lead">${escapeHtml(lang.intro)}</p></div></div>
   <a class="btn btn-primary" href="${lessons[0].slug}.html">Start the first lesson</a>
   ${chapters}
 </div>
@@ -243,33 +272,58 @@ function playgroundPage(all) {
         });
     }
   }
+  const cards = [
+    ...languages.map((l) => ({ href: `${l.id}/index.html`, t: l, ic: '', blurb: l.blurb })),
+    ...topics.filter((t) => t.nav).map((t) => ({ href: `${t.id}/index.html`, t, ic: 'graph', blurb: t.blurb })),
+    { href: 'gate.html', t: { id: 'gate', short: 'GT', color: '#7c3aed', name: 'GATE CS' }, ic: 'cap', blurb: 'Practice with previous year style questions.' },
+  ]
+    .map(
+      (c) => `<a class="pg-track glass" href="${c.href}" style="--badge:${c.t.color}">${langLogo(c.t, 'md', c.ic)}<span><strong>${escapeHtml(c.t.topic ? 'DSA' : c.t.name)}</strong><small>${escapeHtml(c.t.tagline || c.blurb)}</small></span><span class="card-arrow">${icon('arrow', 15)}</span></a>`,
+    )
+    .join('');
   const options = languages.map((l) => `<option value="${l.id}">${l.name}</option>`).join('');
   const body = `<div class="playground">
-  <div class="pg-toolbar">
-    <h1 class="pg-title">Playground</h1>
-    <label class="pg-field"><span>Language</span><select id="pg-lang">${options}</select></label>
-    <label class="pg-field"><span>Example</span><select id="pg-example"></select></label>
-    <div class="pg-buttons">
-      <button type="button" class="btn btn-ghost btn-sm" id="pg-copy">Copy</button>
-      <button type="button" class="btn btn-ghost btn-sm" id="pg-reset">Reset</button>
-      <button type="button" class="btn btn-primary btn-sm" id="pg-run">&#9654; Run</button>
+  <div class="pg-hero">
+    <div>
+      <p class="eyebrow">${icon('code', 15)}Interactive Coding Playground</p>
+      <h1 class="pg-title">Code. Run. <span class="grad">Learn.</span></h1>
+      <p class="hero-lead">Write code, run it instantly, and learn with hands-on examples.<br>Choose a language, try examples or write your own code.</p>
+    </div>
+    <ul class="pg-points">
+      <li><span class="pt pt-amber">${icon('bolt', 22)}</span><span><strong>Run instantly</strong>See output in real time</span></li>
+      <li><span class="pt pt-blue">${icon('book', 22)}</span><span><strong>Try examples</strong>Learn from ready code</span></li>
+      <li><span class="pt pt-violet">${icon('users', 22)}</span><span><strong>Practice freely</strong>No sign-up required</span></li>
+    </ul>
+  </div>
+  <div class="pg-shell glass">
+    <div class="pg-toolbar">
+      <label class="pg-field"><span>Language</span><span class="select-wrap" id="pg-lang-wrap" data-lang="python"><span class="select-icon">${languages.map((l) => `<span data-logo="${l.id}">${langLogo(l, 'xs')}</span>`).join('')}</span><select id="pg-lang">${options}</select>${icon('chevron', 16, 'select-caret')}</span></label>
+      <label class="pg-field"><span>Example</span><span class="select-wrap">${icon('file', 18, 'select-icon')}<select id="pg-example"></select>${icon('chevron', 16, 'select-caret')}</span></label>
+      <div class="pg-buttons">
+        <button type="button" class="btn btn-ghost" id="pg-copy">${icon('copy', 17)}Copy</button>
+        <button type="button" class="btn btn-ghost" id="pg-reset">${icon('reset', 17)}Reset</button>
+        <button type="button" class="btn btn-primary btn-run" id="pg-run">${icon('play', 16)}Run<kbd>Ctrl + Enter</kbd></button>
+      </div>
+    </div>
+    <div class="pg-panes">
+      <div class="pg-left">
+        <section class="pg-pane">
+          <div class="pg-pane-head"><span class="pg-file">${icon('file', 17)}<span id="pg-filename">main.js</span></span><span class="pg-hint">${icon('keyboard', 17)}Ctrl + Enter to run</span></div>
+          <textarea id="pg-editor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea>
+        </section>
+        <section class="pg-pane pg-stdin">
+          <div class="pg-pane-head"><span class="pg-file">${icon('terminal', 17)}<strong>Input (stdin)</strong>${icon('info', 14, 'muted')}</span><span class="pg-hint">Provide custom input for your program (optional)</span></div>
+          <textarea id="pg-stdin" spellcheck="false" rows="2" placeholder="Enter input here (if your code expects input)..." aria-label="Program input"></textarea>
+        </section>
+      </div>
+      <section class="pg-pane pg-out-pane">
+        <div class="pg-pane-head"><span class="pg-file">${icon('terminal', 17)}<strong>Output</strong></span><button type="button" class="pg-clear" id="pg-clear">${icon('trash', 15)}Clear</button></div>
+        <div class="pg-notice" id="pg-notice" hidden></div>
+        <pre id="pg-output" class="pg-output" aria-live="polite"></pre>
+      </section>
     </div>
   </div>
-  <div class="pg-panes">
-    <section class="pg-pane">
-      <div class="pg-pane-head"><span id="pg-filename">main.js</span><span class="pg-hint">Ctrl + Enter to run</span></div>
-      <textarea id="pg-editor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Code editor"></textarea>
-      <details class="pg-stdin">
-        <summary>Input (stdin) for input(), scanf or Scanner</summary>
-        <textarea id="pg-stdin" spellcheck="false" rows="3" placeholder="Type the input your program reads, one value per line" aria-label="Program input"></textarea>
-      </details>
-    </section>
-    <section class="pg-pane">
-      <div class="pg-pane-head"><span>Output</span><button type="button" class="pg-clear" id="pg-clear">Clear</button></div>
-      <div class="pg-notice" id="pg-notice" hidden></div>
-      <pre id="pg-output" class="pg-output" aria-live="polite"></pre>
-    </section>
-  </div>
+  <nav class="pg-tracks" aria-label="Tutorials">${cards}</nav>
 </div>
 <script type="application/json" id="pg-examples">${jsonForScript(examples)}</script>`;
   return layout({

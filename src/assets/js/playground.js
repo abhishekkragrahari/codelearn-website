@@ -4,6 +4,7 @@
 (function () {
   var examples = JSON.parse(document.getElementById('pg-examples').textContent);
   var langSel = document.getElementById('pg-lang');
+  var langWrap = document.getElementById('pg-lang-wrap');
   var exSel = document.getElementById('pg-example');
   var editor = document.getElementById('pg-editor');
   var output = document.getElementById('pg-output');
@@ -14,7 +15,7 @@
 
   var files = { python: 'main.py', c: 'main.c', java: 'Main.java', javascript: 'main.js' };
   var names = { python: 'Python', c: 'C', java: 'Java', javascript: 'JavaScript' };
-  var current = { lang: 'javascript', code: '', output: null };
+  var current = { lang: 'python', code: '', output: null };
 
   function setNotice(text) {
     notice.hidden = !text;
@@ -24,6 +25,7 @@
   function load(lang, code, expected) {
     current = { lang: lang, code: code, output: expected == null ? null : expected };
     langSel.value = lang;
+    langWrap.setAttribute('data-lang', lang);
     editor.value = code;
     fileName.textContent = files[lang];
     output.textContent = '';
@@ -69,6 +71,7 @@
   function run() {
     if (runBtn.disabled) return;
     output.textContent = '';
+    var label = runBtn.innerHTML;
     runBtn.disabled = true;
     runBtn.textContent = 'Running...';
     var lang = current.lang;
@@ -94,7 +97,7 @@
       if (!any) line('info', '(no output)');
       if (!res || !res.timedOut) line('info', '\nFinished in ' + Math.round(performance.now() - started) + ' ms');
       runBtn.disabled = false;
-      runBtn.innerHTML = '&#9654; Run';
+      runBtn.innerHTML = label;
     }
 
     var job;
@@ -156,7 +159,7 @@
   window.addEventListener('hashchange', fromHash);
 
   if (!fromHash()) {
-    fillExamples('javascript', 0);
-    loadExample('javascript', 0);
+    fillExamples('python', 0);
+    loadExample('python', 0);
   }
 })();

@@ -10,6 +10,7 @@ export const site = {
 export const languages = [
   {
     id: 'python',
+    tagline: 'Simple and powerful. Great for beginners.',
     name: 'Python',
     short: 'Py',
     color: '#3b82f6',
@@ -20,6 +21,7 @@ export const languages = [
   },
   {
     id: 'c',
+    tagline: 'Fast, close to hardware. Build strong fundamentals.',
     name: 'C',
     short: 'C',
     color: '#64748b',
@@ -31,6 +33,7 @@ export const languages = [
   },
   {
     id: 'java',
+    tagline: 'Object-oriented and widely used in industry.',
     name: 'Java',
     short: 'Jv',
     color: '#f97316',
@@ -41,6 +44,7 @@ export const languages = [
   },
   {
     id: 'javascript',
+    tagline: 'Power the web. Run in every browser.',
     name: 'JavaScript',
     short: 'JS',
     color: '#eab308',
@@ -57,6 +61,7 @@ export const languages = [
 export const topics = [
   {
     id: 'dsa',
+    tagline: 'Master data structures and algorithms.',
     name: 'Data Structures',
     short: 'DS',
     color: '#10b981',
