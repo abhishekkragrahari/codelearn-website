@@ -127,12 +127,19 @@ for (const track of tracks) {
         }
         if ((quiz.verify == null && quiz.verifyProgram == null) || (only.length && !only.includes(track.id) && !only.includes('quiz'))) continue;
         const where = `${track.id}/${lesson.file} quiz "${quiz.q.slice(0, 50)}"`;
+        // An MCQ with "verify:" must have one correct option, and the program prints its text.
+        const correct = quiz.options.filter((o) => o.correct);
+        const answer = quiz.type === 'nat' ? quiz.answer : correct.length === 1 ? correct[0].text.replace(/`/g, '') : null;
+        if (answer == null) {
+          failures.push(`${where}\nA question with "verify:" must be NAT or have exactly one correct option`);
+          continue;
+        }
         try {
           const got = execFileSync('python3', ['-c', quiz.verifyProgram ?? `print(${quiz.verify})`]).toString().trim();
           // 65.0 from Python float arithmetic matches a stated answer of 65.
-          const same = got === quiz.answer || (got.trim() !== '' && quiz.answer.trim() !== '' && Number(got) === Number(quiz.answer));
+          const same = got === answer || (got.trim() !== '' && answer.trim() !== '' && Number(got) === Number(answer));
           if (same) quizzes++;
-          else failures.push(`${where}\n--- answer\n${quiz.answer}\n--- verify gives\n${got}`);
+          else failures.push(`${where}\n--- answer\n${answer}\n--- verify gives\n${got}`);
         } catch (err) {
           failures.push(`${where}\n${(err.stderr || err.message).toString().trim()}`);
         }

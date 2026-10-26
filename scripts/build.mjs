@@ -2,7 +2,7 @@
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, languages, topics, tracks, gateSubjects } from '../src/site.mjs';
+import { site, languages, topics, tracks, gateSubjects, gateDaSubjects } from '../src/site.mjs';
 import { parseFrontMatter, parseBlocks, renderBlocks, inline } from '../src/markdown.mjs';
 import { escapeHtml, highlight } from '../src/highlight.mjs';
 import { layout, sidebar, codeBlock, groupByChapter, logoSvg, langById, trackTitle, icon, langLogo, playgroundHref } from '../src/templates.mjs';
@@ -71,10 +71,31 @@ function topicCard(t, all, root) {
 </a>`;
 }
 
-function gatePage(all) {
+const gatePapers = {
+  cs: {
+    file: 'gate.html',
+    title: 'GATE CS',
+    heading: 'GATE Computer Science preparation',
+    paper: 'GATE CS',
+    subjects: gateSubjects,
+    description: 'Subject-wise GATE Computer Science preparation with GATE-style practice questions.',
+    other: { href: 'gate-da.html', text: 'Preparing for GATE DA (Data Science and AI)? See the GATE DA subjects.' },
+  },
+  da: {
+    file: 'gate-da.html',
+    title: 'GATE DA',
+    heading: 'GATE Data Science and AI preparation',
+    paper: 'GATE DA',
+    subjects: gateDaSubjects,
+    description: 'Subject-wise GATE Data Science and Artificial Intelligence (DA) preparation with GATE-style practice questions.',
+    other: { href: 'gate.html', text: 'Preparing for GATE CS? See the GATE Computer Science subjects.' },
+  },
+};
+
+function gatePage(all, paper) {
   const root = './';
   const byId = Object.fromEntries(tracks.map((t) => [t.id, t]));
-  const rows = gateSubjects
+  const rows = paper.subjects
     .map((g, i) => {
       const t = g.track && byId[g.track];
       if (!t) {
@@ -86,13 +107,14 @@ function gatePage(all) {
     })
     .join('');
   const body = `<section class="section"><div class="container">
-  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>GATE CS</nav>
-  <h1 class="section-title">GATE Computer Science preparation</h1>
-  <p class="section-lead">Every subject of the GATE CS syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.</p>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>${paper.title}</nav>
+  <h1 class="section-title">${paper.heading}</h1>
+  <p class="section-lead">Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.</p>
   <ol class="gate-list">${rows}</ol>
+  <p class="gate-other"><a href="${paper.other.href}">${paper.other.text}</a></p>
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
-  return layout({ title: 'GATE CS', description: 'Subject-wise GATE Computer Science preparation with GATE-style practice questions.', root, body, active: 'gate' });
+  return layout({ title: paper.title, description: paper.description, root, body, active: 'gate' });
 }
 
 function homePage(all) {
@@ -108,6 +130,12 @@ function homePage(all) {
   ${langLogo(gate, 'lg', 'cap')}
   <div class="topic-card-body"><h3>GATE CS preparation</h3><p>Subject-wise lessons for the GATE Computer Science exam, each with figures, worked examples and practice questions.</p>
   <span class="lang-card-meta">${ready} of ${gateSubjects.length} subjects ready</span></div>
+  <span class="card-arrow">${icon('arrow', 16)}</span>
+</a>
+<a class="topic-card glass" href="gate-da.html" style="--badge:#0891b2">
+  ${langLogo({ id: 'gate-da', short: 'DA', color: '#0891b2' }, 'lg', 'cap')}
+  <div class="topic-card-body"><h3>GATE DA preparation</h3><p>Data Science and AI: probability, linear algebra, machine learning, AI and more, with worked examples and practice questions.</p>
+  <span class="lang-card-meta">${gateDaSubjects.length} subjects &middot; GATE-style questions</span></div>
   <span class="card-arrow">${icon('arrow', 16)}</span>
 </a>`;
   const cards = languages
@@ -269,7 +297,8 @@ ${content}
 </article>
 </div>`;
   return layout({
-    title: `${l.title} - ${lang.name}`,
+    // "GATE" in the title helps people searching for exam notes find the page.
+    title: `${l.title} - ${lang.name}${lang.gate ? (lang.da ? ' (GATE DA)' : ' (GATE)') : ''}`,
     description: l.description,
     root,
     body,
@@ -391,11 +420,11 @@ export function build() {
 
   write('index.html', homePage(all));
   write('playground.html', playgroundPage(all));
-  write('gate.html', gatePage(all));
+  for (const paper of Object.values(gatePapers)) write(paper.file, gatePage(all, paper));
   write('404.html', notFoundPage());
   write('.nojekyll', '');
   write('CNAME', new URL(site.url).host + '\n');
-  let count = 4;
+  let count = 5;
   for (const file of readdirSync(join(SRC, 'pages')).filter((f) => f.endsWith('.md'))) {
     write(file.replace(/\.md$/, '.html'), infoPage(file));
     count++;

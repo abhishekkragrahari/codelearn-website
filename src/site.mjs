@@ -218,6 +218,97 @@ export const topics = [
     gate: true,
     cardMeta: 'Shortcuts · worked examples · GATE-style questions',
   },
+  // GATE Data Science and Artificial Intelligence (DA) subjects.
+  {
+    id: 'ps',
+    name: 'Probability & Statistics',
+    short: 'PS',
+    color: '#e11d48',
+    blurb: 'Counting, conditional probability and Bayes, random variables and distributions, the central limit theorem, confidence intervals and hypothesis tests.',
+    intro:
+      'Probability and Statistics is the largest mathematics section of GATE DA. These lessons go from counting and Bayes\' ' +
+      'theorem to the normal, t and chi-squared distributions, confidence intervals and z, t and chi-squared tests. Every ' +
+      'probability is checked by exact enumeration or a small program, so the numbers in the lessons and answers can be trusted.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'Exact computations · worked examples · GATE-style questions',
+  },
+  {
+    id: 'la',
+    name: 'Linear Algebra',
+    short: 'LA',
+    color: '#2563eb',
+    blurb: 'Vector spaces and subspaces, rank and linear systems, projection, orthogonal and idempotent matrices, quadratic forms, eigenvalues, LU and SVD.',
+    intro:
+      'Linear Algebra is the language of machine learning and a core GATE DA subject. These lessons explain vector spaces, ' +
+      'rank, special matrices, quadratic forms, eigenvalues and the LU and singular value decompositions, with small ' +
+      'programs in plain Python (exact fractions where possible) that check every matrix and number shown.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'Exact matrix computations · worked examples · GATE-style questions',
+  },
+  {
+    id: 'calc',
+    name: 'Calculus & Optimization',
+    short: 'CO',
+    color: '#ea580c',
+    blurb: 'Functions of one variable, limits, continuity and differentiability, Taylor series, maxima and minima, and single-variable optimization.',
+    intro:
+      'Calculus and Optimization in GATE DA is about functions of a single variable: limits, continuity, derivatives, Taylor ' +
+      'series and finding maxima and minima. These lessons work through each idea with examples, and check every limit, ' +
+      'derivative and optimum numerically with small programs.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'Numerical checks · worked examples · GATE-style questions',
+  },
+  {
+    id: 'ml',
+    name: 'Machine Learning',
+    short: 'ML',
+    color: '#7c3aed',
+    blurb: 'Regression, logistic regression, k-NN, naive Bayes, LDA, SVM, decision trees, bias-variance, cross-validation, neural networks, clustering and PCA.',
+    intro:
+      'Machine Learning is the heart of GATE DA. These lessons explain every supervised and unsupervised method in the ' +
+      'syllabus from first principles, and implement each one in a few lines of plain Python (no libraries), so you can see ' +
+      'exactly how regression weights, tree splits, cluster assignments and principal components are computed.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'From-scratch implementations · worked examples · GATE-style questions',
+  },
+  {
+    id: 'ai',
+    name: 'Artificial Intelligence',
+    short: 'AI',
+    color: '#0891b2',
+    blurb: 'Uninformed, informed and adversarial search, propositional and predicate logic, and reasoning under uncertainty with Bayesian networks.',
+    intro:
+      'The AI section of GATE DA covers search, logic and reasoning under uncertainty. These lessons draw every search tree ' +
+      'and network, and come with small Python programs for BFS, A*, minimax with alpha-beta pruning, resolution, and exact ' +
+      'and sampling-based inference, so every expanded node and probability shown is computed.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'Search and inference programs · worked examples · GATE-style questions',
+  },
+  {
+    id: 'dw',
+    name: 'Data Warehousing',
+    short: 'DW',
+    color: '#65a30d',
+    blurb: 'Data types and data preparation (normalization, discretization, sampling, compression), multidimensional schemas, concept hierarchies, measures and OLAP.',
+    intro:
+      'GATE DA pairs databases with data warehousing. These lessons cover how data is cleaned and transformed before ' +
+      'analysis, how a warehouse is modelled with star and snowflake schemas, and how OLAP operations work, with SQL that ' +
+      'runs on a real SQLite database when the site is built.',
+    topic: true,
+    gate: true,
+    da: true,
+    cardMeta: 'Real SQL results · worked examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
@@ -234,6 +325,21 @@ export const gateSubjects = [
   { name: 'Compiler Design', track: 'cd' },
   { name: 'Discrete Mathematics', track: 'dm' },
   { name: 'Engineering Mathematics', track: 'em' },
+  { name: 'General Aptitude', track: 'ga' },
+];
+
+// The GATE DA (Data Science and Artificial Intelligence) syllabus, shown on gate-da.html.
+// Programming, DSA, databases and aptitude reuse the GATE CS tracks.
+export const gateDaSubjects = [
+  { name: 'Probability & Statistics', track: 'ps' },
+  { name: 'Linear Algebra', track: 'la' },
+  { name: 'Calculus & Optimization', track: 'calc' },
+  { name: 'Programming in Python', track: 'python' },
+  { name: 'Data Structures & Algorithms', track: 'dsa' },
+  { name: 'Database Management (DBMS)', track: 'dbms' },
+  { name: 'Data Warehousing', track: 'dw' },
+  { name: 'Machine Learning', track: 'ml' },
+  { name: 'Artificial Intelligence', track: 'ai' },
   { name: 'General Aptitude', track: 'ga' },
 ];
 
