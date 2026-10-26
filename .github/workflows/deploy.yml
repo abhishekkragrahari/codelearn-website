@@ -36,8 +36,8 @@ jobs:
       - name: Build site and check links
         run: npm run check
         env:
-          # Project sites live at https://<user>.github.io/<repo>/
-          SITE_BASE: /${{ github.event.repository.name }}/
+          # Served from the custom domain https://www.gateshala.com/
+          SITE_BASE: /
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
