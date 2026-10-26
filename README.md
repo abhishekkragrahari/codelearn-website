@@ -1,4 +1,4 @@
-# CodeShala
+# GateShala
 
 A free programming-tutorial website with short lessons for **Python, C, Java and JavaScript**, plus GATE CS subject tracks (Data Structures & Algorithms, Operating Systems, Databases, Computer Networks, Theory of Computation, Digital Logic, Computer Organization, Compiler Design, Discrete Mathematics, Engineering Mathematics and General Aptitude: all 12 GATE CS subjects) collected on a **GATE CS** hub page.
 It has syntax-highlighted examples with Copy buttons, and a playground where JavaScript runs in the browser.

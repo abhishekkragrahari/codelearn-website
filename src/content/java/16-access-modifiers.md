@@ -92,20 +92,20 @@ Balance: 10400.0
 
 ## Packages
 
-A **package** is a folder of related classes with a unique name, such as `java.util` or `com.codeshala.bank`. Packages prevent name clashes and work together with access modifiers. A project might look like this:
+A **package** is a folder of related classes with a unique name, such as `java.util` or `com.gateshala.bank`. Packages prevent name clashes and work together with access modifiers. A project might look like this:
 
 ```text
 src/
-  com/codeshala/bank/Account.java
-  com/codeshala/bank/Bank.java
-  com/codeshala/app/Main.java
+  com/gateshala/bank/Account.java
+  com/gateshala/bank/Bank.java
+  com/gateshala/app/Main.java
 ```
 
 The first line of each file declares its package, and other packages use `import`:
 
 ```text
-// File: com/codeshala/bank/Account.java
-package com.codeshala.bank;
+// File: com/gateshala/bank/Account.java
+package com.gateshala.bank;
 
 public class Account {
     private double balance;
@@ -113,10 +113,10 @@ public class Account {
     public double getBalance() { return balance; }
 }
 
-// File: com/codeshala/app/Main.java
-package com.codeshala.app;
+// File: com/gateshala/app/Main.java
+package com.gateshala.app;
 
-import com.codeshala.bank.Account;   // or: import com.codeshala.bank.*;
+import com.gateshala.bank.Account;   // or: import com.gateshala.bank.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -127,6 +127,6 @@ public class Main {
 }
 ```
 
-Compile and run from the `src` folder with `javac com/codeshala/*/*.java` and then `java com.codeshala.app.Main`.
+Compile and run from the `src` folder with `javac com/gateshala/*/*.java` and then `java com.gateshala.app.Main`.
 
 > **Note:** Classes in `java.lang`, such as `String`, `Math` and `System`, are imported automatically. Everything else, like `java.util.ArrayList`, needs an `import`.

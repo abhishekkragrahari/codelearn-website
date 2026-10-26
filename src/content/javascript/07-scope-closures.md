@@ -6,7 +6,7 @@ description: Understand where variables are visible and how functions remember t
 **Scope** decides where a variable can be used. Variables declared with `let` and `const` are **block scoped**: they exist only inside the nearest pair of curly braces.
 
 ```javascript
-const site = "CodeShala";     // global: visible everywhere below
+const site = "GateShala";     // global: visible everywhere below
 
 function show() {
   const message = "inside the function";
@@ -21,7 +21,7 @@ if (true) {
 console.log(typeof blockOnly);   // not defined out here
 ```
 ```output
-CodeShala - inside the function
+GateShala - inside the function
 42
 undefined
 ```

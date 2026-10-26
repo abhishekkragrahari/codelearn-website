@@ -1,6 +1,6 @@
 // Site-wide settings. Change the name here and it updates everywhere.
 export const site = {
-  name: 'CodeShala',
+  name: 'GateShala',
   tagline: 'Learn to code, one small lesson at a time.',
   description:
     'Free, beginner-friendly tutorials for Python, C, Java and JavaScript with runnable examples.',
