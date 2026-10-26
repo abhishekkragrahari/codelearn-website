@@ -1,9 +1,9 @@
 // Site-wide settings. Change the name here and it updates everywhere.
 export const site = {
   name: 'GateShala',
-  tagline: 'GATE CS and DA notes, practice questions and coding tutorials',
+  tagline: 'GATE notes, practice questions and coding tutorials',
   description:
-    'Free GATE CS and GATE DA (Data Science and AI) preparation: subject-wise notes and GATE-style practice questions with solutions, including machine learning, AI and statistics, plus Python, C, Java, JavaScript and DSA tutorials.',
+    'Free GATE preparation for CS, DA, CE, ME, EE and EC: subject-wise notes, key formulas and GATE-style practice questions with solutions, plus Python, C, Java, JavaScript and DSA tutorials.',
   // Public address, used for canonical links, the sitemap and robots.txt.
   url: 'https://www.gateshala.com/',
   // Google AdSense publisher ID; its script is added to every page and ads.txt is generated from it.
@@ -310,6 +310,67 @@ export const topics = [
     gate: true,
     da: true,
     cardMeta: 'Real SQL results · worked examples · GATE-style questions',
+  },
+  // GATE core-branch papers: one track per paper, one lesson per syllabus subject.
+  {
+    id: 'ce',
+    name: 'Civil Engineering',
+    short: 'CE',
+    color: '#b45309',
+    blurb: 'Structural, geotechnical, water resources, environmental and transportation engineering, and geomatics.',
+    intro:
+      'The GATE CE paper tests civil engineering. Each lesson covers one part of the syllabus: the detailed list of topics, the key ' +
+      'concepts and formulas, a worked example, and GATE-style questions whose numerical answers are recomputed by a program. ' +
+      'Engineering Mathematics and General Aptitude, common to all papers, have their own tracks.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
+  },
+  {
+    id: 'me',
+    name: 'Mechanical Engineering',
+    short: 'ME',
+    color: '#475569',
+    blurb: 'Engineering mechanics, strength of materials, machines and design, fluids, thermal sciences, manufacturing and industrial engineering.',
+    intro:
+      'The GATE ME paper tests mechanical engineering. Each lesson covers one part of the syllabus: the detailed list of topics, the key ' +
+      'concepts and formulas, a worked example, and GATE-style questions whose numerical answers are recomputed by a program. ' +
+      'Engineering Mathematics and General Aptitude, common to all papers, have their own tracks.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
+  },
+  {
+    id: 'ee',
+    name: 'Electrical Engineering',
+    short: 'EE',
+    color: '#ca8a04',
+    blurb: 'Circuits, electromagnetic fields, signals, machines, power systems, control, measurements, electronics and power electronics.',
+    intro:
+      'The GATE EE paper tests electrical engineering. Each lesson covers one part of the syllabus: the detailed list of topics, the key ' +
+      'concepts and formulas, a worked example, and GATE-style questions whose numerical answers are recomputed by a program. ' +
+      'Engineering Mathematics and General Aptitude, common to all papers, have their own tracks.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
+  },
+  {
+    id: 'ec',
+    name: 'Electronics & Communication',
+    short: 'EC',
+    color: '#db2777',
+    blurb: 'Networks, signals and systems, devices, analog and digital circuits, control, communications and electromagnetics.',
+    intro:
+      'The GATE EC paper tests electronics and communication engineering. Each lesson covers one part of the syllabus: the detailed list of topics, the key ' +
+      'concepts and formulas, a worked example, and GATE-style questions whose numerical answers are recomputed by a program. ' +
+      'Engineering Mathematics and General Aptitude, common to all papers, have their own tracks.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
   },
 ];
 

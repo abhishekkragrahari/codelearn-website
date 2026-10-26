@@ -73,7 +73,7 @@ const breadcrumbs = (items) => ({
   '@type': 'BreadcrumbList',
   itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: absolute(path) })),
 });
-const gateTag = (t) => (t.gate ? (t.da ? 'GATE DA' : 'GATE CS') : '');
+const gateTag = (t) => (t.gate ? t.paper || (t.da ? 'GATE DA' : 'GATE CS') : '');
 
 // Title candidates for a lesson, longest first. The track name is left out when the lesson
 // title already contains it ("Loops in C"), and long titles fall back to the part before " - ".
@@ -101,7 +101,6 @@ const gatePapers = {
     paper: 'GATE CS',
     subjects: gateSubjects,
     description: 'Subject-wise GATE Computer Science preparation with GATE-style practice questions.',
-    other: { href: 'gate-da.html', text: 'Preparing for GATE DA (Data Science and AI)? See the GATE DA subjects.' },
   },
   da: {
     file: 'gate-da.html',
@@ -110,9 +109,31 @@ const gatePapers = {
     paper: 'GATE DA',
     subjects: gateDaSubjects,
     description: 'Subject-wise GATE Data Science and Artificial Intelligence (DA) preparation with GATE-style practice questions.',
-    other: { href: 'gate.html', text: 'Preparing for GATE CS? See the GATE Computer Science subjects.' },
   },
+  ce: corePaper('ce', 'GATE CE', 'GATE Civil Engineering preparation', 'Civil Engineering (CE)'),
+  me: corePaper('me', 'GATE ME', 'GATE Mechanical Engineering preparation', 'Mechanical Engineering (ME)'),
+  ee: corePaper('ee', 'GATE EE', 'GATE Electrical Engineering preparation', 'Electrical Engineering (EE)'),
+  ec: corePaper('ec', 'GATE EC', 'GATE Electronics and Communication preparation', 'Electronics and Communication Engineering (EC)'),
 };
+
+// A core-branch paper: one track whose lessons are the subjects, plus the shared
+// Engineering Mathematics and General Aptitude tracks.
+function corePaper(id, title, heading, branch) {
+  const subjects = loadLessons(id).map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  return {
+    file: `gate-${id}.html`,
+    title,
+    heading,
+    paper: title,
+    subjects: [...subjects, { name: 'Engineering Mathematics', track: 'em' }, { name: 'General Aptitude', track: 'ga' }],
+    description: `GATE ${branch} preparation: the detailed syllabus, key concepts and formulas for every subject, with solved GATE-style questions.`,
+    lead:
+      `The detailed ${title} syllabus, with one lesson per subject: the topics to study, the key concepts and formulas, a worked ` +
+      'example and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built. ' +
+      'The Engineering Mathematics track currently covers linear algebra, calculus, and probability and statistics; the other ' +
+      'mathematics topics of this paper (differential equations, complex variables, numerical methods) are listed in the syllabus lesson.',
+  };
+}
 
 function gatePage(all, paper) {
   const root = './';
@@ -123,17 +144,21 @@ function gatePage(all, paper) {
       if (!t) {
         return `<li class="gate-subject is-soon"><span class="chapter-num">${i + 1}</span><div><strong>${escapeHtml(g.name)}</strong><span>Coming soon</span></div></li>`;
       }
-      const lessons = all[t.id];
+      // A subject is either a whole track or, for the core-branch papers, one lesson of the branch track.
+      const lessons = g.lesson ? all[t.id].filter((l) => l.slug === g.lesson) : all[t.id];
+      if (!lessons.length) throw new Error(`${paper.file}: no lesson ${g.track}/${g.lesson}`);
       const quizzes = lessons.reduce((n, l) => n + l.blocks.filter((b) => b.type === 'code' && b.lang === 'quiz').length, 0);
-      return `<li class="gate-subject"><span class="chapter-num">${i + 1}</span><a href="${t.id}/index.html"><strong>${escapeHtml(g.name)}</strong><span>${lessons.length} lessons${quizzes ? ` &middot; ${quizzes} GATE-style questions` : ''}</span></a></li>`;
+      const href = g.lesson ? `${t.id}/${g.lesson}.html` : `${t.id}/index.html`;
+      const count = g.lesson ? 'Notes and key formulas' : `${lessons.length} lessons`;
+      return `<li class="gate-subject"><span class="chapter-num">${i + 1}</span><a href="${href}"><strong>${escapeHtml(g.name)}</strong><span>${count}${quizzes ? ` &middot; ${quizzes} GATE-style questions` : ''}</span></a></li>`;
     })
     .join('');
   const body = `<section class="section"><div class="container">
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>${paper.title}</nav>
   <h1 class="section-title">${paper.heading}</h1>
-  <p class="section-lead">Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.</p>
+  <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
-  <p class="gate-other"><a href="${paper.other.href}">${paper.other.text}</a></p>
+  <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
   return layout({
@@ -166,6 +191,12 @@ function homePage(all) {
   ${langLogo({ id: 'gate-da', short: 'DA', color: '#0891b2' }, 'lg', 'cap')}
   <div class="topic-card-body"><h3>GATE DA preparation</h3><p>Data Science and AI: probability, linear algebra, machine learning, AI and more, with worked examples and practice questions.</p>
   <span class="lang-card-meta">${gateDaSubjects.length} subjects &middot; GATE-style questions</span></div>
+  <span class="card-arrow">${icon('arrow', 16)}</span>
+</a>
+<a class="topic-card glass" href="gate-ce.html" style="--badge:#b45309">
+  ${langLogo({ id: 'gate-core', short: 'CE', color: '#b45309' }, 'lg', 'cap')}
+  <div class="topic-card-body"><h3>GATE CE, ME, EE and EC</h3><p>Civil, Mechanical, Electrical and Electronics papers: the detailed syllabus, key formulas and practice questions for every subject.</p>
+  <span class="lang-card-meta">4 papers &middot; CE, ME, EE and EC</span></div>
   <span class="card-arrow">${icon('arrow', 16)}</span>
 </a>`;
   const cards = languages
@@ -253,7 +284,8 @@ Namaste, Ravi!</pre>
     // Bing Webmaster Tools ownership check; keep it even after verification.
     '<meta name="msvalidate.01" content="6028ECC39AAE8BF8EBA002674091D003">\n';
   return layout({
-    titles: [`${site.name} - ${site.tagline}`, `${site.name}: GATE CS and DA Notes and Practice Questions`],
+    // The brand is already in this title, so it is used without the " | GateShala" suffix.
+    titles: [`${site.name} - ${site.tagline}`],
     head,
     root,
     body,
