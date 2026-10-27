@@ -130,8 +130,7 @@ function corePaper(id, title, heading, branch) {
     lead:
       `The detailed ${title} syllabus, with one lesson per subject: the topics to study, the key concepts and formulas, a worked ` +
       'example and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built. ' +
-      'The Engineering Mathematics track currently covers linear algebra, calculus, and probability and statistics; the other ' +
-      'mathematics topics of this paper (differential equations, complex variables, numerical methods) are listed in the syllabus lesson.',
+      'Engineering Mathematics, including differential equations, complex variables and numerical methods, has its own track.',
   };
 }
 
