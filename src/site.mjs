@@ -634,6 +634,142 @@ export const topics = [
     branch: 'ce',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
+  // GATE EE subject tracks: one track per syllabus subject, one lesson per topic.
+  {
+    id: 'ee-ckt',
+    name: 'Electric Circuits',
+    short: 'EC',
+    color: '#2563eb',
+    blurb: 'Network theorems, transient analysis, sinusoidal steady state and phasors, resonance, three-phase circuits and two-port networks.',
+    intro:
+      'Electric Circuits for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-emf',
+    name: 'Electromagnetic Fields',
+    short: 'EF',
+    color: '#7c3aed',
+    blurb: 'Coulomb and Gauss laws, electric potential, capacitance, Biot-Savart and Ampere laws, inductance, Faraday law and Maxwell equations.',
+    intro:
+      'Electromagnetic Fields for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-ss',
+    name: 'Signals & Systems',
+    short: 'SS',
+    color: '#0891b2',
+    blurb: 'Signal types, LTI systems and convolution, Fourier series and transform, Laplace and z-transforms, and sampling.',
+    intro:
+      'Signals & Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-cs',
+    name: 'Control Systems',
+    short: 'CS',
+    color: '#16a34a',
+    blurb: 'Transfer functions and block diagrams, time response, steady-state error, Routh stability, root locus, Bode and Nyquist plots, compensators and state space.',
+    intro:
+      'Control Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-mac',
+    name: 'Electrical Machines',
+    short: 'EM',
+    color: '#ca8a04',
+    blurb: 'Magnetic circuits, single and three-phase transformers, DC machines, induction motors and synchronous machines.',
+    intro:
+      'Electrical Machines for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-ps',
+    name: 'Power Systems',
+    short: 'PS',
+    color: '#dc2626',
+    blurb: 'Transmission line parameters and performance, per-unit system, load flow, faults, protection, stability and economic dispatch.',
+    intro:
+      'Power Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-meas',
+    name: 'Electrical Measurements',
+    short: 'MS',
+    color: '#64748b',
+    blurb: 'Indicating instruments, bridges, measurement of power and energy, instrument transformers, oscilloscopes and errors.',
+    intro:
+      'Electrical Measurements for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-elec',
+    name: 'Analog & Digital Electronics',
+    short: 'AD',
+    color: '#db2777',
+    blurb: 'Diodes and rectifiers, BJT and MOSFET amplifiers, op-amps, oscillators, logic gates, combinational and sequential circuits, and data converters.',
+    intro:
+      'Analog & Digital Electronics for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-pe',
+    name: 'Power Electronics',
+    short: 'PE',
+    color: '#ea580c',
+    blurb: 'Power semiconductor devices, controlled rectifiers, DC-DC converters, inverters with PWM, and AC voltage controllers.',
+    intro:
+      'Power Electronics for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
