@@ -121,7 +121,10 @@ const gatePapers = {
 function corePaper(id, title, heading, branch) {
   // Exam Prep pages (study plan, formula sheet, mock test) are linked separately, not listed as subjects.
   const lessons = loadLessons(id);
-  const subjects = lessons.filter((l) => l.chapter !== 'Exam Prep').map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  let subjects = lessons.filter((l) => l.chapter !== 'Exam Prep').map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  // A branch whose subjects have their own topic-wise tracks lists those tracks instead.
+  const own = topics.filter((t) => t.branch === id);
+  if (own.length) subjects = [subjects[0], ...own.map((t) => ({ name: t.name, track: t.id }))];
   const prep = lessons.filter((l) => l.chapter === 'Exam Prep');
   return {
     file: `gate-${id}.html`,

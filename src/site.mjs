@@ -389,6 +389,142 @@ export const topics = [
     paper: 'GATE EC',
     cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
   },
+  // GATE ME subject tracks: one track per syllabus subject, one lesson per topic.
+  {
+    id: 'me-mech',
+    name: 'Engineering Mechanics',
+    short: 'EM',
+    color: '#64748b',
+    blurb: 'Free-body diagrams, equilibrium, friction, trusses, virtual work, kinematics and dynamics of rigid bodies, impulse, momentum and energy.',
+    intro:
+      'Engineering Mechanics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-som',
+    name: 'Strength of Materials',
+    short: 'SM',
+    color: '#0f766e',
+    blurb: 'Stress and strain, elastic constants, Mohr circle, thin cylinders, SFD and BMD, bending, shear, deflection, torsion, springs, columns and strain energy.',
+    intro:
+      'Strength of Materials for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-tom',
+    name: 'Theory of Machines & Vibrations',
+    short: 'TV',
+    color: '#7c3aed',
+    blurb: 'Mechanisms and degrees of freedom, velocity and acceleration, cams, gears and gear trains, flywheels, governors, balancing and vibrations.',
+    intro:
+      'Theory of Machines & Vibrations for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-md',
+    name: 'Machine Design',
+    short: 'MD',
+    color: '#b91c1c',
+    blurb: 'Static failure theories, fatigue and endurance limit, bolted and welded joints, shafts and keys, bearings, gears, brakes and clutches.',
+    intro:
+      'Machine Design for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-fm',
+    name: 'Fluid Mechanics',
+    short: 'FM',
+    color: '#0284c7',
+    blurb: 'Fluid properties and statics, buoyancy, kinematics, Bernoulli and momentum equations, pipe flow, boundary layers, dimensional analysis and turbomachines.',
+    intro:
+      'Fluid Mechanics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-td',
+    name: 'Thermodynamics',
+    short: 'TD',
+    color: '#ea580c',
+    blurb: 'Laws of thermodynamics, entropy, availability, properties of steam, Rankine, gas power and refrigeration cycles, psychrometry and IC engines.',
+    intro:
+      'Thermodynamics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-ht',
+    name: 'Heat Transfer',
+    short: 'HT',
+    color: '#dc2626',
+    blurb: 'Conduction, fins, transient conduction, forced and natural convection, radiation and heat exchangers (LMTD and effectiveness-NTU).',
+    intro:
+      'Heat Transfer for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-mfg',
+    name: 'Materials & Manufacturing',
+    short: 'MF',
+    color: '#a16207',
+    blurb: 'Engineering materials, casting, forming, joining, machining and tool life, non-traditional machining, metrology and computer integrated manufacturing.',
+    intro:
+      'Materials & Manufacturing for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-ie',
+    name: 'Industrial Engineering',
+    short: 'IE',
+    color: '#4d7c0f',
+    blurb: 'Forecasting, inventory models, linear programming, transportation and assignment, queueing, PERT and CPM, scheduling and quality control.',
+    intro:
+      'Industrial Engineering for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
 ];
 
 // The GATE CS syllabus, in the order shown on the GATE hub page. `track` links a
