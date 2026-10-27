@@ -642,12 +642,13 @@ export const topics = [
     color: '#2563eb',
     blurb: 'Network theorems, transient analysis, sinusoidal steady state and phasors, resonance, three-phase circuits and two-port networks.',
     intro:
-      'Electric Circuits for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Electric Circuits for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE EE',
+    paper: 'GATE EE and EC',
     branch: 'ee',
+    alsoBranch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -657,12 +658,13 @@ export const topics = [
     color: '#7c3aed',
     blurb: 'Coulomb and Gauss laws, electric potential, capacitance, Biot-Savart and Ampere laws, inductance, Faraday law and Maxwell equations.',
     intro:
-      'Electromagnetic Fields for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Electromagnetic Fields for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE EE',
+    paper: 'GATE EE and EC',
     branch: 'ee',
+    alsoBranch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -672,12 +674,13 @@ export const topics = [
     color: '#0891b2',
     blurb: 'Signal types, LTI systems and convolution, Fourier series and transform, Laplace and z-transforms, and sampling.',
     intro:
-      'Signals & Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Signals & Systems for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE EE',
+    paper: 'GATE EE and EC',
     branch: 'ee',
+    alsoBranch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -687,12 +690,13 @@ export const topics = [
     color: '#16a34a',
     blurb: 'Transfer functions and block diagrams, time response, steady-state error, Routh stability, root locus, Bode and Nyquist plots, compensators and state space.',
     intro:
-      'Control Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Control Systems for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE EE',
+    paper: 'GATE EE and EC',
     branch: 'ee',
+    alsoBranch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -747,12 +751,13 @@ export const topics = [
     color: '#db2777',
     blurb: 'Diodes and rectifiers, BJT and MOSFET amplifiers, op-amps, oscillators, logic gates, combinational and sequential circuits, and data converters.',
     intro:
-      'Analog & Digital Electronics for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Analog & Digital Electronics for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE EE',
+    paper: 'GATE EE and EC',
     branch: 'ee',
+    alsoBranch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -768,6 +773,52 @@ export const topics = [
     gate: true,
     paper: 'GATE EE',
     branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  // GATE EC subject tracks (circuits, fields, signals, control and electronics are shared with EE).
+  {
+    id: 'ec-dev',
+    name: 'Electronic Devices',
+    short: 'ED',
+    color: '#be185d',
+    blurb: 'Energy bands, carrier statistics, drift and diffusion, PN junction, Zener and LED, BJT and MOSFET physics, and IC fabrication basics.',
+    intro:
+      'Electronic Devices for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ec-comm',
+    name: 'Communications',
+    short: 'CM',
+    color: '#0e7490',
+    blurb: 'Random processes and noise, AM and FM, sampling and PCM, digital modulation (ASK, FSK, PSK, QAM), matched filter and BER, and information theory.',
+    intro:
+      'Communications for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ec-emw',
+    name: 'Electromagnetic Waves',
+    short: 'EW',
+    color: '#6d28d9',
+    blurb: 'Plane waves, reflection and refraction, skin depth, transmission lines and the Smith chart, waveguides, and antennas.',
+    intro:
+      'Electromagnetic Waves for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
 ];
