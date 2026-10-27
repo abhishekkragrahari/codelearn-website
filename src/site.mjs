@@ -197,11 +197,12 @@ export const topics = [
     name: 'Engineering Mathematics',
     short: 'EM',
     color: '#f59e0b',
-    blurb: 'Linear algebra (matrices, linear systems, eigenvalues), calculus (limits, maxima, integration), and probability and statistics.',
+    blurb: 'Linear algebra, calculus, probability and statistics, vector calculus, differential equations, Laplace transforms, complex variables and numerical methods.',
     intro:
-      'Engineering Mathematics covers the linear algebra, calculus and probability that GATE CS asks about. Every worked ' +
-      'example is checked by a small program: exact fractions for matrices, Simpson\'s rule for integrals, and exact ' +
-      'enumeration for probabilities, so the numbers in the lessons and answers can be trusted.',
+      'Engineering Mathematics covers the mathematics of every GATE paper: linear algebra, calculus and probability (all papers), ' +
+      'plus vector calculus, differential equations, Laplace transforms, Fourier series and PDEs, complex variables and ' +
+      'numerical methods (CE, ME, EE and EC). Every worked example is checked by a small program, so the numbers in the ' +
+      'lessons and answers can be trusted.',
     topic: true,
     gate: true,
     cardMeta: 'Exact computations · worked examples · GATE-style questions',
