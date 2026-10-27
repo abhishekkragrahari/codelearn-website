@@ -397,12 +397,13 @@ export const topics = [
     color: '#64748b',
     blurb: 'Free-body diagrams, equilibrium, friction, trusses, virtual work, kinematics and dynamics of rigid bodies, impulse, momentum and energy.',
     intro:
-      'Engineering Mechanics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Engineering Mechanics for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE ME',
+    paper: 'GATE ME and CE',
     branch: 'me',
+    alsoBranch: 'ce',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -412,12 +413,13 @@ export const topics = [
     color: '#0f766e',
     blurb: 'Stress and strain, elastic constants, Mohr circle, thin cylinders, SFD and BMD, bending, shear, deflection, torsion, springs, columns and strain energy.',
     intro:
-      'Strength of Materials for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Strength of Materials for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE ME',
+    paper: 'GATE ME and CE',
     branch: 'me',
+    alsoBranch: 'ce',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -457,12 +459,13 @@ export const topics = [
     color: '#0284c7',
     blurb: 'Fluid properties and statics, buoyancy, kinematics, Bernoulli and momentum equations, pipe flow, boundary layers, dimensional analysis and turbomachines.',
     intro:
-      'Fluid Mechanics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'Fluid Mechanics for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
       'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
     topic: true,
     gate: true,
-    paper: 'GATE ME',
+    paper: 'GATE ME and CE',
     branch: 'me',
+    alsoBranch: 'ce',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
   {
@@ -523,6 +526,112 @@ export const topics = [
     gate: true,
     paper: 'GATE ME',
     branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  // GATE CE subject tracks (engineering mechanics, solid mechanics and fluid mechanics are shared with ME).
+  {
+    id: 'ce-str',
+    name: 'Structural Analysis',
+    short: 'SA',
+    color: '#9333ea',
+    blurb: 'Static and kinematic indeterminacy, influence lines, force and displacement methods, slope deflection, moment distribution, arches, cables and matrix methods.',
+    intro:
+      'Structural Analysis for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-rcc',
+    name: 'Concrete & Steel Structures',
+    short: 'RC',
+    color: '#78716c',
+    blurb: 'Concrete technology, limit state design of beams, slabs and columns, shear and bond, prestressed concrete, and design of steel tension, compression and flexural members and connections.',
+    intro:
+      'Concrete & Steel Structures for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-geo',
+    name: 'Geotechnical Engineering',
+    short: 'GT',
+    color: '#a16207',
+    blurb: 'Soil properties and classification, permeability and seepage, effective stress, consolidation, compaction, shear strength, earth pressure, slope stability and foundations.',
+    intro:
+      'Geotechnical Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-wr',
+    name: 'Water Resources Engineering',
+    short: 'WR',
+    color: '#0369a1',
+    blurb: 'Open channel flow, hydraulic jump, hydrology, unit hydrographs, flood routing, groundwater and wells, and irrigation engineering.',
+    intro:
+      'Water Resources Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-env',
+    name: 'Environmental Engineering',
+    short: 'EV',
+    color: '#15803d',
+    blurb: 'Water demand and quality, water treatment, wastewater characteristics and BOD, sewage treatment, air pollution, noise and municipal solid waste.',
+    intro:
+      'Environmental Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-tr',
+    name: 'Transportation Engineering',
+    short: 'TR',
+    color: '#c2410c',
+    blurb: 'Highway geometric design, pavement materials, flexible and rigid pavement design, traffic flow, capacity and signal design.',
+    intro:
+      'Transportation Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-gm',
+    name: 'Geomatics Engineering',
+    short: 'GM',
+    color: '#4338ca',
+    blurb: 'Distance and angle measurement, levelling, traversing, curves, tacheometry, errors, photogrammetry, remote sensing and GPS.',
+    intro:
+      'Geomatics Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
     cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
 ];

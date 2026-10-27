@@ -123,7 +123,7 @@ function corePaper(id, title, heading, branch) {
   const lessons = loadLessons(id);
   let subjects = lessons.filter((l) => l.chapter !== 'Exam Prep').map((l) => ({ name: l.title, track: id, lesson: l.slug }));
   // A branch whose subjects have their own topic-wise tracks lists those tracks instead.
-  const own = topics.filter((t) => t.branch === id);
+  const own = topics.filter((t) => t.branch === id || t.alsoBranch === id);
   if (own.length) subjects = [subjects[0], ...own.map((t) => ({ name: t.name, track: t.id }))];
   const prep = lessons.filter((l) => l.chapter === 'Exam Prep');
   return {
