@@ -477,6 +477,7 @@ button { font: inherit; }
 .dg-text { fill: var(--text); font-size: 13px; font-weight: 600; }
 .dg-note { fill: var(--text-soft); font-size: 11px; }
 .dg-label { fill: var(--primary); font-size: 12px; font-weight: 700; }
+.dg-watermark { fill: var(--text-soft); font-size: 10px; font-weight: 600; opacity: 0.7; letter-spacing: 0.02em; }
 .dg-vertex { fill: var(--primary-soft); stroke: var(--primary); }
 .dg-weight-bg { fill: var(--surface); }
 

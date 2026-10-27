@@ -76,12 +76,16 @@ const breadcrumbs = (items) => ({
 const gateTag = (t) => (t.gate ? t.paper || (t.da ? 'GATE DA' : 'GATE CS') : '');
 
 // Title candidates for a lesson, longest first. The track name is left out when the lesson
-// title already contains it ("Loops in C"), and long titles fall back to the part before " - ".
+// title already contains it ("Loops in C"), and long titles fall back to the part before " - ",
+// then to the part before ": ", then before the first ", " or " and ", so that a GATE lesson
+// keeps "GATE" in its title.
 function lessonTitles(lang, title) {
-  const tag = lang.gate ? ` (${gateTag(lang)})` : '';
-  const track = title.includes(lang.name) ? '' : ` - ${lang.name}`;
+  const tag = lang.gate && !title.includes('GATE') ? ` (${gateTag(lang)})` : '';
+  const track = title.endsWith(` in ${lang.name}`) && !lang.topic ? ' Programming' : title.includes(lang.name) ? '' : lang.topic ? ` - ${lang.name}` : ` in ${lang.name} Programming`;
   const short = title.split(' - ')[0];
-  return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, short])];
+  const head = short.split(': ')[0];
+  const first = head.split(/, | and /)[0];
+  return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, `${head}${tag}`, `${first}${tag}`, short])];
 }
 
 function topicCard(t, all, root) {
@@ -119,7 +123,13 @@ const gatePapers = {
 // A core-branch paper: one track whose lessons are the subjects, plus the shared
 // Engineering Mathematics and General Aptitude tracks.
 function corePaper(id, title, heading, branch) {
-  const subjects = loadLessons(id).map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  // Exam Prep pages (study plan, formula sheet, mock test) are linked separately, not listed as subjects.
+  const lessons = loadLessons(id);
+  let subjects = lessons.filter((l) => l.chapter !== 'Exam Prep').map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  // A branch whose subjects have their own topic-wise tracks lists those tracks instead.
+  const own = topics.filter((t) => t.branch === id || t.alsoBranch === id);
+  if (own.length) subjects = [subjects[0], ...own.map((t) => ({ name: t.name, track: t.id }))];
+  const prep = lessons.filter((l) => l.chapter === 'Exam Prep');
   return {
     file: `gate-${id}.html`,
     title,
@@ -127,6 +137,7 @@ function corePaper(id, title, heading, branch) {
     paper: title,
     subjects: [...subjects, { name: 'Engineering Mathematics', track: 'em' }, { name: 'General Aptitude', track: 'ga' }],
     description: `GATE ${branch} preparation: the detailed syllabus, key concepts and formulas for every subject, with solved GATE-style questions.`,
+    prep: prep.map((l) => ({ title: l.title, href: `${id}/${l.slug}.html` })),
     lead:
       `The detailed ${title} syllabus, with one lesson per subject: the topics to study, the key concepts and formulas, a worked ` +
       'example and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built. ' +
@@ -158,6 +169,8 @@ function gatePage(all, paper) {
   <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
   <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
+  ${paper.prep && paper.prep.length ? `<p class="gate-other">Exam prep: ${paper.prep.map((p) => `<a href="${p.href}">${escapeHtml(p.title)}</a>`).join(' &middot; ')}</p>` : ''}
+  ${paper.paper === 'GATE CS' || paper.paper === 'GATE DA' ? `<p class="gate-other">Planning your preparation? Read the <a href="prep/index.html">GATE CS Exam Guide</a>: <a href="prep/exam-pattern-marking-scheme.html">exam pattern</a>, <a href="prep/syllabus.html">syllabus</a>, <a href="prep/six-month-study-plan.html">study plans</a>, <a href="prep/formula-sheet.html">formula sheet</a> and a <a href="prep/mock-test-1.html">free mock test</a>.</p>` : ''}
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
   return layout({
@@ -317,7 +330,7 @@ ${sidebar(lang, lessons, null, root)}
 </div>
 </div>`;
   return layout({
-    titles: [
+    titles: lang.indexTitles || [
       lang.gate ? `${lang.name} for ${gateTag(lang)}: Notes and Practice Questions` : `${trackTitle(lang)}: Free Lessons with Examples`,
       lang.gate ? `${lang.name} for ${gateTag(lang)}` : trackTitle(lang),
     ],
@@ -383,7 +396,8 @@ ${content}
   return layout({
     // "GATE" in the title helps people searching for exam notes find the page; shorter forms are used when it is too long.
     titles: lessonTitles(lang, l.title),
-    description: l.description || `${l.title} in ${trackTitle(lang)}.`,
+    // A GATE lesson's description starts with the paper name when it does not mention GATE already.
+    description: lang.gate && l.description && !l.description.includes('GATE') ? `${gateTag(lang)}: ${l.description}` : l.description || `${l.title} in ${trackTitle(lang)}.`,
     descriptionExtra: lang.gate
       ? `Free ${lang.name} notes for ${gateTag(lang)} with solved practice questions.`
       : `Free ${lang.name} lesson with examples and their output.`,

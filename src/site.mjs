@@ -312,6 +312,22 @@ export const topics = [
     da: true,
     cardMeta: 'Real SQL results · worked examples · GATE-style questions',
   },
+  // GATE CS exam guide: pattern, syllabus, study plans, formula sheet and mock tests.
+  {
+    id: 'prep',
+    name: 'GATE CS Exam Guide',
+    short: 'EG',
+    color: '#4f46e5',
+    blurb: 'Exam pattern and marking scheme, the syllabus, previous year papers, 6-month and 3-month study plans, a formula sheet and a free mock test.',
+    intro:
+      'Everything around the subjects: how the GATE CS paper is built and marked, the full syllabus with links to every lesson, ' +
+      'where to get official previous year papers and how to analyse them, study plans for six and three months, a formula sheet ' +
+      'for revision and a free mock test whose numerical answers are recomputed by a program.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Pattern · syllabus · study plans · mock test',
+    indexTitles: ['GATE CS 2027 Exam Guide: Pattern, Syllabus, Study Plan', 'GATE CS 2027 Exam Guide'],
+  },
   // GATE core-branch papers: one track per paper, one lesson per syllabus subject.
   {
     id: 'ce',
@@ -372,6 +388,438 @@ export const topics = [
     gate: true,
     paper: 'GATE EC',
     cardMeta: 'Detailed syllabus · key formulas · GATE-style questions',
+  },
+  // GATE ME subject tracks: one track per syllabus subject, one lesson per topic.
+  {
+    id: 'me-mech',
+    name: 'Engineering Mechanics',
+    short: 'EM',
+    color: '#64748b',
+    blurb: 'Free-body diagrams, equilibrium, friction, trusses, virtual work, kinematics and dynamics of rigid bodies, impulse, momentum and energy.',
+    intro:
+      'Engineering Mechanics for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME and CE',
+    branch: 'me',
+    alsoBranch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-som',
+    name: 'Strength of Materials',
+    short: 'SM',
+    color: '#0f766e',
+    blurb: 'Stress and strain, elastic constants, Mohr circle, thin cylinders, SFD and BMD, bending, shear, deflection, torsion, springs, columns and strain energy.',
+    intro:
+      'Strength of Materials for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME and CE',
+    branch: 'me',
+    alsoBranch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-tom',
+    name: 'Theory of Machines & Vibrations',
+    short: 'TV',
+    color: '#7c3aed',
+    blurb: 'Mechanisms and degrees of freedom, velocity and acceleration, cams, gears and gear trains, flywheels, governors, balancing and vibrations.',
+    intro:
+      'Theory of Machines & Vibrations for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-md',
+    name: 'Machine Design',
+    short: 'MD',
+    color: '#b91c1c',
+    blurb: 'Static failure theories, fatigue and endurance limit, bolted and welded joints, shafts and keys, bearings, gears, brakes and clutches.',
+    intro:
+      'Machine Design for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-fm',
+    name: 'Fluid Mechanics',
+    short: 'FM',
+    color: '#0284c7',
+    blurb: 'Fluid properties and statics, buoyancy, kinematics, Bernoulli and momentum equations, pipe flow, boundary layers, dimensional analysis and turbomachines.',
+    intro:
+      'Fluid Mechanics for GATE Mechanical and Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME and CE',
+    branch: 'me',
+    alsoBranch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-td',
+    name: 'Thermodynamics',
+    short: 'TD',
+    color: '#ea580c',
+    blurb: 'Laws of thermodynamics, entropy, availability, properties of steam, Rankine, gas power and refrigeration cycles, psychrometry and IC engines.',
+    intro:
+      'Thermodynamics for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-ht',
+    name: 'Heat Transfer',
+    short: 'HT',
+    color: '#dc2626',
+    blurb: 'Conduction, fins, transient conduction, forced and natural convection, radiation and heat exchangers (LMTD and effectiveness-NTU).',
+    intro:
+      'Heat Transfer for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-mfg',
+    name: 'Materials & Manufacturing',
+    short: 'MF',
+    color: '#a16207',
+    blurb: 'Engineering materials, casting, forming, joining, machining and tool life, non-traditional machining, metrology and computer integrated manufacturing.',
+    intro:
+      'Materials & Manufacturing for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'me-ie',
+    name: 'Industrial Engineering',
+    short: 'IE',
+    color: '#4d7c0f',
+    blurb: 'Forecasting, inventory models, linear programming, transportation and assignment, queueing, PERT and CPM, scheduling and quality control.',
+    intro:
+      'Industrial Engineering for GATE Mechanical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE ME',
+    branch: 'me',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  // GATE CE subject tracks (engineering mechanics, solid mechanics and fluid mechanics are shared with ME).
+  {
+    id: 'ce-str',
+    name: 'Structural Analysis',
+    short: 'SA',
+    color: '#9333ea',
+    blurb: 'Static and kinematic indeterminacy, influence lines, force and displacement methods, slope deflection, moment distribution, arches, cables and matrix methods.',
+    intro:
+      'Structural Analysis for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-rcc',
+    name: 'Concrete & Steel Structures',
+    short: 'RC',
+    color: '#78716c',
+    blurb: 'Concrete technology, limit state design of beams, slabs and columns, shear and bond, prestressed concrete, and design of steel tension, compression and flexural members and connections.',
+    intro:
+      'Concrete & Steel Structures for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-geo',
+    name: 'Geotechnical Engineering',
+    short: 'GT',
+    color: '#a16207',
+    blurb: 'Soil properties and classification, permeability and seepage, effective stress, consolidation, compaction, shear strength, earth pressure, slope stability and foundations.',
+    intro:
+      'Geotechnical Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-wr',
+    name: 'Water Resources Engineering',
+    short: 'WR',
+    color: '#0369a1',
+    blurb: 'Open channel flow, hydraulic jump, hydrology, unit hydrographs, flood routing, groundwater and wells, and irrigation engineering.',
+    intro:
+      'Water Resources Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-env',
+    name: 'Environmental Engineering',
+    short: 'EV',
+    color: '#15803d',
+    blurb: 'Water demand and quality, water treatment, wastewater characteristics and BOD, sewage treatment, air pollution, noise and municipal solid waste.',
+    intro:
+      'Environmental Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-tr',
+    name: 'Transportation Engineering',
+    short: 'TR',
+    color: '#c2410c',
+    blurb: 'Highway geometric design, pavement materials, flexible and rigid pavement design, traffic flow, capacity and signal design.',
+    intro:
+      'Transportation Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ce-gm',
+    name: 'Geomatics Engineering',
+    short: 'GM',
+    color: '#4338ca',
+    blurb: 'Distance and angle measurement, levelling, traversing, curves, tacheometry, errors, photogrammetry, remote sensing and GPS.',
+    intro:
+      'Geomatics Engineering for GATE Civil Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE CE',
+    branch: 'ce',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  // GATE EE subject tracks: one track per syllabus subject, one lesson per topic.
+  {
+    id: 'ee-ckt',
+    name: 'Electric Circuits',
+    short: 'EC',
+    color: '#2563eb',
+    blurb: 'Network theorems, transient analysis, sinusoidal steady state and phasors, resonance, three-phase circuits and two-port networks.',
+    intro:
+      'Electric Circuits for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE and EC',
+    branch: 'ee',
+    alsoBranch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-emf',
+    name: 'Electromagnetic Fields',
+    short: 'EF',
+    color: '#7c3aed',
+    blurb: 'Coulomb and Gauss laws, electric potential, capacitance, Biot-Savart and Ampere laws, inductance, Faraday law and Maxwell equations.',
+    intro:
+      'Electromagnetic Fields for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE and EC',
+    branch: 'ee',
+    alsoBranch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-ss',
+    name: 'Signals & Systems',
+    short: 'SS',
+    color: '#0891b2',
+    blurb: 'Signal types, LTI systems and convolution, Fourier series and transform, Laplace and z-transforms, and sampling.',
+    intro:
+      'Signals & Systems for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE and EC',
+    branch: 'ee',
+    alsoBranch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-cs',
+    name: 'Control Systems',
+    short: 'CS',
+    color: '#16a34a',
+    blurb: 'Transfer functions and block diagrams, time response, steady-state error, Routh stability, root locus, Bode and Nyquist plots, compensators and state space.',
+    intro:
+      'Control Systems for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE and EC',
+    branch: 'ee',
+    alsoBranch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-mac',
+    name: 'Electrical Machines',
+    short: 'EM',
+    color: '#ca8a04',
+    blurb: 'Magnetic circuits, single and three-phase transformers, DC machines, induction motors and synchronous machines.',
+    intro:
+      'Electrical Machines for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-ps',
+    name: 'Power Systems',
+    short: 'PS',
+    color: '#dc2626',
+    blurb: 'Transmission line parameters and performance, per-unit system, load flow, faults, protection, stability and economic dispatch.',
+    intro:
+      'Power Systems for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-meas',
+    name: 'Electrical Measurements',
+    short: 'MS',
+    color: '#64748b',
+    blurb: 'Indicating instruments, bridges, measurement of power and energy, instrument transformers, oscilloscopes and errors.',
+    intro:
+      'Electrical Measurements for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-elec',
+    name: 'Analog & Digital Electronics',
+    short: 'AD',
+    color: '#db2777',
+    blurb: 'Diodes and rectifiers, BJT and MOSFET amplifiers, op-amps, oscillators, logic gates, combinational and sequential circuits, and data converters.',
+    intro:
+      'Analog & Digital Electronics for GATE Electrical and Electronics Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE and EC',
+    branch: 'ee',
+    alsoBranch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ee-pe',
+    name: 'Power Electronics',
+    short: 'PE',
+    color: '#ea580c',
+    blurb: 'Power semiconductor devices, controlled rectifiers, DC-DC converters, inverters with PWM, and AC voltage controllers.',
+    intro:
+      'Power Electronics for GATE Electrical Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EE',
+    branch: 'ee',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  // GATE EC subject tracks (circuits, fields, signals, control and electronics are shared with EE).
+  {
+    id: 'ec-dev',
+    name: 'Electronic Devices',
+    short: 'ED',
+    color: '#be185d',
+    blurb: 'Energy bands, carrier statistics, drift and diffusion, PN junction, Zener and LED, BJT and MOSFET physics, and IC fabrication basics.',
+    intro:
+      'Electronic Devices for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ec-comm',
+    name: 'Communications',
+    short: 'CM',
+    color: '#0e7490',
+    blurb: 'Random processes and noise, AM and FM, sampling and PCM, digital modulation (ASK, FSK, PSK, QAM), matched filter and BER, and information theory.',
+    intro:
+      'Communications for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
+  },
+  {
+    id: 'ec-emw',
+    name: 'Electromagnetic Waves',
+    short: 'EW',
+    color: '#6d28d9',
+    blurb: 'Plane waves, reflection and refraction, skin depth, transmission lines and the Smith chart, waveguides, and antennas.',
+    intro:
+      'Electromagnetic Waves for GATE Electronics and Communication Engineering, one topic per lesson: the theory in plain words, the formulas, a solved example, ' +
+      'and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built.',
+    topic: true,
+    gate: true,
+    paper: 'GATE EC',
+    branch: 'ec',
+    cardMeta: 'Topic-wise lessons · solved examples · GATE-style questions',
   },
 ];
 
