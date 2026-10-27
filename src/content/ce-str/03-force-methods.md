@@ -1,5 +1,5 @@
 ---
-title: Force Methods: Consistent Deformation and Energy Methods
+title: Force Methods and Consistent Deformation
 chapter: Indeterminate Structures
 description: Method of consistent deformation, propped cantilever and fixed beam results, three-moment theorem, unit load method, Castigliano's theorems and Maxwell's reciprocal theorem.
 ---

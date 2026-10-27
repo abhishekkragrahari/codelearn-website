@@ -76,12 +76,16 @@ const breadcrumbs = (items) => ({
 const gateTag = (t) => (t.gate ? t.paper || (t.da ? 'GATE DA' : 'GATE CS') : '');
 
 // Title candidates for a lesson, longest first. The track name is left out when the lesson
-// title already contains it ("Loops in C"), and long titles fall back to the part before " - ".
+// title already contains it ("Loops in C"), and long titles fall back to the part before " - ",
+// then to the part before ": ", then before the first ", " or " and ", so that a GATE lesson
+// keeps "GATE" in its title.
 function lessonTitles(lang, title) {
-  const tag = lang.gate && !title.includes(gateTag(lang)) ? ` (${gateTag(lang)})` : '';
-  const track = title.includes(lang.name) ? '' : ` - ${lang.name}`;
+  const tag = lang.gate && !title.includes('GATE') ? ` (${gateTag(lang)})` : '';
+  const track = title.endsWith(` in ${lang.name}`) && !lang.topic ? ' Programming' : title.includes(lang.name) ? '' : lang.topic ? ` - ${lang.name}` : ` in ${lang.name} Programming`;
   const short = title.split(' - ')[0];
-  return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, short])];
+  const head = short.split(': ')[0];
+  const first = head.split(/, | and /)[0];
+  return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, `${head}${tag}`, `${first}${tag}`, short])];
 }
 
 function topicCard(t, all, root) {
@@ -392,7 +396,8 @@ ${content}
   return layout({
     // "GATE" in the title helps people searching for exam notes find the page; shorter forms are used when it is too long.
     titles: lessonTitles(lang, l.title),
-    description: l.description || `${l.title} in ${trackTitle(lang)}.`,
+    // A GATE lesson's description starts with the paper name when it does not mention GATE already.
+    description: lang.gate && l.description && !l.description.includes('GATE') ? `${gateTag(lang)}: ${l.description}` : l.description || `${l.title} in ${trackTitle(lang)}.`,
     descriptionExtra: lang.gate
       ? `Free ${lang.name} notes for ${gateTag(lang)} with solved practice questions.`
       : `Free ${lang.name} lesson with examples and their output.`,

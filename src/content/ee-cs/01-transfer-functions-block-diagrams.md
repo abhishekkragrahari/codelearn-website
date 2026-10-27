@@ -1,5 +1,5 @@
 ---
-title: Transfer Functions, Block Diagrams and Signal Flow Graphs
+title: Transfer Functions and Block Diagrams
 chapter: Modelling
 description: Open and closed-loop systems, transfer functions, block diagram reduction rules, signal flow graphs and Mason's gain formula, effect of feedback, and modelling of mechanical and electrical systems.
 ---

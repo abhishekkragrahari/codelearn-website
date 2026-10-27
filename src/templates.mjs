@@ -107,8 +107,15 @@ const TITLE_MAX = 65;
 const DESCRIPTION_MAX = 160;
 
 // Takes title candidates, longest first, and returns the first that fits with " | GateShala",
-// then the first that fits alone, then the last one.
+// then the first that fits alone, then the last one. Candidates naming a GATE paper are tried
+// first, since people search for "GATE" notes, and a fuller one without the site name beats a
+// shorter one with it.
 function fitTitle(candidates) {
+  const fit = candidates
+    .filter((t) => t.includes('GATE'))
+    .flatMap((t) => [`${t} | ${site.name}`, t])
+    .find((t) => t.length <= TITLE_MAX);
+  if (fit) return fit;
   return (
     candidates.map((t) => `${t} | ${site.name}`).find((t) => t.length <= TITLE_MAX) ||
     candidates.find((t) => t.length <= TITLE_MAX) ||

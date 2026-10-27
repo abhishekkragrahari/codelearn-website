@@ -1,5 +1,5 @@
 ---
-title: Fluid Kinematics, Bernoulli and Momentum Equations
+title: Fluid Kinematics, Bernoulli and Momentum
 chapter: Fluid Dynamics
 description: Types of flow, continuity equation, streamlines and stream function, velocity potential, Bernoulli's equation, venturimeter and Pitot tube, and the momentum equation for jets and bends.
 ---

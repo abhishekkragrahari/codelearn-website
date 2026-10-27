@@ -1,5 +1,5 @@
 ---
-title: Principal Stresses, Mohr's Circle and Thin Cylinders
+title: Mohr's Circle, Principal Stress, Thin Cylinders
 chapter: Stress and Strain
 description: Stress transformation, principal stresses and planes, maximum shear stress, Mohr's circle, strain gauges, and hoop and longitudinal stresses in thin cylinders and spheres.
 ---

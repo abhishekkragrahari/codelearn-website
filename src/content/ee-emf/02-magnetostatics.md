@@ -1,5 +1,5 @@
 ---
-title: Magnetostatics: Biot-Savart, Ampere and Inductance
+title: Magnetostatics: Biot-Savart and Ampere's Law
 chapter: Static Fields
 description: Biot-Savart law, magnetic field of a wire, loop and solenoid, Ampere's circuital law, magnetic flux and force on conductors, magnetic materials, boundary conditions and inductance.
 ---

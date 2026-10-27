@@ -1,5 +1,5 @@
 ---
-title: Metal Forming: Rolling, Forging, Extrusion and Sheet Metal
+title: Metal Forming: Rolling, Forging and Extrusion
 chapter: Primary Processes
 description: Hot and cold working, flow stress, rolling (maximum draft, roll force), forging, extrusion and wire drawing forces, and sheet metal operations including blanking force and deep drawing.
 ---

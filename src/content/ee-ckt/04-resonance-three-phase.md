@@ -1,5 +1,5 @@
 ---
-title: Resonance, Coupled Circuits and Three-Phase Systems
+title: Resonance, Coupled Coils and Three-Phase
 chapter: AC Circuits
 description: Series and parallel resonance, quality factor and bandwidth, mutual inductance and dot convention, balanced star and delta systems, line and phase quantities, and the two-wattmeter method.
 ---

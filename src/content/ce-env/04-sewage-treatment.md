@@ -1,5 +1,5 @@
 ---
-title: Sewage Treatment: Activated Sludge and Trickling Filters
+title: Sewage Treatment: Activated Sludge, Trickling Filter
 chapter: Wastewater
 description: Primary and secondary treatment, activated sludge process parameters (F/M ratio, MLSS, SRT, SVI, sludge recirculation), trickling filters (NRC equation), oxidation ponds and sludge digestion.
 ---

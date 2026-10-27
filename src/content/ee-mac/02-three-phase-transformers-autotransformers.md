@@ -1,5 +1,5 @@
 ---
-title: Three-Phase Transformers, Autotransformers and Parallel Operation
+title: Three-Phase Transformers and Autotransformers
 chapter: Transformers
 description: Three-phase transformer connections and phase shifts, vector groups, autotransformer copper saving and power transfer, parallel operation and load sharing, and per-unit impedance.
 ---
