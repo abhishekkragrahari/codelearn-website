@@ -119,7 +119,10 @@ const gatePapers = {
 // A core-branch paper: one track whose lessons are the subjects, plus the shared
 // Engineering Mathematics and General Aptitude tracks.
 function corePaper(id, title, heading, branch) {
-  const subjects = loadLessons(id).map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  // Exam Prep pages (study plan, formula sheet, mock test) are linked separately, not listed as subjects.
+  const lessons = loadLessons(id);
+  const subjects = lessons.filter((l) => l.chapter !== 'Exam Prep').map((l) => ({ name: l.title, track: id, lesson: l.slug }));
+  const prep = lessons.filter((l) => l.chapter === 'Exam Prep');
   return {
     file: `gate-${id}.html`,
     title,
@@ -127,6 +130,7 @@ function corePaper(id, title, heading, branch) {
     paper: title,
     subjects: [...subjects, { name: 'Engineering Mathematics', track: 'em' }, { name: 'General Aptitude', track: 'ga' }],
     description: `GATE ${branch} preparation: the detailed syllabus, key concepts and formulas for every subject, with solved GATE-style questions.`,
+    prep: prep.map((l) => ({ title: l.title, href: `${id}/${l.slug}.html` })),
     lead:
       `The detailed ${title} syllabus, with one lesson per subject: the topics to study, the key concepts and formulas, a worked ` +
       'example and GATE-style questions (MCQ, MSQ and NAT) whose numerical answers are recomputed by a program when the site is built. ' +
@@ -158,6 +162,7 @@ function gatePage(all, paper) {
   <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
   <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
+  ${paper.prep && paper.prep.length ? `<p class="gate-other">Exam prep: ${paper.prep.map((p) => `<a href="${p.href}">${escapeHtml(p.title)}</a>`).join(' &middot; ')}</p>` : ''}
   ${paper.paper === 'GATE CS' || paper.paper === 'GATE DA' ? `<p class="gate-other">Planning your preparation? Read the <a href="prep/index.html">GATE CS Exam Guide</a>: <a href="prep/exam-pattern-marking-scheme.html">exam pattern</a>, <a href="prep/syllabus.html">syllabus</a>, <a href="prep/six-month-study-plan.html">study plans</a>, <a href="prep/formula-sheet.html">formula sheet</a> and a <a href="prep/mock-test-1.html">free mock test</a>.</p>` : ''}
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
