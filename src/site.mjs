@@ -312,6 +312,22 @@ export const topics = [
     da: true,
     cardMeta: 'Real SQL results · worked examples · GATE-style questions',
   },
+  // GATE CS exam guide: pattern, syllabus, study plans, formula sheet and mock tests.
+  {
+    id: 'prep',
+    name: 'GATE CS Exam Guide',
+    short: 'EG',
+    color: '#4f46e5',
+    blurb: 'Exam pattern and marking scheme, the syllabus, previous year papers, 6-month and 3-month study plans, a formula sheet and a free mock test.',
+    intro:
+      'Everything around the subjects: how the GATE CS paper is built and marked, the full syllabus with links to every lesson, ' +
+      'where to get official previous year papers and how to analyse them, study plans for six and three months, a formula sheet ' +
+      'for revision and a free mock test whose numerical answers are recomputed by a program.',
+    topic: true,
+    gate: true,
+    cardMeta: 'Pattern · syllabus · study plans · mock test',
+    indexTitles: ['GATE CS 2027 Exam Guide: Pattern, Syllabus, Study Plan', 'GATE CS 2027 Exam Guide'],
+  },
   // GATE core-branch papers: one track per paper, one lesson per syllabus subject.
   {
     id: 'ce',

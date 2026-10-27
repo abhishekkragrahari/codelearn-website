@@ -78,7 +78,7 @@ const gateTag = (t) => (t.gate ? t.paper || (t.da ? 'GATE DA' : 'GATE CS') : '')
 // Title candidates for a lesson, longest first. The track name is left out when the lesson
 // title already contains it ("Loops in C"), and long titles fall back to the part before " - ".
 function lessonTitles(lang, title) {
-  const tag = lang.gate ? ` (${gateTag(lang)})` : '';
+  const tag = lang.gate && !title.includes(gateTag(lang)) ? ` (${gateTag(lang)})` : '';
   const track = title.includes(lang.name) ? '' : ` - ${lang.name}`;
   const short = title.split(' - ')[0];
   return [...new Set([`${title}${track}${tag}`, `${title}${tag}`, `${short}${track}${tag}`, `${short}${tag}`, short])];
@@ -158,6 +158,7 @@ function gatePage(all, paper) {
   <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
   <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
+  ${paper.paper === 'GATE CS' || paper.paper === 'GATE DA' ? `<p class="gate-other">Planning your preparation? Read the <a href="prep/index.html">GATE CS Exam Guide</a>: <a href="prep/exam-pattern-marking-scheme.html">exam pattern</a>, <a href="prep/syllabus.html">syllabus</a>, <a href="prep/six-month-study-plan.html">study plans</a>, <a href="prep/formula-sheet.html">formula sheet</a> and a <a href="prep/mock-test-1.html">free mock test</a>.</p>` : ''}
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
 </div></section>`;
   return layout({
@@ -317,7 +318,7 @@ ${sidebar(lang, lessons, null, root)}
 </div>
 </div>`;
   return layout({
-    titles: [
+    titles: lang.indexTitles || [
       lang.gate ? `${lang.name} for ${gateTag(lang)}: Notes and Practice Questions` : `${trackTitle(lang)}: Free Lessons with Examples`,
       lang.gate ? `${lang.name} for ${gateTag(lang)}` : trackTitle(lang),
     ],
