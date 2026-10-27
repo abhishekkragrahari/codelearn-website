@@ -30,9 +30,15 @@ function arrowMarker(id) {
   return `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>`;
 }
 
+// Every figure carries the site name in its bottom-right corner, so copies show where it came from.
+const WATERMARK_H = 14;
+
 function svgWrap(width, height, body, caption, kind) {
   const id = `dg${++idCounter}`;
-  const svg = `<svg class="diagram-svg" viewBox="0 0 ${Math.ceil(width)} ${Math.ceil(height)}" width="${Math.ceil(width)}" role="img" aria-label="${escapeHtml(caption || kind)}">${arrowMarker(id)}${body.replaceAll('__ARROW__', `url(#${id})`)}</svg>`;
+  const w = Math.max(Math.ceil(width), 110);
+  const h = Math.ceil(height) + WATERMARK_H;
+  const mark = `<text class="dg-watermark" x="${w - 4}" y="${h - 4}" text-anchor="end">gateshala.com</text>`;
+  const svg = `<svg class="diagram-svg" viewBox="0 0 ${w} ${h}" width="${w}" role="img" aria-label="${escapeHtml(caption || kind)}">${arrowMarker(id)}${body.replaceAll('__ARROW__', `url(#${id})`)}${mark}</svg>`;
   return `<figure class="diagram diagram-${kind}"><div class="diagram-scroll">${svg}</div>${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ''}</figure>`;
 }
 
