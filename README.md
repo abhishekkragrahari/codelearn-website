@@ -5,7 +5,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 
 - Home page with a language picker
 - Tutorials split into chapters, with a sidebar of topics on the left
-- Data Structures & Algorithms track: 23 lessons covering the GATE CS syllabus. Each lesson has figures, the same code in Java, Python and C (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
+- Data Structures & Algorithms track: 35 lessons covering the GATE CS syllabus and the wider DSA topics (amortized analysis, backtracking, bit manipulation, array techniques, string matching, red-black and B-trees, trie, union-find, segment and Fenwick trees, network flow, advanced DP, NP-completeness). Each lesson has figures, the same code in Java, Python and C (switchable tabs), and interactive GATE-style practice questions (MCQ, MSQ, NAT).
 - Operating Systems track: 12 lessons (processes, scheduling, synchronization, deadlocks, memory, paging, virtual memory, file systems, disk scheduling) with C and Python simulations and GATE-style questions.
 - Databases (DBMS) track: 13 lessons (ER model, relational algebra and calculus, SQL, functional dependencies, normalization, transactions, concurrency control, indexing). Every SQL example runs on a real SQLite database at build time.
 - Computer Networks track: 12 lessons (layering, switching, framing and CRC, sliding windows, MAC and Ethernet, IP addressing and subnets, IP/ARP/DHCP/ICMP/NAT, routing, TCP/UDP and sockets, congestion control, application protocols), with every numerical computed by a program.
@@ -19,6 +19,7 @@ It has syntax-highlighted examples with Copy buttons, and a playground where Jav
 - GATE CS hub (`gate.html`) listing every GATE CS subject, with lesson and question counts for the ready ones.
 - GATE DA tracks: Probability & Statistics (8 lessons), Linear Algebra (8), Calculus & Optimization (5), Machine Learning (11, every method implemented in plain Python), Artificial Intelligence (9: search, logic, Bayesian networks and inference) and Data Warehousing (4, with SQL on SQLite).
 - GATE DA hub (`gate-da.html`) listing the GATE DA syllabus; programming, DSA, DBMS and aptitude link to the existing tracks.
+- Every figure carries the site name (gateshala.com) in its corner.
 - Every example shows its exact output. JavaScript examples also have a **Run** button.
 - Playground page that really runs code: JavaScript and Python in the browser, C and Java on a free online compiler, with an input (stdin) box.
 - Responsive layout, plus light and dark mode (follows the system setting, with a toggle in the header)
