@@ -71,3 +71,17 @@ q: When a liquid is heated, its viscosity generally:
 - First rises then falls
 explain: Heat weakens the cohesive forces between liquid molecules, so liquids flow more easily. Gases behave the opposite way.
 ```
+
+```quiz
+q: Oil has a specific gravity of 0.9. What is its specific weight in kN/m³ (g = 9.81 m/s²)? (Give 3 decimal places.)
+answer: 8.829
+verify: round(900 * 9.81 / 1000, 3)
+explain: γ = ρg = 900 × 9.81 = 8829 N/m³ = 8.829 kN/m³.
+```
+
+```quiz
+q: A tank's gauge pressure is 50 kPa and atmospheric pressure is 101 kPa. What is the absolute pressure in kPa?
+answer: 151
+verify: 50 + 101
+explain: Absolute = gauge + atmospheric = 151 kPa.
+```

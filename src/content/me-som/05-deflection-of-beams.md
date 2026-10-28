@@ -76,3 +76,19 @@ answer: 10
 verify: round(8000 * 1 ** 4 / (8 * 1e5) * 1000, 6)
 explain: δ = wL⁴/(8EI) = 8000/(8 × 10⁵) = 0.01 m = 10 mm.
 ```
+
+```quiz
+q: A cantilever 3 m long with EI = 9 × 10⁶ N·m² carries 1 kN at its tip. What is the tip deflection in mm?
+answer: 1
+verify: round(1000 * 3 ** 3 / (3 * 9e6) * 1000, 6)
+explain: δ = PL³/(3EI) = 1000 × 27/(2.7 × 10⁷) = 0.001 m = 1 mm.
+```
+
+```quiz
+q: If the moment of inertia of a beam's section is doubled, its deflection under the same load becomes:
+- Twice
+* Half
+- One quarter
+- Unchanged
+explain: Deflection is inversely proportional to EI.
+```

@@ -76,3 +76,17 @@ q: Which hydraulic jump is preferred in stilling basins?
 - Weak
 explain: The steady jump (Fr₁ 4.5–9) is well formed and dissipates energy well without downstream waves.
 ```
+
+```quiz
+q: A hydraulic jump has y₁ = 0.5 m and y₂ = 2.5 m. What is its height in m?
+answer: 2
+verify: 2.5 - 0.5
+explain: Height of jump = y₂ − y₁ = 2 m.
+```
+
+```quiz
+q: A rectangular weir 2 m long has C_d = 0.6 and a head of 0.36 m (g = 9.81). What is the discharge in m³/s? (Give 3 decimal places.)
+answer: 0.765
+verify: round(2 / 3 * 0.6 * (2 * 9.81) ** 0.5 * 2 * 0.36 ** 1.5, 3)
+explain: Q = (2/3)C_d√(2g) L H^1.5 = 0.4 × 4.429 × 2 × 0.216 = 0.765 m³/s.
+```

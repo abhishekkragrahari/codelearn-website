@@ -81,3 +81,17 @@ q: An over-reinforced RCC beam fails by:
 - Bond failure only
 explain: In an over-reinforced section concrete reaches 0.0035 strain first, giving a brittle failure; IS 456 does not allow it.
 ```
+
+```quiz
+q: For Fe 500 steel and d = 400 mm, what is the limiting depth of the neutral axis in mm?
+answer: 184
+verify: 0.46 * 400
+explain: x_u,max = 0.46d = 184 mm.
+```
+
+```quiz
+q: For M25 and Fe 415, b = 250 mm and d = 450 mm, what is M_u,lim in kN·m? (Give 2 decimal places.)
+answer: 174.66
+verify: round(0.138 * 25 * 250 * 450 ** 2 / 1e6, 2)
+explain: M_u,lim = 0.138 × 25 × 250 × 202,500 = 174.66 kN·m.
+```

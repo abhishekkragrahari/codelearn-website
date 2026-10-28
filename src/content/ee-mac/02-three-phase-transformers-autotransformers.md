@@ -74,3 +74,17 @@ q: A star-delta transformer introduces a phase shift between primary and seconda
 - 120°
 explain: Y–Δ and Δ–Y connections shift the line voltages by 30°.
 ```
+
+```quiz
+q: A Δ–Y transformer has a phase turns ratio of 1 : 1 and 400 V line on the delta side. What is the line voltage (V) on the star side? (Give 1 decimal place.)
+answer: 692.8
+verify: round(400 * 3 ** 0.5, 1)
+explain: Star line voltage = √3 × phase voltage = √3 × 400 = 692.8 V.
+```
+
+```quiz
+q: An autotransformer converts 240 V to 200 V. What fraction of the power is transferred inductively? (Give 4 decimal places.)
+answer: 0.1667
+verify: round(1 - 200 / 240, 4)
+explain: Inductive fraction = 1 − a = 1 − 200/240 = 0.1667.
+```

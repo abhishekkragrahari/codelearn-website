@@ -84,3 +84,17 @@ q: A bar hanging under its own weight W stretches by how much compared with the 
 - One quarter
 explain: Self-weight gives δ = WL/(2AE), half of WL/(AE).
 ```
+
+```quiz
+q: A bar of area 200 mm² carries a tensile load of 30 kN. What is the stress in MPa?
+answer: 150
+verify: 30e3 / 200
+explain: σ = P/A = 30,000/200 = 150 MPa.
+```
+
+```quiz
+q: A material has E = 200 GPa and ν = 0.3. What is its bulk modulus in GPa? (Give 2 decimal places.)
+answer: 166.67
+verify: round(200 / (3 * (1 - 2 * 0.3)), 2)
+explain: K = E/(3(1 − 2ν)) = 200/1.2 = 166.67 GPa.
+```

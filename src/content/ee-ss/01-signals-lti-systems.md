@@ -76,3 +76,17 @@ q: The system y(t) = t·x(t) is:
 - Non-causal
 explain: Scaling and adding inputs works (linear), but the gain t changes with time, so a shifted input does not give a shifted output.
 ```
+
+```quiz
+q: The sequences {1, 2, 3} and {1, 1} are convolved. What is the length of the result?
+answer: 4
+verify: 3 + 2 - 1
+explain: N + M − 1 = 3 + 2 − 1 = 4 (the result is {1, 3, 5, 3}).
+```
+
+```quiz
+q: What is the average power of x(t) = 4 cos(100t)?
+answer: 8
+verify: 4 ** 2 / 2
+explain: A sinusoid of amplitude A has average power A²/2 = 8.
+```

@@ -82,3 +82,17 @@ q: On a T–s diagram, the area under a reversible process curve represents:
 - Change in internal energy
 explain: For a reversible process δQ = T ds, so the area under the T–s curve is the heat transferred.
 ```
+
+```quiz
+q: Air (R = 0.287 kJ/kg·K) occupies 1 m³ at 287 kPa and 300 K. What is its mass in kg? (Give 3 decimal places.)
+answer: 3.333
+verify: round(287 * 1 / (0.287 * 300), 3)
+explain: m = pV/(RT) = 287/(0.287 × 300) = 3.333 kg.
+```
+
+```quiz
+q: Wet steam has v_f = 0.001 and v_g = 0.2 m³/kg, and dryness 0.5. What is its specific volume in m³/kg? (Give 4 decimal places.)
+answer: 0.1005
+verify: round(0.001 + 0.5 * (0.2 - 0.001), 4)
+explain: v = v_f + x(v_g − v_f) = 0.001 + 0.0995 = 0.1005 m³/kg.
+```

@@ -71,3 +71,17 @@ q: Which material is best suited for an LED?
 - Any metal
 explain: In a direct-gap material, electrons and holes recombine by emitting photons efficiently.
 ```
+
+```quiz
+q: Silicon is doped with N_A = 10¹⁷ cm⁻³ (n_i = 10¹⁰). What is the electron concentration in cm⁻³?
+answer: 1000
+verify: 10 ** 20 // 10 ** 17
+explain: n = n_i²/N_A = 10²⁰/10¹⁷ = 10³ cm⁻³.
+```
+
+```quiz
+q: A hole mobility is 480 cm²/V·s at V_T = 0.026 V. What is the hole diffusion coefficient in cm²/s? (Give 2 decimal places.)
+answer: 12.48
+verify: round(480 * 0.026, 2)
+explain: D_p = μ_pV_T = 12.48 cm²/s.
+```

@@ -76,3 +76,17 @@ q: Where does the maximum bending moment occur in a beam?
 - Where the load is largest
 explain: dM/dx = V, so M has its extreme value where V = 0 (or jumps through zero).
 ```
+
+```quiz
+q: A simply supported beam of span 6 m carries a UDL of 12 kN/m. What is the shear force at a support in kN?
+answer: 36
+verify: 12 * 6 / 2
+explain: Each reaction is wL/2 = 36 kN, which is the shear force at the support.
+```
+
+```quiz
+q: A cantilever 2 m long carries 5 kN at its free end and 3 kN at its middle. What is the bending moment magnitude at the fixed end in kN·m?
+answer: 13
+verify: 5 * 2 + 3 * 1
+explain: M = 5 × 2 + 3 × 1 = 13 kN·m.
+```

@@ -73,3 +73,19 @@ answer: 200
 verify: 3000 / 15
 explain: BHN = load (kgf)/curved area (mm²) = 3000/15 = 200.
 ```
+
+```quiz
+q: How many atoms are in a BCC unit cell?
+answer: 2
+verify: 8 * (1 / 8) + 1
+explain: 8 corners × 1/8 + 1 body centre = 2.
+```
+
+```quiz
+q: Which heat treatment gives the softest and most ductile steel?
+* Annealing
+- Hardening
+- Normalising
+- Case hardening
+explain: Slow furnace cooling in annealing gives coarse pearlite and the lowest hardness.
+```

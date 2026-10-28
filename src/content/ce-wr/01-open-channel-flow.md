@@ -74,3 +74,17 @@ answer: 1.5
 verify: 1.5
 explain: At critical flow V²/(2g) = y_c/2, so E_min = 1.5y_c.
 ```
+
+```quiz
+q: A rectangular channel 2 m wide carries 4 m³/s at a depth of 1 m. What is the Froude number (g = 10 m/s²)? (Give 3 decimal places.)
+answer: 0.632
+verify: round((4 / 2) / (10 * 1) ** 0.5, 3)
+explain: V = 4/(2 × 1) = 2 m/s; Fr = 2/√10 = 0.632 (subcritical).
+```
+
+```quiz
+q: What is the most economical bed width (m) of a rectangular channel flowing 1.5 m deep?
+answer: 3
+verify: 2 * 1.5
+explain: For a rectangle, b = 2y = 3 m.
+```

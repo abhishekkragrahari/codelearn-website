@@ -68,3 +68,17 @@ q: In blanking, the clearance is provided on the:
 - Neither
 explain: In blanking the blank is the product, so the die is made to the blank size and the punch is made smaller.
 ```
+
+```quiz
+q: A strip is rolled from 20 mm to 16 mm with rolls of radius 250 mm. What is the contact length in mm? (Give 2 decimal places.)
+answer: 31.62
+verify: round((250 * 4) ** 0.5, 2)
+explain: L = √(RΔh) = √(250 × 4) = 31.62 mm.
+```
+
+```quiz
+q: A 2 mm sheet with shear strength 250 MPa is blanked into a 40 mm × 40 mm square. What is the blanking force in kN?
+answer: 80
+verify: 4 * 40 * 2 * 250 / 1000
+explain: F = perimeter × t × τ = 160 × 2 × 250 = 80,000 N.
+```

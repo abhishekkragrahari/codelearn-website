@@ -74,3 +74,17 @@ q: Which statements about pure bending are true? (Select all that apply.)
 - Shear stress is largest at the outer fibres
 explain: Bending stress grows linearly from zero at the neutral axis; shear stress (from V) is largest at the neutral axis.
 ```
+
+```quiz
+q: A rectangular beam 120 mm wide and 200 mm deep carries 16 kN·m. What is the maximum bending stress in MPa?
+answer: 20
+verify: round(16e6 / (120 * 200 ** 2 / 6), 6)
+explain: Z = 120 × 200²/6 = 800,000 mm³; σ = 16 × 10⁶/800,000 = 20 MPa.
+```
+
+```quiz
+q: A rectangular section 50 mm × 100 mm carries a shear force of 10 kN. What is the maximum shear stress in MPa?
+answer: 3
+verify: 1.5 * 10e3 / (50 * 100)
+explain: τmax = 1.5 V/A = 1.5 × 10,000/5000 = 3 MPa.
+```

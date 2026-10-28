@@ -80,3 +80,17 @@ q: Which mode cannot propagate in a hollow rectangular waveguide?
 - TM₁₁
 explain: A TEM wave needs two separate conductors; a hollow guide has only one.
 ```
+
+```quiz
+q: A rectangular guide has a = 4 cm. What is the TE₁₀ cutoff frequency in GHz?
+answer: 3.75
+verify: round(3e8 / (2 * 0.04) / 1e9, 6)
+explain: f_c = c/(2a) = 3 × 10⁸/0.08 = 3.75 GHz.
+```
+
+```quiz
+q: A half-wave dipole carries 2 A (peak) with R_r = 73 Ω. What power (W) does it radiate?
+answer: 146
+verify: 0.5 * 2 ** 2 * 73
+explain: P = ½I²R_r = ½ × 4 × 73 = 146 W.
+```

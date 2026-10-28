@@ -79,3 +79,17 @@ q: On the real axis, a point lies on the root locus if the total number of real 
 - Equal to the number of asymptotes
 explain: Only then does the angle condition (an odd multiple of 180°) hold.
 ```
+
+```quiz
+q: For s³ + 3s² + 3s + K = 0, what is the largest K for stability?
+answer: 9
+verify: 3 * 3
+explain: Stable when 3 × 3 > K, so K < 9.
+```
+
+```quiz
+q: G(s)H(s) = K/(s(s + 2)(s + 6)). Where is the centroid of the asymptotes?
+answer: -2.667
+verify: round((0 - 2 - 6) / 3, 3)
+explain: σ = (0 − 2 − 6)/3 = −2.667.
+```

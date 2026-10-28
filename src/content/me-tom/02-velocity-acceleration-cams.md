@@ -77,3 +77,17 @@ q: Which follower motion has no sudden change in acceleration at the start and e
 * Cycloidal
 explain: Cycloidal motion has zero acceleration at both ends, so there is no jerk; it suits high-speed cams.
 ```
+
+```quiz
+q: A crank 0.2 m long rotates at 10 rad/s. What is the velocity (m/s) of its tip?
+answer: 2
+verify: round(10 * 0.2, 6)
+explain: v = ωr = 10 × 0.2 = 2 m/s.
+```
+
+```quiz
+q: How many instantaneous centres does a four-bar mechanism have?
+answer: 6
+verify: 4 * 3 // 2
+explain: n(n − 1)/2 = 4 × 3/2 = 6.
+```

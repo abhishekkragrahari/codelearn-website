@@ -87,3 +87,17 @@ answer: 600
 verify: (300 * 1200) ** 0.5
 explain: T₂ = √(T₁T₃) = √(360,000) = 600 K.
 ```
+
+```quiz
+q: An Otto cycle has compression ratio 10 and γ = 1.4. What is its efficiency? (Give 3 decimal places.)
+answer: 0.602
+verify: round(1 - 1 / 10 ** 0.4, 3)
+explain: η = 1 − 1/10^0.4 = 1 − 0.398 = 0.602.
+```
+
+```quiz
+q: An engine has indicated power 50 kW and brake power 40 kW. What is its mechanical efficiency?
+answer: 0.8
+verify: 40 / 50
+explain: η_m = BP/IP = 0.8 (friction power 10 kW).
+```

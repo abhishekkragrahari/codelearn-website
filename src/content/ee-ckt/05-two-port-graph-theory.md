@@ -77,3 +77,17 @@ answer: 16
 verify: 4 ** (4 - 2)
 explain: Cayley's formula nⁿ⁻² = 4² = 16.
 ```
+
+```quiz
+q: A T-network has series arms 5 Ω and 5 Ω and a shunt arm of 10 Ω. What is z₁₁ in Ω?
+answer: 15
+verify: 5 + 10
+explain: z₁₁ = Z₁ + Z₃ = 5 + 10 = 15 Ω.
+```
+
+```quiz
+q: A graph has 8 nodes and 12 branches. How many twigs does a spanning tree have?
+answer: 7
+verify: 8 - 1
+explain: A tree on n nodes has n − 1 = 7 branches (twigs).
+```

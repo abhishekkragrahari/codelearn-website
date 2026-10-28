@@ -80,3 +80,17 @@ answer: 12.5
 verify: round(0.02 ** 2 * 30 ** 3 / (24 * 6 ** 2) * 1000, 1)
 explain: c = w²L³/(24P²) = 0.0004 × 27,000/864 = 0.0125 m = 12.5 mm (negative).
 ```
+
+```quiz
+q: A staff reads 1.525 m on a benchmark of RL 200.000 m (back sight) and 2.025 m on point P (fore sight). What is the RL of P in m?
+answer: 199.5
+verify: round(200 + 1.525 - 2.025, 3)
+explain: HI = 201.525; RL = 201.525 − 2.025 = 199.500 m.
+```
+
+```quiz
+q: What is the curvature correction (m) for a sight of 1 km? (Give 4 decimal places.)
+answer: -0.0785
+verify: round(-0.0785 * 1 ** 2, 4)
+explain: c_c = −0.0785 d² = −0.0785 m.
+```

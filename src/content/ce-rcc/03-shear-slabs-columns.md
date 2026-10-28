@@ -77,3 +77,19 @@ q: A slab panel is 3 m × 7 m. It should be designed as:
 - A cantilever slab
 explain: L_y/L_x = 7/3 = 2.33 > 2, so it acts as a one-way slab spanning 3 m.
 ```
+
+```quiz
+q: A short column 300 × 300 mm uses M20 concrete and 4 bars of 16 mm (A_sc = 804 mm²) of Fe 415. What is its axial capacity P_u in kN? (Give 1 decimal place.)
+answer: 937.1
+verify: round((0.4 * 20 * (90000 - 804) + 0.67 * 415 * 804) / 1000, 1)
+explain: P_u = 0.4 × 20 × 89,196 + 0.67 × 415 × 804 = 713,568 + 223,554 = 937,122 N ≈ 937.1 kN.
+```
+
+```quiz
+q: A slab panel is 4 m × 6 m. Should it be designed as one-way or two-way?
+- One-way
+* Two-way
+- Flat slab
+- Cantilever
+explain: L_y/L_x = 1.5 ≤ 2, so it is a two-way slab.
+```

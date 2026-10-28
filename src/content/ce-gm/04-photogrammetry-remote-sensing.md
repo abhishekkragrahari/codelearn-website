@@ -69,3 +69,17 @@ answer: 4
 verify: 3 + 1
 explain: Three unknown coordinates plus the receiver clock bias need four ranges.
 ```
+
+```quiz
+q: A camera with f = 150 mm flies 1800 m above datum over ground at an elevation of 300 m. What is the photo scale denominator (1 : x)?
+answer: 10000
+verify: round((1800 - 300) / 0.150)
+explain: Scale = f/(H − h) = 0.150/1500 = 1/10,000.
+```
+
+```quiz
+q: A pixel has NIR = 0.4 and Red = 0.2. What is its NDVI? (Give 3 decimal places.)
+answer: 0.333
+verify: round((0.4 - 0.2) / (0.4 + 0.2), 3)
+explain: NDVI = 0.2/0.6 = 0.333.
+```

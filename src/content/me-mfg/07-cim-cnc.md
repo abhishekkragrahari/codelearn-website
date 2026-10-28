@@ -78,3 +78,19 @@ q: The difference between a jig and a fixture is that a jig:
 - Is used only on CNC machines
 explain: Both locate and hold the work; only a jig guides the tool, for example with drill bushes.
 ```
+
+```quiz
+q: A lead screw of 6 mm pitch is driven by a stepper with 1.8° steps. What is the BLU in mm?
+answer: 0.03
+verify: round(6 / (360 / 1.8), 6)
+explain: 360/1.8 = 200 steps per revolution; BLU = 6/200 = 0.03 mm.
+```
+
+```quiz
+q: Which M-code stops the spindle?
+- M03
+- M04
+* M05
+- M30
+explain: M03/M04 start the spindle clockwise/counter-clockwise; M05 stops it.
+```

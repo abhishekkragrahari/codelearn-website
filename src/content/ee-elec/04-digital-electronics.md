@@ -84,3 +84,17 @@ q: What is the 8-bit 2's complement representation of −5?
 - 00000101
 explain: 5 = 00000101; inverting gives 11111010; adding 1 gives 11111011.
 ```
+
+```quiz
+q: How many flip-flops does a mod-20 counter need?
+answer: 5
+verify: (20 - 1).bit_length()
+explain: 2⁴ = 16 < 20 ≤ 32 = 2⁵: 5 flip-flops.
+```
+
+```quiz
+q: How many select lines does a 16:1 multiplexer have?
+answer: 4
+verify: (16).bit_length() - 1
+explain: 2⁴ = 16, so 4 select lines.
+```

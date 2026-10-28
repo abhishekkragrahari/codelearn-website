@@ -88,3 +88,17 @@ q: The main purification in a slow sand filter is due to:
 - High filtration rate
 explain: The schmutzdecke, a biological film on top of the sand, removes most impurities and bacteria.
 ```
+
+```quiz
+q: A settling tank treats 2400 m³/day with a surface area of 100 m². What is its overflow rate in m³/m²/day?
+answer: 24
+verify: 2400 / 100
+explain: v₀ = Q/A = 24 m³/m²/day.
+```
+
+```quiz
+q: A filter has D₁₀ = 0.5 mm and D₆₀ = 0.75 mm. What is the uniformity coefficient?
+answer: 1.5
+verify: 0.75 / 0.5
+explain: C_u = D₆₀/D₁₀ = 1.5.
+```

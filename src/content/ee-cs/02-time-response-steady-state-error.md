@@ -85,3 +85,17 @@ q: A type-2 system with a ramp input has a steady-state error of:
 - 1/K_a
 explain: Type 2 has K_v = ∞, so the ramp error is zero; it has a finite error only for a parabolic input.
 ```
+
+```quiz
+q: A first-order system has τ = 0.5 s. What is its 2% settling time in seconds?
+answer: 2
+verify: 4 * 0.5
+explain: t_s = 4τ = 2 s.
+```
+
+```quiz
+q: A unity-feedback system has G(s) = 20/(s(s + 4)). What is its velocity error constant K_v?
+answer: 5
+verify: 20 / 4
+explain: K_v = lim s G(s) = 20/4 = 5 (so a unit ramp gives e_ss = 0.2).
+```

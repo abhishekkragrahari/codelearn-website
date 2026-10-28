@@ -71,3 +71,17 @@ answer: 87.5
 verify: round(1.75 / 2 * 100, 1)
 explain: H = 1.75 bits; η = 1.75/2 = 87.5% (Huffman coding would reach 100%).
 ```
+
+```quiz
+q: A source emits 8 equally likely symbols. What is its entropy in bits per symbol?
+answer: 3
+verify: __import__("math").log2(8)
+explain: H = log₂ 8 = 3 bits.
+```
+
+```quiz
+q: A Hamming code has d_min = 3. How many errors can it correct?
+answer: 1
+verify: (3 - 1) // 2
+explain: t = ⌊(d_min − 1)/2⌋ = 1.
+```

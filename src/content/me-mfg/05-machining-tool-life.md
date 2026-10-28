@@ -87,3 +87,17 @@ q: If the cutting speed is increased, tool life:
 - First increases then decreases
 explain: From VTⁿ = C with small n, a small rise in V gives a large fall in T.
 ```
+
+```quiz
+q: A 200 mm diameter bar is turned at 60 m/min. What is the spindle speed in rpm? (Give 2 decimal places.)
+answer: 95.49
+verify: round(1000 * 60 / (__import__("math").pi * 200), 2)
+explain: N = 1000V/(πD) = 60,000/628.3 = 95.49 rpm.
+```
+
+```quiz
+q: With VT^0.2 = 300, the cutting speed is raised from 100 to 120 m/min. By what factor does tool life change? (Give 3 decimal places.)
+answer: 0.402
+verify: round((100 / 120) ** (1 / 0.2), 3)
+explain: T₂/T₁ = (V₁/V₂)^(1/n) = (0.8333)⁵ = 0.402.
+```

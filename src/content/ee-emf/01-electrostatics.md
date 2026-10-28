@@ -85,3 +85,19 @@ q: At the boundary between two perfect dielectrics with no free charge, which co
 - Tangential D
 explain: E_t1 = E_t2 and D_n1 = D_n2. Normal E and tangential D jump by the ratio of permittivities.
 ```
+
+```quiz
+q: What is the force (N) between charges of 2 µC and 3 µC placed 0.3 m apart in air? (Use 9 × 10⁹.)
+answer: 0.6
+verify: round(9e9 * 2e-6 * 3e-6 / 0.3 ** 2, 6)
+explain: F = 9 × 10⁹ × 6 × 10⁻¹²/0.09 = 0.6 N.
+```
+
+```quiz
+q: A parallel-plate capacitor in air has its gap halved. Its capacitance becomes:
+- Half
+* Twice
+- Four times
+- Unchanged
+explain: C = εA/d, so halving d doubles C.
+```

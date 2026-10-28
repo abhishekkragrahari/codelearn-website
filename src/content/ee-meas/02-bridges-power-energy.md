@@ -80,3 +80,17 @@ q: Which bridge is best for measuring the capacitance and loss angle of a cable'
 - Kelvin double bridge
 explain: The Schering bridge measures capacitance and dissipation factor, often at high voltage.
 ```
+
+```quiz
+q: A Wheatstone bridge balances with P = 10 Ω, Q = 100 Ω and S = 250 Ω. What is the unknown R in Ω?
+answer: 25
+verify: 10 / 100 * 250
+explain: R = (P/Q)S = 0.1 × 250 = 25 Ω.
+```
+
+```quiz
+q: In the two-wattmeter method, both wattmeters read 2 kW. What is the power factor of the balanced load?
+answer: 1
+verify: round(__import__("math").cos(__import__("math").atan(3 ** 0.5 * 0 / 4)), 6)
+explain: tan φ = √3(W₁ − W₂)/(W₁ + W₂) = 0, so pf = 1.
+```

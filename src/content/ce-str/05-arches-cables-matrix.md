@@ -75,3 +75,17 @@ q: The size of the stiffness matrix of a structure equals its:
 - Number of supports
 explain: The stiffness method's unknowns are joint displacements, so the matrix is Dk × Dk.
 ```
+
+```quiz
+q: A cable of span 40 m and central sag 4 m carries 5 kN/m. What is the horizontal tension in kN?
+answer: 250
+verify: 5 * 40 ** 2 / (8 * 4)
+explain: H = wL²/(8d) = 5 × 1600/32 = 250 kN.
+```
+
+```quiz
+q: A three-hinged parabolic arch of span 30 m and rise 5 m carries a UDL of 10 kN/m. What is the horizontal thrust in kN?
+answer: 225
+verify: 10 * 30 ** 2 / (8 * 5)
+explain: H = wL²/(8h) = 9000/40 = 225 kN.
+```

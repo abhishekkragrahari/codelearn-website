@@ -88,3 +88,17 @@ q: To minimise the maximum lateness on a single machine, jobs should be sequence
 - First come first served
 explain: EDD order minimises the maximum lateness; SPT minimises mean flow time.
 ```
+
+```quiz
+q: Fixed cost ₹50,000, price ₹100 and variable cost ₹60 per unit. What is the break-even quantity?
+answer: 1250
+verify: 50000 // (100 - 60)
+explain: BEP = 50,000/40 = 1250 units.
+```
+
+```quiz
+q: A p chart uses samples of 100 with p̄ = 0.04. What is the upper control limit? (Give 4 decimal places.)
+answer: 0.0988
+verify: round(0.04 + 3 * (0.04 * 0.96 / 100) ** 0.5, 4)
+explain: UCL = p̄ + 3√(p̄(1 − p̄)/n) = 0.04 + 3 × 0.0196 = 0.0988.
+```

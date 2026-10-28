@@ -85,3 +85,17 @@ q: Which statements are true for r > √2? (Select all that apply.)
 - Transmissibility is greater than 1
 explain: Above r = √2 the force transmitted is less than the applied force, and damping makes isolation worse.
 ```
+
+```quiz
+q: A 2 kg mass hangs on a spring of 800 N/m. What is its natural frequency in Hz? (Give 2 decimal places.)
+answer: 3.18
+verify: round((800 / 2) ** 0.5 / (2 * __import__("math").pi), 2)
+explain: ω_n = √400 = 20 rad/s; f = 20/(2π) = 3.18 Hz.
+```
+
+```quiz
+q: A system has ζ = 0.1. What is its logarithmic decrement? (Give 3 decimal places.)
+answer: 0.631
+verify: round(2 * __import__("math").pi * 0.1 / (1 - 0.01) ** 0.5, 3)
+explain: δ = 2πζ/√(1 − ζ²) = 0.6283/0.995 = 0.631.
+```

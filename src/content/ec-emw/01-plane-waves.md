@@ -77,3 +77,17 @@ q: A plane wave hits a perfect conductor at normal incidence. The reflection coe
 - 1/3
 explain: η₂ = 0 gives Γ = −1: total reflection with a phase reversal of E.
 ```
+
+```quiz
+q: A plane wave travels in a dielectric with ε_r = 2.25 (μ_r = 1). What is its speed in units of 10⁸ m/s?
+answer: 2
+verify: 3 / 2.25 ** 0.5
+explain: v = c/√ε_r = 3 × 10⁸/1.5 = 2 × 10⁸ m/s.
+```
+
+```quiz
+q: A wave goes from air into a medium with η = 377/3 Ω at normal incidence. What is the reflection coefficient?
+answer: -0.5
+verify: round((377 / 3 - 377) / (377 / 3 + 377), 6)
+explain: Γ = (η₂ − η₁)/(η₂ + η₁) = (125.67 − 377)/(502.67) = −0.5.
+```

@@ -88,3 +88,17 @@ q: An engine claims 1200 kJ of work from 2000 kJ of heat taken at 600 K, rejecti
 - Cannot be judged
 explain: The claimed efficiency 0.6 exceeds the Carnot limit 1 − 300/600 = 0.5, so it violates the second law.
 ```
+
+```quiz
+q: A Carnot refrigerator works between 260 K and 300 K. What is its COP?
+answer: 6.5
+verify: 260 / (300 - 260)
+explain: COP = T_L/(T_H − T_L) = 260/40 = 6.5.
+```
+
+```quiz
+q: 2 kg of water (c = 4.2 kJ/kg·K) is heated from 300 K to 600 K, treated as an incompressible liquid. What is its entropy change in kJ/K? (Give 3 decimal places.)
+answer: 5.822
+verify: round(2 * 4.2 * __import__("math").log(600 / 300), 3)
+explain: ΔS = mc ln(T₂/T₁) = 8.4 × ln 2 = 5.822 kJ/K.
+```

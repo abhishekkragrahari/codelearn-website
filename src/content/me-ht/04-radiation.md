@@ -71,3 +71,17 @@ answer: 0.25
 verify: 1 / (3 + 1)
 explain: With n shields of equal emissivity, the heat flow becomes 1/(n + 1) = 1/4.
 ```
+
+```quiz
+q: A grey surface (ε = 0.5) at 600 K radiates to large cold surroundings at 0 K. What is the emitted flux in kW/m²? (σ = 5.67 × 10⁻⁸; give 3 decimal places.)
+answer: 3.674
+verify: round(0.5 * 5.67e-8 * 600 ** 4 / 1000, 3)
+explain: q = εσT⁴ = 0.5 × 5.67 × 10⁻⁸ × 1.296 × 10¹¹ = 3674 W/m².
+```
+
+```quiz
+q: Surface 1 (area 2 m²) has F₁₂ = 0.3 to surface 2 of area 3 m². What is F₂₁?
+answer: 0.2
+verify: round(2 * 0.3 / 3, 6)
+explain: Reciprocity: A₁F₁₂ = A₂F₂₁, so F₂₁ = 0.6/3 = 0.2.
+```

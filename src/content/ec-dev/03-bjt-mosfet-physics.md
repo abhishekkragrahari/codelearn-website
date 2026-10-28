@@ -80,3 +80,17 @@ q: Increasing the substrate doping of an n-channel MOSFET:
 - Makes it a depletion-mode device
 explain: More acceptors mean more depletion charge must be balanced before inversion, so V_T rises.
 ```
+
+```quiz
+q: A BJT has β = 150. What is α? (Give 4 decimal places.)
+answer: 0.9934
+verify: round(150 / 151, 4)
+explain: α = β/(1 + β) = 150/151 = 0.9934.
+```
+
+```quiz
+q: A MOSFET has t_ox = 5 nm (ε_ox = 3.45 × 10⁻¹³ F/cm). What is C_ox in µF/cm²?
+answer: 0.69
+verify: round(3.45e-13 / 5e-7 * 1e6, 6)
+explain: C_ox = ε_ox/t_ox = 3.45 × 10⁻¹³/(5 × 10⁻⁷ cm) = 6.9 × 10⁻⁷ F/cm² = 0.69 µF/cm².
+```

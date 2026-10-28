@@ -80,3 +80,17 @@ answer: 5
 verify: (3 ** 2 + 4 ** 2) ** 0.5
 explain: Te = √(3² + 4²) = 5 kN·m.
 ```
+
+```quiz
+q: A solid shaft of diameter 40 mm carries a torque of 628.32 N·m. What is the maximum shear stress in MPa? (Give 1 decimal place.)
+answer: 50
+verify: round(16 * 628.32e3 / (__import__("math").pi * 40 ** 3), 1)
+explain: τ = 16T/(πd³) = 16 × 628,320/(π × 64,000) = 50.0 MPa.
+```
+
+```quiz
+q: A spring of stiffness 20 N/mm is cut into two equal halves. What is the stiffness of each half in N/mm?
+answer: 40
+verify: 2 * 20
+explain: Stiffness is inversely proportional to the number of turns, so half the turns doubles it.
+```

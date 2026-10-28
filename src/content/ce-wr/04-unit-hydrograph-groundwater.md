@@ -68,3 +68,17 @@ answer: 125
 verify: 3 * 40 + 5
 explain: Peak = 3 × 40 + 5 = 125 m³/s (by linearity).
 ```
+
+```quiz
+q: A 2-hour unit hydrograph has a peak of 60 m³/s. A 2-hour storm gives 2.5 cm of effective rain, base flow 15 m³/s. What is the flood peak in m³/s?
+answer: 165
+verify: 2.5 * 60 + 15
+explain: Peak = 2.5 × 60 + 15 = 165 m³/s.
+```
+
+```quiz
+q: An unconfined aquifer has specific yield 0.2 and porosity 0.35. What is its specific retention?
+answer: 0.15
+verify: round(0.35 - 0.2, 6)
+explain: Specific retention = porosity − specific yield = 0.15.
+```

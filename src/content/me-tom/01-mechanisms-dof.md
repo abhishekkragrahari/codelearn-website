@@ -80,3 +80,19 @@ answer: 1.571
 verify: round(220 / (360 - 220), 3)
 explain: At constant crank speed, ratio = 220/140 = 1.571.
 ```
+
+```quiz
+q: A planar mechanism has 8 links and 10 lower pairs. How many degrees of freedom does it have?
+answer: 1
+verify: 3 * (8 - 1) - 2 * 10
+explain: F = 3 × 7 − 2 × 10 = 21 − 20 = 1.
+```
+
+```quiz
+q: A four-bar chain has links 20, 50, 60 and 80 mm and the 20 mm link is fixed. What kind of mechanism is it?
+* Double crank
+- Crank–rocker
+- Double rocker
+- Triple rocker
+explain: s + l = 100 ≤ p + q = 110 (Grashof), and fixing the shortest link gives a double crank (drag link).
+```

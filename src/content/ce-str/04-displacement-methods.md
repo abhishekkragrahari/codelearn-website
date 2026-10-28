@@ -72,3 +72,17 @@ q: The distribution factor of a member at a fixed support is:
 - Depends on the stiffness
 explain: A fixed support can take any unbalanced moment, so nothing is distributed there: DF = 0.
 ```
+
+```quiz
+q: A member with the far end fixed has L = 6 m and EI = 12,000 kN·m². What is its rotational stiffness at the near end in kN·m/rad?
+answer: 8000
+verify: 4 * 12000 / 6
+explain: k = 4EI/L = 48,000/6 = 8000 kN·m/rad.
+```
+
+```quiz
+q: Two members meet at a joint with stiffnesses 3EI/4 (far end hinged) and 4EI/4 (far end fixed). What is the distribution factor of the hinged member? (Give 4 decimal places.)
+answer: 0.4286
+verify: round(0.75 / (0.75 + 1), 4)
+explain: DF = 0.75/(0.75 + 1) = 0.4286.
+```

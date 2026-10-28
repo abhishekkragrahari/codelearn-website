@@ -86,3 +86,17 @@ q: A sand has D₁₀ = 0.1 mm, D₃₀ = 0.3 mm and D₆₀ = 0.8 mm. Is it wel
 - Cannot be judged
 explain: C_u = 0.8/0.1 = 8 > 6 and C_c = 0.09/0.08 = 1.125 lies between 1 and 3, so it is well graded.
 ```
+
+```quiz
+q: A soil has w = 15%, G = 2.7 and S = 0.9. What is its void ratio? (Give 3 decimal places.)
+answer: 0.45
+verify: round(0.15 * 2.7 / 0.9, 3)
+explain: e = wG/S = 0.405/0.9 = 0.450.
+```
+
+```quiz
+q: A clay has LL = 45% and PL = 20%. What is its plasticity index in percent?
+answer: 25
+verify: 45 - 20
+explain: I_p = LL − PL = 25%.
+```

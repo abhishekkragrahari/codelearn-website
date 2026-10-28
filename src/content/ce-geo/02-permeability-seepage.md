@@ -78,3 +78,17 @@ answer: 40
 verify: 5 * 18 - 5 * 10
 explain: σ' = 5 × 18 − 5 × 10 = 90 − 50 = 40 kPa.
 ```
+
+```quiz
+q: Two horizontal layers each 1 m thick have k = 10⁻⁴ and 10⁻⁶ m/s. What is the equivalent horizontal permeability in units of 10⁻⁶ m/s?
+answer: 50.5
+verify: round((1e-4 * 1 + 1e-6 * 1) / 2 / 1e-6, 6)
+explain: k_h = (k₁H₁ + k₂H₂)/(H₁ + H₂) = (101 × 10⁻⁶)/2 = 50.5 × 10⁻⁶ m/s.
+```
+
+```quiz
+q: Water flows through a sand sample (k = 2 × 10⁻⁴ m/s) under a gradient of 0.5 over an area of 0.1 m². What is the flow rate in units of 10⁻⁵ m³/s?
+answer: 1
+verify: round(2e-4 * 0.5 * 0.1 / 1e-5, 6)
+explain: Q = kiA = 2 × 10⁻⁴ × 0.5 × 0.1 = 10⁻⁵ m³/s.
+```

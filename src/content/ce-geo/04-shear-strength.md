@@ -82,3 +82,17 @@ q: For a saturated clay in a UU test, the angle of shearing resistance in terms 
 - Equal to φ'
 explain: Raising the cell pressure only raises the pore pressure, so the strength (and Mohr circle size) does not change: φ_u = 0.
 ```
+
+```quiz
+q: A soil has c = 10 kPa and φ = 30°. What is its shear strength (kPa) on a plane with normal effective stress 100 kPa? (Give 2 decimal places.)
+answer: 67.74
+verify: round(10 + 100 * __import__("math").tan(__import__("math").radians(30)), 2)
+explain: τ = c + σ′ tan φ = 10 + 100 × 0.5774 = 67.74 kPa.
+```
+
+```quiz
+q: In a CD test on sand, σ₃ = 50 kPa and σ₁ = 150 kPa at failure. What is φ in degrees?
+answer: 30
+verify: round(__import__("math").degrees(__import__("math").asin((150 - 50) / (150 + 50))), 6)
+explain: sin φ = (σ₁ − σ₃)/(σ₁ + σ₃) = 100/200 = 0.5, so φ = 30°.
+```

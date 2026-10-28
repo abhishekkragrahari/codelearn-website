@@ -82,3 +82,17 @@ q: For an alternator connected to an infinite bus, increasing the field excitati
 - Speed
 explain: Real power is set by the prime mover; excitation changes E and hence the reactive power.
 ```
+
+```quiz
+q: What is the synchronous speed (rpm) of an 8-pole, 60 Hz alternator?
+answer: 900
+verify: 120 * 60 // 8
+explain: N_s = 120f/P = 7200/8 = 900 rpm.
+```
+
+```quiz
+q: An alternator has E = 1.5 pu, V = 1 pu and X_s = 1 pu. At a load angle of 30°, what power (pu) does it deliver?
+answer: 0.75
+verify: round(1.5 * 1 / 1 * __import__("math").sin(__import__("math").radians(30)), 6)
+explain: P = (EV/X_s) sin δ = 1.5 × 0.5 = 0.75 pu.
+```

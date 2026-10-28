@@ -74,3 +74,17 @@ q: Which BJT configuration has a voltage gain close to 1 and a low output resist
 - Cascode
 explain: The emitter follower (CC) is a buffer: gain ≈ 1, high input and low output resistance.
 ```
+
+```quiz
+q: A BJT has α = 0.98. What is its β?
+answer: 49
+verify: round(0.98 / (1 - 0.98))
+explain: β = α/(1 − α) = 0.98/0.02 = 49.
+```
+
+```quiz
+q: A MOSFET operates in saturation at I_D = 2 mA with V_GS − V_T = 0.5 V. What is its g_m in mA/V?
+answer: 8
+verify: 2 * 2 / 0.5
+explain: g_m = 2I_D/(V_GS − V_T) = 4/0.5 = 8 mA/V.
+```

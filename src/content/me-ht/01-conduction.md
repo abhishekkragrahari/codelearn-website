@@ -80,3 +80,19 @@ q: In steady one-dimensional conduction through a hollow cylinder with constant 
 - Exponentially with radius
 explain: Constant Q through growing areas 2πrL gives T ∝ ln r.
 ```
+
+```quiz
+q: A copper plate (k = 400 W/m·K) 2 cm thick has a temperature difference of 10 K. What is the heat flux in kW/m²?
+answer: 200
+verify: 400 * 10 / 0.02 / 1000
+explain: q = kΔT/L = 400 × 10/0.02 = 200,000 W/m².
+```
+
+```quiz
+q: A pipe has outer radius 2 cm, insulation k = 0.1 W/m·K and h = 10 W/m²·K. What does adding a thin layer of this insulation do to the heat loss?
+- It increases the heat loss
+* It decreases the heat loss
+- It makes no change
+- It first doubles the heat loss
+explain: r_c = 0.1/10 = 0.01 m = 1 cm. The pipe is already bigger than r_c, so insulation reduces heat loss.
+```

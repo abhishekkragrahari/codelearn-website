@@ -67,3 +67,17 @@ q: Superposition cannot be used directly to find:
 - The response to two independent sources
 explain: Power is proportional to I², which is not linear, so powers from each source cannot be added.
 ```
+
+```quiz
+q: A 24 V source feeds 4 Ω and 8 Ω resistors in series. What is the voltage (V) across the 8 Ω resistor?
+answer: 16
+verify: 24 * 8 / (4 + 8)
+explain: Voltage divider: 24 × 8/12 = 16 V.
+```
+
+```quiz
+q: A 6 A current divides between 3 Ω and 6 Ω in parallel. What current (A) flows in the 3 Ω branch?
+answer: 4
+verify: 6 * 6 / (3 + 6)
+explain: Current divider: I₁ = 6 × 6/9 = 4 A.
+```

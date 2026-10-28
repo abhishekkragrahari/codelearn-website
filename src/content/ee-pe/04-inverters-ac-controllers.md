@@ -75,3 +75,17 @@ q: Increasing the carrier frequency in sinusoidal PWM mainly:
 - Reduces switching losses
 explain: Harmonics cluster around multiples of m_f; a higher carrier pushes them up (at the cost of more switching loss).
 ```
+
+```quiz
+q: A full-bridge square-wave inverter has V_dc = 220 V. What is the RMS value of the fundamental output in V? (Give 1 decimal place.)
+answer: 198.1
+verify: round(4 * 220 / (__import__("math").pi * 2 ** 0.5), 1)
+explain: V₁,rms = 4V_dc/(π√2) = 0.9 × 220 = 198.1 V.
+```
+
+```quiz
+q: Integral cycle control keeps a heater on for 4 cycles out of 5 from 230 V. What is the output power as a fraction of full power?
+answer: 0.8
+verify: 4 / 5
+explain: Power ∝ on-cycles, so 4/5 = 0.8 of full power.
+```

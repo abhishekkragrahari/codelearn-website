@@ -70,3 +70,17 @@ q: For economic dispatch neglecting losses, generators should share the load so 
 - The cheapest unit is fully loaded first, always
 explain: Equal incremental cost minimises total cost (subject to generator limits).
 ```
+
+```quiz
+q: An overcurrent relay set at 1 A uses a 200/1 CT. A fault draws 2400 A. What is the PSM?
+answer: 12
+verify: 2400 / 200 / 1
+explain: Relay current = 2400/200 = 12 A; PSM = 12/1 = 12.
+```
+
+```quiz
+q: Two units have IC₁ = 0.01P₁ + 8 and IC₂ = 0.02P₂ + 8. They share 300 MW. How much (MW) does unit 1 supply?
+answer: 200
+verify: round(0.02 * 300 / (0.01 + 0.02), 6)
+explain: Equal IC: 0.01P₁ = 0.02P₂ with P₁ + P₂ = 300, so P₁ = 200 MW and P₂ = 100 MW.
+```

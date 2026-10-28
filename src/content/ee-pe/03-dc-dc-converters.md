@@ -77,3 +77,17 @@ q: For a buck converter with fixed V_in, L and f, the inductor ripple current is
 - 1
 explain: ΔI_L ∝ D(1 − D), which is largest at D = 0.5.
 ```
+
+```quiz
+q: A boost converter has V_in = 24 V and V_o = 60 V. What is the duty ratio?
+answer: 0.6
+verify: round(1 - 24 / 60, 6)
+explain: V_o = V_in/(1 − D) gives 1 − D = 0.4, D = 0.6.
+```
+
+```quiz
+q: A buck converter has V_in = 100 V, D = 0.4 and load 10 Ω. What is the load current in A?
+answer: 4
+verify: round(0.4 * 100 / 10, 6)
+explain: V_o = 40 V, I = 40/10 = 4 A.
+```

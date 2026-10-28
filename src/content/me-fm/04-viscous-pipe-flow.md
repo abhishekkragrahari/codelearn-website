@@ -79,3 +79,17 @@ answer: 8.15
 verify: round(0.02 * 200 * 2 ** 2 / (2 * 9.81 * 0.1), 2)
 explain: h_f = fLV²/(2gD) = 0.02 × 200 × 4/1.962 = 8.15 m.
 ```
+
+```quiz
+q: Laminar flow in a pipe has f = 0.032. What is the Reynolds number?
+answer: 2000
+verify: round(64 / 0.032)
+explain: f = 64/Re, so Re = 64/0.032 = 2000.
+```
+
+```quiz
+q: Water exits a pipe into a large tank at 3 m/s. What is the exit head loss in m (g = 10 m/s², K = 1)?
+answer: 0.45
+verify: round(3 ** 2 / (2 * 10), 6)
+explain: h = V²/(2g) = 9/20 = 0.45 m.
+```

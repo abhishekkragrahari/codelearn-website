@@ -76,3 +76,19 @@ q: For air (Pr ≈ 0.7) flowing over a plate, compared with the velocity boundar
 - Zero
 explain: δ/δ_t ≈ Pr^(1/3); for Pr < 1 the thermal layer is thicker. For water (Pr ≈ 7) it is thinner.
 ```
+
+```quiz
+q: For laminar flow in a pipe with constant heat flux, Nu = 4.36. With k = 0.03 W/m·K and D = 0.02 m, what is h in W/m²·K? (Give 2 decimal places.)
+answer: 6.54
+verify: round(4.36 * 0.03 / 0.02, 2)
+explain: h = Nu k/D = 4.36 × 0.03/0.02 = 6.54 W/m²·K.
+```
+
+```quiz
+q: For water (Pr ≈ 7), compared with the velocity boundary layer, the thermal boundary layer is:
+- Thicker
+* Thinner
+- The same
+- Zero
+explain: δ/δ_t ≈ Pr^(1/3) ≈ 1.9, so the thermal layer is thinner for Pr > 1.
+```

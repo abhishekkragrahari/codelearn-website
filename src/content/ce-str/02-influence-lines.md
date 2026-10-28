@@ -71,3 +71,17 @@ q: The influence line for bending moment at a section of a statically determinat
 - Circular arcs
 explain: Determinate structures have straight-line influence lines; indeterminate ones have curved lines.
 ```
+
+```quiz
+q: A simply supported beam of span 10 m carries a 40 kN load at 2 m from A. Using the influence line for R_A, what is R_A in kN?
+answer: 32
+verify: 40 * (10 - 2) / 10
+explain: The ordinate of the R_A influence line at 2 m is (10 − 2)/10 = 0.8, so R_A = 0.8 × 40 = 32 kN.
+```
+
+```quiz
+q: A UDL of 5 kN/m covers the whole of a 8 m simply supported beam. Using the influence line, what is the bending moment at mid-span in kN·m?
+answer: 40
+verify: 5 * 0.5 * 8 * (4 * 4 / 8)
+explain: Peak ordinate ab/L = 2 m; area = ½ × 8 × 2 = 8 m²; M = 5 × 8 = 40 kN·m (= wL²/8).
+```

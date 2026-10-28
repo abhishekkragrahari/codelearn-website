@@ -75,3 +75,17 @@ q: In a simple gear train, an idler gear changes:
 - Neither
 explain: The idler's teeth cancel out of the ratio; it only reverses direction (and fills the centre distance).
 ```
+
+```quiz
+q: A gear of module 5 mm has 40 teeth. What is its pitch circle diameter in mm?
+answer: 200
+verify: 5 * 40
+explain: d = mT = 5 × 40 = 200 mm.
+```
+
+```quiz
+q: A pinion with 18 teeth drives a gear with 54 teeth. The pinion runs at 900 rpm. What is the gear speed in rpm?
+answer: 300
+verify: 900 * 18 // 54
+explain: N₂ = N₁T₁/T₂ = 900 × 18/54 = 300 rpm.
+```

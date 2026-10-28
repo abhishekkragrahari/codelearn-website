@@ -79,3 +79,17 @@ answer: 12.26
 verify: round(1000 * 9.81 * 0.05 * 20 / 0.8 / 1000, 2)
 explain: P = ρgQH/η = 9810 × 0.05 × 20/0.8 = 12,262.5 W ≈ 12.26 kW.
 ```
+
+```quiz
+q: A Pelton wheel jet moves at 60 m/s. For maximum efficiency, what should the bucket speed be in m/s?
+answer: 30
+verify: 60 / 2
+explain: Maximum efficiency occurs at u = V/2 = 30 m/s.
+```
+
+```quiz
+q: A turbine delivers 900 kW from water at 1 m³/s under 100 m head (g = 10 m/s²). What is its overall efficiency?
+answer: 0.9
+verify: 900e3 / (1000 * 10 * 1 * 100)
+explain: η = P/(ρgQH) = 900,000/1,000,000 = 0.9.
+```

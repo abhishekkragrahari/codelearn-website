@@ -80,3 +80,17 @@ answer: 2
 verify: 0.4 / 0.2
 explain: f = k_r/k_d = 2.
 ```
+
+```quiz
+q: In a BOD test, 10 mL of waste is diluted to 300 mL; DO falls from 9 to 3 mg/L in 5 days. What is the BOD₅ in mg/L?
+answer: 180
+verify: (9 - 3) / (10 / 300)
+explain: BOD = 6/(10/300) = 180 mg/L.
+```
+
+```quiz
+q: A waste has BOD₅ = 150 mg/L and BOD/COD = 0.5. What is its COD in mg/L?
+answer: 300
+verify: 150 / 0.5
+explain: COD = 150/0.5 = 300 mg/L.
+```

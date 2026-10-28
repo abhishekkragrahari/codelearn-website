@@ -81,3 +81,17 @@ q: Which process is best for making long hollow pipes without cores?
 - Shell moulding
 explain: Spinning the mould throws the metal against the wall, forming a hollow tube without a core.
 ```
+
+```quiz
+q: A cylindrical riser has D = H = 12 cm. What is its modulus V/A in cm?
+answer: 2
+verify: 12 / 6
+explain: For a cylinder with H = D, V/A = D/6 = 2 cm.
+```
+
+```quiz
+q: Metal flows from a sprue 45 cm high (g = 980 cm/s²). What is the velocity at the sprue bottom in cm/s? (Give 1 decimal place.)
+answer: 297
+verify: round((2 * 980 * 45) ** 0.5, 1)
+explain: V = √(2gh) = √88,200 = 297.0 cm/s.
+```

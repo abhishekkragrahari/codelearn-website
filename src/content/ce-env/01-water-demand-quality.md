@@ -77,3 +77,17 @@ answer: 150
 verify: 60 * 50 / 20
 explain: Hardness = 60 × 50/20 = 150 mg/L as CaCO₃.
 ```
+
+```quiz
+q: A town of 40,000 grows arithmetically by 5000 per decade. What is its population after 3 decades?
+answer: 55000
+verify: 40000 + 3 * 5000
+explain: P = P₀ + n x̄ = 40,000 + 15,000 = 55,000.
+```
+
+```quiz
+q: Water contains 24 mg/L Mg²⁺ (equivalent weight 12). What is its magnesium hardness in mg/L as CaCO₃?
+answer: 100
+verify: 24 * 50 / 12
+explain: 24 × 50/12 = 100 mg/L as CaCO₃.
+```

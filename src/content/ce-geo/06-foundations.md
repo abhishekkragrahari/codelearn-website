@@ -74,3 +74,17 @@ q: If the water table rises from great depth to the base of a strip footing on s
 - Zero
 explain: γ is replaced by γ' ≈ γ/2 in the N_γ term.
 ```
+
+```quiz
+q: A square footing on clay (c_u = 40 kPa, φ = 0) is at the surface. Using q_u = 1.3cN_c with N_c = 5.7, what is q_u in kPa?
+answer: 296.4
+verify: round(1.3 * 40 * 5.7, 6)
+explain: q_u = 1.3 × 40 × 5.7 = 296.4 kPa.
+```
+
+```quiz
+q: A group of 9 piles has an efficiency of 0.8 and each pile carries 300 kN. What is the group capacity in kN?
+answer: 2160
+verify: round(0.8 * 9 * 300, 6)
+explain: Q_g = η n Q = 0.8 × 9 × 300 = 2160 kN.
+```

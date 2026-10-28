@@ -90,3 +90,17 @@ answer: 0.25
 verify: (15 - 10) / (30 - 10)
 explain: BF = (t_out − t_coil)/(t_in − t_coil) = 5/20 = 0.25.
 ```
+
+```quiz
+q: A refrigerator has h₁ = 390, h₂ = 425 and h₄ = 250 kJ/kg. What is its COP?
+answer: 4
+verify: (390 - 250) / (425 - 390)
+explain: COP = (h₁ − h₄)/(h₂ − h₁) = 140/35 = 4.
+```
+
+```quiz
+q: Air at 30 °C has a vapour pressure of 2.1 kPa and saturation pressure 4.2 kPa. What is its relative humidity?
+answer: 0.5
+verify: 2.1 / 4.2
+explain: φ = p_v/p_sat = 0.5 (50%).
+```

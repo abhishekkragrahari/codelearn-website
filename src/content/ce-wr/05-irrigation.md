@@ -78,3 +78,17 @@ q: A cross-drainage work where the canal passes over a natural drain, with the d
 - An inlet
 explain: In an aqueduct the canal is carried over the drain; in a super-passage the drain passes over the canal.
 ```
+
+```quiz
+q: A crop needs Δ = 0.96 m over a base period of 100 days. What is the duty in ha/cumec?
+answer: 900
+verify: round(8.64 * 100 / 0.96, 6)
+explain: D = 8.64B/Δ = 864/0.96 = 900 ha/cumec.
+```
+
+```quiz
+q: By Lacey's theory, what is the silt factor for a mean particle size of 0.64 mm? (Give 3 decimal places.)
+answer: 1.408
+verify: round(1.76 * 0.64 ** 0.5, 3)
+explain: f = 1.76√d = 1.76 × 0.8 = 1.408.
+```

@@ -76,3 +76,17 @@ answer: 150
 verify: (1000 - 400) * 0.25
 explain: T = (T₁ − T₂) r = 600 × 0.25 = 150 N·m.
 ```
+
+```quiz
+q: A gear transmits 10 kW at a pitch-line speed of 5 m/s. What is the tangential force in N?
+answer: 2000
+verify: 10e3 / 5
+explain: F_t = P/v = 10,000/5 = 2000 N.
+```
+
+```quiz
+q: A block brake has μ = 0.4, a normal force of 1500 N and a drum radius of 0.2 m. What is the braking torque in N·m?
+answer: 120
+verify: round(0.4 * 1500 * 0.2, 6)
+explain: T = μNr = 0.4 × 1500 × 0.2 = 120 N·m.
+```

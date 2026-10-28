@@ -80,3 +80,17 @@ q: In the graphical method, the optimal solution of an LP (if it exists) always 
 - On the x-axis
 explain: A linear objective over a convex polygon reaches its best value at a vertex (possibly along an edge in the case of multiple optima).
 ```
+
+```quiz
+q: Maximise Z = 2x + 3y subject to x + y ≤ 4, x, y ≥ 0. What is the maximum value of Z?
+answer: 12
+verify: max(2 * x + 3 * y for x, y in [(0, 0), (4, 0), (0, 4)])
+explain: Corners (0, 0), (4, 0), (0, 4) give 0, 8, 12: the maximum is 12 at (0, 4).
+```
+
+```quiz
+q: An assignment problem has 5 workers and 5 jobs. How many assignments does an optimal solution make?
+answer: 5
+verify: 5
+explain: Each worker gets exactly one job.
+```

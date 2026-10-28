@@ -73,3 +73,17 @@ q: Fins are most useful on a surface where:
 - The temperature difference is zero
 explain: Fin effectiveness grows with k/h, so fins help most on the gas side.
 ```
+
+```quiz
+q: A body has time constant 100 s in lumped cooling. What fraction of the initial excess temperature remains after 100 s? (Give 3 decimal places.)
+answer: 0.368
+verify: round(__import__("math").exp(-1), 3)
+explain: θ/θ₀ = e^(−t/τ) = e⁻¹ = 0.368.
+```
+
+```quiz
+q: A long pin fin has m = 5 m⁻¹. Beyond roughly what length (m) does it behave like an infinitely long fin, taking mL = 3?
+answer: 0.6
+verify: 3 / 5
+explain: tanh(mL) ≈ 1 for mL ≥ 3, so L ≈ 3/5 = 0.6 m.
+```

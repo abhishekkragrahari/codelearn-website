@@ -78,3 +78,17 @@ answer: 10
 verify: round(0.026 / 0.0026, 6)
 explain: r_d = V_T/I = 26 mV/2.6 mA = 10 Ω.
 ```
+
+```quiz
+q: A full-wave rectifier has a peak input of 50 V. What is its DC output in V? (Give 2 decimal places.)
+answer: 31.83
+verify: round(2 * 50 / __import__("math").pi, 2)
+explain: V_dc = 2V_m/π = 31.83 V.
+```
+
+```quiz
+q: A full-wave rectifier runs from a 50 Hz supply. What is the ripple frequency in Hz?
+answer: 100
+verify: 2 * 50
+explain: Full-wave output repeats twice per input cycle: 100 Hz.
+```

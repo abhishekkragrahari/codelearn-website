@@ -73,3 +73,17 @@ q: A floating body is stable for small tilts when:
 - The centre of gravity is above the waterline
 explain: GM > 0 (M above G) gives a restoring couple. G may be above B and the body still be stable.
 ```
+
+```quiz
+q: A block of volume 0.5 m³ is fully submerged in water (ρ = 1000 kg/m³, g = 10 m/s²). What is the buoyant force in kN?
+answer: 5
+verify: 1000 * 0.5 * 10 / 1000
+explain: F_B = ρgV = 1000 × 10 × 0.5 = 5000 N = 5 kN.
+```
+
+```quiz
+q: A vertical rectangular gate 3 m deep has its top 1 m below the water surface. At what depth (m) is its centroid?
+answer: 2.5
+verify: 1 + 3 / 2
+explain: h̄ = 1 + 1.5 = 2.5 m.
+```

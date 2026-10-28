@@ -85,3 +85,17 @@ q: Which of these raise the efficiency of a Rankine cycle? (Select all that appl
 - Raising the condenser pressure
 explain: Each of the first three raises the mean temperature of heat addition or lowers that of rejection.
 ```
+
+```quiz
+q: A Rankine cycle has turbine work 1200 kJ/kg, pump work 12 kJ/kg and heat supplied 3300 kJ/kg. What is its efficiency? (Give 3 decimal places.)
+answer: 0.36
+verify: round((1200 - 12) / 3300, 3)
+explain: η = (1200 − 12)/3300 = 1188/3300 = 0.360.
+```
+
+```quiz
+q: A power plant has a steam rate of 4 kg/kWh. What is the net work per kg of steam in kJ?
+answer: 900
+verify: 3600 / 4
+explain: w_net = 3600/SSC = 900 kJ/kg.
+```

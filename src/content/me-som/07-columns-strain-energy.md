@@ -95,3 +95,17 @@ q: Which failure theories are suited to ductile materials? (Select all that appl
 - Maximum principal strain only
 explain: Tresca and von Mises predict yielding of ductile metals well; Rankine's theory suits brittle materials.
 ```
+
+```quiz
+q: A column has I = 8 × 10⁶ mm⁴ and area 2000 mm². What is its least radius of gyration in mm? (Give 2 decimal places.)
+answer: 63.25
+verify: round((8e6 / 2000) ** 0.5, 2)
+explain: k = √(I/A) = √4000 = 63.25 mm.
+```
+
+```quiz
+q: A pinned–pinned column has an Euler load of 400 kN. What is the Euler load (kN) of the same column with one end fixed and the other free?
+answer: 100
+verify: 400 / 2 ** 2
+explain: L_e goes from L to 2L, so the load falls by a factor of 4: 100 kN.
+```

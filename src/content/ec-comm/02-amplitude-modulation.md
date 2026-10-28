@@ -68,3 +68,17 @@ answer: 0.5
 verify: round(__import__("math").cos(__import__("math").radians(60)), 6)
 explain: The output scales by cos φ = cos 60° = 0.5.
 ```
+
+```quiz
+q: A 50 W carrier is amplitude modulated with μ = 0.8. What is the total transmitted power in W?
+answer: 66
+verify: round(50 * (1 + 0.8 ** 2 / 2), 6)
+explain: P_t = 50(1 + 0.32) = 66 W.
+```
+
+```quiz
+q: An AM broadcast receiver (IF 455 kHz) is tuned to 600 kHz. What is the local oscillator frequency in kHz?
+answer: 1055
+verify: 600 + 455
+explain: f_LO = f_s + f_IF = 1055 kHz.
+```

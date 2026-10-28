@@ -80,3 +80,17 @@ q: A causal system has H(z) = 1/(1 − 1.2z⁻¹). It is:
 - FIR
 explain: The pole at z = 1.2 lies outside the unit circle.
 ```
+
+```quiz
+q: A signal band-limited to 3.4 kHz is sampled. What is the Nyquist rate in kHz?
+answer: 6.8
+verify: round(2 * 3.4, 6)
+explain: f_s = 2 × 3.4 = 6.8 kHz.
+```
+
+```quiz
+q: A 9 kHz tone is sampled at 12 kHz. At what frequency (kHz) does it appear?
+answer: 3
+verify: abs(9 - 12)
+explain: It aliases to |9 − 12| = 3 kHz.
+```

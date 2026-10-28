@@ -82,3 +82,17 @@ q: The Ferranti effect occurs on a long line when it is:
 - Operated at DC
 explain: The capacitive charging current flowing through the line inductance raises the receiving-end voltage.
 ```
+
+```quiz
+q: A 132 kV line has a surge impedance of 400 Ω. What is its SIL in MW? (Give 2 decimal places.)
+answer: 43.56
+verify: round(132e3 ** 2 / 400 / 1e6, 2)
+explain: SIL = V²/Z_c = (132 × 10³)²/400 = 43.56 MW.
+```
+
+```quiz
+q: A line has receiving-end voltages of 110 kV at no load and 100 kV at full load. What is its regulation in percent?
+answer: 10
+verify: (110 - 100) / 100 * 100
+explain: Regulation = (110 − 100)/100 × 100 = 10%.
+```
