@@ -170,4 +170,64 @@
       });
     });
   });
+  // ----- Progress: lessons marked done and quiz results, kept in this browser only -----
+  var PROGRESS_KEY = 'gs-progress';
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || { done: {}, quiz: {} }; } catch (e) { return { done: {}, quiz: {} }; }
+  }
+  function saveProgress(p) { try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch (e) {} }
+  var progress = loadProgress();
+  progress.done = progress.done || {};
+  progress.quiz = progress.quiz || {};
+
+  var doneBox = document.querySelector('[data-lesson-done]');
+  if (doneBox) {
+    var lessonKey = doneBox.getAttribute('data-lesson-done');
+    var doneBtn = doneBox.querySelector('[data-mark-done]');
+    var doneNote = doneBox.querySelector('[data-done-note]');
+    var showDone = function () {
+      var isDone = !!progress.done[lessonKey];
+      doneBox.classList.toggle('is-done', isDone);
+      doneBtn.textContent = isDone ? 'Done ✓ (click to undo)' : 'Mark this lesson as done';
+      var q = progress.quiz[lessonKey];
+      doneNote.textContent = q ? ' Questions answered correctly: ' + q.right + ' of ' + q.total + '.' : '';
+    };
+    doneBtn.addEventListener('click', function () {
+      if (progress.done[lessonKey]) delete progress.done[lessonKey]; else progress.done[lessonKey] = Date.now();
+      saveProgress(progress);
+      showDone();
+    });
+    // Record each question's latest result for this lesson.
+    var lessonQuizzes = document.querySelectorAll('.prose [data-quiz]');
+    lessonQuizzes.forEach(function (quiz, idx) {
+      quiz.querySelector('[data-quiz-check]').addEventListener('click', function () {
+        var fb = quiz.querySelector('[data-quiz-feedback]');
+        if (!/ok|bad/.test(fb.className) || /Choose|Type/.test(fb.textContent)) return;
+        var rec = progress.quiz[lessonKey] || { total: lessonQuizzes.length, right: 0, answers: {} };
+        rec.answers = rec.answers || {};
+        rec.answers[idx] = / ok/.test(fb.className) ? 1 : 0;
+        rec.total = lessonQuizzes.length;
+        rec.right = Object.keys(rec.answers).reduce(function (n, k) { return n + rec.answers[k]; }, 0);
+        progress.quiz[lessonKey] = rec;
+        saveProgress(progress);
+        showDone();
+      });
+    });
+    showDone();
+  }
+
+  var trackBox = document.querySelector('[data-track-progress]');
+  if (trackBox) {
+    var links = document.querySelectorAll('[data-lesson]');
+    var doneCount = 0;
+    links.forEach(function (a) {
+      if (progress.done[a.getAttribute('data-lesson')]) { a.parentNode.classList.add('is-done'); doneCount++; }
+    });
+    var total = Number(trackBox.getAttribute('data-total'));
+    if (doneCount) {
+      trackBox.hidden = false;
+      trackBox.innerHTML = '<div class="track-progress-bar"><span style="width:' + Math.round(100 * doneCount / total) + '%"></span></div>' +
+        '<p>' + doneCount + ' of ' + total + ' lessons done</p>';
+    }
+  }
 })();
