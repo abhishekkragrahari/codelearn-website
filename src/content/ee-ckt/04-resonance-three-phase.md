@@ -77,3 +77,17 @@ answer: 12.8
 verify: round(3 * (400 / 3 ** 0.5 / 10) ** 2 * 8 / 1000, 1)
 explain: P = 3I²R = 3 × 23.09² × 8 = 12,800 W = 12.8 kW.
 ```
+
+```quiz
+q: A balanced star load draws 10 A per line from a 400 V supply at pf 0.8. What is the total power in kW? (Give 2 decimal places.)
+answer: 5.54
+verify: round(3 ** 0.5 * 400 * 10 * 0.8 / 1000, 2)
+explain: P = √3 V_L I_L cos φ = 1.732 × 400 × 10 × 0.8 = 5543 W.
+```
+
+```quiz
+q: A series RLC circuit has L = 4 mH and C = 0.1 µF. What is its resonant angular frequency in rad/s?
+answer: 50000
+verify: round(1 / (4e-3 * 0.1e-6) ** 0.5)
+explain: ω₀ = 1/√(LC) = 1/√(4 × 10⁻¹⁰) = 50,000 rad/s.
+```

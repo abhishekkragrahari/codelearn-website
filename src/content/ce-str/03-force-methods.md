@@ -76,3 +76,17 @@ q: Which theorem states that δ_AB = δ_BA?
 - Müller-Breslau principle
 explain: Maxwell's reciprocal theorem: the deflection at A due to a unit load at B equals that at B due to a unit load at A.
 ```
+
+```quiz
+q: A fixed beam of span 4 m carries a central load of 40 kN. What is the fixed-end moment in kN·m?
+answer: 20
+verify: 40 * 4 / 8
+explain: M = PL/8 = 40 × 4/8 = 20 kN·m.
+```
+
+```quiz
+q: A propped cantilever of span 8 m carries a central point load of 16 kN. What is the prop reaction in kN?
+answer: 5
+verify: 5 * 16 / 16
+explain: R = 5P/16 = 5 kN.
+```

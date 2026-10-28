@@ -69,3 +69,17 @@ q: Which compound of cement is mainly responsible for early strength?
 - Gypsum
 explain: C₃S hydrates quickly and gives most of the strength in the first weeks; C₂S adds strength later.
 ```
+
+```quiz
+q: What is the flexural strength (MPa) of M25 concrete as per IS 456 (0.7√f_ck)?
+answer: 3.5
+verify: round(0.7 * 25 ** 0.5, 6)
+explain: f_cr = 0.7√25 = 3.5 MPa.
+```
+
+```quiz
+q: A concrete mix needs a target mean strength of 38.25 MPa for M30. What standard deviation (MPa) was assumed? (Use f_ck + 1.65s.)
+answer: 5
+verify: round((38.25 - 30) / 1.65, 6)
+explain: s = (38.25 − 30)/1.65 = 5 MPa.
+```

@@ -69,3 +69,17 @@ q: Pre-emphasis is used in FM systems because:
 - It removes the carrier
 explain: FM detector noise grows as f², so boosting high message frequencies before transmission improves their SNR.
 ```
+
+```quiz
+q: An FM signal has frequency deviation 40 kHz and message frequency 8 kHz. What is the modulation index?
+answer: 5
+verify: 40 / 8
+explain: β = Δf/f_m = 5.
+```
+
+```quiz
+q: What is the Carson's rule bandwidth (kHz) for the same signal?
+answer: 96
+verify: 2 * (40 + 8)
+explain: B = 2(Δf + f_m) = 96 kHz.
+```

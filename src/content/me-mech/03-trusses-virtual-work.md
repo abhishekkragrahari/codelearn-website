@@ -75,3 +75,17 @@ answer: 100
 verify: 500 * 0.3 / 1.5
 explain: P × 1.5 δθ = 500 × 0.3 δθ, so P = 100 N.
 ```
+
+```quiz
+q: A plane truss has 10 joints and is supported by a pin and a roller. How many members does it need to be just rigid and determinate?
+answer: 17
+verify: 2 * 10 - 3
+explain: m = 2j − 3 = 20 − 3 = 17.
+```
+
+```quiz
+q: A screw jack has a lever arm of 0.5 m and a pitch of 10 mm. Ignoring friction, what effort (N) lifts a load of 3141.6 N? (Give 2 decimal places.)
+answer: 10
+verify: round(3141.6 * 0.010 / (2 * __import__("math").pi * 0.5), 2)
+explain: Virtual work: P × 2π(0.5) = W × 0.010, so P = 31.416/3.1416 = 10.00 N.
+```

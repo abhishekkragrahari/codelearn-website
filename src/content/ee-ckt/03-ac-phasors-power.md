@@ -74,3 +74,17 @@ q: In a purely capacitive circuit, the current:
 - Leads by 45°
 explain: i = C dv/dt, so the current peaks a quarter cycle before the voltage.
 ```
+
+```quiz
+q: A series circuit has R = 6 Ω and X_L = 8 Ω. What is its power factor?
+answer: 0.6
+verify: 6 / (6 ** 2 + 8 ** 2) ** 0.5
+explain: The impedance magnitude is √(6² + 8²) = 10 Ω, so pf = R/Z = 0.6 lagging.
+```
+
+```quiz
+q: What is the reactance (Ω) of a 0.1 H inductor at 50 Hz? (Give 2 decimal places.)
+answer: 31.42
+verify: round(2 * __import__("math").pi * 50 * 0.1, 2)
+explain: X_L = 2πfL = 31.42 Ω.
+```

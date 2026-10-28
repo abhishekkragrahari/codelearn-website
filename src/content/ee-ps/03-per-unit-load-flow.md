@@ -81,3 +81,17 @@ q: At a PV bus, the quantities specified are:
 - Q and δ
 explain: A generator bus holds its real power output and voltage magnitude; Q and δ are found by the load flow.
 ```
+
+```quiz
+q: What is the base current (A) for 100 MVA and 11 kV? (Give 2 decimal places.)
+answer: 5248.64
+verify: round(100e6 / (3 ** 0.5 * 11e3), 2)
+explain: I_base = S/(√3 V) = 10⁸/(1.732 × 11,000) = 5248.64 A.
+```
+
+```quiz
+q: A 10 MVA generator has X = 0.15 pu. What is its reactance on a 50 MVA base (same voltage)?
+answer: 0.75
+verify: round(0.15 * 50 / 10, 6)
+explain: X_new = 0.15 × 50/10 = 0.75 pu.
+```

@@ -75,3 +75,19 @@ answer: 0.290
 verify: round(56 * 1000 / (96500 * 2), 3)
 explain: MRR = AI/(FZ) = 56,000/193,000 = 0.290 g/s.
 ```
+
+```quiz
+q: A shaft is 25.000/24.980 mm and its hole 25.020/25.000 mm. What is the maximum clearance in mm?
+answer: 0.04
+verify: round(25.020 - 24.980, 3)
+explain: Largest hole − smallest shaft = 25.020 − 24.980 = 0.040 mm.
+```
+
+```quiz
+q: Which non-traditional process removes material by anodic dissolution?
+- EDM
+* ECM
+- USM
+- LBM
+explain: Electrochemical machining dissolves the workpiece anode in an electrolyte.
+```

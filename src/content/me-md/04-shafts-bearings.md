@@ -76,3 +76,17 @@ q: Which coupling connects two shafts whose axes intersect at an angle?
 - Oldham coupling
 explain: A Hooke's joint joins intersecting shafts; an Oldham coupling joins parallel shafts with a small offset.
 ```
+
+```quiz
+q: A ball bearing has a life of 90 million revolutions at a load of P. What is its life (million revolutions) if the load becomes 3P?
+answer: 3.33
+verify: round(90 / 3 ** 3, 2)
+explain: L ∝ 1/P³, so L = 90/27 = 3.33 million revolutions.
+```
+
+```quiz
+q: A bearing rated for 500 million revolutions runs at 1000 rpm. What is its life in hours? (Give 2 decimal places.)
+answer: 8333.33
+verify: round(500e6 / (60 * 1000), 2)
+explain: Hours = 500 × 10⁶/(60 × 1000) = 8333.33 h.
+```

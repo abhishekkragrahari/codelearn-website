@@ -70,3 +70,17 @@ q: Which fault involves all three sequence networks connected in series?
 - Double line-to-ground fault
 explain: In an LG fault, I_a1 = I_a2 = I_a0, so the three networks carry the same current in series.
 ```
+
+```quiz
+q: A generator has Z₁ = Z₂ = 0.25 pu and Z₀ = 0.1 pu. What is the line-to-ground fault current in pu?
+answer: 5
+verify: 3 / (0.25 + 0.25 + 0.1)
+explain: I_f = 3/(Z₁ + Z₂ + Z₀) = 3/0.6 = 5 pu.
+```
+
+```quiz
+q: A bus has a fault level of 500 MVA on a 100 MVA base. What is its Thevenin reactance in pu?
+answer: 0.2
+verify: 100 / 500
+explain: X_th = S_base/fault MVA = 0.2 pu.
+```

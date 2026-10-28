@@ -82,3 +82,17 @@ q: Which Maxwell equation states that magnetic monopoles do not exist?
 - ∇ × H = J
 explain: Zero divergence of B means every flux line closes on itself.
 ```
+
+```quiz
+q: Two parallel wires 0.2 m apart carry 100 A each. What is the force per metre in N? (μ₀ = 4π × 10⁻⁷)
+answer: 0.01
+verify: round(4e-7 * __import__("math").pi * 100 * 100 / (2 * __import__("math").pi * 0.2), 6)
+explain: F/L = μ₀I₁I₂/(2πd) = 2 × 10⁻⁷ × 10⁴/0.2 = 0.01 N/m.
+```
+
+```quiz
+q: A toroid has 500 turns on a mean radius of 0.1 m and carries 2 A. What is H inside it in A/m? (Give 2 decimal places.)
+answer: 1591.55
+verify: round(500 * 2 / (2 * __import__("math").pi * 0.1), 2)
+explain: H = NI/(2πr) = 1000/0.6283 = 1591.55 A/m.
+```

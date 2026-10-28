@@ -79,3 +79,17 @@ answer: 600
 verify: abs((0 * 0 - 40 * 0) + (40 * 30 - 40 * 0) + (40 * 0 - 0 * 30)) / 2
 explain: Shoelace: ½|0 + 1200 + 0| = 600 m².
 ```
+
+```quiz
+q: The fore bearing of a line is 75°. What is its back bearing in degrees?
+answer: 255
+verify: 75 + 180
+explain: BB = FB ± 180° = 255°.
+```
+
+```quiz
+q: A line 200 m long has a WCB of 150°. What is its latitude in m? (Give 2 decimal places.)
+answer: -173.21
+verify: round(200 * __import__("math").cos(__import__("math").radians(150)), 2)
+explain: Latitude = L cos θ = 200 × (−0.866) = −173.21 m (southing).
+```

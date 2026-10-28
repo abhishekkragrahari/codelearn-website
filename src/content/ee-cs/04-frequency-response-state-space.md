@@ -83,3 +83,17 @@ answer: 0
 verify: -1 + 1
 explain: N = −1 (counter-clockwise), P = 1, so Z = N + P = 0: the closed loop is stable.
 ```
+
+```quiz
+q: A system has a gain margin of 6 dB. What is its gain (as a ratio) at the phase crossover frequency? (Give 3 decimal places.)
+answer: 0.501
+verify: round(10 ** (-6 / 20), 3)
+explain: GM = −20 log|G| = 6 dB gives |G| = 10^(−0.3) = 0.501.
+```
+
+```quiz
+q: A Bode plot has a pole at the origin. What slope (dB/decade) does it contribute?
+answer: -20
+verify: -20
+explain: 1/s falls by 20 dB per decade at all frequencies.
+```

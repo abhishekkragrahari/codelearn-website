@@ -76,3 +76,17 @@ answer: 0.9
 verify: round(0.9 * __import__("math").cos(0), 1)
 explain: pf = 0.9 cos α = 0.9 (the 0.9 comes from the square-wave input current's distortion factor).
 ```
+
+```quiz
+q: A single-phase full converter (continuous current) has V_m = 200 V and α = 60°. What is the output voltage in V? (Give 2 decimal places.)
+answer: 63.66
+verify: round(2 * 200 / __import__("math").pi * 0.5, 2)
+explain: V_dc = (2V_m/π) cos α = 127.32 × 0.5 = 63.66 V.
+```
+
+```quiz
+q: A single-phase semi-converter has V_m = 200 V and α = 90°. What is the output voltage in V? (Give 2 decimal places.)
+answer: 63.66
+verify: round(200 / __import__("math").pi * (1 + 0), 2)
+explain: V_dc = (V_m/π)(1 + cos α) = 63.66 V.
+```

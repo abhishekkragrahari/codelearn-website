@@ -76,3 +76,17 @@ q: In the force–voltage analogy, mass corresponds to:
 - Conductance
 explain: F = M dv/dt matches V = L di/dt, so mass ↔ inductance.
 ```
+
+```quiz
+q: A negative-feedback loop has G = 50 and H = 0.1. What is the closed-loop gain? (Give 3 decimal places.)
+answer: 8.333
+verify: round(50 / (1 + 50 * 0.1), 3)
+explain: T = G/(1 + GH) = 50/6 = 8.333.
+```
+
+```quiz
+q: Two blocks G₁ = 2/(s + 1) and G₂ = 3 are in series. What is the DC gain of the combination?
+answer: 6
+verify: 2 / 1 * 3
+explain: Series blocks multiply: G₁(0)G₂ = 2 × 3 = 6.
+```

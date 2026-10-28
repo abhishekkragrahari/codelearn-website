@@ -77,3 +77,17 @@ q: Using bundled conductors on an EHV line:
 - Increases the surge impedance
 explain: A larger effective radius lowers L, raises C (so surge impedance falls and SIL rises) and lowers the surface field.
 ```
+
+```quiz
+q: A span of 300 m has a conductor weighing 8 N/m under 20,000 N tension. What is the sag in m?
+answer: 4.5
+verify: 8 * 300 ** 2 / (8 * 20000)
+explain: Sag = wL²/(8T) = 8 × 90,000/160,000 = 4.5 m.
+```
+
+```quiz
+q: Three conductors are spaced 2 m, 2 m and 4 m apart. What is their geometric mean distance in m? (Give 3 decimal places.)
+answer: 2.52
+verify: round((2 * 2 * 4) ** (1 / 3), 3)
+explain: D_m = 16^(1/3) = 2.520 m.
+```

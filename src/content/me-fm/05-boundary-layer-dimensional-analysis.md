@@ -73,3 +73,17 @@ q: Flow separation from a surface occurs when:
 - The surface is perfectly smooth
 explain: An adverse pressure gradient slows the near-wall fluid until (∂u/∂y) at the wall = 0, where it separates.
 ```
+
+```quiz
+q: A ship model is tested at 1 : 16 scale under Froude similarity. The model speed is 2 m/s. What is the prototype speed in m/s?
+answer: 8
+verify: 2 * 16 ** 0.5
+explain: V_p = V_m √16 = 8 m/s.
+```
+
+```quiz
+q: A sphere has drag coefficient 0.5 and frontal area 0.01 m² in air (ρ = 1.2 kg/m³) at 20 m/s. What is the drag force in N?
+answer: 1.2
+verify: round(0.5 * 0.5 * 1.2 * 20 ** 2 * 0.01, 6)
+explain: F_D = C_D(½ρV²)A = 0.5 × 240 × 0.01 = 1.2 N.
+```

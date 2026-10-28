@@ -71,3 +71,17 @@ answer: 0.12
 verify: round(2 * 500e-6 * 120, 6)
 explain: ΔR = GF × strain × R = 2 × 0.0005 × 120 = 0.12 Ω.
 ```
+
+```quiz
+q: A 10-bit ADC has a 5 V range. What is its resolution in mV using V/2ⁿ? (Give 3 decimal places.)
+answer: 4.883
+verify: round(5 / 2 ** 10 * 1000, 3)
+explain: 5/1024 = 4.883 mV.
+```
+
+```quiz
+q: A Lissajous figure is a circle with equal amplitudes. What is the phase difference in degrees?
+answer: 90
+verify: 90
+explain: Equal amplitudes 90° apart trace a circle.
+```

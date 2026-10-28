@@ -73,3 +73,17 @@ q: The power spectral density of a WSS process is the Fourier transform of its:
 - Cumulative distribution
 explain: Wiener–Khinchin theorem: S_X(f) = F{R_X(τ)}.
 ```
+
+```quiz
+q: An amplifier has a noise figure of 3 dB (ratio about 2). What is its equivalent noise temperature in K (T₀ = 290 K), using F = 2?
+answer: 290
+verify: (2 - 1) * 290
+explain: T_e = (F − 1)T₀ = 290 K.
+```
+
+```quiz
+q: What is the thermal noise power (W) in a 10 kHz bandwidth at 300 K? (k = 1.38 × 10⁻²³; answer in units of 10⁻¹⁷ W, 2 decimal places.)
+answer: 4.14
+verify: round(1.38e-23 * 300 * 1e4 / 1e-17, 2)
+explain: P = kTB = 1.38 × 10⁻²³ × 300 × 10⁴ = 4.14 × 10⁻¹⁷ W.
+```

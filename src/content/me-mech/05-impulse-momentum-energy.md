@@ -77,3 +77,17 @@ q: In which collisions is kinetic energy conserved?
 - Collisions with 0 < e < 1
 explain: Only e = 1 conserves kinetic energy; momentum is conserved in all of them.
 ```
+
+```quiz
+q: A 2 kg ball moving at 3 m/s hits a wall and rebounds at 2 m/s. What is the magnitude of the impulse in N·s?
+answer: 10
+verify: 2 * (3 + 2)
+explain: Impulse = change in momentum = 2 × (2 − (−3)) = 10 N·s.
+```
+
+```quiz
+q: A spring of stiffness 2000 N/m is compressed by 0.1 m. How much energy (J) does it store?
+answer: 10
+verify: round(0.5 * 2000 * 0.1 ** 2, 6)
+explain: U = ½kx² = ½ × 2000 × 0.01 = 10 J.
+```

@@ -78,3 +78,17 @@ q: The open-circuit test on a transformer mainly measures:
 - Efficiency at full load
 explain: With no load current, copper loss is negligible, so the wattmeter reads the core loss.
 ```
+
+```quiz
+q: A transformer has 500 primary turns and 50 secondary turns, with 2200 V on the primary. What is the secondary voltage in V?
+answer: 220
+verify: 2200 * 50 / 500
+explain: V₂ = V₁N₂/N₁ = 220 V.
+```
+
+```quiz
+q: A transformer has core loss 300 W and full-load copper loss 1200 W. At what fraction of full load is efficiency maximum?
+answer: 0.5
+verify: (300 / 1200) ** 0.5
+explain: x = √(P_i/P_cu) = √0.25 = 0.5.
+```

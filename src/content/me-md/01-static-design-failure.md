@@ -80,3 +80,17 @@ answer: 80
 verify: 240 / 3
 explain: Allowable = S_y/N = 240/3 = 80 MPa.
 ```
+
+```quiz
+q: A ductile part has principal stresses 120 MPa and 40 MPa (σ₃ = 0). By the maximum shear stress theory, what is the equivalent stress in MPa?
+answer: 120
+verify: max(120, 40, 0) - min(120, 40, 0)
+explain: Tresca uses σmax − σmin = 120 − 0 = 120 MPa (both principal stresses are tensile).
+```
+
+```quiz
+q: A brittle material has an ultimate strength of 300 MPa and a factor of safety of 4. What is the allowable stress in MPa?
+answer: 75
+verify: 300 / 4
+explain: For brittle materials, allowable = S_ut/N = 75 MPa.
+```

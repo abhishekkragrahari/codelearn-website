@@ -86,3 +86,17 @@ q: Which statements are true? (Select all that apply.)
 - A roller support gives two force components
 explain: A pin gives two forces and no moment; a roller gives one force normal to the surface.
 ```
+
+```quiz
+q: A 5 m simply supported beam carries 10 kN at 1 m and 20 kN at 3 m from the left support. What is the right support reaction in kN?
+answer: 14
+verify: (10 * 1 + 20 * 3) / 5
+explain: Moments about the left support: R_B × 5 = 10 × 1 + 20 × 3 = 70, so R_B = 14 kN (and R_A = 16 kN).
+```
+
+```quiz
+q: Three concurrent forces keep a point in equilibrium. Two of them are 30 N and 40 N at right angles. What is the magnitude of the third force in N?
+answer: 50
+verify: (30 ** 2 + 40 ** 2) ** 0.5
+explain: The third force must cancel the resultant of the other two: √(30² + 40²) = 50 N.
+```

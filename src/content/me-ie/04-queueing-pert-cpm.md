@@ -86,3 +86,17 @@ q: Activities on the critical path have:
 - Negative float always
 explain: The critical path is the longest path; any delay on it delays the project, so its total float is zero.
 ```
+
+```quiz
+q: An M/M/1 queue has λ = 3 and μ = 4 per hour. What is the average number of customers in the system?
+answer: 3
+verify: 3 / (4 - 3)
+explain: L = λ/(μ − λ) = 3/1 = 3.
+```
+
+```quiz
+q: An activity has optimistic 4, most likely 6 and pessimistic 14 days. What is its expected time in days?
+answer: 7
+verify: (4 + 4 * 6 + 14) / 6
+explain: t_e = (4 + 24 + 14)/6 = 7 days.
+```

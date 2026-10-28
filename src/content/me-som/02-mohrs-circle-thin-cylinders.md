@@ -78,3 +78,17 @@ q: A thin sphere and a thin cylinder have the same d, t and p. The sphere's wall
 - Four times
 explain: Sphere pd/(4t) versus hoop pd/(2t).
 ```
+
+```quiz
+q: σx = 100 MPa, σy = 0 and τxy = 0. What is the maximum in-plane shear stress in MPa?
+answer: 50
+verify: (100 - 0) / 2
+explain: τmax = (σ₁ − σ₂)/2 = 50 MPa, on planes at 45° to the load.
+```
+
+```quiz
+q: A thin sphere of diameter 2 m and wall thickness 10 mm holds 1 MPa. What is the wall stress in MPa?
+answer: 50
+verify: 1 * 2000 / (4 * 10)
+explain: σ = pd/(4t) = 1 × 2000/40 = 50 MPa.
+```

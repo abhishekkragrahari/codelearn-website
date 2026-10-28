@@ -80,3 +80,17 @@ q: A bitumen of penetration grade 80/100 compared with 30/40 is:
 - Not comparable
 explain: Higher penetration means the needle sinks deeper, so the bitumen is softer.
 ```
+
+```quiz
+q: In a CBR test, the load at 5.0 mm penetration is 205.5 kgf. What is the CBR at 5.0 mm in percent?
+answer: 10
+verify: round(205.5 / 2055 * 100, 6)
+explain: CBR = 205.5/2055 × 100 = 10%.
+```
+
+```quiz
+q: A Marshall mix has G_m = 2.30 and 5.5% bitumen (G_b = 1.0) by weight. What are the voids filled with bitumen, V_b, in percent?
+answer: 12.65
+verify: round(2.30 * 5.5 / 1.0, 2)
+explain: V_b = G_m W_b/G_b = 2.30 × 5.5 = 12.65%.
+```

@@ -75,3 +75,17 @@ q: For a soil with φ = 30°, which order of earth pressure coefficients is corr
 - K_a = K₀ = K_p
 explain: K_a = 0.33, K₀ ≈ 0.5, K_p = 3.
 ```
+
+```quiz
+q: A 4 m wall retains dry sand (γ = 18 kN/m³, φ = 30°) with a uniform surcharge of 10 kPa. What is the total active thrust per metre in kN? (Give 2 decimal places.)
+answer: 61.33
+verify: round(0.5 * 18 * 4 ** 2 / 3 + 10 * 4 / 3, 2)
+explain: Soil: ½K_aγH² = 48 kN; surcharge: K_a q H = 13.33 kN; total 61.33 kN/m.
+```
+
+```quiz
+q: For φ = 20°, what is the at-rest coefficient K₀ by Jaky's formula? (Give 3 decimal places.)
+answer: 0.658
+verify: round(1 - __import__("math").sin(__import__("math").radians(20)), 3)
+explain: K₀ = 1 − sin 20° = 1 − 0.342 = 0.658.
+```

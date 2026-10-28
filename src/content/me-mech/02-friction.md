@@ -76,3 +76,17 @@ q: Which statements about dry friction are true? (Select all that apply.)
 - Kinetic friction is always greater than static friction
 explain: Friction is independent of contact area, and kinetic friction is usually a little less than static.
 ```
+
+```quiz
+q: A 50 kg block rests on a horizontal floor with μ = 0.3 (g = 10 m/s²). What horizontal force (N) is needed to just start it moving?
+answer: 150
+verify: round(0.3 * 50 * 10, 6)
+explain: Limiting friction = μN = 0.3 × 500 = 150 N.
+```
+
+```quiz
+q: What is the angle of friction in degrees for μ = 1?
+answer: 45
+verify: round(__import__("math").degrees(__import__("math").atan(1)), 6)
+explain: tan φ = μ = 1, so φ = 45°.
+```

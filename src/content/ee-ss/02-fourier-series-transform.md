@@ -84,3 +84,17 @@ q: Multiplication of two signals in the time domain corresponds to which operati
 - Differentiation
 explain: The modulation (multiplication) property: x(t)y(t) ↔ (1/2π) X(ω) * Y(ω).
 ```
+
+```quiz
+q: A periodic signal has period 0.02 s. What is its fundamental frequency in Hz?
+answer: 50
+verify: 1 / 0.02
+explain: f₀ = 1/T = 50 Hz.
+```
+
+```quiz
+q: A rectangular pulse of height 1 and width 4 ms is transformed. What is X(0)?
+answer: 0.004
+verify: 1 * 0.004
+explain: X(0) = area of the pulse = 1 × 0.004 = 0.004.
+```

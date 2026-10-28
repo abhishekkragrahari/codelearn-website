@@ -73,3 +73,17 @@ answer: 5
 verify: 10 * 200 * 100 / (4 * 100 ** 2)
 explain: F = Pe r/Σr² = 10 × 200 × 100/(4 × 100²) = 5 kN.
 ```
+
+```quiz
+q: A bolt with stress area 100 mm² carries an axial load of 12 kN. What is its tensile stress in MPa?
+answer: 120
+verify: 12e3 / 100
+explain: σ = P/A = 12,000/100 = 120 MPa.
+```
+
+```quiz
+q: A fillet weld has a leg of 10 mm. What is its throat thickness in mm?
+answer: 7.07
+verify: round(10 * 0.7071, 2)
+explain: t = s cos 45° = 0.707 × 10 = 7.07 mm.
+```

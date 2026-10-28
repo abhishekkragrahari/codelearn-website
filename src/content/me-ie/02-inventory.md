@@ -90,3 +90,17 @@ answer: 1342
 verify: round((2 * 6000 * 300 / (4 * (1 - 0.5))) ** 0.5)
 explain: Q* = √(2 × 6000 × 300/(4 × 0.5)) = √1,800,000 = 1341.6 ≈ 1342.
 ```
+
+```quiz
+q: D = 3600 units/year, S = ₹50 and H = ₹10 per unit per year. What is the EOQ?
+answer: 189.74
+verify: round((2 * 3600 * 50 / 10) ** 0.5, 2)
+explain: Q* = √(2 × 3600 × 50/10) = √36,000 = 189.74.
+```
+
+```quiz
+q: With D = 3600 per year and EOQ = 180, how many orders are placed per year?
+answer: 20
+verify: 3600 / 180
+explain: Orders = D/Q = 20.
+```

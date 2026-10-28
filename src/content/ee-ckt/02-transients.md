@@ -75,3 +75,17 @@ q: In DC steady state, an inductor behaves as:
 - A resistor equal to L
 explain: With constant current, v = L di/dt = 0, so the inductor is a short circuit.
 ```
+
+```quiz
+q: An RC circuit has R = 2 kΩ and C = 50 µF. What is the time constant in ms?
+answer: 100
+verify: round(2e3 * 50e-6 * 1000, 6)
+explain: τ = RC = 0.1 s = 100 ms.
+```
+
+```quiz
+q: An inductor of 0.5 H carries 4 A. How much energy (J) does it store?
+answer: 4
+verify: 0.5 * 0.5 * 4 ** 2
+explain: W = ½LI² = ½ × 0.5 × 16 = 4 J.
+```

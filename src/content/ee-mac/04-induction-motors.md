@@ -85,3 +85,17 @@ answer: 19
 verify: round((1 - 0.9 ** 2) * 100, 1)
 explain: T ∝ V², so the torque becomes 0.81 of its value: a 19% drop.
 ```
+
+```quiz
+q: A 2-pole, 50 Hz induction motor runs at 2880 rpm. What is the rotor frequency in Hz?
+answer: 2
+verify: round((3000 - 2880) / 3000 * 50, 6)
+explain: s = 120/3000 = 0.04; f_r = sf = 2 Hz.
+```
+
+```quiz
+q: An induction motor has air-gap power 20 kW and slip 0.03. What is the mechanical power developed in kW?
+answer: 19.4
+verify: round(20 * (1 - 0.03), 6)
+explain: P_mech = (1 − s)P_ag = 0.97 × 20 = 19.4 kW.
+```

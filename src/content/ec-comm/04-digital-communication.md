@@ -76,3 +76,17 @@ q: Which of these need coherent detection (a phase-locked carrier) at the receiv
 - Non-coherent FSK
 explain: BPSK and QPSK need carrier phase; DPSK compares consecutive symbols and non-coherent FSK uses envelope detectors.
 ```
+
+```quiz
+q: An 8-PSK system sends 9 kbit/s. What is its symbol rate in kbaud?
+answer: 3
+verify: 9 / 3
+explain: 8-PSK carries log₂ 8 = 3 bits per symbol.
+```
+
+```quiz
+q: A signal is sampled at 10 kHz with 12-bit PCM. What is the bit rate in kbit/s?
+answer: 120
+verify: 10 * 12
+explain: R_b = n f_s = 120 kbit/s.
+```

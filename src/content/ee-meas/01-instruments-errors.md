@@ -73,3 +73,17 @@ q: Which instrument can measure only DC?
 - Thermocouple
 explain: The PMMC torque reverses with current direction, so it reads the average, which is zero for AC.
 ```
+
+```quiz
+q: A 50 µA, 2 kΩ meter is made into a 0–10 V voltmeter. What multiplier resistance (kΩ) is needed?
+answer: 198
+verify: round(10 / 50e-6 / 1000 - 2, 6)
+explain: R = V/I_m − R_m = 200 kΩ − 2 kΩ = 198 kΩ.
+```
+
+```quiz
+q: What is the sensitivity (Ω/V) of a voltmeter with 50 µA full-scale current?
+answer: 20000
+verify: round(1 / 50e-6)
+explain: Sensitivity = 1/I_fs = 20,000 Ω/V.
+```

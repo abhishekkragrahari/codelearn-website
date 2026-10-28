@@ -87,3 +87,17 @@ answer: 3
 verify: 3
 explain: At f₀ the Wien network attenuates by 1/3 with zero phase shift, so A must be at least 3.
 ```
+
+```quiz
+q: A non-inverting amplifier has R_f = 47 kΩ and R₁ = 4.7 kΩ. What is its gain?
+answer: 11
+verify: 1 + 47 / 4.7
+explain: Gain = 1 + R_f/R₁ = 1 + 10 = 11.
+```
+
+```quiz
+q: An op-amp has a slew rate of 1 V/µs. What is the full-power bandwidth (kHz) for a 5 V peak output? (Give 2 decimal places.)
+answer: 31.83
+verify: round(1e6 / (2 * __import__("math").pi * 5) / 1000, 2)
+explain: f_max = SR/(2πV_m) = 10⁶/(31.42) = 31,831 Hz.
+```

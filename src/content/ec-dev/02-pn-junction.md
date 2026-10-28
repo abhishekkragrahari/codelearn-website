@@ -75,3 +75,17 @@ q: A Zener diode rated 3.3 V breaks down mainly by:
 - Punch-through
 explain: Low-voltage Zeners are heavily doped and break down by tunnelling, whose voltage falls as temperature rises.
 ```
+
+```quiz
+q: An LED has a band gap of 2 eV. What wavelength (µm) does it emit?
+answer: 0.62
+verify: 1.24 / 2
+explain: λ = 1.24/E_g = 0.62 µm (red-orange light).
+```
+
+```quiz
+q: A Si diode's forward voltage is 0.70 V at 25 °C. At about −2 mV/°C, what is it at 75 °C (same current)?
+answer: 0.6
+verify: round(0.70 - 0.002 * 50, 6)
+explain: ΔV = −2 mV × 50 = −0.1 V, giving 0.60 V.
+```

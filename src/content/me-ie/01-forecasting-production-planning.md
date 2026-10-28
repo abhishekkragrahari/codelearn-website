@@ -76,3 +76,17 @@ q: In exponential smoothing, a larger smoothing constant α makes the forecast:
 - Always equal to the average demand
 explain: α is the weight on the latest demand, so a larger α follows changes faster.
 ```
+
+```quiz
+q: Demands for four months are 80, 90, 100 and 110. What is the 3-month moving-average forecast for month 5?
+answer: 100
+verify: (90 + 100 + 110) / 3
+explain: (90 + 100 + 110)/3 = 100.
+```
+
+```quiz
+q: A line must produce 480 units in an 8-hour shift. What is the cycle time in minutes?
+answer: 1
+verify: 8 * 60 / 480
+explain: C = available time/output = 480 min/480 = 1 minute.
+```

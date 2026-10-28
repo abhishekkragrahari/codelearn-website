@@ -81,3 +81,17 @@ q: An SVI of 300 mL/g in an activated sludge plant indicates:
 - Complete nitrification
 explain: SVI above about 200 means the sludge settles poorly, often due to filamentous organisms (bulking).
 ```
+
+```quiz
+q: An aeration tank of 2000 m³ treats 8000 m³/day. What is its hydraulic retention time in hours?
+answer: 6
+verify: 2000 / 8000 * 24
+explain: HRT = V/Q = 0.25 day = 6 h.
+```
+
+```quiz
+q: Sludge with MLSS 2000 mg/L settles to 300 mL in 1 L after 30 min. What is the SVI in mL/g?
+answer: 150
+verify: 300 * 1000 / 2000
+explain: SVI = 300 × 1000/2000 = 150 mL/g.
+```

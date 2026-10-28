@@ -84,3 +84,17 @@ q: A short-circuited lossless stub shorter than λ/4 behaves as:
 - A resistor
 explain: Z_in = jZ₀ tan βl is positive imaginary for βl < π/2: inductive.
 ```
+
+```quiz
+q: A 50 Ω line is terminated in 25 Ω. What is the reflection coefficient?
+answer: -0.3333
+verify: round((25 - 50) / (25 + 50), 4)
+explain: Γ = (25 − 50)/75 = −1/3.
+```
+
+```quiz
+q: A quarter-wave transformer must match a 100 Ω load to a 25 Ω line. What characteristic impedance (Ω) is needed?
+answer: 50
+verify: (100 * 25) ** 0.5
+explain: Z₀′ = √(100 × 25) = 50 Ω.
+```

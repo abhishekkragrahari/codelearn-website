@@ -74,3 +74,17 @@ q: Which loss does NOT occur in pre-tensioned members?
 - Shrinkage of concrete
 explain: Pre-tensioned tendons are straight in open beds with no ducts, so there is no duct friction (and no anchorage slip).
 ```
+
+```quiz
+q: A beam 200 × 400 mm is prestressed with P = 400 kN at the centroid (e = 0). What is the uniform compressive stress in MPa?
+answer: 5
+verify: 400e3 / (200 * 400)
+explain: σ = P/A = 400,000/80,000 = 5 MPa.
+```
+
+```quiz
+q: A prestress of 1200 MPa suffers total losses of 18%. What is the effective prestress in MPa?
+answer: 984
+verify: round(1200 * (1 - 0.18), 6)
+explain: 1200 × 0.82 = 984 MPa.
+```

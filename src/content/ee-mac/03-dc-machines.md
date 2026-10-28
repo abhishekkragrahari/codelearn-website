@@ -82,3 +82,17 @@ q: Why should a DC series motor never be started without load?
 - It would run backwards
 explain: At no load the current and flux are tiny, and N ∝ 1/Φ, so the speed runs away.
 ```
+
+```quiz
+q: A 230 V DC shunt motor has R_a = 0.4 Ω and takes 50 A armature current. What is its back EMF in V?
+answer: 210
+verify: 230 - 50 * 0.4
+explain: E_b = V − I_aR_a = 230 − 20 = 210 V.
+```
+
+```quiz
+q: A 4-pole wave-wound DC generator has 400 conductors, 0.025 Wb per pole, and runs at 1500 rpm. What EMF (V) does it generate?
+answer: 500
+verify: 4 * 0.025 * 1500 * 400 / (60 * 2)
+explain: E = PΦNZ/(60A) = 4 × 0.025 × 1500 × 400/120 = 500 V.
+```

@@ -76,3 +76,17 @@ q: Which percentile of spot speed is generally used to set the speed limit?
 - 98th
 explain: The 85th percentile speed is the upper safe limit used for speed regulation.
 ```
+
+```quiz
+q: A stream has density 40 veh/km and space-mean speed 50 km/h. What is the flow in veh/h?
+answer: 2000
+verify: 40 * 50
+explain: q = kv = 2000 veh/h.
+```
+
+```quiz
+q: A road carries 1800 veh/h. What is the average headway in seconds?
+answer: 2
+verify: 3600 / 1800
+explain: h = 3600/q = 2 s.
+```

@@ -80,3 +80,17 @@ q: A beam rests on three rollers only (all reactions vertical). It is:
 - A truss
 explain: With all reactions parallel, nothing resists horizontal loads, so the beam is unstable whatever the count.
 ```
+
+```quiz
+q: A fixed-fixed beam (single span) carries transverse loads. Counting axial forces, what is its degree of static indeterminacy?
+answer: 3
+verify: 6 - 3
+explain: Two fixed ends give 6 reactions against 3 equilibrium equations: Ds = 3 (2 if axial forces are ignored).
+```
+
+```quiz
+q: A two-span continuous beam rests on a pin and two rollers. What is its degree of static indeterminacy?
+answer: 1
+verify: 4 - 3
+explain: r = 2 + 1 + 1 = 4 reactions, 3 equations: Ds = 1.
+```

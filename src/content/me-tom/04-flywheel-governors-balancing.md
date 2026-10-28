@@ -75,3 +75,17 @@ q: A governor whose equilibrium speed is the same at every radius of rotation is
 - Hunting
 explain: An isochronous governor has one equilibrium speed for all radii; in practice it tends to hunt.
 ```
+
+```quiz
+q: A flywheel of I = 50 kg·m² slows from 105 rad/s to 95 rad/s. How much energy (kJ) does it give out?
+answer: 50
+verify: 0.5 * 50 * (105 ** 2 - 95 ** 2) / 1000
+explain: ΔE = ½I(ω₁² − ω₂²) = 25 × (11025 − 9025) = 50,000 J = 50 kJ.
+```
+
+```quiz
+q: A rotating mass of 4 kg at radius 0.2 m is balanced by a mass at radius 0.1 m in the same plane. What balancing mass (kg) is needed?
+answer: 8
+verify: 4 * 0.2 / 0.1
+explain: m_b r_b = m r gives m_b = 0.8/0.1 = 8 kg, placed opposite.
+```

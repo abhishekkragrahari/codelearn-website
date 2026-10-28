@@ -76,3 +76,17 @@ q: Dowel bars in a concrete pavement are provided at:
 - Every 1 m along the slab
 explain: Dowels transfer wheel loads across transverse joints while letting the slabs move; tie bars hold longitudinal joints together.
 ```
+
+```quiz
+q: By the fourth power law, how many times more damage does a 100 kN axle do than an 80 kN standard axle? (Give 3 decimal places.)
+answer: 2.441
+verify: round((100 / 80) ** 4, 3)
+explain: (1.25)⁴ = 2.441.
+```
+
+```quiz
+q: Traffic of 1000 CVPD grows at 0 % for 10 years, D = 0.5, F = 2. What is the cumulative traffic in msa?
+answer: 3.65
+verify: round(365 * 1000 * 10 * 0.5 * 2 / 1e6, 6)
+explain: With no growth, N = 365 × A × n × D × F = 3.65 × 10⁶ standard axles.
+```

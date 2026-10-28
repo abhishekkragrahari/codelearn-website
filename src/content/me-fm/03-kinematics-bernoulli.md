@@ -84,3 +84,17 @@ answer: 1.98
 verify: round((2 * 9.81 * 0.2) ** 0.5, 2)
 explain: V = √(2gh) = √3.924 = 1.98 m/s.
 ```
+
+```quiz
+q: Water flows at 2 m/s in a pipe of 0.3 m diameter. What is the flow rate in m³/s? (Give 4 decimal places.)
+answer: 0.1414
+verify: round(__import__("math").pi / 4 * 0.3 ** 2 * 2, 4)
+explain: Q = AV = (π/4)(0.09)(2) = 0.1414 m³/s.
+```
+
+```quiz
+q: In steady flow, the velocity head at a point is 0.8 m (g = 10 m/s²). What is the velocity in m/s?
+answer: 4
+verify: (2 * 10 * 0.8) ** 0.5
+explain: V²/(2g) = 0.8 gives V = √16 = 4 m/s.
+```

@@ -83,3 +83,19 @@ q: A causal LTI system has poles at −1, −3 and +2. It is:
 - Stable for step inputs only
 explain: The pole at +2 lies in the right half-plane, so the response grows without bound.
 ```
+
+```quiz
+q: What is the final value of x(t) if X(s) = 6/(s(s + 3))?
+answer: 2
+verify: 6 / 3
+explain: x(∞) = lim s X(s) as s → 0 = 6/3 = 2.
+```
+
+```quiz
+q: The Laplace transform of e^(−2t) sin 3t is:
+* 3/((s + 2)² + 9)
+- 3/((s − 2)² + 9)
+- (s + 2)/((s + 2)² + 9)
+- 3/(s² + 4s + 13)²
+explain: The frequency-shift property replaces s by s + 2 in 3/(s² + 9).
+```

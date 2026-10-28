@@ -67,3 +67,17 @@ answer: 20
 verify: round(0.8 * 50 * 1.8 / 3.6, 6)
 explain: Q = CiA/3.6 = 0.8 × 50 × 1.8/3.6 = 20 m³/s.
 ```
+
+```quiz
+q: Four rain gauges in a flat area record 40, 50, 60 and 70 mm. What is the arithmetic mean rainfall in mm?
+answer: 55
+verify: (40 + 50 + 60 + 70) / 4
+explain: (40 + 50 + 60 + 70)/4 = 55 mm.
+```
+
+```quiz
+q: A 0.9 km² catchment has C = 0.6 and design intensity 60 mm/h. What is the peak runoff in m³/s?
+answer: 9
+verify: round(0.6 * 60 * 0.9 / 3.6, 6)
+explain: Q = CiA/3.6 = 0.6 × 60 × 0.9/3.6 = 9 m³/s.
+```

@@ -89,3 +89,17 @@ q: For the same inlet and outlet temperatures, which arrangement needs the small
 - All need the same area
 explain: Counter flow gives the largest LMTD, so for the same Q and U it needs the least area.
 ```
+
+```quiz
+q: In parallel flow, hot fluid goes 120 → 80 °C and cold fluid 20 → 50 °C. What is the LMTD in °C? (Give 2 decimal places.)
+answer: 58.14
+verify: round((100 - 30) / __import__("math").log(100 / 30), 2)
+explain: ΔT₁ = 120 − 20 = 100 and ΔT₂ = 80 − 50 = 30, so LMTD = 70/ln(100/30) = 70/1.204 = 58.14 °C.
+```
+
+```quiz
+q: A heat exchanger transfers 120 kW out of a maximum possible 160 kW. What is its effectiveness?
+answer: 0.75
+verify: 120 / 160
+explain: ε = Q/Q_max = 0.75.
+```

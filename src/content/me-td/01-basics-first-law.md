@@ -92,3 +92,17 @@ q: Which of these are path functions? (Select all that apply.)
 - Enthalpy
 explain: Heat and work depend on the process; U and H are properties (point functions).
 ```
+
+```quiz
+q: A gas does 50 kJ of work while losing 20 kJ of heat. What is its change in internal energy in kJ?
+answer: -70
+verify: -20 - 50
+explain: ΔU = Q − W = −20 − 50 = −70 kJ.
+```
+
+```quiz
+q: Air (c_p = 1.005 kJ/kg·K) is compressed adiabatically in steady flow from 300 K to 500 K. What is the work input per kg in kJ?
+answer: 201
+verify: round(1.005 * 200, 6)
+explain: w = c_p ΔT = 1.005 × 200 = 201 kJ/kg.
+```

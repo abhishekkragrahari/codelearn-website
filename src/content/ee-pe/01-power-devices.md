@@ -76,3 +76,19 @@ q: Which devices can be turned off by their gate or base signal? (Select all tha
 - SCR
 explain: A conventional SCR cannot be turned off from its gate; it needs the current to fall below the holding value.
 ```
+
+```quiz
+q: An SCR with latching current 30 mA is in series with 0.1 H across 150 V DC. What minimum gate pulse width (µs) is needed?
+answer: 20
+verify: round(0.03 * 0.1 / 150 * 1e6, 6)
+explain: t = I_L L/V = 0.003/150 = 20 µs.
+```
+
+```quiz
+q: Which device is fastest for low-voltage, high-frequency switching?
+* Power MOSFET
+- SCR
+- GTO
+- TRIAC
+explain: Majority-carrier MOSFETs have no stored charge, so they switch fastest.
+```

@@ -89,3 +89,17 @@ answer: 100
 verify: 1.0 * 3000 / 30
 explain: λ = KL/r = 1.0 × 3000/30 = 100.
 ```
+
+```quiz
+q: A simply supported steel beam of span 8 m has M_p = 200 kN·m. What central load (kN) causes collapse?
+answer: 100
+verify: 4 * 200 / 8
+explain: W_c = 4M_p/L = 100 kN.
+```
+
+```quiz
+q: A strut of length 2.5 m, fixed at both ends (K = 0.65), has r_min = 25 mm. What is its slenderness ratio?
+answer: 65
+verify: round(0.65 * 2500 / 25, 6)
+explain: λ = KL/r = 0.65 × 2500/25 = 65.
+```

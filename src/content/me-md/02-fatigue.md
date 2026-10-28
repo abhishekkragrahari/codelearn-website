@@ -76,3 +76,17 @@ q: Which mean-stress criterion is the most conservative?
 - All are the same
 explain: Soderberg uses S_y instead of S_ut, so its line lies inside the others.
 ```
+
+```quiz
+q: A stress varies from 20 MPa to 100 MPa. What is the mean stress in MPa?
+answer: 60
+verify: (100 + 20) / 2
+explain: σm = (σmax + σmin)/2 = 60 MPa.
+```
+
+```quiz
+q: A steel has S_ut = 800 MPa. What is the approximate endurance limit (MPa) of a polished specimen, using S_e' ≈ 0.5 S_ut?
+answer: 400
+verify: 0.5 * 800
+explain: S_e' ≈ 0.5 × 800 = 400 MPa (before modifying factors).
+```

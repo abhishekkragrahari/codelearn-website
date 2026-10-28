@@ -78,3 +78,19 @@ answer: 32
 verify: 20 + 4 * 3
 explain: V = 20 + 4 × 3 = 32 V.
 ```
+
+```quiz
+q: An arc welds at 30 V and 250 A. What is the arc power in kW?
+answer: 7.5
+verify: 30 * 250 / 1000
+explain: P = VI = 7500 W = 7.5 kW.
+```
+
+```quiz
+q: In oxy-acetylene welding, which flame is used for most steels?
+* Neutral flame
+- Oxidising flame
+- Carburising flame
+- Reducing flame with excess oxygen
+explain: A neutral flame (equal oxygen and acetylene) does not change the metal's composition.
+```

@@ -76,3 +76,19 @@ q: When the environmental lapse rate is greater than the dry adiabatic lapse rat
 - An inversion
 explain: Super-adiabatic conditions make rising air keep rising: strong mixing and a looping plume.
 ```
+
+```quiz
+q: Three machines each produce 70 dB. What is the combined sound level in dB? (Give 2 decimal places.)
+answer: 74.77
+verify: round(10 * __import__("math").log10(3 * 10 ** 7), 2)
+explain: L = 10 log(3 × 10⁷) = 70 + 4.77 = 74.77 dB.
+```
+
+```quiz
+q: The dry adiabatic lapse rate is about 9.8 °C/km. The environmental lapse rate is 6 °C/km. The atmosphere is:
+- Super-adiabatic (unstable)
+* Sub-adiabatic (stable)
+- Neutral
+- An inversion
+explain: An environmental lapse rate smaller than the adiabatic rate makes rising air cooler than its surroundings, so it sinks back: stable.
+```

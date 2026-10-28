@@ -80,3 +80,17 @@ answer: 586.67
 verify: round(20 / 3 * (10 + 14 + 4 * 16), 2)
 explain: V = (20/3)(10 + 14 + 64) = (20/3) × 88 = 586.67 m³.
 ```
+
+```quiz
+q: A curve of radius 400 m has a deflection angle of 30°. What is its length in m? (Give 2 decimal places.)
+answer: 209.44
+verify: round(__import__("math").pi * 400 * 30 / 180, 2)
+explain: l = πRΔ/180 = 209.44 m.
+```
+
+```quiz
+q: A tacheometer (k = 100, C = 0) sights a staff at 10° elevation with intercept 1.5 m. What is the horizontal distance in m? (Give 2 decimal places.)
+answer: 145.48
+verify: round(100 * 1.5 * __import__("math").cos(__import__("math").radians(10)) ** 2, 2)
+explain: D = ks cos²θ = 150 × 0.9698 = 145.48 m.
+```

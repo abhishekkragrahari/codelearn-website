@@ -78,3 +78,17 @@ answer: 163.6
 verify: round(0.05 * 120 ** 2 / 4.4, 1)
 explain: L = NS²/4.4 = 0.05 × 14,400/4.4 = 163.6 m (which is more than 120 m, as assumed).
 ```
+
+```quiz
+q: On a curve of radius 250 m, e = 0.07 and f = 0.15 (g = 9.81). What is the maximum safe speed in m/s? (Give 2 decimal places.)
+answer: 23.23
+verify: round((9.81 * 250 * (0.07 + 0.15)) ** 0.5, 2)
+explain: v = √(gR(e + f)) = √(9.81 × 250 × 0.22) = √539.55 = 23.23 m/s.
+```
+
+```quiz
+q: What is the intermediate sight distance (m) if the SSD is 90 m?
+answer: 180
+verify: 2 * 90
+explain: ISD = 2 × SSD = 180 m.
+```

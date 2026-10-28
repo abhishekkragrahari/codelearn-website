@@ -89,3 +89,17 @@ answer: 0.27
 verify: round(2 * 0.3 ** 2 / 2 + 2 * 0.3 ** 2, 6)
 explain: I = mr²/2 + mr² = 0.09 + 0.18 = 0.27 kg·m².
 ```
+
+```quiz
+q: A body starts from rest with acceleration 2 m/s². What distance (m) does it cover in 5 s?
+answer: 25
+verify: 0.5 * 2 * 5 ** 2
+explain: s = ½at² = ½ × 2 × 25 = 25 m.
+```
+
+```quiz
+q: A ring rolls without slipping down a 30° incline (g = 10 m/s²). What is its acceleration in m/s²?
+answer: 2.5
+verify: round(10 * 0.5 / (1 + 1), 6)
+explain: For a ring k²/r² = 1, so a = g sin θ/2 = 10 × 0.5/2 = 2.5 m/s².
+```

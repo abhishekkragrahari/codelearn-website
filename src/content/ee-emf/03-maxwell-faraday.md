@@ -78,3 +78,17 @@ q: Maxwell's correction to Ampere's law added:
 - The Lorentz force
 explain: Without ∂D/∂t, Ampere's law would contradict charge continuity, for example in a charging capacitor.
 ```
+
+```quiz
+q: A conductor 1 m long moves at 5 m/s across a field of 0.4 T. What EMF (V) is induced?
+answer: 2
+verify: round(0.4 * 1 * 5, 6)
+explain: e = Blv = 0.4 × 1 × 5 = 2 V.
+```
+
+```quiz
+q: What is the intrinsic impedance (Ω) of a lossless dielectric with ε_r = 9 and μ_r = 1? (Take η₀ = 377 Ω; give 2 decimal places.)
+answer: 125.67
+verify: round(377 / 9 ** 0.5, 2)
+explain: η = η₀/√ε_r = 377/3 = 125.67 Ω.
+```

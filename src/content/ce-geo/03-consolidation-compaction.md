@@ -81,3 +81,17 @@ q: Increasing the compactive effort on a soil:
 - Has no effect
 explain: More energy packs particles closer with less water: the curve moves up and to the left.
 ```
+
+```quiz
+q: A 6 m clay layer is drained at top and bottom. c_v = 3 m²/year. How many years for 50% consolidation (T_v = 0.197)? (Give 3 decimal places.)
+answer: 0.591
+verify: round(0.197 * 3 ** 2 / 3, 3)
+explain: d = H/2 = 3 m; t = T_v d²/c_v = 0.197 × 9/3 = 0.591 years.
+```
+
+```quiz
+q: A soil compacted at OMC has γ_d = 18 kN/m³ in the field; the lab maximum is 19 kN/m³. What is the relative compaction in percent? (Give 2 decimal places.)
+answer: 94.74
+verify: round(18 / 19 * 100, 2)
+explain: RC = 18/19 × 100 = 94.74%.
+```
