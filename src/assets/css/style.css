@@ -741,3 +741,29 @@ button { font: inherit; }
 @media (max-width: 860px) {
   .main-nav { background: var(--surface); }
 }
+
+/* ----- Full-length mock tests ----- */
+.mock [hidden], .track-progress[hidden] { display: none !important; }
+.mock-bar { position: sticky; top: 72px; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 12px 16px; margin: 18px 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.mock-timer { font: 700 1.15rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--primary); }
+.mock-timer.is-low { color: #dc2626; }
+.mock-palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 6px; margin: 0 0 18px; }
+.mock-cell { display: flex; align-items: center; justify-content: center; height: 34px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 600; background: var(--surface); }
+.mock-cell.is-answered { background: var(--primary-soft); border-color: var(--primary); }
+.mock-cell.is-right { background: #16a34a; border-color: #16a34a; color: #fff; }
+.mock-cell.is-wrong { background: #dc2626; border-color: #dc2626; color: #fff; }
+.mock-cell.is-skipped { background: var(--surface-2); color: var(--text-soft); }
+.mock-q { scroll-margin-top: 140px; margin: 0 0 22px; }
+.mock-q-head { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 6px; font-size: 0.9rem; color: var(--text-soft); }
+.mock-q-head strong { color: var(--text); }
+.mock-result { padding: 18px 20px; margin: 0 0 22px; border: 1px solid var(--primary); border-radius: 14px; background: var(--surface); }
+.mock-result h2 { margin-top: 0; }
+
+/* ----- Progress tracking ----- */
+.lesson-done { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 28px 0 8px; color: var(--text-soft); font-size: 0.92rem; }
+.lesson-done.is-done [data-mark-done] { background: #16a34a; border-color: #16a34a; color: #fff; }
+.track-progress { margin: 16px 0 4px; }
+.track-progress p { margin: 6px 0 0; color: var(--text-soft); font-size: 0.9rem; }
+.track-progress-bar { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.track-progress-bar span { display: block; height: 100%; background: var(--primary); }
+.chapter-lessons li.is-done strong::after { content: ' \2713'; color: #16a34a; }

@@ -169,6 +169,7 @@ function gatePage(all, paper) {
   <p class="section-lead">${paper.lead || `Every subject of the ${paper.paper} syllabus, explained step by step with figures and worked examples. Each lesson ends with GATE-style questions in the exam's three formats: MCQ, MSQ and NAT. Every program shown in a question is compiled and run, and every numerical answer is recomputed by a program when the site is built.`}</p>
   <ol class="gate-list">${rows}</ol>
   <p class="gate-other">Other GATE papers: ${Object.values(gatePapers).filter((p) => p !== paper).map((p) => `<a href="${p.file}">${p.title}</a>`).join(' &middot; ')}</p>
+  ${Object.entries(mockPapers).filter(([, m]) => m.hub === paper.file).map(([id]) => `<p class="gate-other"><strong>Full-length mock tests:</strong> ${Array.from({ length: MOCKS_PER_PAPER }, (_, k) => `<a href="mock/${id}-${k + 1}.html">${paper.title} Mock ${k + 1}</a>`).join(' &middot; ')} (65 questions, 3-hour timer, GATE marking)</p>`).join('')}
   ${paper.prep && paper.prep.length ? `<p class="gate-other">Exam prep: ${paper.prep.map((p) => `<a href="${p.href}">${escapeHtml(p.title)}</a>`).join(' &middot; ')}</p>` : ''}
   ${paper.paper === 'GATE CS' || paper.paper === 'GATE DA' ? `<p class="gate-other">Planning your preparation? Read the <a href="prep/index.html">GATE CS Exam Guide</a>: <a href="prep/exam-pattern-marking-scheme.html">exam pattern</a>, <a href="prep/syllabus.html">syllabus</a>, <a href="prep/six-month-study-plan.html">study plans</a>, <a href="prep/formula-sheet.html">formula sheet</a> and a <a href="prep/mock-test-1.html">free mock test</a>.</p>` : ''}
   <aside class="callout callout-note"><strong>Note:</strong> The questions are original GATE-style questions written for this site, modelled on the topics and tricks that GATE papers test. They are not copies of past GATE papers.</aside>
@@ -313,7 +314,7 @@ function languagePage(lang, lessons) {
   <h2><span class="chapter-num">${i + 1}</span>${escapeHtml(ch.name)}</h2>
   <ol class="chapter-lessons">${ch.lessons
     .map(
-      (l) => `<li><a href="${l.slug}.html"><strong>${escapeHtml(l.title)}</strong><span>${escapeHtml(l.description || '')}</span></a></li>`,
+      (l) => `<li><a href="${l.slug}.html" data-lesson="${lang.id}/${l.slug}"><strong>${escapeHtml(l.title)}</strong><span>${escapeHtml(l.description || '')}</span></a></li>`,
     )
     .join('')}</ol>
 </section>`,
@@ -326,6 +327,7 @@ ${sidebar(lang, lessons, null, root)}
   <nav class="breadcrumb" aria-label="Breadcrumb"><a href="${root}index.html">Home</a><span>/</span>${lang.name}</nav>
   <div class="lang-hero" style="--badge:${lang.color}">${langLogo(lang, 'lg', 'graph')}<div><h1>${trackTitle(lang)}</h1><p class="lesson-lead">${escapeHtml(lang.intro)}</p></div></div>
   <a class="btn btn-primary" href="${lessons[0].slug}.html">Start the first lesson</a>
+  <div class="track-progress" data-track-progress="${lang.id}" data-total="${lessons.length}" hidden></div>
   ${chapters}
 </div>
 </div>`;
@@ -390,6 +392,7 @@ ${sidebar(lang, lessons, l, root)}
   <div class="prose">
 ${content}
   </div>
+  <div class="lesson-done" data-lesson-done="${lang.id}/${l.slug}"><button type="button" class="btn btn-sm" data-mark-done>Mark this lesson as done</button><span data-done-note></span></div>
   ${pager}
 </article>
 </div>`;
@@ -537,6 +540,108 @@ function notFoundPage() {
   return layout({ title: 'Page not found', head: '<meta name="robots" content="noindex">\n', root: BASE, body });
 }
 
+// Full-length mock tests: 65 questions (100 marks) drawn from the verified lesson questions,
+// in proportion to each paper's syllabus. Each entry is [track id, number of questions, label,
+// optional lesson slugs]; General Aptitude always comes first with 10 questions.
+const EM_CS = ['matrices-determinants', 'linear-equations', 'eigenvalues', 'calculus', 'integration', 'probability', 'random-variables', 'statistics'];
+const mockPapers = {
+  cs: { title: 'GATE CS', hub: 'gate.html', subjects: [['dm', 5, 'Discrete Mathematics'], ['em', 4, 'Engineering Mathematics', EM_CS], ['dsa', 9, 'Data Structures & Algorithms'], ['c', 3, 'Programming in C'], ['os', 5, 'Operating Systems'], ['dbms', 5, 'Databases'], ['cn', 6, 'Computer Networks'], ['toc', 5, 'Theory of Computation'], ['coa', 5, 'Computer Organization'], ['dl', 4, 'Digital Logic'], ['cd', 4, 'Compiler Design']] },
+  da: { title: 'GATE DA', hub: 'gate-da.html', subjects: [['ps', 9, 'Probability & Statistics'], ['la', 6, 'Linear Algebra'], ['calc', 4, 'Calculus & Optimization'], ['dsa', 10, 'Programming, Data Structures & Algorithms'], ['dbms', 5, 'Databases'], ['dw', 3, 'Data Warehousing'], ['ml', 11, 'Machine Learning'], ['ai', 7, 'Artificial Intelligence']] },
+  me: { title: 'GATE ME', hub: 'gate-me.html', subjects: [['em', 8, 'Engineering Mathematics'], ['me-mech', 4, 'Engineering Mechanics'], ['me-som', 7, 'Strength of Materials'], ['me-tom', 6, 'Theory of Machines'], ['me-md', 5, 'Machine Design'], ['me-fm', 6, 'Fluid Mechanics'], ['me-td', 7, 'Thermodynamics'], ['me-ht', 4, 'Heat Transfer'], ['me-mfg', 5, 'Manufacturing'], ['me-ie', 3, 'Industrial Engineering']] },
+  ce: { title: 'GATE CE', hub: 'gate-ce.html', subjects: [['em', 8, 'Engineering Mathematics'], ['me-mech', 3, 'Engineering Mechanics'], ['me-som', 6, 'Solid Mechanics'], ['ce-str', 6, 'Structural Analysis'], ['ce-rcc', 5, 'Concrete & Steel'], ['ce-geo', 8, 'Geotechnical'], ['me-fm', 4, 'Fluid Mechanics'], ['ce-wr', 5, 'Water Resources'], ['ce-env', 4, 'Environmental'], ['ce-tr', 4, 'Transportation'], ['ce-gm', 2, 'Geomatics']] },
+  ee: { title: 'GATE EE', hub: 'gate-ee.html', subjects: [['em', 8, 'Engineering Mathematics'], ['ee-ckt', 7, 'Electric Circuits'], ['ee-emf', 4, 'Electromagnetic Fields'], ['ee-ss', 5, 'Signals & Systems'], ['ee-mac', 8, 'Electrical Machines'], ['ee-ps', 7, 'Power Systems'], ['ee-cs', 5, 'Control Systems'], ['ee-meas', 3, 'Measurements'], ['ee-elec', 4, 'Analog & Digital Electronics'], ['ee-pe', 4, 'Power Electronics']] },
+  ec: { title: 'GATE EC', hub: 'gate-ec.html', subjects: [['em', 8, 'Engineering Mathematics'], ['ee-ckt', 7, 'Networks'], ['ee-ss', 7, 'Signals & Systems'], ['ec-dev', 6, 'Electronic Devices'], ['ee-elec', 7, 'Analog & Digital Circuits'], ['ee-cs', 5, 'Control Systems'], ['ec-comm', 8, 'Communications'], ['ee-emf', 2, 'Electromagnetic Fields'], ['ec-emw', 5, 'Electromagnetic Waves']] },
+};
+const MOCKS_PER_PAPER = 2;
+
+// Small deterministic shuffle, so every build produces the same mock tests.
+function seededShuffle(items, seed) {
+  let s = [...seed].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const rand = () => ((s = (s * 1103515245 + 12345) >>> 0) / 2 ** 32);
+  const out = [...items];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+function quizPool(all, trackId, slugs) {
+  return all[trackId]
+    .filter((l) => !slugs || slugs.includes(l.slug))
+    .flatMap((l) => l.blocks.filter((b) => b.type === 'code' && b.lang === 'quiz').map((b) => ({ src: b.code, from: `${trackId}/${l.slug}.html` })));
+}
+
+// The questions of mock n for a paper: disjoint slices of each subject's shuffled pool.
+function mockQuestions(all, id, n) {
+  const paper = mockPapers[id];
+  const sections = [['ga', 10, 'General Aptitude'], ...paper.subjects];
+  const qs = [];
+  for (const [track, count, label, slugs] of sections) {
+    const pool = seededShuffle(quizPool(all, track, slugs), `${id}-${track}`);
+    if (pool.length < count * MOCKS_PER_PAPER) throw new Error(`mock ${id}: only ${pool.length} questions for ${track}, need ${count * MOCKS_PER_PAPER}`);
+    pool.slice((n - 1) * count, n * count).forEach((q) => qs.push({ ...q, subject: label }));
+  }
+  // GA: 5 one-mark then 5 two-mark questions; the other 55: 25 one-mark and 30 two-mark.
+  return qs.map((q, i) => ({ ...q, marks: i < 10 ? (i < 5 ? 1 : 2) : (i - 10) % 11 < 5 ? 1 : 2 }));
+}
+
+function mockPage(all, id, n) {
+  const paper = mockPapers[id];
+  const root = '../';
+  const qs = mockQuestions(all, id, n);
+  const items = qs
+    .map(
+      (q, i) => `<section class="mock-q" id="q${i + 1}" data-marks="${q.marks}" data-subject="${escapeHtml(q.subject)}">
+<p class="mock-q-head"><strong>Q${i + 1}</strong> <span>${q.marks} mark${q.marks > 1 ? 's' : ''}</span> <span>${escapeHtml(q.subject)}</span> <a href="${root}${q.from}">lesson</a></p>
+${renderQuiz(q.src, inline)}
+</section>`,
+    )
+    .join('\n');
+  const body = `<section class="section"><div class="container mock" data-mock="${id}-${n}" data-minutes="180">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="${root}index.html">Home</a><span>/</span><a href="${root}${paper.hub}">${paper.title}</a><span>/</span><a href="index.html">Mock tests</a><span>/</span>Mock ${n}</nav>
+  <h1 class="section-title">${paper.title} Full-Length Mock Test ${n}</h1>
+  <p class="section-lead">65 questions, 100 marks, 3 hours, in the GATE format: General Aptitude (15 marks) and the technical section (85 marks). MCQs carry negative marks (−1/3 for 1 mark, −2/3 for 2 marks); MSQs and NATs do not. The timer starts when you press Start; answers and explanations appear after you submit.</p>
+  <div class="mock-bar" data-mock-bar><button type="button" class="btn btn-primary" data-mock-start>Start the test</button><span class="mock-timer" data-mock-timer>3:00:00</span><span data-mock-count>0 / 65 answered</span><button type="button" class="btn btn-sm" data-mock-submit hidden>Submit</button></div>
+  <nav class="mock-palette" data-mock-palette aria-label="Question palette"></nav>
+  <div class="mock-result" data-mock-result hidden></div>
+  <div class="mock-questions" data-mock-questions hidden>
+${items}
+  </div>
+</div></section>`;
+  return layout({
+    titles: [`${paper.title} Mock Test ${n}: Free Full-Length Test`, `${paper.title} Mock Test ${n}`],
+    description: `Free ${paper.title} full-length mock test ${n}: 65 original GATE-style questions, 3-hour timer, GATE marking with negative marks, instant score and subject-wise analysis.`,
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], [paper.title, paper.hub], ['Mock tests', 'mock/index.html'], [`Mock ${n}`, `mock/${id}-${n}.html`]])),
+    root,
+    body,
+    scripts: ['mock.js'],
+  });
+}
+
+function mockIndexPage() {
+  const root = '../';
+  const rows = Object.entries(mockPapers)
+    .map(
+      ([id, p]) => `<li class="gate-subject"><span class="chapter-num">${p.title.slice(5)}</span><div><strong>${p.title}</strong><span>${Array.from({ length: MOCKS_PER_PAPER }, (_, k) => `<a href="${id}-${k + 1}.html" data-mock-link="${id}-${k + 1}">Mock ${k + 1}</a>`).join(' &middot; ')}</span></div></li>`,
+    )
+    .join('');
+  const body = `<section class="section"><div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="${root}index.html">Home</a><span>/</span>Mock tests</nav>
+  <h1 class="section-title">Free GATE full-length mock tests</h1>
+  <p class="section-lead">Each mock has 65 questions worth 100 marks with a 3-hour timer and GATE's marking scheme, drawn in proportion to the syllabus. Your best score is saved in this browser.</p>
+  <ol class="gate-list">${rows}</ol>
+</div></section>`;
+  return layout({
+    titles: ['Free GATE Mock Tests 2027: Full-Length, Timed', 'Free GATE Mock Tests'],
+    description: 'Free full-length GATE mock tests for CS, DA, CE, ME, EE and EC: 65 questions, 100 marks, 3-hour timer, negative marking and subject-wise score analysis.',
+    head: jsonLd(breadcrumbs([['Home', 'index.html'], ['Mock tests', 'mock/index.html']])),
+    root,
+    body,
+    scripts: ['mock.js'],
+  });
+}
+
 export function build() {
   if (existsSync(OUT)) rmSync(OUT, { recursive: true });
   mkdirSync(OUT, { recursive: true });
@@ -548,6 +653,10 @@ export function build() {
   write('index.html', homePage(all));
   write('playground.html', playgroundPage(all));
   for (const paper of Object.values(gatePapers)) write(paper.file, gatePage(all, paper));
+  write('mock/index.html', mockIndexPage());
+  for (const id of Object.keys(mockPapers)) {
+    for (let n = 1; n <= MOCKS_PER_PAPER; n++) write(`mock/${id}-${n}.html`, mockPage(all, id, n));
+  }
   write('404.html', notFoundPage());
   write('.nojekyll', '');
   write('CNAME', new URL(site.url).host + '\n');
