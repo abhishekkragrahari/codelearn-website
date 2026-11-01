@@ -4,15 +4,17 @@ description: How to contact GateShala to report a mistake, suggest a topic or as
 ---
 We would love to hear from you, whether you found a mistake, want a new topic or have a question about the site.
 
+## Email
+
+Write to **[abhishekcsbit@gmail.com](mailto:abhishekcsbit@gmail.com)**. GateShala is run by Abhishek Kumar Agrahari, who reads every message.
+
 ## Report a mistake or suggest a topic
 
-The quickest way to reach us is to [open an issue on GitHub](https://github.com/abhishekkragrahari/codelearn-website/issues/new). Please include:
+You can email us, or [open an issue on GitHub](https://github.com/abhishekkragrahari/codelearn-website/issues/new) if you have a free GitHub account. Please include:
 
 - the link to the page,
 - what looks wrong or what you would like to see,
 - for a wrong answer, the working that you think is correct.
-
-You need a free GitHub account to open an issue.
 
 ## Response time
 
