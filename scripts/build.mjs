@@ -185,6 +185,52 @@ function gatePage(all, paper) {
   });
 }
 
+// The home-page study finder: pick an exam (or programming), then a subject.
+function studyFinder() {
+  const byId = Object.fromEntries(tracks.map((t) => [t.id, t]));
+  const groups = [
+    ...Object.values(gatePapers).map((p) => ({
+      label: p.title,
+      hub: p.file,
+      subjects: p.subjects
+        .filter((g) => g.track && byId[g.track])
+        .map((g) => [g.name, g.lesson ? `${g.track}/${g.lesson}.html` : `${g.track}/index.html`]),
+    })),
+    {
+      label: 'Programming',
+      hub: 'python/index.html',
+      subjects: tracks.filter((l) => !l.topic || l.nav).map((l) => [l.topic ? 'Data Structures & Algorithms' : l.name, `${l.id}/index.html`]),
+    },
+  ];
+  const examOptions = groups.map((g, i) => `<option value="${i}">${escapeHtml(g.label)}</option>`).join('');
+  const subjectGroups = groups
+    .map(
+      (g, i) => `<optgroup label="${escapeHtml(g.label)}" data-exam="${i}"><option value="${g.hub}">All ${escapeHtml(g.label)} subjects</option>${g.subjects
+        .map(([name, href]) => `<option value="${href}">${escapeHtml(name)}</option>`)
+        .join('')}</optgroup>`,
+    )
+    .join('');
+  const quick = [
+    ['gate.html', 'GATE CS'],
+    ['gate-da.html', 'GATE DA'],
+    ['mock/cs-1.html', 'Mock test'],
+    ['prep/formula-sheet.html', 'Formula sheet'],
+    ['prep/six-month-study-plan.html', 'Study plan'],
+    ['playground.html', 'Playground'],
+  ];
+  return `<section class="finder-wrap"><div class="finder glass">
+  <div class="finder-head"><span class="section-icon">${icon('list', 20)}</span><div><h2>What do you want to study today?</h2><p>Choose your exam and subject, and go straight to the lessons.</p></div></div>
+  <form class="finder-form" data-finder>
+    <label class="finder-field"><span>1. Exam or course</span>
+      <select data-finder-exam>${examOptions}</select></label>
+    <label class="finder-field"><span>2. Subject</span>
+      <select data-finder-subject>${subjectGroups}</select></label>
+    <button type="submit" class="btn btn-primary btn-lg">Start studying ${icon('arrow', 18)}</button>
+  </form>
+  <div class="finder-quick"><span>Popular:</span>${quick.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</div>
+</div></section>`;
+}
+
 function homePage(all) {
   const root = './';
   const ready = gateSubjects.filter((g) => g.track).length;
@@ -234,13 +280,13 @@ for learner in ["Asha", "Ravi"]:
   const body = `<section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <p class="eyebrow"><span class="eyebrow-dot"></span>Free tutorials &middot; No sign-up required</p>
-      <h1>Learn programming the <span class="grad squiggle">friendly</span> way.</h1>
-      <p class="hero-lead">Short lessons, clear examples and a playground to try things out.
-        Pick a language and write your first program in minutes.</p>
+      <p class="eyebrow"><span class="eyebrow-dot"></span>Free GATE notes &middot; No sign-up required</p>
+      <h1>Prepare for GATE and learn to code, the <span class="grad squiggle">simple</span> way.</h1>
+      <p class="hero-lead">Subject-wise notes, solved GATE-style questions and full mock tests for CS, DA, CE, ME, EE and EC,
+        plus Python, C, Java and JavaScript tutorials with a playground to try the code.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary btn-lg" href="python/index.html">Start with Python ${icon('arrow', 18)}</a>
-        <a class="btn btn-ghost btn-lg" href="playground.html">${icon('code', 18)}Open the playground</a>
+        <a class="btn btn-primary btn-lg" href="gate.html">Explore GATE papers ${icon('arrow', 18)}</a>
+        <a class="btn btn-ghost btn-lg" href="python/index.html">${icon('code', 18)}Start with Python</a>
       </div>
       <ul class="hero-points">
         <li><span class="pt pt-blue">${icon('book', 18)}</span>Bite-sized lessons</li>
@@ -271,6 +317,7 @@ Namaste, Ravi!</pre>
     </div>
   </div>
 </section>
+${studyFinder()}
 <section class="section">
   <div class="container">
     ${sectionHead('layers', 'Choose a language', 'Every track starts from zero and builds up step by step.')}

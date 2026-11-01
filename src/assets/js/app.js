@@ -62,6 +62,54 @@
   toggler('[data-menu-toggle]', null, 'is-open');
   toggler('[data-sidebar-toggle]', 'sidebar-open', 'is-open');
 
+  // ----- Home-page study finder: the subject list follows the chosen exam -----
+  var finder = document.querySelector('[data-finder]');
+  if (finder) {
+    var examSel = finder.querySelector('[data-finder-exam]');
+    var subjectSel = finder.querySelector('[data-finder-subject]');
+    var subjectGroups = Array.prototype.slice.call(subjectSel.querySelectorAll('optgroup'));
+    var showSubjects = function () {
+      subjectSel.innerHTML = '';
+      subjectGroups.forEach(function (g) {
+        if (g.getAttribute('data-exam') !== examSel.value) return;
+        Array.prototype.forEach.call(g.children, function (o) { subjectSel.appendChild(o.cloneNode(true)); });
+      });
+    };
+    examSel.addEventListener('change', showSubjects);
+    showSubjects();
+    finder.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (subjectSel.value) window.location.href = subjectSel.value;
+    });
+  }
+
+  // ----- Dropdown menus in the top bar -----
+  var dropdowns = document.querySelectorAll('.nav-dd');
+  function closeDropdowns(except) {
+    dropdowns.forEach(function (dd) {
+      if (dd === except) return;
+      dd.classList.remove('is-open');
+      dd.querySelector('.nav-dd-btn').setAttribute('aria-expanded', 'false');
+    });
+  }
+  dropdowns.forEach(function (dd) {
+    var btn = dd.querySelector('.nav-dd-btn');
+    btn.addEventListener('click', function () {
+      var open = !dd.classList.contains('is-open');
+      closeDropdowns(dd);
+      dd.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-dd')) closeDropdowns(null);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = document.querySelector('.nav-dd.is-open');
+    if (open) { closeDropdowns(null); open.querySelector('.nav-dd-btn').focus(); }
+  });
+
   // ----- Copy buttons -----
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
