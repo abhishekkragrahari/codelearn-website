@@ -23,3 +23,7 @@ The practice questions on GateShala are original questions written in the style 
 ## Free to use
 
 All lessons are free to read. No account or sign-up is needed.
+
+## Who runs GateShala
+
+GateShala is created and maintained by **Abhishek Kumar Agrahari**, who writes and checks the lessons and practice questions. You can reach him at [abhishekcsbit@gmail.com](mailto:abhishekcsbit@gmail.com) or through the [contact page](contact.html).
