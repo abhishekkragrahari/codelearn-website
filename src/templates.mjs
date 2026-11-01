@@ -36,6 +36,27 @@ const ICON_PATHS = {
   list: '<path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
 };
 
+// Dropdown menus in the top bar: [href from the site root, label, one-line description].
+const gateMenu = [
+  ['gate.html', 'GATE CS', 'Computer Science and IT'],
+  ['gate-da.html', 'GATE DA', 'Data Science and AI'],
+  ['gate-ce.html', 'GATE CE', 'Civil Engineering'],
+  ['gate-me.html', 'GATE ME', 'Mechanical Engineering'],
+  ['gate-ee.html', 'GATE EE', 'Electrical Engineering'],
+  ['gate-ec.html', 'GATE EC', 'Electronics and Communication'],
+  ['prep/index.html', 'GATE Exam Guide', 'Pattern, syllabus and study plans'],
+];
+const practiceMenu = [
+  ['mock/cs-1.html', 'GATE CS mock test', '65 questions, 3-hour timer'],
+  ['mock/da-1.html', 'GATE DA mock test', '65 questions, 3-hour timer'],
+  ['mock/me-1.html', 'GATE ME mock test', '65 questions, 3-hour timer'],
+  ['mock/ce-1.html', 'GATE CE mock test', '65 questions, 3-hour timer'],
+  ['mock/ee-1.html', 'GATE EE mock test', '65 questions, 3-hour timer'],
+  ['mock/ec-1.html', 'GATE EC mock test', '65 questions, 3-hour timer'],
+  ['prep/formula-sheet.html', 'Formula sheet', 'Key formulas on one page'],
+  ['prep/six-month-study-plan.html', 'Study plan', 'Six-month and three-month plans'],
+];
+
 export function icon(name, size = 18, cls = '') {
   return `<svg class="icon${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name]}</svg>`;
 }
@@ -134,13 +155,36 @@ function fitDescription(text, extra) {
 export function layout({ title, titles, description = site.description, descriptionExtra, head = '', root, body, active = '', bodyClass = '', scripts = [] }) {
   const fullTitle = fitTitle(titles || [title]);
   description = fitDescription(description, descriptionExtra);
-  // The top bar lists the languages, topics marked `nav`, and one link to the GATE hub.
+  // The footer lists the languages, topics marked `nav`, and one link to the GATE hub.
   const gateActive = active === 'gate' || tracks.some((t) => t.id === active && t.gate && !t.nav);
+  const navTracks = tracks.filter((l) => !l.topic || l.nav);
   const nav =
-    tracks
-      .filter((l) => !l.topic || l.nav)
+    navTracks
       .map((l) => `<a href="${root}${l.id}/index.html"${active === l.id ? ' aria-current="page"' : ''}>${l.topic ? 'DSA' : l.name}</a>`)
       .join('') + `<a href="${root}gate.html"${gateActive ? ' aria-current="page"' : ''}>GATE</a>`;
+  // The top bar groups the pages into dropdown menus.
+  const menus = [
+    {
+      label: 'Programming',
+      active: navTracks.some((l) => l.id === active) || active === 'playground',
+      links: [
+        ...navTracks.map((l) => [`${l.id}/index.html`, l.topic ? 'Data Structures & Algorithms' : l.name, l.tagline]),
+        ['playground.html', 'Playground', 'Write and run code in the browser'],
+      ],
+    },
+    { label: 'GATE Papers', active: gateActive, links: gateMenu },
+    { label: 'Practice', active: active === 'mock', links: practiceMenu },
+  ];
+  const menuHtml = menus
+    .map(
+      (m, i) => `<div class="nav-dd">
+        <button type="button" class="nav-dd-btn${m.active ? ' is-active' : ''}" aria-expanded="false" aria-controls="nav-dd-${i}">${m.label}${icon('chevron', 16, 'nav-dd-caret')}</button>
+        <div class="nav-dd-menu" id="nav-dd-${i}">${m.links
+          .map(([href, label, sub]) => `<a href="${root}${href}"><strong>${escapeHtml(label)}</strong>${sub ? `<span>${escapeHtml(sub)}</span>` : ''}</a>`)
+          .join('')}</div>
+      </div>`,
+    )
+    .join('');
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -162,8 +206,7 @@ ${head}${site.adsenseClient ? `<script async src="https://pagead2.googlesyndicat
   <div class="header-inner">
     <a class="brand" href="${root}index.html">${logoSvg()}<span>${site.name}</span></a>
     <nav class="main-nav" id="main-nav" aria-label="Main">
-      ${nav}
-      <a href="${root}playground.html"${active === 'playground' ? ' aria-current="page"' : ''} class="nav-playground">Playground</a>
+      ${menuHtml}
     </nav>
     <div class="header-tools">
       <a class="btn btn-primary btn-sm header-cta" href="${root}playground.html">${icon('play', 14)}Playground</a>
